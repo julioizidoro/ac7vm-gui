@@ -1,7 +1,7 @@
-import { ClienteService } from './../cliente/cliente.service';
+import { ClienteService } from '../cliente.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Instituicao } from '../cliente/model/instituicao';
+import { Instituicao } from '../model/instituicao';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 
 @Component({
