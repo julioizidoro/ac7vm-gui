@@ -5,6 +5,8 @@ import { CadclienteComponent } from '../cadcliente/cadcliente.component';
 import { routing } from '../app.routing';
 import { AccordionModule } from 'ngx-bootstrap';
 import { BsDatepickerModule } from 'ngx-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap';
   imports: [
     CommonModule,
     routing,
+    HttpClientModule,
+    ReactiveFormsModule,
     AccordionModule.forRoot(),
     BsDatepickerModule.forRoot()
   ],

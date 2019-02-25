@@ -8,7 +8,6 @@ const APP_ROUTER: Routes = [
     { path: '', component: AppComponent },
     { path: 'consCliente', component: ConsuclienteComponent },
     { path: 'cadCliente', component: CadclienteComponent }
-   
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTER);

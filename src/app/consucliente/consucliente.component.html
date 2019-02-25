@@ -6,43 +6,34 @@
       <br/>
     </h3>
 
-    
+
   </div>
 
-  <div class="container-fluid" style="width:80%;"> 
+  <div class="container-fluid" style="width:80%;">
   <button type="button" style="float:right;" class="btn btn-primary" routerLink="/cadCliente">Novo</button>
   <br/><br/>
    <table class="table table-striped" >
-      <thead>TABELA DE CONSULTA DE CLIENTES</thead>
-      <tbody>
-            <tr>
+      <thead>
+          <tr>
               <th>Nome</th>
               <th>CPF</th>
               <th>Email</th>
-              <th>Sexo</th>
               <th>Telefone</th>
             </tr>
-            <tr>
-              
-              <td>Anderson Luiz</td>
-              <td>097.721.699-32</td>
-              <td>Andersonvc29@hotmail.com</td>
-              <td>Masculino</td>
-              <td>(48) 99159-9815</td>
-            </tr>
+      </thead>
+      <tbody>
 
-            <tr>
-              
-                <td>Rodolfo Abrantes</td>
-                <td>000.000.000-00</td>
-                <td>Rodolfoabrantes@hotmail.com</td>
-                <td>Masculino</td>
-                <td>(48) 98439-7233</td>
-              </tr>
+            <tr *ngFor="let i of instituicao">
+
+              <td>{{i.nome}}</td>
+              <td>{{i.cpfcnpj}}</td>
+              <td>{{ i.email }}</td>
+              <td>{{ i.fonecelular }}</td>
+            </tr>
           </tbody>
         </table>
 
-       
+
   </div>
 </div>
-<router-outlet></router-outlet>
+

@@ -1,4 +1,8 @@
+import { ClienteService } from './../cliente/cliente.service';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Instituicao } from '../cliente/model/instituicao';
+import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 
 @Component({
   selector: 'app-consucliente',
@@ -7,9 +11,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsuclienteComponent implements OnInit {
 
-  constructor() { }
+    formulario: FormGroup;
+
+
+
+  constructor(
+    private clienteService: ClienteService,) {}
+
+    instituicao: Instituicao[];
+
 
   ngOnInit() {
+    this.consultar();
   }
+
+    consultar() {
+      this.clienteService.listar().subscribe(
+        resposta => {
+          this.instituicao = <any> resposta;
+        }
+      );
+
+      console.log(this.instituicao);
+    }
+
+
+
 
 }
