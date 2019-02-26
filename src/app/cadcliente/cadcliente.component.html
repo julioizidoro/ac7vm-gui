@@ -3,75 +3,185 @@
 <br/>
 
 <div style="margin-left:10%;width:80%;">
-  <div class="panel panel-primary">
-      <div class="panel-body">
-        <b>Dados Principais</b>
-      </div>
-      <div class="panel-footer">
-            <div class="row">
+  
+  
+  <accordion [closeOthers]="oneAtATime">
+      <accordion-group heading="Dados Principais" [isOpen]="isFirstOpen">   
+          <div class="row">
+              <div class="form-group col-xs-4" >
+                  <label for="exampleInputNome2">Nome</label>
+                  <input type="text" class="form-control" id="exampleInputNome2" placeholder="Nome">
+                </div>
                 <div class="form-group col-xs-4" >
-                    <label for="exampleInputNome2">Nome</label>
-                    <input type="text" class="form-control" id="exampleInputNome2" placeholder="Nome">
+                    <label for="exampleInputTipoJuridico">Tipo Juridico</label>
+                    <select class="form-control">
+                        <option value="PF">Pessoa Fisica</option>
+                        <option value="PJ">Pessoa Juridica</option>
+                      </select>
                   </div>
                   <div class="form-group col-xs-4" >
-                      <label for="exampleInputTipoJuridico">Tipo Juridico</label>
+                      <label for="exampleInputSexo">Sexo</label>
                       <select class="form-control">
-                          <option value="PF">Pessoa Fisica</option>
-                          <option value="PJ">Pessoa Juridica</option>
+                          <option value="M">Masculino</option>
+                          <option value="F">Feminino</option>
                         </select>
                     </div>
-                    <div class="form-group col-xs-4" >
-                        <label for="exampleInputSexo">Sexo</label>
-                        <select class="form-control">
-                            <option value="M">Masculino</option>
-                            <option value="F">Feminino</option>
-                          </select>
-                      </div>
-                  <div class="form-group col-xs-4">
-                    <label for="exampleInputEmail2">Email</label>
-                    <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Email">
+                <div class="form-group col-xs-4">
+                  <label for="exampleInputEmail2">Email</label>
+                  <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Email">
+                </div>
+                <div class="form-group col-xs-4">
+                    <label for="exampleInputTelefoneFixo">Telefone Fixo</label>
+                    <input type="email" class="form-control" id="exampleInputTelefoneFixo" placeholder="(00)0000-0000">
                   </div>
                   <div class="form-group col-xs-4">
-                      <label for="exampleInputTelefoneFixo">Telefone Fixo</label>
-                      <input type="email" class="form-control" id="exampleInputTelefoneFixo" placeholder="(00)0000-0000">
+                    <label for="exampleInputTelefoneCelular">Telefone Celular</label>
+                    <input type="text" class="form-control" id="exampleInputTelefoneCelular" placeholder="(00)00000-0000">
+                  </div>
+
+                  <div class="form-group col-xs-4">
+                      <label for="exampleInputCPFCNPJ">CPF/CNPJ</label>
+                      <input type="text" class="form-control" id="exampleInputCPFCNPJ" placeholder="000.000.000-00">
                     </div>
-                    <div class="form-group col-xs-4">
-                      <label for="exampleInputTelefoneCelular">Telefone Celular</label>
-                      <input type="text" class="form-control" id="exampleInputTelefoneCelular" placeholder="(00)00000-0000">
+            </div>
+      </accordion-group>
+      <accordion-group heading="Dados Complementares">
+          <div class="row">
+              <div class="form-group col-xs-4" >
+                  <label for="exampleInputNacionalidade">Nacionalidade</label>
+                  <input type="text" class="form-control" id="exampleInputNacionalidade" placeholder="Nacionalidade">
+                </div>
+                <div class="form-group col-xs-4" >
+                    <label for="exampleInputNaturalidade">Naturalidade</label>
+                    <input type="text" class="form-control" id="exampleInputNacionalidade" placeholder="Naturalidade">
+                  </div>
+                  <div class="form-group col-xs-4">
+                      <label for="exampleInputProfissao">Profissão</label>
+                      <input type="text" class="form-control" id="exampleInputProfissao" placeholder="Profissão">
                     </div>
 
-                    <div class="form-group col-xs-6">
-                        <label for="exampleInputCPFCNPJ">CPF/CNPJ</label>
-                        <input type="text" class="form-control" id="exampleInputCPFCNPJ" placeholder="000.000.000-00">
-                      </div>
-                      <div class="form-group col-xs-6">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                      </div>
-              </div>
-         
-            
-          
-          
-          <br/>
-      </div>
-      <div class="panel panel-default">
-          <div class="panel-body">
-            <b>Dados Complementares</b>
-          </div>
-          <div class="panel-footer">
+                <div class="form-group col-xs-4">
+                    <label for="exampleInputRG">RG</label>
+                    <input type="text" class="form-control" id="exampleInputRG" placeholder="RG">
+                  </div>
+                  <div class="form-group col-xs-4">
+                    <label for="exampleInputEmissor">Emissor</label>
+                    <input type="text" class="form-control" id="exampleInputEmissor" placeholder="Emissor">
+                  </div>
+                  <div class="form-group col-xs-4">
+                    <label for="exampleInputEstadoCivil">Estado Civil</label>
+                    <input type="text" class="form-control" id="exampleInputestadoCivil" placeholder="Estado Civil">
+                  </div>
+                  <div class="form-group col-xs-4" >
+                      <label for="exampleNomePai">Nome Pai</label>
+                      <input type="text" class="form-control" id="exampleNomePai" placeholder="Nome Pai">
+                    </div>
+                <div class="form-group col-xs-4">
+                  <label for="exampleInputNomeMae">Nome Mãe</label>
+                  <input type="text" class="form-control" id="exampleInputNomeMae" placeholder="Nome Mãe">
+                </div>
+                <div class="form-group col-xs-4">
+                  <label for="exampleInputPassword1">Data Emissão</label>
+                  <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker lang="pt-br">
+                </div>
+            </div>
+      </accordion-group>
+      <accordion-group heading="Cliente Socio">
+          <div class="row">
+              <div class="form-group col-xs-4" >
+                  <label for="exampleNomeSocio">Nome</label>
+                  <input type="text" class="form-control" id="exampleInputNomeSocio" placeholder="Nome">
+                </div>
+                <div class="form-group col-xs-4" >
+                    <label for="exampleInputEmailSocio">Email</label>
+                    <input type="text" class="form-control" id="exampleInputEmailSocio" placeholder="Email">
+                  </div>
+                  <div class="form-group col-xs-4">
+                    <label for="exampleInputCPFSocio">CPF</label>
+                    <input type="text" class="form-control" id="exampleInputCPFSocio" placeholder="CPF">
+                  </div>
+                  <div class="form-group col-xs-4" >
+                      <label for="exampleInputFoneSocio">Telefone Celular</label>
+                      <input type="text" class="form-control" id="exampleInputFoneSocio" placeholder="Telefone Celular">
+                    </div>
+               
+            </div>
+      </accordion-group>
+      <accordion-group heading="Endereço Residencial">
+          <div class="row">
+              <div class="form-group col-xs-4" >
+                  <label for="exampleInputCep">CEP</label>
+                  <input type="text" class="form-control" id="exampleInputCep" placeholder="CEP">
+                </div>
+                <div class="form-group col-xs-4" >
+                    <label for="exampleInputLogradouro">Logradouro</label>
+                    <input type="text" class="form-control" id="exampleInputLogradouro" placeholder="Logradouro">
+                  </div>
+                  <div class="form-group col-xs-4" >
+                      <label for="exampleInputNumero">Número</label>
+                      <input type="text" class="form-control" id="exampleInputNumero" placeholder="Número">
+                    </div>
+                <div class="form-group col-xs-4">
+                  <label for="exampleInputComplemento">Complemento</label>
+                  <input type="text" class="form-control" id="exampleInputComplemento" placeholder="Complemento">
+                </div>
+                <div class="form-group col-xs-4">
+                    <label for="exampleInputCidade">Cidade</label>
+                    <input type="text" class="form-control" id="exampleInputCidade" placeholder="Cidade">
+                  </div>
+                  <div class="form-group col-xs-4">
+                    <label for="exampleInputTelefoneEstado">Estado</label>
+                    <input type="text" class="form-control" id="exampleInputEstado" placeholder="Estado">
+                  </div>
 
+                  <div class="form-group col-xs-4">
+                      <label for="exampleInputFoneResidencial">Telefone Residencial</label>
+                      <input type="text" class="form-control" id="exampleInputFoneResidencial" placeholder="Telefone Residencial">
+                    </div>
+            </div>
+      </accordion-group>
+      <accordion-group heading="Endereço Comercial">
+          <div class="row">
+              <div class="form-group col-xs-4" >
+                  <label for="exampleInputCepComercial">CEP</label>
+                  <input type="text" class="form-control" id="exampleInputCepComercial" placeholder="CEP">
+                </div>
+                <div class="form-group col-xs-4" >
+                    <label for="exampleInputLogradouroComercial">Logradouro</label>
+                    <input type="text" class="form-control" id="exampleInputLogradouroComercial" placeholder="Logradouro">
+                  </div>
+                  <div class="form-group col-xs-4" >
+                      <label for="exampleInputNumeroComercial">Número</label>
+                      <input type="text" class="form-control" id="exampleInputNumeroComercial" placeholder="Número">
+                    </div>
+                <div class="form-group col-xs-4">
+                  <label for="exampleInputComplementoComercial">Complemento</label>
+                  <input type="text" class="form-control" id="exampleInputComplementoComercial" placeholder="Complemento">
+                </div>
+                <div class="form-group col-xs-4">
+                    <label for="exampleInputCidadeComercial">Cidade</label>
+                    <input type="text" class="form-control" id="exampleInputCidadeComercial" placeholder="Cidade">
+                  </div>
+                  <div class="form-group col-xs-4">
+                    <label for="exampleInputTelefoneEstadoComercial">Estado</label>
+                    <input type="text" class="form-control" id="exampleInputEstadoComercial" placeholder="Estado">
+                  </div>
 
-          </div>
-        </div>
+                  <div class="form-group col-xs-4">
+                      <label for="exampleInputFoneResidencialComercial">Telefone Residencial</label>
+                      <input type="text" class="form-control" id="exampleInputFoneResidencialComercial" placeholder="Telefone Residencial">
+                    </div>
+            </div>
+      </accordion-group>
+    </accordion>
 
-
+    <div style="margin-left:40%;">
         <button type="button" class="btn btn-primary">
             <i class="fa fa-floppy-o" aria-hidden="true"></i>
             Salvar</button>
             <button type="submit" class="btn btn-danger" style="margin-left:1%;">
                 <i class="fa fa-times" aria-hidden="true"></i>
                 Cancelar</button>
-  </div>
-  
+      </div>
+      <br/>
 </div>

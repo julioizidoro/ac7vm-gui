@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ConsuclienteComponent } from '../consucliente/consucliente.component';
 import { CadclienteComponent } from '../cadcliente/cadcliente.component';
 import { routing } from '../app.routing';
+import { AccordionModule } from 'ngx-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -11,7 +13,9 @@ import { routing } from '../app.routing';
   ],
   imports: [
     CommonModule,
-    routing
+    routing,
+    AccordionModule.forRoot(),
+    BsDatepickerModule.forRoot()
   ],
   exports: [
     CadclienteComponent,

@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cadcliente.component.css']
 })
 export class CadclienteComponent implements OnInit {
-
+  isFirstOpen = true;
+  oneAtATime: boolean = true;
+  bsInlineValue = new Date();
   constructor() { }
 
   ngOnInit() {
   }
 
+
+  
 }
+
+
+
