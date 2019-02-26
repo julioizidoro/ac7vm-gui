@@ -34,37 +34,45 @@ export class CadclienteComponent implements OnInit {
       datacadastro: [null],
       tipo: [null],
       tipojuridico: [null],
-      idclientesocio: [null],
-      csnome: [null],
-      cscpf: [null],
-      csfonecelular: [null],
-      csemail: [null],
-      idclienteenderecoresidencial: [null],
-      cercep: [null],
-      cerendereco: [null],
-      cernumero: [null],
-      cercomplemento: [null],
-      cercidade: [null],
-      cerestado: [null],
-      idclienteenderecocomercial: [null],
-      ceccep: [null],
-      cecendereco: [null],
-      cecnumero: [null],
-      ceccomplemento: [null],
-      ceccidade: [null],
-      cecestado: [null],
-      idclienteclientecomplemento: [null],
-      nacionalidade: [null],
-      naturalidade: [null],
-      nomepai: [null],
-      nomemae: [null],
-      profissao: [null],
-      estadocivil: [null],
-      numerorg: [null],
-      dataemissao: [null],
-      emissor: [null],
-      sexo: [null]
-
+      clientesocio: this.formBuilder.group({
+        idclientesocio: [null],
+        csnome: [null],
+        cscpf: [null],
+        csfonecelular: [null],
+        csemail: [null]
+      }),
+      clienteenderecoresidencial: this.formBuilder.group({
+        idclienteenderecoresidencial: [null],
+        cercep: [null],
+        cerendereco: [null],
+        cernumero: [null],
+        cercomplemento: [null],
+        cercidade: [null],
+        cerestado: [null]
+      }),
+      clienteenderecocomercial: this.formBuilder.group({
+        idclienteenderecocomercial: [null],
+        ceccep: [null],
+        cecendereco: [null],
+        cecnumero: [null],
+        ceccomplemento: [null],
+        ceccidade: [null],
+        cecestado: [null],
+        cecfonecomercial: [null]
+      }),
+      clientecomplemento: this.formBuilder.group({
+        idclienteclientecomplemento: [null],
+        nacionalidade: [null],
+        naturalidade: [null],
+        nomepai: [null],
+        nomemae: [null],
+        profissao: [null],
+        estadocivil: [null],
+        numerorg: [null],
+        dataemissao: [null],
+        emissor: [null],
+        sexo: [null]
+      })
     });
 
   }

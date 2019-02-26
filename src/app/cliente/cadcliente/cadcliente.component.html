@@ -4,7 +4,7 @@
 
 <div style="margin-left:10%;width:80%;">
 
-
+<form [formGroup]="formulario">
   <accordion [closeOthers]="oneAtATime">
       <accordion-group heading="Dados Principais" [isOpen]="isFirstOpen">
           <div class="row">
@@ -41,7 +41,7 @@
       </accordion-group>
       <accordion-group heading="Dados Complementares">
           <div class="row">
-              <div NgModelGroup='clientecomplemento'>
+              <div formGroupName="clientecomplemento">
               <div class="form-group col-xs-3" >
                   <label for="exampleInputSexo">Sexo</label>
                   <select class="form-control">
@@ -91,7 +91,7 @@
       </accordion-group>
       <accordion-group heading="Cliente Socio">
           <div class="row">
-            <div NgModelGroup='clientesocio'>
+            <div formGroupName="clientesocio">
               <div class="form-group col-xs-4" >
                   <label for="exampleNomeSocio">Nome</label>
                   <input type="text" class="form-control" id="exampleInputNomeSocio" placeholder="Nome">
@@ -113,7 +113,7 @@
       </accordion-group>
       <accordion-group heading="Endereço Residencial">
           <div class="row">
-            <div NgModelGroup='enderecoresidencial'>
+              <div formGroupName="clienteenderecoresidencial">
               <div class="form-group col-xs-4" >
                   <label for="exampleInputCep">CEP</label>
                   <input type="text" class="form-control" id="exampleInputCep" placeholder="CEP">
@@ -147,36 +147,42 @@
       </accordion-group>
       <accordion-group heading="Endereço Comercial">
           <div class="row">
-          <div NgModelGroup='enderecocomercial'>
+          <div formGroupName="clienteenderecocomercial">
               <div class="form-group col-xs-4" >
                   <label for="exampleInputCepComercial">CEP</label>
-                  <input type="text" class="form-control" id="CepComercial" placeholder="CEP"
+                  <input type="text" class="form-control" id="CepComercial" placeholder="CEP" formControlName="ceccep"
                   (blur)="consultarCEP($event.target.value)">
                 </div>
                 <div class="form-group col-xs-4" >
                     <label for="exampleInputLogradouroComercial">Logradouro</label>
-                    <input type="text" class="form-control" id="exampleInputLogradouroComercial" placeholder="Logradouro">
+                    <input type="text" class="form-control" id="exampleInputLogradouroComercial" placeholder="Logradouro"
+                    formControlName="ceclogradouro">
                   </div>
                   <div class="form-group col-xs-4" >
                       <label for="exampleInputNumeroComercial">Número</label>
-                      <input type="text" class="form-control" id="exampleInputNumeroComercial" placeholder="Número">
+                      <input type="text" class="form-control" id="exampleInputNumeroComercial" placeholder="Número"
+                      formControlName="cecnumero">
                     </div>
                 <div class="form-group col-xs-4">
                   <label for="exampleInputComplementoComercial">Complemento</label>
-                  <input type="text" class="form-control" id="exampleInputComplementoComercial" placeholder="Complemento">
+                  <input type="text" class="form-control" id="exampleInputComplementoComercial" placeholder="Complemento"
+                  formControlName="ceccomplemento">
                 </div>
                 <div class="form-group col-xs-4">
                     <label for="exampleInputCidadeComercial">Cidade</label>
-                    <input type="text" class="form-control" id="exampleInputCidadeComercial" placeholder="Cidade">
+                    <input type="text" class="form-control" id="exampleInputCidadeComercial" placeholder="Cidade"
+                    formControlName="ceccidade">
                   </div>
                   <div class="form-group col-xs-4">
                     <label for="exampleInputTelefoneEstadoComercial">Estado</label>
-                    <input type="text" class="form-control" id="exampleInputEstadoComercial" placeholder="Estado">
+                    <input type="text" class="form-control" id="exampleInputEstadoComercial" placeholder="Estado"
+                    formControlName="cecestado">
                   </div>
 
                   <div class="form-group col-xs-4">
-                      <label for="exampleInputFoneResidencialComercial">Telefone Residencial</label>
-                      <input type="text" class="form-control" id="exampleInputFoneResidencialComercial" placeholder="Telefone Residencial">
+                      <label for="exampleInputFoneResidencialComercial">Telefone Comercial</label>
+                      <input type="text" class="form-control" id="exampleInputFoneResidencialComercial" placeholder="Telefone Comercial"
+                      formControlName="cecfonecomercial">
                     </div>
                   </div>
             </div>
@@ -190,6 +196,9 @@
             <button type="submit" class="btn btn-danger" style="margin-left:1%;">
                 <i class="fa fa-times" aria-hidden="true"></i>
                 Cancelar</button>
+
       </div>
       <br/>
+    </form>
+
 </div>

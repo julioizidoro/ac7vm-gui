@@ -7,4 +7,5 @@ export class Clienteenderecocomercial {
   complemento: string;
   cidade: string;
   estado: string;
+  fonefixo: string;
 }
