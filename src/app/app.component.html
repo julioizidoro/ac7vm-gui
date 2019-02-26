@@ -7,12 +7,12 @@
 <div class="aw-layout-page">
 
   <nav class="navbar  navbar-fixed-top  navbar-default  js-sticky-reference" id="main-navbar">
-    <div class="container-fluid" style="background: #CFCFCF;">
+    <div class="container-fluid">
 
       <div class="navbar-header">
         <a class="navbar-brand  hidden-xs" href="#">
-          <span style="color:#1e94d2;">
-        <strong style="font-size: 29px;color:#1e94d2;">AC7VM</strong>
+          <span>
+        <strong style="font-size: 29px;">AC7VM</strong>
       </span>
 
         </a>
@@ -26,40 +26,9 @@
 
       <ul class="nav navbar-nav  navbar-right">
       
-        <li>
-          <a href="#" class="js-search-modal-trigger-show"><i class="fa  fa-search"></i></a>
-        </li>
+       
         
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-            <i class="fa  fa-envelope"></i> <span class="label  label-danger  aw-label-corner">48</span>
-          </a>
-                    
-          <ul class="dropdown-menu">
-            <li><a href="javascript:;">Item 1</a></li>
-            <li><a href="javascript:;">Item 2</a></li>
-          </ul>
-        </li>
-        
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <i class="fa  fa-user"></i>
-          </a>
-          
-          <ul class="dropdown-menu">
-            <li>
-              <div class="aw-logged-user">
-                <img src="https://api.adorable.io/avatars/80/joaodascouves" 
-                  width="80" height="80" alt="João das Couves" class="aw-logged-user__picture" />
-                <span class="aw-logged-user__name">João das Couves</span>
-              </div>
-            </li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Meu perfil</a></li>
-            <li><a href="#">Alterar senha</a></li>
-            <li><a href="#">Pagamentos</a></li>
-          </ul>
-        </li>
+       
         
         <li>
           <a href="index.jsf"><em class="fa  fa-sign-out"></em></a>
@@ -86,7 +55,7 @@
           </a>
       
           <ul class="aw-menu__list  aw-menu__list--sublist">
-            <li class="aw-menu__item  aw-menu__item--link"><a href="consCliente.jsf">Cliente</a></li>
+            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Cliente</a></li>
             <li class="aw-menu__item  aw-menu__item--link  is-active"><a href="pesquisa-produtos.html">Pesquisa de produtos</a></li>
             <li class="aw-menu__item  aw-menu__item--link"><a href="tabela-sem-dados.html">Tabela sem dados</a></li>
           </ul>
@@ -113,12 +82,5 @@
 
     </div>
   </aside>
-
-  <section class="aw-layout-content  js-content">
-
-
-
-
-
-<script src="../../../../menu/inicial/components/inicial/vendors.min.js"></script>
-<script src="../../../../menu/inicial/components/inicial/algaworks.min.js"></script>
+<section class="aw-layout-content  js-content">
+<router-outlet></router-outlet>
