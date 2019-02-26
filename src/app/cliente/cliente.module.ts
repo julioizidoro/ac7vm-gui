@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConsuclienteComponent } from '../consucliente/consucliente.component';
 import { CadclienteComponent } from '../cadcliente/cadcliente.component';
+import { routing } from '../app.routing';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { CadclienteComponent } from '../cadcliente/cadcliente.component';
     CadclienteComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    routing
   ],
   exports: [
     CadclienteComponent,

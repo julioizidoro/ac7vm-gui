@@ -1,3 +1,4 @@
+<br/><br/>
 <div class="page-header">
   <div class="container-fluid">
     <h3>
@@ -8,25 +9,35 @@
     
   </div>
 
-  <div class="container-fluid">
-  <button type="button" style="float:right;" class="btn btn-primary">Novo</button>
+  <div class="container-fluid" style="width:80%;"> 
+  <button type="button" style="float:right;" class="btn btn-primary" routerLink="/cadCliente">Novo</button>
   <br/><br/>
-   <table class="table table-striped">
+   <table class="table table-striped" >
+      <thead>TABELA DE CONSULTA DE CLIENTES</thead>
       <tbody>
             <tr>
               <th>Nome</th>
-              <th>Segundo Nome</th>
+              <th>CPF</th>
+              <th>Email</th>
+              <th>Sexo</th>
+              <th>Telefone</th>
             </tr>
             <tr>
               
-              <td>Anderson </td>
-              <td>Luiz</td>
+              <td>Anderson Luiz</td>
+              <td>097.721.699-32</td>
+              <td>Andersonvc29@hotmail.com</td>
+              <td>Masculino</td>
+              <td>(48) 99159-9815</td>
             </tr>
 
             <tr>
               
-                <td>Rodolfo </td>
-                <td>Abrantes</td>
+                <td>Rodolfo Abrantes</td>
+                <td>000.000.000-00</td>
+                <td>Rodolfoabrantes@hotmail.com</td>
+                <td>Masculino</td>
+                <td>(48) 98439-7233</td>
               </tr>
           </tbody>
         </table>
@@ -34,3 +45,4 @@
        
   </div>
 </div>
+<router-outlet></router-outlet>
