@@ -3,10 +3,10 @@
 <br/>
 
 <div style="margin-left:10%;width:80%;">
-  
-  
+
+
   <accordion [closeOthers]="oneAtATime">
-      <accordion-group heading="Dados Principais" [isOpen]="isFirstOpen">   
+      <accordion-group heading="Dados Principais" [isOpen]="isFirstOpen">
           <div class="row">
               <div class="form-group col-xs-4" >
                   <label for="exampleInputNome2">Nome</label>
@@ -19,13 +19,7 @@
                         <option value="PJ">Pessoa Juridica</option>
                       </select>
                   </div>
-                  <div class="form-group col-xs-4" >
-                      <label for="exampleInputSexo">Sexo</label>
-                      <select class="form-control">
-                          <option value="M">Masculino</option>
-                          <option value="F">Feminino</option>
-                        </select>
-                    </div>
+
                 <div class="form-group col-xs-4">
                   <label for="exampleInputEmail2">Email</label>
                   <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Email">
@@ -47,15 +41,23 @@
       </accordion-group>
       <accordion-group heading="Dados Complementares">
           <div class="row">
-              <div class="form-group col-xs-4" >
+              <div NgModelGroup='clientecomplemento'>
+              <div class="form-group col-xs-3" >
+                  <label for="exampleInputSexo">Sexo</label>
+                  <select class="form-control">
+                      <option value="M">Masculino</option>
+                      <option value="F">Feminino</option>
+                    </select>
+                </div>
+              <div class="form-group col-xs-3" >
                   <label for="exampleInputNacionalidade">Nacionalidade</label>
                   <input type="text" class="form-control" id="exampleInputNacionalidade" placeholder="Nacionalidade">
                 </div>
-                <div class="form-group col-xs-4" >
+                <div class="form-group col-xs-3" >
                     <label for="exampleInputNaturalidade">Naturalidade</label>
                     <input type="text" class="form-control" id="exampleInputNacionalidade" placeholder="Naturalidade">
                   </div>
-                  <div class="form-group col-xs-4">
+                  <div class="form-group col-xs-3">
                       <label for="exampleInputProfissao">Profissão</label>
                       <input type="text" class="form-control" id="exampleInputProfissao" placeholder="Profissão">
                     </div>
@@ -84,10 +86,12 @@
                   <label for="exampleInputPassword1">Data Emissão</label>
                   <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker lang="pt-br">
                 </div>
+              </div>
             </div>
       </accordion-group>
       <accordion-group heading="Cliente Socio">
           <div class="row">
+            <div NgModelGroup='clientesocio'>
               <div class="form-group col-xs-4" >
                   <label for="exampleNomeSocio">Nome</label>
                   <input type="text" class="form-control" id="exampleInputNomeSocio" placeholder="Nome">
@@ -104,11 +108,12 @@
                       <label for="exampleInputFoneSocio">Telefone Celular</label>
                       <input type="text" class="form-control" id="exampleInputFoneSocio" placeholder="Telefone Celular">
                     </div>
-               
+                  </div>
             </div>
       </accordion-group>
       <accordion-group heading="Endereço Residencial">
           <div class="row">
+            <div NgModelGroup='enderecoresidencial'>
               <div class="form-group col-xs-4" >
                   <label for="exampleInputCep">CEP</label>
                   <input type="text" class="form-control" id="exampleInputCep" placeholder="CEP">
@@ -133,18 +138,20 @@
                     <label for="exampleInputTelefoneEstado">Estado</label>
                     <input type="text" class="form-control" id="exampleInputEstado" placeholder="Estado">
                   </div>
-
                   <div class="form-group col-xs-4">
                       <label for="exampleInputFoneResidencial">Telefone Residencial</label>
                       <input type="text" class="form-control" id="exampleInputFoneResidencial" placeholder="Telefone Residencial">
                     </div>
+                  </div>
             </div>
       </accordion-group>
       <accordion-group heading="Endereço Comercial">
           <div class="row">
+          <div NgModelGroup='enderecocomercial'>
               <div class="form-group col-xs-4" >
                   <label for="exampleInputCepComercial">CEP</label>
-                  <input type="text" class="form-control" id="exampleInputCepComercial" placeholder="CEP">
+                  <input type="text" class="form-control" id="CepComercial" placeholder="CEP"
+                  (blur)="consultarCEP($event.target.value)">
                 </div>
                 <div class="form-group col-xs-4" >
                     <label for="exampleInputLogradouroComercial">Logradouro</label>
@@ -171,6 +178,7 @@
                       <label for="exampleInputFoneResidencialComercial">Telefone Residencial</label>
                       <input type="text" class="form-control" id="exampleInputFoneResidencialComercial" placeholder="Telefone Residencial">
                     </div>
+                  </div>
             </div>
       </accordion-group>
     </accordion>

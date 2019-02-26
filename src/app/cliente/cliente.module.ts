@@ -1,3 +1,4 @@
+import { ClienteService } from './cliente.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConsuclienteComponent } from '../cliente/consucliente/consucliente.component';
@@ -24,6 +25,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   exports: [
     CadclienteComponent,
     ConsuclienteComponent
+  ],
+  providers: [
+    ClienteService,
   ]
 })
 export class ClienteModule { }

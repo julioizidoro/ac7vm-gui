@@ -1,3 +1,4 @@
+import { ShareModule } from './share/share.module';
 import { ClienteService } from './cliente/cliente.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ClienteModule } from './cliente/cliente.module';
 import { routing } from './app.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConsultacepService } from './share/consultacep.service';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule,
     ClienteModule,
+    ShareModule,
     routing,
 
     AppRoutingModule
   ],
   providers: [
-    ClienteService,
+
   ],
   bootstrap: [AppComponent]
 })
