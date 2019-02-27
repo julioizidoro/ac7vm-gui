@@ -3,6 +3,8 @@ import { ConsultacepService } from './../../share/consultacep.service';
 import { Component, OnInit } from '@angular/core';
 import { Cep } from 'src/app/share/model/cep';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Clienteenderecocomercial } from '../model/clienteenderecocomercial';
+import { BinaryOperator } from '@angular/compiler';
 
 @Component({
   selector: 'app-cadcliente',
@@ -20,9 +22,15 @@ export class CadclienteComponent implements OnInit {
 
   constructor(
     private consultacepService: ConsultacepService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder) {
+      this.instituicao = new Instituicao();
+      this.instituicao.clienteenderecocomercial = new Clienteenderecocomercial;
+    }
+
+
 
   ngOnInit() {
+
     this.formulario = this.formBuilder.group({
 
       idinstituicao: [null],
@@ -77,12 +85,20 @@ export class CadclienteComponent implements OnInit {
 
   }
 
-  consultarCEP(CepComercial){
-
+  consultarCEP(){
+    let CepComercial = this.formulario.get('clienteenderecocomercial.ceccep').value;
     CepComercial = CepComercial.replace(/\D/g, '');
     this.consultacepService.consultar(CepComercial).subscribe(
       resposta => {
         this.cep = resposta;
+        this.formulario.patchValue({
+            clienteenderecocomercial: {
+                cecendereco: this.cep.logradouro,
+                cecbairro: this.cep.bairro,
+                ceccidade: this.cep.localidade,
+                cecestado: this.cep.uf
+            }
+        });
         console.log(this.cep);
       },
       err => {
