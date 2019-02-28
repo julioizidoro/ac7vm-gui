@@ -82,15 +82,10 @@
                     <input type="text" class="form-control" id="exampleInputEmissor" placeholder="Emissor" formControlName="emissor">
                   </div>
                   <div class="form-group col-xs-4">
-                    <label for="exampleInputEstadoCivil">Estado Civil</label>
-                    <select class="form-control" formControlName="estadocivil">
-                      <option value="Casado(a)">Casado(a)</option>
-                      <option value="Divorciado(a)">Divorciado(a)</option>
-                      <option value="Separado(a)">Separado(a)</option>
-                      <option value="Solteiro(a)">Solteiro(a)</option>
-                      <option value="Viúvo(a) ">Viúvo(a)</option>
-                    </select>
+                    <label for="exampleInputPassword1">Data Emissão</label>
+                    <input type="text" placeholder="Data emissão" class="form-control" bsDatepicker lang="pt-br" formControlName="dataemissao">
                   </div>
+
                   <div class="form-group col-xs-4" >
                       <label for="exampleNomePai">Nome Pai</label>
                       <input type="text" class="form-control" id="exampleNomePai" placeholder="Nome Pai" formControlName="nomepai">
@@ -100,8 +95,14 @@
                   <input type="text" class="form-control" id="exampleInputNomeMae" placeholder="Nome Mãe" formControlName="nomemae">
                 </div>
                 <div class="form-group col-xs-4">
-                  <label for="exampleInputPassword1">Data Emissão</label>
-                  <input type="text" placeholder="Data emissão" class="form-control" bsDatepicker lang="pt-br" formControlName="dataemissao">
+                  <label for="exampleInputEstadoCivil">Estado Civil</label>
+                  <select class="form-control" formControlName="estadocivil">
+                    <option value="Casado(a)">Casado(a)</option>
+                    <option value="Divorciado(a)">Divorciado(a)</option>
+                    <option value="Separado(a)">Separado(a)</option>
+                    <option value="Solteiro(a)">Solteiro(a)</option>
+                    <option value="Viúvo(a) ">Viúvo(a)</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -132,25 +133,30 @@
       <accordion-group heading="Endereço Residencial" *ngIf="pessoaFisica" >
           <div class="row">
               <div formGroupName="clienteenderecoresidencial">
-              <div class="form-group col-xs-4" >
+              <div class="form-group col-xs-2" >
                   <label for="exampleInputCep">CEP</label>
-                  <input type="text" class="form-control" id="exampleInputCep" placeholder="CEP">
+                  <input type="text" class="form-control" id="exampleInputCep" placeholder="CEP" formControlName="cercep"  (blur)="consultarCEP('r')" mask="00000-000">
                 </div>
-                <div class="form-group col-xs-4" >
+                <div class="form-group col-xs-5" >
                     <label for="exampleInputLogradouro">Logradouro</label>
-                    <input type="text" class="form-control" id="exampleInputLogradouro" placeholder="Logradouro">
+                    <input type="text" class="form-control" id="exampleInputLogradouro" placeholder="Logradouro" formControlName="cerendereco">
                   </div>
-                  <div class="form-group col-xs-4" >
+                  <div class="form-group col-xs-2" >
                       <label for="exampleInputNumero">Número</label>
-                      <input type="text" class="form-control" id="exampleInputNumero" placeholder="Número">
+                      <input type="text" class="form-control" id="exampleInputNumero" placeholder="Número" formControlName="cernumero">
                     </div>
-                <div class="form-group col-xs-3">
-                  <label for="exampleInputComplemento">Complemento</label>
-                  <input type="text" class="form-control" id="exampleInputComplemento" placeholder="Complemento">
-                </div>
+                    <div class="form-group col-xs-3">
+                      <label for="exampleInputComplemento">Complemento</label>
+                      <input type="text" class="form-control" id="exampleInputComplemento" placeholder="Complemento" formControlName="cercomplemento">
+                    </div>
+
+                    <div class="form-group col-xs-3" >
+                      <label for="exampleInputBairro">Bairro</label>
+                      <input type="text" class="form-control" id="exampleInputNumero" placeholder="Bairro" formControlName="cerbairro">
+                    </div>
                 <div class="form-group col-xs-4">
                     <label for="exampleInputCidade">Cidade</label>
-                    <input type="text" class="form-control" id="exampleInputCidade" placeholder="Cidade">
+                    <input type="text" class="form-control" id="exampleInputCidade" placeholder="Cidade" formControlName="cercidade">
                   </div>
                   <div class="form-group col-xs-2">
                     <label for="exampleInputResidencialEstado">Estado</label>
@@ -185,7 +191,7 @@
                   </div>
                   <div class="form-group col-xs-3">
                       <label for="exampleInputFoneResidencial">Telefone Residencial</label>
-                      <input type="text" class="form-control" id="exampleInputFoneResidencial" placeholder="Telefone Residencial">
+                      <input type="text" class="form-control" id="exampleInputFoneResidencial" placeholder="Fone Residencial" formControlName="cerfoneresidencial">
                     </div>
                   </div>
             </div>
@@ -193,17 +199,17 @@
       <accordion-group heading="Endereço Comercial">
           <div class="row">
           <div formGroupName="clienteenderecocomercial">
-              <div class="form-group col-xs-4" >
+              <div class="form-group col-xs-2" >
                   <label for="exampleInputCepComercial">CEP</label>
                   <input type="text" class="form-control" id="CepComercial" placeholder="CEP" formControlName="ceccep"
                   (blur)="consultarCEP('c')" mask="00000-000">
                 </div>
-                <div class="form-group col-xs-4" >
+                <div class="form-group col-xs-5" >
                     <label for="exampleInputLogradouroComercial">Logradouro</label>
                     <input type="text" class="form-control" id="exampleInputLogradouroComercial" placeholder="Logradouro"
                     formControlName="cecendereco">
                   </div>
-                  <div class="form-group col-xs-4" >
+                  <div class="form-group col-xs-2" >
                       <label for="exampleInputNumeroComercial">Número</label>
                       <input type="text" class="form-control" id="exampleInputNumeroComercial" placeholder="Número"
                       formControlName="cecnumero">
@@ -213,6 +219,13 @@
                   <input type="text" class="form-control" id="exampleInputComplementoComercial" placeholder="Complemento"
                   formControlName="ceccomplemento">
                 </div>
+
+                <div class="form-group col-xs-3">
+                  <label for="exampleInputBairroComercial">Complemento</label>
+                  <input type="text" class="form-control" id="exampleInputComplementoComercial" placeholder="Bairro"
+                  formControlName="cecbairro">
+                </div>
+
                 <div class="form-group col-xs-4">
                     <label for="exampleInputCidadeComercial">Cidade</label>
                     <input type="text" class="form-control" id="exampleInputCidadeComercial" placeholder="Cidade"
@@ -248,7 +261,7 @@
                       <option value="SP">SP</option>
                       <option value="TO">TO</option>
                     </select>
-                    formControlName="cecestado">
+
                   </div>
 
                   <div class="form-group col-xs-3">
@@ -262,10 +275,10 @@
     </accordion>
 
     <div style="margin-left:40%;">
-        <button type="button" class="btn btn-primary"routerLink="/consCliente">
-            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+        <button type="button" class="btn btn-primary" (click)="salvar()">
+            <i class="fa fa-floppy-o" aria-hidden="true" ></i>
             Salvar</button>
-            <button type="submit" class="btn btn-danger" style="margin-left:1%;" routerLink="/consCliente">
+            <button type="submit" class="btn btn-danger" style="margin-left:1%;" (click)="cancelar()">
                 <i class="fa fa-times" aria-hidden="true"></i>
                 Cancelar</button>
 

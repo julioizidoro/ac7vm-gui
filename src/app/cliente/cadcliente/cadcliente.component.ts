@@ -1,3 +1,4 @@
+import { Clienteenderecoresidencial } from './../model/clienteenderecoresidencial';
 import { Instituicao } from './../model/instituicao';
 import { ConsultacepService } from './../../share/consultacep.service';
 import { Component, OnInit } from '@angular/core';
@@ -5,6 +6,7 @@ import { Cep } from 'src/app/share/model/cep';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Clienteenderecocomercial } from '../model/clienteenderecocomercial';
 import { BinaryOperator } from '@angular/compiler';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadcliente',
@@ -19,15 +21,13 @@ export class CadclienteComponent implements OnInit {
   bsInlineValue = new Date();
   cep: Cep;
   instituicao: Instituicao;
-  pessoaJuridica: boolean = false;
-  pessoaFisica: boolean= false;
+  pessoaJuridica = false;
+  pessoaFisica = false;
 
   constructor(
     private consultacepService: ConsultacepService,
-    private formBuilder: FormBuilder) {
-      this.instituicao = new Instituicao();
-      this.instituicao.clienteenderecocomercial = new Clienteenderecocomercial;
-    }
+    private formBuilder: FormBuilder,
+    private router: Router) {}
 
 
 
@@ -56,9 +56,11 @@ export class CadclienteComponent implements OnInit {
         cercep: [null],
         cerendereco: [null],
         cernumero: [null],
+        cerbairro: [null],
         cercomplemento: [null],
         cercidade: [null],
-        cerestado: [null]
+        cerestado: [null],
+        cerfoneresidencial: [null]
       }),
       clienteenderecocomercial: this.formBuilder.group({
         idclienteenderecocomercial: [null],
@@ -66,6 +68,7 @@ export class CadclienteComponent implements OnInit {
         cecendereco: [null],
         cecnumero: [null],
         ceccomplemento: [null],
+        cecbairro: [null],
         ceccidade: [null],
         cecestado: [null],
         cecfonecomercial: [null]
@@ -88,18 +91,33 @@ export class CadclienteComponent implements OnInit {
   }
 
   consultarCEP(tipo: string){
-    let CepComercial = this.formulario.get('clienteenderecocomercial.ceccep').value;
-    CepComercial = CepComercial.replace(/\D/g, '');
-    this.consultacepService.consultar(CepComercial).subscribe(
+    let cepInformado;
+    if (tipo=='c'){
+        cepInformado = this.formulario.get('clienteenderecocomercial.ceccep').value;
+    }else {
+      cepInformado = this.formulario.get('clienteenderecoresidencial.cercep').value;
+    }
+
+    cepInformado = cepInformado.replace(/\D/g, '');
+    this.consultacepService.consultar(cepInformado).subscribe(
       resposta => {
         this.cep = resposta;
-        if(tipo=='c'){
+        if (tipo == 'c') {
           this.formulario.patchValue({
             clienteenderecocomercial: {
                 cecendereco: this.cep.logradouro,
                 cecbairro: this.cep.bairro,
                 ceccidade: this.cep.localidade,
                 cecestado: this.cep.uf
+            }
+        });
+        } else {
+          this.formulario.patchValue({
+            clienteenderecoresidencial: {
+                cerendereco: this.cep.logradouro,
+                cerbairro: this.cep.bairro,
+                cercidade: this.cep.localidade,
+                cerestado: this.cep.uf
             }
         });
         }
@@ -112,12 +130,26 @@ export class CadclienteComponent implements OnInit {
     );
 }
   setTipoJuridico(){
-    if (this.formulario.get('tipojuridico').value=='PF') {
-      this.pessoaJuridica= false;
-      this.pessoaFisica= true;
-    }else {
-      this.pessoaJuridica=true;
-      this.pessoaFisica=false;
+    if (this.formulario.get('tipojuridico').value == 'PF') {
+      this.pessoaJuridica = false;
+      this.pessoaFisica = true;
+    } else {
+      this.pessoaJuridica = true;
+      this.pessoaFisica = false;
     }
+  }
+
+  salvar() {
+    this.formulario.patchValue( {
+      datacadastro: new Date(),
+      tipo: 'c'
+      });
+    this.instituicao = this.formulario.value;
+    console.log(this.instituicao);
+  }
+
+  cancelar() {
+    this.formulario.reset();
+    this.router.navigate([ "/conscliente"]);
   }
 }
