@@ -10,11 +10,12 @@
           <div class="row">
               <div class="form-group col-xs-4" >
                   <label for="exampleInputNome2">Nome</label>
-                  <input type="text" class="form-control" id="exampleInputNome2" placeholder="Nome">
+                  <input type="text" class="form-control" id="exampleInputNome2" placeholder="Nome"
+                  formControlName="nome">
                 </div>
                 <div class="form-group col-xs-4" >
                     <label for="exampleInputTipoJuridico">Tipo Juridico</label>
-                    <select class="form-control">
+                    <select class="form-control" formControlName="tipojuridico" (change)="setTipoJuridico()">
                         <option value="PF">Pessoa Fisica</option>
                         <option value="PJ">Pessoa Juridica</option>
                       </select>
@@ -22,96 +23,113 @@
 
                 <div class="form-group col-xs-4">
                   <label for="exampleInputEmail2">Email</label>
-                  <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Email">
+                  <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email"
+                  formControlName="email">
                 </div>
                 <div class="form-group col-xs-4">
                     <label for="exampleInputTelefoneFixo">Telefone Fixo</label>
-                    <input type="email" class="form-control" id="exampleInputTelefoneFixo" placeholder="(00)0000-0000">
+                    <input type="text" class="form-control" id="exampleInputTelefoneFixo" placeholder="(00)0000-0000"
+                    formControlName="fonefixo" mask="(00)0000-0000">
                   </div>
                   <div class="form-group col-xs-4">
                     <label for="exampleInputTelefoneCelular">Telefone Celular</label>
-                    <input type="text" class="form-control" id="exampleInputTelefoneCelular" placeholder="(00)00000-0000">
+                    <input type="text" class="form-control" id="exampleInputTelefoneCelular" placeholder="(00)00000-0000"
+                    formControlName="fonecelular" mask="(00)00000-0000">
                   </div>
 
-                  <div class="form-group col-xs-4">
-                      <label for="exampleInputCPFCNPJ">CPF/CNPJ</label>
-                      <input type="text" class="form-control" id="exampleInputCPFCNPJ" placeholder="000.000.000-00">
-                    </div>
+                  <div  *ngIf="pessoaFisica" class="form-group col-xs-4">
+                      <label for="exampleInputCPFCNPJ">CPF</label>
+                      <input type="text" class="form-control" id="exampleInputCPF" placeholder="000.000.000-00" speaker
+                      formControlName="cpfcnpj" mask="000.000.000-00">
+                  </div>
+                  <div *ngIf="pessoaJuridica" class="form-group col-xs-4">
+                    <label for="exampleInputCNPJ">CNPJ</label>
+                    <input type="text" class="form-control" id="exampleInputCNPJ" placeholder="00.000.000/0000-00"
+                    formControlName="cpfcnpj" mask="00.000.000/0000-00">
+                </div>
             </div>
       </accordion-group>
-      <accordion-group heading="Dados Complementares">
+
+      <accordion-group heading="Dados Complementares" *ngIf="pessoaFisica" >
           <div class="row">
               <div formGroupName="clientecomplemento">
               <div class="form-group col-xs-3" >
                   <label for="exampleInputSexo">Sexo</label>
-                  <select class="form-control">
+                  <select class="form-control" formControlName="sexo">
                       <option value="M">Masculino</option>
                       <option value="F">Feminino</option>
                     </select>
                 </div>
               <div class="form-group col-xs-3" >
                   <label for="exampleInputNacionalidade">Nacionalidade</label>
-                  <input type="text" class="form-control" id="exampleInputNacionalidade" placeholder="Nacionalidade">
+                  <input type="text" class="form-control" id="exampleInputNacionalidade" placeholder="Nacionalidade" formControlName="nacionalidade">
                 </div>
                 <div class="form-group col-xs-3" >
                     <label for="exampleInputNaturalidade">Naturalidade</label>
-                    <input type="text" class="form-control" id="exampleInputNacionalidade" placeholder="Naturalidade">
+                    <input type="text" class="form-control" id="exampleInputNacionalidade" placeholder="Naturalidade" formControlName="naturalidade">
                   </div>
                   <div class="form-group col-xs-3">
                       <label for="exampleInputProfissao">Profissão</label>
-                      <input type="text" class="form-control" id="exampleInputProfissao" placeholder="Profissão">
+                      <input type="text" class="form-control" id="exampleInputProfissao" placeholder="Profissão" formControlName="profissao">
                     </div>
 
                 <div class="form-group col-xs-4">
                     <label for="exampleInputRG">RG</label>
-                    <input type="text" class="form-control" id="exampleInputRG" placeholder="RG">
+                    <input type="text" class="form-control" id="exampleInputRG" placeholder="RG" formControlName="numerorg">
                   </div>
                   <div class="form-group col-xs-4">
                     <label for="exampleInputEmissor">Emissor</label>
-                    <input type="text" class="form-control" id="exampleInputEmissor" placeholder="Emissor">
+                    <input type="text" class="form-control" id="exampleInputEmissor" placeholder="Emissor" formControlName="emissor">
                   </div>
                   <div class="form-group col-xs-4">
                     <label for="exampleInputEstadoCivil">Estado Civil</label>
-                    <input type="text" class="form-control" id="exampleInputestadoCivil" placeholder="Estado Civil">
+                    <select class="form-control" formControlName="estadocivil">
+                      <option value="Casado(a)">Casado(a)</option>
+                      <option value="Divorciado(a)">Divorciado(a)</option>
+                      <option value="Separado(a)">Separado(a)</option>
+                      <option value="Solteiro(a)">Solteiro(a)</option>
+                      <option value="Viúvo(a) ">Viúvo(a)</option>
+                    </select>
                   </div>
                   <div class="form-group col-xs-4" >
                       <label for="exampleNomePai">Nome Pai</label>
-                      <input type="text" class="form-control" id="exampleNomePai" placeholder="Nome Pai">
+                      <input type="text" class="form-control" id="exampleNomePai" placeholder="Nome Pai" formControlName="nomepai">
                     </div>
                 <div class="form-group col-xs-4">
                   <label for="exampleInputNomeMae">Nome Mãe</label>
-                  <input type="text" class="form-control" id="exampleInputNomeMae" placeholder="Nome Mãe">
+                  <input type="text" class="form-control" id="exampleInputNomeMae" placeholder="Nome Mãe" formControlName="nomemae">
                 </div>
                 <div class="form-group col-xs-4">
                   <label for="exampleInputPassword1">Data Emissão</label>
-                  <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker lang="pt-br">
+                  <input type="text" placeholder="Data emissão" class="form-control" bsDatepicker lang="pt-br" formControlName="dataemissao">
                 </div>
               </div>
             </div>
       </accordion-group>
-      <accordion-group heading="Cliente Socio">
+
+      <accordion-group heading="Cliente Socio" *ngIf="pessoaJuridica" >
           <div class="row">
             <div formGroupName="clientesocio">
-              <div class="form-group col-xs-4" >
+              <div class="form-group col-xs-3" >
                   <label for="exampleNomeSocio">Nome</label>
-                  <input type="text" class="form-control" id="exampleInputNomeSocio" placeholder="Nome">
+                  <input type="text" class="form-control" id="exampleInputNomeSocio" placeholder="Nome"  formControlName="csnome">
                 </div>
-                <div class="form-group col-xs-4" >
+                <div class="form-group col-xs-3" >
                     <label for="exampleInputEmailSocio">Email</label>
-                    <input type="text" class="form-control" id="exampleInputEmailSocio" placeholder="Email">
+                    <input type="email" class="form-control" id="exampleInputEmailSocio" placeholder="Email" formControlName="csemail">
                   </div>
-                  <div class="form-group col-xs-4">
+                  <div class="form-group col-xs-3">
                     <label for="exampleInputCPFSocio">CPF</label>
-                    <input type="text" class="form-control" id="exampleInputCPFSocio" placeholder="CPF">
+                    <input type="text" class="form-control" id="exampleInputCPFSocio" placeholder="CPF" formControlName="cscpf">
                   </div>
-                  <div class="form-group col-xs-4" >
+                  <div class="form-group col-xs-3" >
                       <label for="exampleInputFoneSocio">Telefone Celular</label>
-                      <input type="text" class="form-control" id="exampleInputFoneSocio" placeholder="Telefone Celular">
+                      <input type="text" class="form-control" id="exampleInputFoneSocio" placeholder="Telefone Celular" formControlName="csfonecelular">
                     </div>
                   </div>
             </div>
       </accordion-group>
-      <accordion-group heading="Endereço Residencial">
+      <accordion-group heading="Endereço Residencial" *ngIf="pessoaFisica" >
           <div class="row">
               <div formGroupName="clienteenderecoresidencial">
               <div class="form-group col-xs-4" >
@@ -126,7 +144,7 @@
                       <label for="exampleInputNumero">Número</label>
                       <input type="text" class="form-control" id="exampleInputNumero" placeholder="Número">
                     </div>
-                <div class="form-group col-xs-4">
+                <div class="form-group col-xs-3">
                   <label for="exampleInputComplemento">Complemento</label>
                   <input type="text" class="form-control" id="exampleInputComplemento" placeholder="Complemento">
                 </div>
@@ -134,11 +152,38 @@
                     <label for="exampleInputCidade">Cidade</label>
                     <input type="text" class="form-control" id="exampleInputCidade" placeholder="Cidade">
                   </div>
-                  <div class="form-group col-xs-4">
-                    <label for="exampleInputTelefoneEstado">Estado</label>
-                    <input type="text" class="form-control" id="exampleInputEstado" placeholder="Estado">
+                  <div class="form-group col-xs-2">
+                    <label for="exampleInputResidencialEstado">Estado</label>
+                    <select class="form-control" formControlName="cerestado">
+                      <option value="AC">AC</option>
+                      <option value="AL">AL</option>
+                      <option value="AP">AP</option>
+                      <option value="BA">BA</option>
+                      <option value="CE">CE</option>
+                      <option value="DF">DF</option>
+                      <option value="ES">ES</option>
+                      <option value="GO">GO</option>
+                      <option value="MA">MA</option>
+                      <option value="MT">MT</option>
+                      <option value="MS">MS</option>
+                      <option value="MG">MG</option>
+                      <option value="PA">PA</option>
+                      <option value="PB">PB</option>
+                      <option value="PR">PR</option>
+                      <option value="PE">PE</option>
+                      <option value="PI">PI</option>
+                      <option value="RJ">RJ</option>
+                      <option value="RN">RN</option>
+                      <option value="RS">RS</option>
+                      <option value="RO">RO</option>
+                      <option value="RR">RR</option>
+                      <option value="SE">SE</option>
+                      <option value="SC">SC</option>
+                      <option value="SP">SP</option>
+                      <option value="TO">TO</option>
+                    </select>
                   </div>
-                  <div class="form-group col-xs-4">
+                  <div class="form-group col-xs-3">
                       <label for="exampleInputFoneResidencial">Telefone Residencial</label>
                       <input type="text" class="form-control" id="exampleInputFoneResidencial" placeholder="Telefone Residencial">
                     </div>
@@ -151,7 +196,7 @@
               <div class="form-group col-xs-4" >
                   <label for="exampleInputCepComercial">CEP</label>
                   <input type="text" class="form-control" id="CepComercial" placeholder="CEP" formControlName="ceccep"
-                  (blur)="consultarCEP()">
+                  (blur)="consultarCEP('c')" mask="00000-000">
                 </div>
                 <div class="form-group col-xs-4" >
                     <label for="exampleInputLogradouroComercial">Logradouro</label>
@@ -163,7 +208,7 @@
                       <input type="text" class="form-control" id="exampleInputNumeroComercial" placeholder="Número"
                       formControlName="cecnumero">
                     </div>
-                <div class="form-group col-xs-4">
+                <div class="form-group col-xs-3">
                   <label for="exampleInputComplementoComercial">Complemento</label>
                   <input type="text" class="form-control" id="exampleInputComplementoComercial" placeholder="Complemento"
                   formControlName="ceccomplemento">
@@ -173,13 +218,40 @@
                     <input type="text" class="form-control" id="exampleInputCidadeComercial" placeholder="Cidade"
                     formControlName="ceccidade">
                   </div>
-                  <div class="form-group col-xs-4">
-                    <label for="exampleInputTelefoneEstadoComercial">Estado</label>
-                    <input type="text" class="form-control" id="exampleInputEstadoComercial" placeholder="Estado"
+                  <div class="form-group col-xs-2">
+                    <label for="exampleInputestadocomercial">Estado</label>
+                    <select class="form-control" formControlName="cecestado">
+                      <option value="AC">AC</option>
+                      <option value="AL">AL</option>
+                      <option value="AP">AP</option>
+                      <option value="BA">BA</option>
+                      <option value="CE">CE</option>
+                      <option value="DF">DF</option>
+                      <option value="ES">ES</option>
+                      <option value="GO">GO</option>
+                      <option value="MA">MA</option>
+                      <option value="MT">MT</option>
+                      <option value="MS">MS</option>
+                      <option value="MG">MG</option>
+                      <option value="PA">PA</option>
+                      <option value="PB">PB</option>
+                      <option value="PR">PR</option>
+                      <option value="PE">PE</option>
+                      <option value="PI">PI</option>
+                      <option value="RJ">RJ</option>
+                      <option value="RN">RN</option>
+                      <option value="RS">RS</option>
+                      <option value="RO">RO</option>
+                      <option value="RR">RR</option>
+                      <option value="SE">SE</option>
+                      <option value="SC">SC</option>
+                      <option value="SP">SP</option>
+                      <option value="TO">TO</option>
+                    </select>
                     formControlName="cecestado">
                   </div>
 
-                  <div class="form-group col-xs-4">
+                  <div class="form-group col-xs-3">
                       <label for="exampleInputFoneResidencialComercial">Telefone Comercial</label>
                       <input type="text" class="form-control" id="exampleInputFoneResidencialComercial" placeholder="Telefone Comercial"
                       formControlName="cecfonecomercial">

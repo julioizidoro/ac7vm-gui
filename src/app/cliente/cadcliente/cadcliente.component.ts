@@ -19,6 +19,8 @@ export class CadclienteComponent implements OnInit {
   bsInlineValue = new Date();
   cep: Cep;
   instituicao: Instituicao;
+  pessoaJuridica: boolean = false;
+  pessoaFisica: boolean= false;
 
   constructor(
     private consultacepService: ConsultacepService,
@@ -85,13 +87,14 @@ export class CadclienteComponent implements OnInit {
 
   }
 
-  consultarCEP(){
+  consultarCEP(tipo: string){
     let CepComercial = this.formulario.get('clienteenderecocomercial.ceccep').value;
     CepComercial = CepComercial.replace(/\D/g, '');
     this.consultacepService.consultar(CepComercial).subscribe(
       resposta => {
         this.cep = resposta;
-        this.formulario.patchValue({
+        if(tipo=='c'){
+          this.formulario.patchValue({
             clienteenderecocomercial: {
                 cecendereco: this.cep.logradouro,
                 cecbairro: this.cep.bairro,
@@ -99,12 +102,22 @@ export class CadclienteComponent implements OnInit {
                 cecestado: this.cep.uf
             }
         });
+        }
+
         console.log(this.cep);
       },
       err => {
         console.log(JSON.stringify(err));
       }
     );
-
 }
+  setTipoJuridico(){
+    if (this.formulario.get('tipojuridico').value=='PF') {
+      this.pessoaJuridica= false;
+      this.pessoaFisica= true;
+    }else {
+      this.pessoaJuridica=true;
+      this.pessoaFisica=false;
+    }
+  }
 }

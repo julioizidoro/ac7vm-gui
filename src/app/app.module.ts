@@ -9,6 +9,7 @@ import { ClienteModule } from './cliente/cliente.module';
 import { routing } from './app.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConsultacepService } from './share/consultacep.service';
+import {NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -20,8 +21,8 @@ import { ConsultacepService } from './share/consultacep.service';
     FormsModule,
     ClienteModule,
     ShareModule,
+    NgxMaskModule.forRoot(),
     routing,
-
     AppRoutingModule
   ],
   providers: [
