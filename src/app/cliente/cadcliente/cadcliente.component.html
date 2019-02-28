@@ -39,7 +39,7 @@
 
                   <div  *ngIf="pessoaFisica" class="form-group col-xs-4">
                       <label for="exampleInputCPFCNPJ">CPF</label>
-                      <input type="text" class="form-control" id="exampleInputCPF" placeholder="000.000.000-00" speaker
+                      <input type="text" class="form-control cpf-mask" id="exampleInputCPF" placeholder="000.000.000-00" speaker
                       formControlName="cpfcnpj" mask="000.000.000-00">
                   </div>
                   <div *ngIf="pessoaJuridica" class="form-group col-xs-4">
