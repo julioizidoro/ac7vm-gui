@@ -10,6 +10,7 @@ import { routing } from './app.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConsultacepService } from './share/consultacep.service';
 import {NgxMaskModule} from 'ngx-mask'; 
+import { ObrasModule } from './obras/obras.module';
 import { FornecedoresModule } from './fornecedores/fornecedores.module';
  
 @NgModule({
@@ -25,6 +26,7 @@ import { FornecedoresModule } from './fornecedores/fornecedores.module';
     NgxMaskModule.forRoot(),
     routing,
     AppRoutingModule,
+    ObrasModule,
     FornecedoresModule
   ],
   providers: [
