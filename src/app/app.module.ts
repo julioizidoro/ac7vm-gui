@@ -10,6 +10,7 @@ import { routing } from './app.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConsultacepService } from './share/consultacep.service';
 import {NgxMaskModule} from 'ngx-mask'; 
+import { FornecedoresModule } from './fornecedores/fornecedores.module';
  
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {NgxMaskModule} from 'ngx-mask';
     ShareModule,
     NgxMaskModule.forRoot(),
     routing,
-    AppRoutingModule
+    AppRoutingModule,
+    FornecedoresModule
   ],
   providers: [
 

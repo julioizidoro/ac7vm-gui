@@ -2,7 +2,7 @@
 <div class="page-header">
   <div class="container-fluid">
     <h3>
-      Consulta de Cliente
+      Consulta de Fornecedores
       <br/>
     </h3>
 
@@ -10,7 +10,7 @@
   </div>
 
   <div class="container-fluid" style="width:80%;">
-  <button type="button" style="float:right;" class="btn btn-primary" routerLink="/cadCliente">
+  <button type="button" style="float:right;" class="btn btn-primary" routerLink="/cadFornecedores">
     <i class="fa fa-plus" aria-hidden="true"></i>
     Novo</button>
   <br/><br/>
@@ -25,17 +25,11 @@
                 formControlName="nome">
               </div>
               <div class="form-group col-xs-4">
-                <label for="exampleInputEmail2">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email"
-                formControlName="email">
-              </div>
-              <div class="form-group col-xs-4">
-                <button type="button" class="btn btn-success" (click)="salvar()">
+                <label ></label>
+                <br/><br/>
+                <button type="button" class="btn btn-success" (click)="salvar()" >
                     <i class="fa fa-search" aria-hidden="true" ></i>
-                    Salvar</button>
-                    <button type="submit" class="btn btn-success" style="margin-left:1%;" (click)="cancelar()">
-                        <i class="fa fa-cancel" aria-hidden="true"></i>
-                        Cancelar</button>
+                    Pesquisar</button>
         
               </div>
           </div>
@@ -48,9 +42,6 @@
       <thead>
           <tr>
               <th>Nome</th>
-              <th>CPF</th>
-              <th>Email</th>
-              <th>Telefone</th>
             </tr>
       </thead>
       <tbody>
@@ -58,9 +49,6 @@
             <tr *ngFor="let i of instituicao">
 
               <td>{{i.nome}}</td>
-              <td>{{i.cpfcnpj}}</td>
-              <td>{{ i.email }}</td>
-              <td>{{ i.fonecelular }}</td>
               <td>
                 <button routerLink="/cadCliente" class="btn btn-success">
                   <i class="fa  fa-pencil"></i>
