@@ -12,6 +12,7 @@ import { ConsultacepService } from './share/consultacep.service';
 import {NgxMaskModule} from 'ngx-mask'; 
 import { ObrasModule } from './obras/obras.module';
 import { FornecedoresModule } from './fornecedores/fornecedores.module';
+import { ServicoModule } from './servicos/servicos.module';
  
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FornecedoresModule } from './fornecedores/fornecedores.module';
     routing,
     AppRoutingModule,
     ObrasModule,
-    FornecedoresModule
+    FornecedoresModule,
+    ServicoModule
   ],
   providers: [
 
