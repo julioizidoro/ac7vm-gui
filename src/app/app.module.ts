@@ -13,6 +13,7 @@ import {NgxMaskModule} from 'ngx-mask';
 import { ObrasModule } from './obras/obras.module';
 import { FornecedoresModule } from './fornecedores/fornecedores.module';
 import { ServicoModule } from './servicos/servicos.module';
+import { GrupoContasModule } from './grupocontas/grupocontas.module';
  
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ServicoModule } from './servicos/servicos.module';
     AppRoutingModule,
     ObrasModule,
     FornecedoresModule,
-    ServicoModule
+    ServicoModule,
+    GrupoContasModule
   ],
   providers: [
 
