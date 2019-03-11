@@ -16,6 +16,7 @@ import { ServicoModule } from './servicos/servicos.module';
 import { GrupoContasModule } from './grupocontas/grupocontas.module';
 import { ProdutoModule } from './produto/produto.module';
 import { FaseObraModule } from './faseobra/faseobra.module';
+import { PlanoContasModule } from './planocontas/planocontas.module';
  
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FaseObraModule } from './faseobra/faseobra.module';
     ServicoModule,
     GrupoContasModule,
     ProdutoModule,
-    FaseObraModule
+    FaseObraModule,
+    PlanoContasModule
   ],
   providers: [
 

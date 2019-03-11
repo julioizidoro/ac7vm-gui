@@ -2,7 +2,7 @@
 <div class="page-header">
   <div class="container-fluid">
     <h3>
-      Consulta de Produtos
+      Consulta Plano de Contas
       <br/>
     </h3>
 
@@ -10,7 +10,7 @@
   </div>
 
   <div class="container-fluid" style="width:80%;">
-  <button type="button" style="float:right;" class="btn btn-primary" routerLink="/cadproduto">
+  <button type="button" style="float:right;" class="btn btn-primary" routerLink="/cadplanocontas">
     <i class="fa fa-plus" aria-hidden="true"></i>
     Novo</button>
   <br/><br/>
@@ -19,12 +19,24 @@
   <accordion [closeOthers]="oneAtATime">
     <accordion-group heading="Pesquisar" [isOpen]="isFirstOpen">
         <div class="row">
-            <div class="form-group col-xs-4" >
-                <label for="exampleInputNome2">Descrição</label>
-                <input type="text" class="form-control" id="exampleInputNome2" placeholder="Descrição"
-                formControlName="nome">
+            <div class="form-group col-xs-3" >
+                <label for="exampleInputNome2">ID da Conta</label>
+                <input type="text" class="form-control" id="exampleInputNome2" placeholder="ID"
+                >
               </div>
-              <div class="form-group col-xs-4">
+              <div class="form-group col-xs-3" >
+                <label for="exampleInputNome3">Descrição</label>
+                <input type="text" class="form-control" id="exampleInputNome3" placeholder="Descrição"
+                >
+              </div>
+              <div class="form-group col-xs-3" >
+                <label >Grupo de Contas</label>
+                <select class="form-control"  >
+                    <option value="PF">Teste 1</option>
+                    <option value="PJ">Teste 2</option>
+                  </select>
+              </div>
+              <div class="form-group col-xs-3">
                 <label ></label>
                 <br/><br/>
                 <button type="button" class="btn btn-success" (click)="salvar()" >
@@ -41,9 +53,9 @@
    <table class="table table-striped" >
       <thead>
           <tr>
+              <th>ID</th>
               <th>Descrição</th>
-              <th>Unidade</th>
-              <th>Quant. Mínima</th>
+              <th>Grupo Contas</th>
             </tr>
       </thead>
       <tbody>
