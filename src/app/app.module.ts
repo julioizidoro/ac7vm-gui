@@ -14,6 +14,7 @@ import { ObrasModule } from './obras/obras.module';
 import { FornecedoresModule } from './fornecedores/fornecedores.module';
 import { ServicoModule } from './servicos/servicos.module';
 import { GrupoContasModule } from './grupocontas/grupocontas.module';
+import { ProdutoModule } from './produto/produto.module';
  
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { GrupoContasModule } from './grupocontas/grupocontas.module';
     ObrasModule,
     FornecedoresModule,
     ServicoModule,
-    GrupoContasModule
+    GrupoContasModule,
+    ProdutoModule
   ],
   providers: [
 

@@ -11,6 +11,8 @@ import { ConsServicosComponent } from './servicos/consservicos/consservicos.comp
 import { CadServicosComponent } from './servicos/cadservicos/cadservicos.component';
 import { ConsGrupoContasComponent } from './grupocontas/consgrupocontas/consgrupocontas.component';
 import { CadGrupoContasComponent } from './grupocontas/cadgrupocontas/cadgrupocontas.component';
+import { ConsProdutoComponent } from './produto/consproduto/consproduto.component';
+import { CadProdutoComponent } from './produto/cadproduto/cadproduto.component';
 
 const APP_ROUTER: Routes = [
     { path: '', component: AppComponent },
@@ -23,7 +25,9 @@ const APP_ROUTER: Routes = [
     { path: 'consservicos', component: ConsServicosComponent },
     { path: 'cadservicos', component: CadServicosComponent },
     { path: 'consgrupocontas', component: ConsGrupoContasComponent },
-    { path: 'cadgrupocontas', component: CadGrupoContasComponent }
+    { path: 'cadgrupocontas', component: CadGrupoContasComponent },
+    { path: 'consproduto', component: ConsProdutoComponent },
+    { path: 'cadproduto', component: CadProdutoComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTER);
