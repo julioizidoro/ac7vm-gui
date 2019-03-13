@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { Router } from '@angular/router';
+import { Servicos } from '../model/servicos';
 
 @Component({
   selector: 'app-cadservicos',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 export class CadServicosComponent implements OnInit {
 
     formulario: FormGroup;
+    servico: Servicos;
 
 
 
@@ -29,6 +31,21 @@ export class CadServicosComponent implements OnInit {
       })
   }
 
+
+  salvar() {
+    this.formulario.patchValue( {
+      datacadastro: new Date(),
+      tipo: 'c'
+      });
+    this.servico = this.formulario.value;
+    console.log(this.servico);
+    this.router.navigate([ "/consservicos"]);
+  }
+
+  cancelar() {
+    this.formulario.reset();
+    this.router.navigate([ "/consservicos"]);
+  }
   
 
 }
