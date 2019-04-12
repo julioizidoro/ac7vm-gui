@@ -6,8 +6,8 @@
       <br/>
     </h3>
 
-
   </div>
+  <form [formGroup]="formulario">
 
   <div class="container-fluid" style="width:80%;">
   <button type="button" style="float:right;" class="btn btn-primary" routerLink="/cadCliente">
@@ -30,18 +30,18 @@
                 formControlName="email">
               </div>
               <div class="form-group col-xs-4">
-                <button type="button" class="btn btn-success" (click)="salvar()">
+                <button type="button" class="btn btn-success" onclick="pesquisar()">
                     <i class="fa fa-search" aria-hidden="true" ></i>
-                    Salvar</button>
-                    <button type="submit" class="btn btn-success" style="margin-left:1%;" (click)="cancelar()">
+                    Pesquisar</button>
+                    <button type="submit" class="btn btn-success" style="margin-left:1%;" onclick="consultar()" >
                         <i class="fa fa-cancel" aria-hidden="true"></i>
-                        Cancelar</button>
-        
+                        Limpar</button>
+
               </div>
           </div>
     </accordion-group>
 
-  
+
   </accordion>
   <br/><br/>
    <table class="table table-striped" >
@@ -72,5 +72,6 @@
 
 
   </div>
+</form>
 </div>
 

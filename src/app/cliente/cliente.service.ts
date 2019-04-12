@@ -14,4 +14,14 @@ export class ClienteService {
     return this.httpCliente.get<Instituicao>(env.baseApiUrl + 'instituicao/listar/c');
 
   }
+
+  pesquisar(nome: string, email: string): Observable<Instituicao> {
+    return this.httpCliente.get<Instituicao>(env.baseApiUrl + 'instituicao/listar/nome/email');
+
+  }
+
+  salvar(instituicao: Instituicao): Observable<any> {
+      return this.httpCliente.post<any>(env.baseApiUrl + 'instituicao/salvar', instituicao);
+  }
+
 }

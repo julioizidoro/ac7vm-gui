@@ -1,3 +1,4 @@
+import { ClienteService } from './../cliente.service';
 import { Clienteenderecoresidencial } from './../model/clienteenderecoresidencial';
 import { Instituicao } from './../model/instituicao';
 import { ConsultacepService } from './../../share/consultacep.service';
@@ -27,6 +28,7 @@ export class CadclienteComponent implements OnInit {
   constructor(
     private consultacepService: ConsultacepService,
     private formBuilder: FormBuilder,
+    private clienteService: ClienteService,
     private router: Router) {}
 
 
@@ -145,11 +147,18 @@ export class CadclienteComponent implements OnInit {
       tipo: 'c'
       });
     this.instituicao = this.formulario.value;
+    this.clienteService.salvar( this.instituicao).subscribe(
+      resposta => {
+        this.instituicao = <any> resposta;
+        this.router.navigate(['/consCliente']);
+      }
+    );
+
     console.log(this.instituicao);
   }
 
   cancelar() {
     this.formulario.reset();
-    this.router.navigate([ "/conscliente"]);
+    this.router.navigate(['/consCliente']);
   }
 }

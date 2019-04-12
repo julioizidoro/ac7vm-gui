@@ -16,14 +16,20 @@ export class ConsuclienteComponent implements OnInit {
 
 
   constructor(
+    private formBuilder: FormBuilder,
     private clienteService: ClienteService,) {}
 
     instituicao: Instituicao[];
 
 
   ngOnInit() {
+    this.formulario = this.formBuilder.group({
+      nome: [null],
+      email: [null],
+    });
     this.consultar();
   }
+
 
     consultar() {
       this.clienteService.listar().subscribe(
@@ -31,9 +37,18 @@ export class ConsuclienteComponent implements OnInit {
           this.instituicao = <any> resposta;
         }
       );
-
-      console.log(this.instituicao);
     }
+
+    pesquisar() {
+       let nome = this.formulario.get('nome').value;
+       let email = this.formulario.get('email').value;
+       this.clienteService.pesquisar(nome, email).subscribe(
+        resposta => {
+          this.instituicao = <any> resposta;
+        }
+      );
+    }
+
 
 
 
