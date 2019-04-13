@@ -3,68 +3,56 @@
     <span class="aw-balls-spinner">Carregando...</span>
   </div>
 </div>
-  
-<div class="aw-layout-page">
 
+<div class="aw-layout-page">
   <nav class="navbar  navbar-fixed-top  navbar-default  js-sticky-reference" id="main-navbar">
     <div class="container-fluid">
-
-      <div class="navbar-header">
-        <a class="navbar-brand  hidden-xs" href="#">
-          <span>
-        <strong style="font-size: 22px;">AC7VM</strong>
-      </span>
-
-        </a>
-
-        <ul class="nav  navbar-nav">
+      <div class="w-100 navbar-header" style="font-size: 22px;">
+        <ul class="nav navbar-nav">
           <li>
-            <a href="#" class="js-sidebar-toggle"><i class="fa  fa-bars"></i></a>
+            <a href="#" class="js-sidebar-toggle"><i class="fa fa-bars"></i></a>
+          </li>
+        </ul>
+        <a class="navbar-brand hidden-xs w-auto text-center" href="#">
+          <span>
+            <strong style="font-size: 22px;">AC7VM</strong>
+          </span>
+        </a>
+        <ul class="nav navbar-nav  navbar-right">
+          <li>
+            <a href="index.jsf"><em class="fa  fa-sign-out"></em></a>
           </li>
         </ul>
       </div>
-
-      <ul class="nav navbar-nav  navbar-right">
-      
-       
-        
-       
-        
-        <li>
-          <a href="index.jsf"><em class="fa  fa-sign-out"></em></a>
-        </li> 
-      </ul>
-
     </div>
   </nav>
 
   <aside class="aw-layout-sidebar  js-sidebar">
     <div class="aw-layout-sidebar__content">
+      <nav class="aw-menu  js-menu">
+        <ul class="aw-menu__list">
 
-    <nav class="aw-menu  js-menu">
-      <ul class="aw-menu__list">
+          <li class="aw-menu__item is-active">
+            <a href="#"><i class="fa fa-fw fa-home"></i><span>Dashboard</span></a>
+          </li>
 
-        <li class="aw-menu__item">
-          <a href="#"><i class="fa  fa-fw  fa-home"></i><span>Dashboard</span></a>
-        </li>
+          <li class="aw-menu__item  is-active">
+            <a href="#">
+              <i class="fa  fa-fw  fa-file-text"></i><span>Cadastros</span>
+              <i class="aw-menu__navigation-icon  fa"></i>
+            </a>
 
-        <li class="aw-menu__item  is-active">
-          <a href="#">
-            <i class="fa  fa-fw  fa-file-text"></i><span>Cadastros</span>
-            <i class="aw-menu__navigation-icon  fa"></i>
-          </a>
-      
-          <ul class="aw-menu__list  aw-menu__list--sublist">
-            <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Cliente</a></li>
-          </ul>
-        </li>
+            <ul class="aw-menu__list  aw-menu__list--sublist">
+              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Cliente</a></li>
+            </ul>
+          </li>
 
-        <li class="aw-menu__item  is-active">
+          <li class="aw-menu__item  is-active">
             <a href="#">
               <i class="fa  fa-fw  fa-bank"></i><span>Fornecedores</span>
               <i class="aw-menu__navigation-icon  fa"></i>
             </a>
-        
+
             <ul class="aw-menu__list  aw-menu__list--sublist">
               <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consFornecedores">Fornecedores</a></li>
               <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consproduto">Produto</a></li>
@@ -74,36 +62,38 @@
 
 
           <li class="aw-menu__item  is-active">
-              <a href="#">
-                <i class="fa  fa-fw  fa-bank"></i><span>Obras</span>
-                <i class="aw-menu__navigation-icon  fa"></i>
-              </a>
-          
-              <ul class="aw-menu__list  aw-menu__list--sublist">
-                <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consobras">Obras</a></li>
-                <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consfaseobra">Fase</a></li>
-              </ul>
-            </li>
+            <a href="#">
+              <i class="fa  fa-fw  fa-bank"></i><span>Obras</span>
+              <i class="aw-menu__navigation-icon  fa"></i>
+            </a>
+
+            <ul class="aw-menu__list  aw-menu__list--sublist">
+              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consobras">Obras</a></li>
+              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consfaseobra">Fase</a></li>
+            </ul>
+          </li>
 
 
-            <li class="aw-menu__item  is-active">
-                <a href="#">
-                  <i class="fa  fa-fw  fa-bank"></i><span>Contas</span>
-                  <i class="aw-menu__navigation-icon  fa"></i>
-                </a>
-            
-                <ul class="aw-menu__list  aw-menu__list--sublist">
-                  <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consgrupocontas">Grupo de Contas</a></li>
-                  <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consplanocontas">Plano de Contas</a></li>
-                </ul>
-              </li>
+          <li class="aw-menu__item  is-active">
+            <a href="#">
+              <i class="fa  fa-fw  fa-bank"></i><span>Contas</span>
+              <i class="aw-menu__navigation-icon  fa"></i>
+            </a>
 
-        
+            <ul class="aw-menu__list  aw-menu__list--sublist">
+              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consgrupocontas">Grupo de Contas</a></li>
+              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consplanocontas">Plano de Contas</a></li>
+            </ul>
+          </li>
 
-      </ul>
-    </nav>
+
+        </ul>
+      </nav>
 
     </div>
   </aside>
-<section class="aw-layout-content  js-content">
-<router-outlet></router-outlet>
+  <section class="aw-layout-content  js-content">
+    <router-outlet></router-outlet>
+  </section>
+</div>
+
