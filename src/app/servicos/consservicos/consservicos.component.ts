@@ -12,6 +12,8 @@ import { Servicos } from '../model/servicos';
 export class ConsServicosComponent implements OnInit {
 
     formulario: FormGroup;
+    isFirstOpen = true;
+  oneAtATime: boolean = true;
 
 
 

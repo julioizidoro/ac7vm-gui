@@ -12,6 +12,8 @@ import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 export class ConsuclienteComponent implements OnInit {
 
     formulario: FormGroup;
+    isFirstOpen = true;
+    oneAtATime: boolean = true;
 
 
 

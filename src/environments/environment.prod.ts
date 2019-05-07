@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: 'systm.com.br/ac7vm-api/',
-  baseApiUrl: 'systm.com.br/ac7vm-api/'
+  baseUrl: 'localhost:8080/',
+  baseApiUrl: 'localhost:8080/'
 };

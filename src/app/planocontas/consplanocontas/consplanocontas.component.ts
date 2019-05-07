@@ -11,6 +11,8 @@ import { PlanoContasService } from '../planocontas.service';
 export class ConsPlanoContasComponent implements OnInit {
 
     formulario: FormGroup;
+    isFirstOpen = true;
+    oneAtATime: boolean = true;
 
 
 

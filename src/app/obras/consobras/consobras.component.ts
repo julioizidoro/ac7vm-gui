@@ -11,6 +11,8 @@ import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 export class ConsObrasComponent implements OnInit {
 
     formulario: FormGroup;
+    isFirstOpen = true;
+    oneAtATime: boolean = true;
 
 
 
