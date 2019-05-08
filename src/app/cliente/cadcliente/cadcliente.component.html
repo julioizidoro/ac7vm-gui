@@ -30,25 +30,27 @@
                      formControlName="email">
             </div>
             <div class="form-group col-md-4">
-              <label for="exampleInputTelefoneFixo">Telefone Fixo</label>
-              <input type="text" class="form-control" id="exampleInputTelefoneFixo" placeholder="(00)0000-0000"
-                     formControlName="fonefixo" mask="(00)0000-0000">
+              <label for="TelefoneFixo">Telefone Fixo</label>
+              <input type="text" class="form-control" [textMask]="{mask: maskFONE}" id="TelefoneFixo" placeholder="(000)0000-0000"
+                     formControlName="fonefixo" >
             </div>
             <div class="form-group col-md-4">
-              <label for="exampleInputTelefoneCelular">Telefone Celular</label>
-              <input type="text" class="form-control" id="exampleInputTelefoneCelular" placeholder="(00)00000-0000"
-                     formControlName="fonecelular" mask="(00)00000-0000">
+              <label for="telefoneCelular">Telefone Celular</label>
+              <input type="text" class="form-control" [textMask]="{mask: maskCELULAR}" id="TelefoneCelular" placeholder="(000)00000-0000"
+                     formControlName="fonecelular" >
             </div>
 
             <div *ngIf="pessoaFisica" class="form-group col-md-4">
-              <label for="exampleInputCPFCNPJ">CPF</label>
-              <input type="text" class="form-control cpf-mask" id="exampleInputCPF" placeholder="000.000.000-00" speaker
-                     formControlName="cpfcnpj" mask="000.000.000-00">
+              <label for="cpf">CPF</label>
+
+              <input type="text" class="form-control" [textMask]="{mask: maskCPF}" id="cpf" formControlName="cpfcnpj"
+              placeholder="000.000.000-00"/>
+
             </div>
             <div *ngIf="pessoaJuridica" class="form-group col-md-4">
-              <label for="exampleInputCNPJ">CNPJ</label>
-              <input type="text" class="form-control" id="exampleInputCNPJ" placeholder="00.000.000/0000-00"
-                     formControlName="cpfcnpj" mask="00.000.000/0000-00">
+              <label for="cnpj">CNPJ</label>
+              <input type="text" class="form-control" [textMask]="{mask: maskCNPJ}" id="cnpj" placeholder="00.000.000/0000-00"
+                     formControlName="cpfcnpj" >
             </div>
           </div>
         </accordion-group>
@@ -89,8 +91,8 @@
                        formControlName="emissor">
               </div>
               <div class="form-group col-md-4 col-sm-12">
-                <label for="exampleInputPassword1">Data Emissão</label>
-                <input type="text" placeholder="Data emissão" class="form-control" bsDatepicker lang="pt-br"
+                <label for="edataemissao">Data Emissão</label>
+                <input type="text" placeholder="Data emissão" class="form-control" [textMask]="{mask: maskDATE}"
                        formControlName="dataemissao">
               </div>
 
@@ -133,12 +135,12 @@
               </div>
               <div class="form-group col-md-3 col-sm-12">
                 <label for="exampleInputCPFSocio">CPF</label>
-                <input type="text" class="form-control" id="exampleInputCPFSocio" placeholder="CPF"
+                <input type="text" class="form-control" [textMask]="{mask: maskCPF}" id="exampleInputCPFSocio" placeholder="000.000.000-00"
                        formControlName="cscpf">
               </div>
               <div class="form-group col-md-3 col-sm-12">
                 <label for="exampleInputFoneSocio">Telefone Celular</label>
-                <input type="text" class="form-control" id="exampleInputFoneSocio" placeholder="Telefone Celular"
+                <input type="text" class="form-control" [textMask]="{mask: maskCELULAR}" id="exampleInputFoneSocio" placeholder="(000)00000-0000"
                        formControlName="csfonecelular">
               </div>
             </div>
@@ -149,8 +151,8 @@
             <div formGroupName="clienteenderecoresidencial" class="w-100">
               <div class="form-group col-md-2 col-sm-12">
                 <label for="exampleInputCep">CEP</label>
-                <input type="text" class="form-control" id="exampleInputCep" placeholder="CEP" formControlName="cercep"
-                       (blur)="consultarCEP('r')" mask="00000-000">
+                <input type="text" class="form-control" id="exampleInputCep" [textMask]="{mask: maskCEP}" placeholder="00000-000" formControlName="cercep"
+                       (blur)="consultarCEP('r')" >
               </div>
               <div class="form-group col-md-5 col-sm-12">
                 <label for="exampleInputLogradouro">Logradouro</label>
@@ -211,7 +213,7 @@
               </div>
               <div class="form-group col-md-3 col-sm-12">
                 <label for="exampleInputFoneResidencial">Telefone Residencial</label>
-                <input type="text" class="form-control" id="exampleInputFoneResidencial" placeholder="Fone Residencial"
+                <input type="text" class="form-control" [textMask]="{mask: maskFONE}"  id="exampleInputFoneResidencial" placeholder="(000)0000-0000"
                        formControlName="cerfoneresidencial">
               </div>
             </div>
@@ -222,8 +224,8 @@
             <div formGroupName="clienteenderecocomercial" class="w-100">
               <div class="form-group col-md-2 col-sm-12">
                 <label for="exampleInputCepComercial">CEP</label>
-                <input type="text" class="form-control" id="CepComercial" placeholder="CEP" formControlName="ceccep"
-                       (blur)="consultarCEP('c')" mask="00000-000">
+                <input type="text" class="form-control" [textMask]="{mask: maskCEP}" id="CepComercial" placeholder="00000-000" formControlName="ceccep"
+                       (blur)="consultarCEP('c')" >
               </div>
               <div class="form-group col-md-5 col-sm-12">
                 <label for="exampleInputLogradouroComercial">Logradouro</label>
@@ -285,8 +287,8 @@
               </div>
               <div class="form-group col-md-3 col-sm-12">
                 <label for="exampleInputFoneResidencialComercial">Telefone Comercial</label>
-                <input type="text" class="form-control" id="exampleInputFoneResidencialComercial"
-                       placeholder="Telefone Comercial"
+                <input type="text" class="form-control" [textMask]="{mask: maskFONE}" id="exampleInputFoneResidencialComercial"
+                       placeholder="(000)0000-0000"
                        formControlName="cecfonecomercial">
               </div>
             </div>

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Instituicao } from '../model/instituicao';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consucliente',
@@ -12,13 +13,14 @@ import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 export class ConsuclienteComponent implements OnInit {
 
     formulario: FormGroup;
-    isFirstOpen = true;
+    isFirstOpen = false;
     oneAtATime: boolean = true;
 
 
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
     private clienteService: ClienteService,) {}
 
     instituicao: Instituicao[];
@@ -51,7 +53,10 @@ export class ConsuclienteComponent implements OnInit {
       );
     }
 
-
+    editar(instituicao: Instituicao) {
+      console.log(instituicao);
+      this.router.navigate([ '/cadcliente' ,   instituicao.idinstituicao ]);
+    }
 
 
 

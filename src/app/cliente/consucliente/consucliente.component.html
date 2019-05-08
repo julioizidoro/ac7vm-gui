@@ -65,11 +65,11 @@
             <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{i.email}}</td>
             <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{i.fonecelular}}</td>
             <td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
-              <button routerLink="/cadCliente" class="btn btn-success hidden-xs hidden-sm"
+              <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
                       style="margin-top: -9px;float: right">
                 <i class="fa  fa-pencil"></i>
               </button>
-              <button routerLink="/cadCliente" class="btn btn-success hidden-lg hidden-md" style="float: right">
+              <button (click)="editar( i )" class="btn btn-success hidden-lg hidden-md" style="float: right">
                 <i class="fa  fa-pencil"></i>
               </button>
             </td>

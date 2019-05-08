@@ -22,6 +22,7 @@ const APP_ROUTER: Routes = [
     { path: '', component: AppComponent },
     { path: 'consCliente', component: ConsuclienteComponent },
     { path: 'cadCliente', component: CadclienteComponent },
+    { path: 'cadcliente/:id', component: CadclienteComponent },
     { path: 'consFornecedores', component: ConsuFornecedoresComponent },
     { path: 'cadFornecedores', component: CadFornecedoresComponent },
     { path: 'consobras', component: ConsObrasComponent },

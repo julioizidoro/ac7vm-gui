@@ -17,6 +17,7 @@ import { GrupoContasModule } from './grupocontas/grupocontas.module';
 import { ProdutoModule } from './produto/produto.module';
 import { FaseObraModule } from './faseobra/faseobra.module';
 import { PlanoContasModule } from './planocontas/planocontas.module';
+import { TextMaskModule } from 'angular2-text-mask';
  
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PlanoContasModule } from './planocontas/planocontas.module';
     GrupoContasModule,
     ProdutoModule,
     FaseObraModule,
+    TextMaskModule,
     PlanoContasModule
   ],
   providers: [

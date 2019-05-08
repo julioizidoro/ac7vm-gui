@@ -24,4 +24,8 @@ export class ClienteService {
       return this.httpCliente.post<any>(env.baseApiUrl + 'instituicao/salvar', instituicao);
   }
 
+  pesquisarId(id: number): Observable<Instituicao> {
+    return this.httpCliente.get<Instituicao>(env.baseApiUrl + 'instituicao/id/' + id);
+  }
+
 }
