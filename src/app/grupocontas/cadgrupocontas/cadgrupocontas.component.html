@@ -1,29 +1,35 @@
 <br/><br/>
-<h2 style="margin-left:10%;">Cadastro Grupo de Contas</h2>
-<br/>
+<div class="page-header">
+  <div class="container-fluid">
+    <h3>
+      Grupo de Contas
+    </h3>
+    <hr/>
+  </div>
 
-<div style="margin-left:10%;width:80%;">
-
+<div style="width:100%;">
     <form [formGroup]="formulario">
-          <div class="row">
-              <div class="form-group col-xs-8" >
-                  <label for="exampleInputNome2">Descrição</label>
-                  <input type="text" class="form-control" id="exampleInputNome2" placeholder="Descrição"
-                  formControlName="nome">
-                </div>
-            </div>
-           
-      <br/>
-      <hr/>
-
-    <div style="margin-left:40%;">
-        <button type="button" class="btn btn-primary" >
-            <i class="fa fa-floppy-o" aria-hidden="true" ></i>
-            Salvar</button>
-            <button type="submit" class="btn btn-danger" style="margin-left:1%;" >
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label for="conta">Conta</label>
+                <input type="text" class="form-control" id="conta" placeholder="Conta"
+                       formControlName="conta">
+              </div>
+              <div class="form-group col-md-8">
+                <label for="descricao">Descrição</label>
+                <input type="text" class="form-control" id="descricao" placeholder="Descrição"
+                       formControlName="descricao">
+              </div>
+        </div>
+        <div class="w-100 text-right">
+            <button type="button" class="btn btn-primary" (click)="salvar()">
+                <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    Salvar
+            </button>
+            <button type="submit" class="btn btn-danger" style="margin-left:1%;" (click)="cancelar()">
                 <i class="fa fa-times" aria-hidden="true"></i>
-                Cancelar</button>
-
-      </div>
+                Cancelar
+            </button>
+        </div>
     </form>
 </div>

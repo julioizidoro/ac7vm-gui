@@ -20,9 +20,6 @@ import { Clientecomplemento } from '../model/clientecomplemento';
 export class CadclienteComponent implements OnInit {
 
   formulario: FormGroup;
-  isFirstOpen = true;
-  oneAtATime: boolean = true;
-  bsInlineValue = new Date();
   cep: Cep;
   instituicao: Instituicao;
   pessoaJuridica = false;
@@ -39,7 +36,7 @@ export class CadclienteComponent implements OnInit {
     private formBuilder: FormBuilder,
     private clienteService: ClienteService,
     private router: Router,
-    private activeRrouter: ActivatedRoute,
+    private activeRrouter: ActivatedRoute
     ){}
 
 
@@ -307,7 +304,7 @@ export class CadclienteComponent implements OnInit {
     this.instituicao = this.formulario.value;
     this.clienteService.salvar( this.instituicao).subscribe(
       resposta => {
-        this.instituicao = <any> resposta;
+        this.instituicao = resposta as any;
         this.router.navigate(['/consCliente']);
       }
     );
@@ -320,6 +317,4 @@ export class CadclienteComponent implements OnInit {
     this.router.navigate(['/consCliente']);
   }
 
-  
-  
 }

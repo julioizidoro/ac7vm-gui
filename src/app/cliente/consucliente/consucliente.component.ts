@@ -14,14 +14,14 @@ export class ConsuclienteComponent implements OnInit {
 
     formulario: FormGroup;
     isFirstOpen = false;
-    oneAtATime: boolean = true;
+    oneAtATime: true;
 
 
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private clienteService: ClienteService,) {}
+    private clienteService: ClienteService) {}
 
     instituicao: Instituicao[];
 
@@ -38,17 +38,17 @@ export class ConsuclienteComponent implements OnInit {
     consultar() {
       this.clienteService.listar().subscribe(
         resposta => {
-          this.instituicao = <any> resposta;
+          this.instituicao = resposta as any;
         }
       );
     }
 
     pesquisar() {
-       let nome = this.formulario.get('nome').value;
-       let email = this.formulario.get('email').value;
+       const nome = this.formulario.get('nome').value;
+       const email = this.formulario.get('email').value;
        this.clienteService.pesquisar(nome, email).subscribe(
         resposta => {
-          this.instituicao = <any> resposta;
+          this.instituicao = resposta as any;
         }
       );
     }
