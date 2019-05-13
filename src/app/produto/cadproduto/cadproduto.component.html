@@ -1,28 +1,27 @@
 <br/><br/>
-<h2 style="margin-left:10%;">Cadastro de Produtos</h2>
+<h2 style="margin-left:10%;">Cadastro Plano de Contas</h2>
 <br/>
 
 <div style="margin-left:10%;width:80%;">
 
     <form [formGroup]="formulario">
           <div class="row">
-              <div class="form-group col-xs-4" >
-                  <label for="exampleInputNome2">Descrição</label>
-                  <input type="text" class="form-control" id="exampleInputNome2" placeholder="Descrição"
-                  formControlName="nome">
+              <div class="form-group col-xs-12" >
+                  <label for="descrica">Descrição</label>
+                  <input type="text" class="form-control" id="descrica" placeholder="Descrição"
+                  formControlName="descricao">
                 </div>
-
-                <div class="form-group col-xs-4" >
-                    <label for="exampleInputNome2">Unidade</label>
-                    <input type="text" class="form-control" id="exampleInputNome2" placeholder="Unidade"
-                    formControlName="nome">
-                  </div>
-
-                  <div class="form-group col-xs-4" >
-                    <label for="exampleInputNome2">Quant. Mínima</label>
-                    <input type="text" class="form-control" id="exampleInputNome2" placeholder="Quantidade Mínima"
-                    formControlName="nome">
-                  </div>
+                <div class="form-group col-xs-6" >
+                  <label for="unidade">Unidade</label>
+                  <input type="text" class="form-control" id="unidade" placeholder="Unidade"
+                  formControlName="unidade">
+                </div>
+                <div class="form-group col-xs-6" >
+                  <label for="quantidade">Quantidade Minima</label>
+                  <input type="text" class="form-control" id="quantidade" placeholder="Quantidade Minima"
+                  formControlName="quantidade">
+                </div>
+               
             </div>
            
       <br/>

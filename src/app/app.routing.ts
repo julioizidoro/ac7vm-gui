@@ -25,18 +25,25 @@ const APP_ROUTER: Routes = [
     { path: 'cadcliente/:id', component: CadclienteComponent },
     { path: 'consFornecedores', component: ConsuFornecedoresComponent },
     { path: 'cadFornecedores', component: CadFornecedoresComponent },
+    { path: 'cadFornecedores/:id', component: CadFornecedoresComponent },
     { path: 'consobras', component: ConsObrasComponent },
     { path: 'cadobras', component: CadObrasComponent },
+    { path: 'cadobras/:id', component: CadObrasComponent },
     { path: 'consservicos', component: ConsServicosComponent },
     { path: 'cadservicos', component: CadServicosComponent },
+    { path: 'cadservicos/:id', component: CadServicosComponent },
     { path: 'consgrupocontas', component: ConsGrupoContasComponent },
     { path: 'cadgrupocontas', component: CadGrupoContasComponent },
+    { path: 'cadgrupocontas/:id', component: CadGrupoContasComponent },
     { path: 'consproduto', component: ConsProdutoComponent },
     { path: 'cadproduto', component: CadProdutoComponent },
+    { path: 'cadproduto:/id', component: CadProdutoComponent },
     { path: 'consfaseobra', component: ConsFaseObraComponent },
     { path: 'cadfaseobra', component: CadFaseObraComponent },
+    { path: 'cadfaseobra/:id', component: CadFaseObraComponent },
     { path: 'consplanocontas', component: ConsPlanoContasComponent },
-    { path: 'cadplanocontas', component: CadsPlanoContasComponent }
+    { path: 'cadplanocontas', component: CadsPlanoContasComponent },
+    { path: 'cadplanocontas/:id', component: CadsPlanoContasComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTER);

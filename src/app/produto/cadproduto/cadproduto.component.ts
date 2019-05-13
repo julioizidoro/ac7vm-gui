@@ -2,6 +2,7 @@ import { ProdutoService } from '../produto.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadproduto',
@@ -15,12 +16,18 @@ export class CadProdutoComponent implements OnInit {
 
 
   constructor(
-    private produtoservice: ProdutoService,) {}
+    private produtoservice: ProdutoService,
+    private formBuilder: FormBuilder,
+    private router: Router) {}
 
 
 
   ngOnInit() {
-    
+    this.formulario = this.formBuilder.group({
+      descricao: [null],
+      unidade: [null],
+      quantidade: [null]
+    });
   }
 
 }

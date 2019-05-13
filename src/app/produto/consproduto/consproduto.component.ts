@@ -2,6 +2,7 @@ import { ProdutoService } from '../produto.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consproduto',
@@ -11,18 +12,22 @@ import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 export class ConsProdutoComponent implements OnInit {
 
     formulario: FormGroup;
-    isFirstOpen = true;
-  oneAtATime: boolean = true;
+    isFirstOpen = false;
+    oneAtATime = true;
 
 
 
   constructor(
-    private produtoservice: ProdutoService,) {}
+    private produtoservice: ProdutoService,
+    private formBuilder: FormBuilder,
+    private router: Router) {}
 
 
 
   ngOnInit() {
-    
+    this.formulario = this.formBuilder.group({
+      descricao: [null]
+    });
   }
 
 }

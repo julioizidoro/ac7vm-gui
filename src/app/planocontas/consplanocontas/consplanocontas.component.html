@@ -1,78 +1,92 @@
-<br/><br/>
+<br /><br />
 <div class="page-header">
   <div class="container-fluid">
     <h3>
-      Consulta Plano de Contas
-      <br/>
+      Consulta Plano Contas
+      <br />
     </h3>
 
 
   </div>
 
-  <div class="container-fluid" style="width:80%;">
-  <button type="button" style="float:right;" class="btn btn-primary" routerLink="/cadplanocontas">
-    <i class="fa fa-plus" aria-hidden="true"></i>
-    Novo</button>
-  <br/><br/>
+  <form [formGroup]="formulario">
+    <div class="container-fluid" style="width:100%;">
+      <div class="w-100">
+        <button type="button" style="float:right;" class="btn btn-primary font-weight-light" routerLink="/cadplanocontas">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          <a class="ml-2">Adicionar</a>
+        </button>
+      </div>
+      <br><br>
 
-  <br/>
-  <accordion [closeOthers]="oneAtATime">
-    <accordion-group heading="Pesquisar" [isOpen]="isFirstOpen">
-        <div class="row">
-            <div class="form-group col-xs-3" >
-                <label for="exampleInputNome2">ID da Conta</label>
-                <input type="text" class="form-control" id="exampleInputNome2" placeholder="ID"
-                >
+      <div class="w-100">
+        <accordion [closeOthers]="oneAtATime">
+          <accordion-group heading="Pesquisar" [isOpen]="isFirstOpen">
+            <div class="row">
+              <div class="form-group col-md-2">
+                <label for="conta">Conta</label>
+                <input type="text" class="form-control" id="conta" placeholder="Conta" formControlName="conta">
               </div>
-              <div class="form-group col-xs-3" >
-                <label for="exampleInputNome3">Descrição</label>
-                <input type="text" class="form-control" id="exampleInputNome3" placeholder="Descrição"
-                >
+              <div class="form-group col-md-4">
+                <label for="descricao">Descrição</label>
+                <input type="text" class="form-control" id="descricao" placeholder="Descrição"
+                  formControlName="descricao">
               </div>
-              <div class="form-group col-xs-3" >
+              <div class="form-group col-xs-6" >
                 <label >Grupo de Contas</label>
-                <select class="form-control"  >
-                    <option value="PF">Teste 1</option>
-                    <option value="PJ">Teste 2</option>
-                  </select>
+                <select class="form-control" formControlName="grupocontas"  [compareWith]="compararGrupo" (change)="setGrupo()">
+                  <option *ngFor="let grupo of listaGrupoContas" [ngValue]="grupo"> {{ grupo.descricao }}</option>
+               </select>
               </div>
-              <div class="form-group col-xs-3">
-                <label ></label>
-                <br/><br/>
-                <button type="button" class="btn btn-success"  >
-                    <i class="fa fa-search" aria-hidden="true" ></i>
-                    Pesquisar</button>
-        
-              </div>
-          </div>
-    </accordion-group>
-
-  
-  </accordion>
-  <br/><br/>
-   <table class="table table-striped" >
-      <thead>
-          <tr>
-              <th>ID</th>
-              <th>Descrição</th>
-              <th>Grupo Contas</th>
-            </tr>
-      </thead>
-      <tbody>
-
-            <tr *ngFor="">
-
-              <td>{{i.nome}}</td>
-              <td>
-                <button routerLink="/cadCliente" class="btn btn-success">
-                  <i class="fa  fa-pencil"></i>
+              <div class="form-group col-md-12 text-right">
+                <button type="button" class="btn btn-success" onclick="pesquisar()">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                  Pesquisar
                 </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                <button type="submit" class="btn btn-success" style="margin-left:1%;" onclick="consultar()">
+                  <i class="fa fa-refresh" aria-hidden="true"></i>
+                  Limpar
+                </button>
+              </div>
+            </div>
+          </accordion-group>
+        </accordion>
+      </div>
+      <br /><br />
+      <table class="table table-striped">
+        <thead>
+          <tr
+            class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+            <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-lg hidden-md hidden-sm">Conta - Descrição
+            </th>
+            <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-lg hidden-md hidden-xs">Conta - Descrição
+            </th>
+            <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Conta</th>
+            <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Descrição</th>
+            <th class="col-lg-5 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Grupo</th>
+            <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let conta of planoContas"
+            class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{conta.conta}}</td>
+            <td class="col-lg-4 col-xs mb-1 text-muted text-small w-sm-100">{{conta.descricao}}</td>
+            <td class="col-lg-5 col-xs mb-1 text-muted text-small w-sm-100">{{conta.grupoplanoconta.descricao}}</td>
+            <td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
+              <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
+                style="margin-top: -9px;float: right">
+                <i class="fa  fa-pencil"></i>
+              </button>
+              <button (click)="editar( grupo )" class="btn btn-success hidden-lg hidden-md" style="float: right">
+                <i class="fa  fa-pencil"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
 
-  </div>
+    </div>
+  </form>
 </div>
-

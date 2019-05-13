@@ -18,19 +18,16 @@ export class CadFornecedoresComponent implements OnInit {
     pessoaJuridica = false;
     pessoaFisica = false;
 
-
-
   constructor(
     private consultacepService: ConsultacepService,
-    private fornecedoresService: FornecedoresService, 
-    private router: Router
-    ,private formBuilder: FormBuilder) {}
+    private fornecedoresService: FornecedoresService,
+    private router: Router,
+    private formBuilder: FormBuilder) {}
 
 
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
-      
       nome: [null],
       tipojuridico: [null],
       clienteenderecoresidencial: this.formBuilder.group({
@@ -44,57 +41,6 @@ export class CadFornecedoresComponent implements OnInit {
         cerestado: [null],
         cerfoneresidencial: [null]
       })
-    })
-   
+    });
   }
-
-  consultarCEP(tipo: string){
-    let cepInformado;
-    if (tipo=='c'){
-        cepInformado = this.formulario.get('clienteenderecocomercial.ceccep').value;
-    }else {
-      cepInformado = this.formulario.get('clienteenderecoresidencial.cercep').value;
-    }
-
-    cepInformado = cepInformado.replace(/\D/g, '');
-    this.consultacepService.consultar(cepInformado).subscribe(
-      resposta => {
-        this.cep = resposta;
-        if (tipo == 'c') {
-          this.formulario.patchValue({
-            clienteenderecocomercial: {
-                cecendereco: this.cep.logradouro,
-                cecbairro: this.cep.bairro,
-                ceccidade: this.cep.localidade,
-                cecestado: this.cep.uf
-            }
-        });
-        } else {
-          this.formulario.patchValue({
-            clienteenderecoresidencial: {
-                cerendereco: this.cep.logradouro,
-                cerbairro: this.cep.bairro,
-                cercidade: this.cep.localidade,
-                cerestado: this.cep.uf
-            }
-        });
-        }
-
-        console.log(this.cep);
-      },
-      err => {
-        console.log(JSON.stringify(err));
-      }
-    );
-}
-  setTipoJuridico(){
-    if (this.formulario.get('tipojuridico').value == 'PF') {
-      this.pessoaJuridica = false;
-      this.pessoaFisica = true;
-    } else {
-      this.pessoaJuridica = true;
-      this.pessoaFisica = false;
-    }
-  }
-
 }

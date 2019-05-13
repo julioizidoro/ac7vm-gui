@@ -2,63 +2,70 @@
 <div class="page-header">
   <div class="container-fluid">
     <h3>
-      Consulta de Serviços
-      <br/>
+      Consulta de Cliente
     </h3>
-
-
+    <hr/>
   </div>
-
-  <div class="container-fluid" style="width:80%;">
-  <button type="button" style="float:right;" class="btn btn-primary" routerLink="/cadservicos">
-    <i class="fa fa-plus" aria-hidden="true"></i>
-    Novo</button>
-  <br/><br/>
-
-  <br/>
-  <accordion [closeOthers]="oneAtATime">
-    <accordion-group heading="Pesquisar" [isOpen]="isFirstOpen">
-        <div class="row">
-            <div class="form-group col-xs-4" >
-                <label for="exampleInputNome2">Descrição</label>
-                <input type="text" class="form-control" id="exampleInputNome2" placeholder="Nome"
-                formControlName="nome">
+  <form [formGroup]="formulario">
+    <div class="container-fluid" style="width:100%;">
+      <div class="w-100">
+        <button type="button" style="float:right;" class="btn btn-primary font-weight-light" routerLink="/cadservicos">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          <a class="ml-2">Adicionar</a>
+        </button>
+      </div>
+      <br><br>
+      <div class="w-100">
+        <accordion [closeOthers]="oneAtATime">
+          <accordion-group heading="Pesquisar" [isOpen]="isFirstOpen">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="descricao">Descrição</label>
+                <input type="text" class="form-control" id="descricao" placeholder="Descrição"
+                       formControlName="descricao">
               </div>
-              <div class="form-group col-xs-4">
-                <label ></label>
-                <br/><br/>
-                <button type="button" class="btn btn-success"  >
-                    <i class="fa fa-search" aria-hidden="true" ></i>
-                    Pesquisar</button>
-        
-              </div>
-          </div>
-    </accordion-group>
-
-  
-  </accordion>
-  <br/><br/>
-   <table class="table table-striped" >
-      <thead>
-          <tr>
-              <th>Descrição</th>
-            </tr>
-      </thead>
-      <tbody>
-
-            <tr *ngFor="">
-
-              <td>{{i.nome}}</td>
-              <td>
-                <button routerLink="/cadCliente" class="btn btn-success">
-                  <i class="fa  fa-pencil"></i>
+              <div class="form-group col-md-12 text-right">
+                <button type="button" class="btn btn-success" onclick="pesquisar()">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                  Pesquisar
                 </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                <button type="submit" class="btn btn-success" style="margin-left:1%;" onclick="consultar()">
+                  <i class="fa fa-refresh" aria-hidden="true"></i>
+                  Limpar
+                </button>
+              </div>
+            </div>
+          </accordion-group>
+        </accordion>
+      </div>
 
-
-  </div>
+      <table class="table table-striped">
+        <thead>
+        <tr
+          class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+          <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-lg hidden-md hidden-sm">Descrição</th>
+          <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-lg hidden-md hidden-xs">Descrição</th>
+          <th class="col-lg-10 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Descrição</th>
+          <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of instituicao"
+              class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+            <td class="col-lg-10 col-xs mb-1 text-muted text-small w-sm-100">{{i.nome}}</td>
+            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">
+              <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
+                      style="margin-top: -9px;float: right">
+                <i class="fa  fa-pencil"></i>
+              </button>
+              <button (click)="editar( i )" class="btn btn-success hidden-lg hidden-md" style="float: right">
+                <i class="fa  fa-pencil"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
 </div>
 
