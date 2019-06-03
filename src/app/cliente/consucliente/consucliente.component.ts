@@ -15,6 +15,7 @@ export class ConsuclienteComponent implements OnInit {
     formulario: FormGroup;
     isFirstOpen = false;
     oneAtATime: true;
+    instituicao: Instituicao[];
 
 
 
@@ -23,7 +24,6 @@ export class ConsuclienteComponent implements OnInit {
     private router: Router,
     private clienteService: ClienteService) {}
 
-    instituicao: Instituicao[];
 
 
   ngOnInit() {
@@ -36,7 +36,7 @@ export class ConsuclienteComponent implements OnInit {
 
 
     consultar() {
-      this.clienteService.listar().subscribe(
+      this.clienteService.listar('c').subscribe(
         resposta => {
           this.instituicao = resposta as any;
         }

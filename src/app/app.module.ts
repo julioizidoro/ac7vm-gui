@@ -9,16 +9,14 @@ import { ClienteModule } from './cliente/cliente.module';
 import { routing } from './app.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConsultacepService } from './share/consultacep.service';
-import {NgxMaskModule} from 'ngx-mask'; 
 import { ObrasModule } from './obras/obras.module';
-import { FornecedoresModule } from './fornecedores/fornecedores.module';
 import { ServicoModule } from './servicos/servicos.module';
 import { GrupoContasModule } from './grupocontas/grupocontas.module';
 import { ProdutoModule } from './produto/produto.module';
 import { FaseObraModule } from './faseobra/faseobra.module';
 import { PlanoContasModule } from './planocontas/planocontas.module';
 import { TextMaskModule } from 'angular2-text-mask';
- 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -29,11 +27,9 @@ import { TextMaskModule } from 'angular2-text-mask';
     FormsModule,
     ClienteModule,
     ShareModule,
-    NgxMaskModule.forRoot(),
     routing,
     AppRoutingModule,
     ObrasModule,
-    FornecedoresModule,
     ServicoModule,
     GrupoContasModule,
     ProdutoModule,

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { Router } from '@angular/router';
+import { Produto } from '../model/produto';
 
 @Component({
   selector: 'app-consproduto',
@@ -14,6 +15,7 @@ export class ConsProdutoComponent implements OnInit {
     formulario: FormGroup;
     isFirstOpen = false;
     oneAtATime = true;
+    produtos: Produto[];
 
 
 
@@ -28,6 +30,30 @@ export class ConsProdutoComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       descricao: [null]
     });
+    this.consultar();
   }
+
+  consultar() {
+    this.produtoservice.listar().subscribe(
+      resposta => {
+        this.produtos = resposta as any;
+      }
+    );
+  }
+
+  editar(produto: Produto) {
+    this.router.navigate([ '/cadproduto' ,   produto.idproduto ]);
+  }
+
+  pesquisar() {
+    const descricao = this.formulario.get('descricao').value;
+    if ( descricao != null) {
+        this.produtoservice.pesquisarDescricao(descricao).subscribe(
+          resposta => {
+            this.produtos = resposta as any;
+          }
+        );
+    }
+ }
 
 }

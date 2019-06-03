@@ -1,32 +1,38 @@
 <br/><br/>
-<h2 style="margin-left:10%;">Cadastro Grupo de Contas</h2>
+<h2 style="margin-left:10%;">Cadastro Fase da Obra</h2>
 <br/>
 
 <div style="margin-left:10%;width:80%;">
 
     <form [formGroup]="formulario">
           <div class="row">
-              <div class="form-group col-xs-4" >
-                  <label for="exampleInputNome2">Descrição</label>
-                  <input type="text" class="form-control" id="exampleInputNome2" placeholder="Descrição"
-                  formControlName="nome">
+              <div class="form-group col-xs-6" >
+                  <label for="conta">Conta</label>
+                  <input type="text" class="form-control" id="conta" placeholder="Conta"
+                  formControlName="conta">
                 </div>
             
                 <div class="form-group col-xs-4" >
-                    <label for="exampleInputNome2">Tempo Médio</label>
-                    <input type="text" class="form-control" id="exampleInputNome2" placeholder="Tempo Médio"
-                    formControlName="nome">
+                    <label for="tempomedio">Tempo Médio</label>
+                    <input type="text" class="form-control" id="tempomedio" placeholder="Tempo Médio"
+                    formControlName="tempomedio">
                   </div>
+
+                  <div class="form-group col-xs-10" >
+                      <label for="descricao">Descrição</label>
+                      <input type="text" class="form-control" id="descricao" placeholder="Descrição"
+                      formControlName="descricao">
+                    </div>
             </div>
            
       <br/>
       <hr/>
 
     <div style="margin-left:40%;">
-        <button type="button" class="btn btn-primary" >
+        <button type="button" class="btn btn-primary"  (click)="salvar()" >
             <i class="fa fa-floppy-o" aria-hidden="true" ></i>
             Salvar</button>
-            <button type="submit" class="btn btn-danger" style="margin-left:1%;" >
+            <button type="submit" class="btn btn-danger" style="margin-left:1%;" (click)="cancelar()"  >
                 <i class="fa fa-times" aria-hidden="true"></i>
                 Cancelar</button>
 

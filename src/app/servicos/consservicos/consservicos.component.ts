@@ -14,7 +14,8 @@ export class ConsServicosComponent implements OnInit {
 
     formulario: FormGroup;
     isFirstOpen = false;
-  oneAtATime = true;
+    oneAtATime = true;
+    servicos: Servicos[];
 
 
 
@@ -26,11 +27,37 @@ export class ConsServicosComponent implements OnInit {
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
-      descricao: [null]
+      descricao: [null],
+      conta: [null]
     });
+    this.consultar();
   }
 
+  consultar() {
+      this.servicosService.listar().subscribe(
+        resposta => {
+          this.servicos = resposta as any;
+        }
+      );
+  }
 
-  
+  pesquisar() {
+    const descricao = this.formulario.get('descricao').value;
+    const conta = this.formulario.get('conta').value;
+    this.formulario.reset();
+    if ( descricao != null) {
+        this.servicosService.pesquisarDescricao(descricao).subscribe(
+          resposta => {
+            this.servicos = resposta as any;
+          }
+        );
+    } else if (( conta != null ) && ( conta.length > 0)) {
+        this.servicosService.pesquisarConta(conta).subscribe(
+          resposta => {
+            this.servicos = resposta as any;
+          }
+        );
+    }
+ }
 
 }

@@ -11,8 +11,25 @@ export class ServicosService {
   constructor( private httpCliente: HttpClient) { }
 
   listar(): Observable<Servicos> {
-    return this.httpCliente.get<Servicos>(env.baseApiUrl + 'servicos/listar/c');
+    return this.httpCliente.get<Servicos>(env.baseApiUrl + 'servicos');
+  }
 
+  pesquisarDescricao(descricao: string): Observable<Servicos> {
+    return this.httpCliente.get<Servicos>(env.baseApiUrl + 'servicos/descricao/' + descricao);
+
+  }
+
+  pesquisarConta(conta: string): Observable<Servicos> {
+    return this.httpCliente.get<Servicos>(env.baseApiUrl + 'servicos/conta/' + conta);
+
+  }
+
+  salvar(obraFase: Servicos): Observable<any> {
+      return this.httpCliente.post<any>(env.baseApiUrl + 'servicos/salvar', obraFase);
+  }
+
+  pesquisarId(id: number): Observable<Servicos> {
+    return this.httpCliente.get<Servicos>(env.baseApiUrl + 'servicos/id/' + id);
   }
 
 }

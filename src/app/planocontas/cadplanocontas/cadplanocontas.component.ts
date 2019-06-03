@@ -1,7 +1,12 @@
+import { GrupoContasService } from './../../grupocontas/grupocontas.service';
+import { GrupoContasModule } from './../../grupocontas/grupocontas.module';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { PlanoContasService } from '../planocontas.service';
+import { Grupocontas } from 'src/app/grupocontas/model/grupocontas';
+import { Planocontas } from '../model/planoconta';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cadplanocontas',
@@ -11,16 +16,81 @@ import { PlanoContasService } from '../planocontas.service';
 export class CadsPlanoContasComponent implements OnInit {
 
     formulario: FormGroup;
-
-
+    grupoSeleconado: Grupocontas;
+    listaGrupoContas: Grupocontas[];
+    planoConta: Planocontas;
 
   constructor(
-    private planocontaservice: PlanoContasService,) {}
+    private planocontaservice: PlanoContasService,
+    private grupoContaService: GrupoContasService,
+    private formBuilder: FormBuilder,
+    private activeRrouter: ActivatedRoute,
+    private router: Router) {}
 
 
 
   ngOnInit() {
-    
+      this.formulario = this.formBuilder.group({
+        conta: [null],
+        descricao: [null],
+        grupo: [null],
+      });
+      this.listarGrupoConta();
+      let id;
+      this.activeRrouter.params.subscribe(params => {
+        id = params.id;
+        if (id != null) {
+          this.planocontaservice.pesquisarId(id).subscribe(
+            resposta => {
+              this.planoConta = resposta as Planocontas;
+              if (this.planoConta == null ) {
+                this.formulario = this.formBuilder.group({
+                  conta: [null],
+                  descricao: [null],
+                  grupo: [null],
+                });
+              } else {
+                this.formulario = this.formBuilder.group({
+                  conta: this.planoConta.conta,
+                  descricao: this.planoConta.descricao,
+                  grupo: this.planoConta.grupoplanoconta
+                });
+              }
+            }
+          );
+        }
+    });
+  }
+
+  listarGrupoConta() {
+    this.grupoContaService.listar().subscribe(
+      resposta => {
+        this.listaGrupoContas = resposta as any;
+      }
+    );
+  }
+
+  compararGrupo(obj1, obj2) {
+    return obj1 && obj2 ? obj1.idloja === obj2.idloja : obj1 === obj2;
+  }
+
+  setGrupo() {
+    this.grupoSeleconado = this.formulario.get('grupocontas').value;
+  }
+
+  salvar() {
+    this.planoConta = this.formulario.value;
+    this.planocontaservice.salvar( this.planoConta).subscribe(
+      resposta => {
+        this.planoConta = resposta as any;
+        this.router.navigate(['/consplanocontas']);
+      }
+    );
+  }
+
+  cancelar() {
+    this.formulario.reset();
+    this.router.navigate(['/consplanocontas']);
   }
 
 }

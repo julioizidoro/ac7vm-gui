@@ -25,15 +25,18 @@
                        formControlName="nome">
               </div>
               <div class="form-group col-md-12 text-right">
-                <button type="button" class="btn btn-success" onclick="pesquisar()">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                  Pesquisar
-                </button>
-                <button type="submit" class="btn btn-success" style="margin-left:1%;" onclick="consultar()">
-                  <i class="fa fa-refresh" aria-hidden="true"></i>
-                  Limpar
-                </button>
-              </div>
+                <button type="button" style="float:right;" class="btn btn-success" (click)="pesquisar()">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    Pesquisar
+                  </button>
+                  <button type="button" style="margin-left:1%;" class="btn btn-success" (click)="pesquisarLimpar()" title="Limpar a pesquisa">
+                        <i class="fa fa-ban" aria-hidden="true" ></i>
+                        Limpar
+                  </button>
+                  
+            </div>
+
+
             </div>
           </accordion-group>
         </accordion>
@@ -46,7 +49,7 @@
           <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-lg hidden-md hidden-sm">Nome - CPF/CNPJ</th>
           <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-lg hidden-md hidden-xs">Nome - CPF/CNPJ - Email - Telefone</th>
           <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Nome</th>
-          <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">CPF</th>
+          <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">CPF/CNPJ</th>
           <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Email</th>
           <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Telefone</th>
           <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>

@@ -38,16 +38,20 @@
                   <option *ngFor="let grupo of listaGrupoContas" [ngValue]="grupo"> {{ grupo.descricao }}</option>
                </select>
               </div>
+
+
+              
               <div class="form-group col-md-12 text-right">
-                <button type="button" class="btn btn-success" onclick="pesquisar()">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                  Pesquisar
-                </button>
-                <button type="submit" class="btn btn-success" style="margin-left:1%;" onclick="consultar()">
-                  <i class="fa fa-refresh" aria-hidden="true"></i>
-                  Limpar
-                </button>
-              </div>
+                <button type="button" style="float:right;" class="btn btn-success" (click)="pesquisar()">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    Pesquisar
+                  </button>
+                  <button type="button" style="margin-left:1%;" class="btn btn-success" (click)="consultar()" title="Limpar a pesquisa">
+                        <i class="fa fa-ban" aria-hidden="true" ></i>
+                        Limpar
+                  </button>
+                
+            </div>
             </div>
           </accordion-group>
         </accordion>
@@ -74,11 +78,11 @@
             <td class="col-lg-4 col-xs mb-1 text-muted text-small w-sm-100">{{conta.descricao}}</td>
             <td class="col-lg-5 col-xs mb-1 text-muted text-small w-sm-100">{{conta.grupoplanoconta.descricao}}</td>
             <td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
-              <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
+              <button (click)="editar( conta )" class="btn btn-success hidden-xs hidden-sm"
                 style="margin-top: -9px;float: right">
                 <i class="fa  fa-pencil"></i>
               </button>
-              <button (click)="editar( grupo )" class="btn btn-success hidden-lg hidden-md" style="float: right">
+              <button (click)="editar( conta )" class="btn btn-success hidden-lg hidden-md" style="float: right">
                 <i class="fa  fa-pencil"></i>
               </button>
             </td>

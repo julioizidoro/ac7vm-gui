@@ -55,18 +55,18 @@
             </th>
             <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-lg hidden-md hidden-xs">Conta - Descrição
             </th>
-            <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Conta</th>
-            <th class="col-lg-6 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Descrição</th>
-            <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
+            <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Conta</th>
+            <th class="col-lg-7 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Descrição</th>
+            <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let grupo of grupoContas"
             class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{grupo.conta}}</td>
-            <td class="col-lg-6 col-xs mb-1 text-muted text-small w-sm-100">{{grupo.descricao}}</td>
-            <td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
-              <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
+            <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100">{{grupo.conta}}</td>
+            <td class="col-lg-7 col-xs mb-1 text-muted text-small w-sm-100">{{grupo.descricao}}</td>
+            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">
+              <button (click)="editar( grupo )" class="btn btn-success hidden-xs hidden-sm"
                 style="margin-top: -9px;float: right">
                 <i class="fa  fa-pencil"></i>
               </button>

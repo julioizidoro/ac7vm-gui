@@ -50,7 +50,7 @@ export class CadGrupoContasComponent implements OnInit {
               });
             }
           }
-        )
+        );
       }
   });
 

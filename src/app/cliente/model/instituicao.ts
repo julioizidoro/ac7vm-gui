@@ -2,6 +2,7 @@ import { Clientecomplemento } from './clientecomplemento';
 import { Clienteenderecocomercial } from './clienteenderecocomercial';
 import { Clienteenderecoresidencial } from './clienteenderecoresidencial';
 import { Clientesocio } from './clientesocio';
+import { Clientesegundo } from './clientesegundo';
 export class Instituicao {
 
   idinstituicao: number;
@@ -17,4 +18,5 @@ export class Instituicao {
   clienteenderecoresidencial: Clienteenderecoresidencial;
   clienteenderecocomercial: Clienteenderecocomercial;
   clientecomplemento: Clientecomplemento;
+  clientesegundo: Clientesegundo;
 }

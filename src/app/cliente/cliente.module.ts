@@ -1,3 +1,5 @@
+import { ConsuFornecedoresComponent } from './consucliente/consfornecedores.component';
+import { CadFornecedoresComponent } from './cadcliente/cadfornecedores.component';
 import { ClienteService } from './cliente.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,7 +15,9 @@ import { TextMaskModule } from 'angular2-text-mask';
 @NgModule({
   declarations: [
     ConsuclienteComponent,
-    CadclienteComponent
+    CadclienteComponent,
+    CadFornecedoresComponent,
+    ConsuFornecedoresComponent,
   ],
   imports: [
     CommonModule,
@@ -26,7 +30,9 @@ import { TextMaskModule } from 'angular2-text-mask';
   ],
   exports: [
     CadclienteComponent,
-    ConsuclienteComponent
+    ConsuclienteComponent,
+    CadFornecedoresComponent,
+    ConsuFornecedoresComponent,
   ],
   providers: [
     ClienteService,

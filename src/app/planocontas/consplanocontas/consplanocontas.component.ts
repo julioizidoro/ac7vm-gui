@@ -66,35 +66,36 @@ export class ConsPlanoContasComponent implements OnInit {
   }
 
   pesquisar() {
- //   const descricao = this.formulario.get('descricao').value;
-   // if ( descricao != null) {
-     ///   this.planocontaservice.pesquisarDescricao(descricao).subscribe(
-        //  resposta => {
-          //  this.planoContas = resposta as any;
- //         }
-   ///     );
-  //  } else {
-    //  const conta = this.formulario.get('conta').value;
-    //  if (( conta != null ) && ( conta.length > 0)) {
-      //  this.planocontaservice.pesquisarConta(conta).subscribe(
-    //      resposta => {
-    //        this.planoContas = resposta as any;
-      //    }
-      //  );
-    //  } else {
-      //    if ( this.grupoContasSelecionado != null ) {
-       //     this.planocontaservice.pesquisarGrupo(this.grupoContasSelecionado).subscribe(
-      //        resposta => {
-      //          this.planoContas = resposta as any;
- ///             }
-  //          );
-//          }
-  //      }
-    //  }
+    const descricao = this.formulario.get('descricao').value;
+    if ( descricao != null) {
+        this.planocontaservice.pesquisarDescricao(descricao).subscribe(
+          resposta => {
+            this.planoContas = resposta as any;
+          }
+        );
+    } else {
+     const conta = this.formulario.get('conta').value;
+     if (( conta != null ) && ( conta.length > 0)) {
+        this.planocontaservice.pesquisarConta(conta).subscribe(
+          resposta => {
+           this.planoContas = resposta as any;
+          }
+        );
+      } else {
+          if ( this.grupoContasSelecionado != null ) {
+            this.planocontaservice.pesquisarGrupo(this.grupoContasSelecionado.idgrupoplanoconta).subscribe(
+              resposta => {
+               this.planoContas = resposta as any;
+              }
+            );
+          }
+        }
+      }
+    this.formulario.reset();
    }
 
   editar(conta: Planocontas) {
-    this.router.navigate([ '/cadgrupocontas' ,   conta.idplanoconta ]);
+    this.router.navigate([ '/cadplanocontas' ,   conta.idplanoconta ]);
   }
 
 }

@@ -2,7 +2,8 @@ import { ProdutoService } from '../produto.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Produto } from '../model/produto';
 
 @Component({
   selector: 'app-cadproduto',
@@ -12,22 +13,68 @@ import { Router } from '@angular/router';
 export class CadProdutoComponent implements OnInit {
 
     formulario: FormGroup;
+    produto: Produto;
 
 
 
   constructor(
     private produtoservice: ProdutoService,
     private formBuilder: FormBuilder,
-    private router: Router) {}
+    private router: Router,
+    private activeRrouter: ActivatedRoute) {}
 
 
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
+      idproduto: [null],
       descricao: [null],
       unidade: [null],
-      quantidade: [null]
+      quantidademinima: [null]
     });
+    let id: number;
+    this.activeRrouter.params.subscribe(params => {
+      id = params.id;
+      if (id != null) {
+        this.produtoservice.pesquisarId(id).subscribe(
+          resposta => {
+            this.produto = resposta as Produto;
+            if (this.produto == null) {
+              this.formulario = this.formBuilder.group({
+                idproduto: [null],
+                descricao: [null],
+                unidade: [null],
+                quantidademinima: [null]
+              });
+            } else {
+              this.formulario = this.formBuilder.group({
+                idproduto: this.produto.idproduto,
+                descricao: this.produto.descricao,
+                unidade: this.produto.unidade,
+                quantidademinima: this.produto.quantidademinima
+              });
+            }
+          },
+          err => {
+            console.log(err.error.erros.join(' '));
+          });
+      }
+    });
+  }
+
+  salvar() {
+    this.produto = this.formulario.value;
+    this.produtoservice.salvar( this.produto ).subscribe(
+      resposta => {
+        this.produto = resposta as any;
+        this.router.navigate(['/consproduto']);
+      }
+    );
+  }
+
+  cancelar() {
+    this.formulario.reset();
+    this.router.navigate(['/consproduto']);
   }
 
 }

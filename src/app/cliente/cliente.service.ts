@@ -10,13 +10,17 @@ export class ClienteService {
 
   constructor( private httpCliente: HttpClient) { }
 
-  listar(): Observable<Instituicao> {
-    return this.httpCliente.get<Instituicao>(env.baseApiUrl + 'instituicao/listar/c');
-
+  listar(tipo: string): Observable<Instituicao> {
+    return this.httpCliente.get<Instituicao>(env.baseApiUrl + 'instituicao/listar/tipo/' + tipo);
   }
 
   pesquisar(nome: string, email: string): Observable<Instituicao> {
     return this.httpCliente.get<Instituicao>(env.baseApiUrl + 'instituicao/listar/nome/email');
+
+  }
+
+  pesquisarNome(nome: string): Observable<Instituicao> {
+    return this.httpCliente.get<Instituicao>(env.baseApiUrl + 'instituicao/listar/nome');
 
   }
 

@@ -2,7 +2,7 @@
 <div class="page-header">
   <div class="container-fluid">
     <h3>
-      Consulta de Cliente
+      Consulta de Serviços
     </h3>
     <hr/>
   </div>
@@ -19,21 +19,31 @@
         <accordion [closeOthers]="oneAtATime">
           <accordion-group heading="Pesquisar" [isOpen]="isFirstOpen">
             <div class="row">
-              <div class="form-group col-md-6">
-                <label for="descricao">Descrição</label>
-                <input type="text" class="form-control" id="descricao" placeholder="Descrição"
-                       formControlName="descricao">
+              <div class="form-group col-md-2">
+                <label for="conta">Conta</label>
+                <input type="text" class="form-control" id="conta" placeholder="Conta"
+                       formControlName="conta">
               </div>
+                <div class="form-group col-md-6">
+                  <label for="descricao">Descrição</label>
+                  <input type="text" class="form-control" id="descricao" placeholder="Descrição"
+                         formControlName="descricao">
+                </div>
+
               <div class="form-group col-md-12 text-right">
-                <button type="button" class="btn btn-success" onclick="pesquisar()">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                  Pesquisar
-                </button>
-                <button type="submit" class="btn btn-success" style="margin-left:1%;" onclick="consultar()">
-                  <i class="fa fa-refresh" aria-hidden="true"></i>
-                  Limpar
-                </button>
-              </div>
+                <button type="button" style="float:right;" class="btn btn-success" (click)="pesquisar()" title="Pesquisar">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    Pesquisar
+                  </button>
+                  <button type="button" style="margin-left:1%;" class="btn btn-success" (click)="consultar()" title="Limpar a pesquisa">
+                        <i class="fa fa-ban" aria-hidden="true" ></i>
+                        Limpar
+                  </button>
+                
+            </div>
+
+
+              
             </div>
           </accordion-group>
         </accordion>
@@ -45,20 +55,22 @@
           class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
           <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-lg hidden-md hidden-sm">Descrição</th>
           <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-lg hidden-md hidden-xs">Descrição</th>
-          <th class="col-lg-10 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Descrição</th>
+          <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Conta</th>
+          <th class="col-lg-7 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Descrição</th>
           <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
         </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let i of instituicao"
+          <tr *ngFor="let servico of servicos"
               class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-            <td class="col-lg-10 col-xs mb-1 text-muted text-small w-sm-100">{{i.nome}}</td>
+            <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100">{{servico.conta}}</td>
+            <td class="col-lg-7 col-xs mb-1 text-muted text-small w-sm-100">{{servico.descricao}}</td>
             <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">
-              <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
+              <button (click)="editar( servico )" class="btn btn-success hidden-xs hidden-sm"
                       style="margin-top: -9px;float: right">
                 <i class="fa  fa-pencil"></i>
               </button>
-              <button (click)="editar( i )" class="btn btn-success hidden-lg hidden-md" style="float: right">
+              <button (click)="editar( servico )" class="btn btn-success hidden-lg hidden-md" style="float: right">
                 <i class="fa  fa-pencil"></i>
               </button>
             </td>

@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { ConsuclienteComponent } from './cliente/consucliente/consucliente.component';
 import { CadclienteComponent } from './cliente/cadcliente/cadcliente.component';
-import { ConsuFornecedoresComponent } from './fornecedores/consfornecedores/consfornecedores.component';
-import { CadFornecedoresComponent } from './fornecedores/cadfornecedores/cadfornecedores.component';
+import { ConsuFornecedoresComponent } from './cliente/consucliente/consfornecedores.component';
+import { CadFornecedoresComponent } from './cliente/cadcliente/cadfornecedores.component';
 import { ConsObrasComponent } from './obras/consobras/consobras.component';
 import { CadObrasComponent } from './obras/cadobras/cadobras.component';
 import { ConsServicosComponent } from './servicos/consservicos/consservicos.component';
@@ -37,7 +37,7 @@ const APP_ROUTER: Routes = [
     { path: 'cadgrupocontas/:id', component: CadGrupoContasComponent },
     { path: 'consproduto', component: ConsProdutoComponent },
     { path: 'cadproduto', component: CadProdutoComponent },
-    { path: 'cadproduto:/id', component: CadProdutoComponent },
+    { path: 'cadproduto/:id', component: CadProdutoComponent },
     { path: 'consfaseobra', component: ConsFaseObraComponent },
     { path: 'cadfaseobra', component: CadFaseObraComponent },
     { path: 'cadfaseobra/:id', component: CadFaseObraComponent },
