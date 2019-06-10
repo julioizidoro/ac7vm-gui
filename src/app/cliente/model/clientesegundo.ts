@@ -3,7 +3,10 @@ export class Clientesegundo {
     nome: string;
     cpf: string;
     rg: string;
+    emissor: string;
     datanascimento: Date;
+    sexo: string;
+    estadocivil: string;
     fonecelular: string;
     fonefixo: string;
     cep: string;
@@ -12,8 +15,9 @@ export class Clientesegundo {
     complemento: string;
     bairro: string;
     cidade: string;
+    estado: string;
     email: string;
-    dataemissao: Date;
-    emissor: string;
-    sexo: string;
+    nacionalidade: string;
+    profissao: string;
+    localtrabalho: string;
 }

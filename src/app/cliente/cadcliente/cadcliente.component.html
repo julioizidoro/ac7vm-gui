@@ -52,6 +52,10 @@
               <input type="text" class="form-control" [textMask]="{mask: maskCNPJ}" id="cnpj" placeholder="00.000.000/0000-00"
                      formControlName="cpfcnpj" >
             </div>
+            <div *ngIf="pessoaFisica" class="form-group col-md-4">
+                <input type="checkbox" id="segundo"  value="true" formControlName="segundo" (change)="setClienteSegundo()" >
+                <label for="segundo"> Possui segundo cliente</label>
+              </div>
           </div>
         </accordion-group>
 
@@ -288,10 +292,176 @@
               <div class="form-group col-md-3 col-sm-12">
                 <label for="exampleInputFoneResidencialComercial">Telefone Comercial</label>
                 <input type="text" class="form-control" [textMask]="{mask: maskFONE}" id="exampleInputFoneResidencialComercial"
-                       placeholder="(000)0000-0000"
+                       placeholder="(00)0000-0000"
                        formControlName="cecfonecomercial">
               </div>
             </div>
+          </div>
+        </accordion-group>
+        <accordion-group heading="Segundo comprador" *ngIf="segundo">
+          <div class="row">
+            <div formGroupName="clientesegundo" class="w-100">
+                <div class="form-group col-md-4 col-sm-12">
+                    <label for="nomesegundo">Nome</label>
+                    <input type="text" class="form-control" id="nomesegundo" placeholder="Nome"
+                           formControlName="csnome">
+                  </div>
+                  
+                  <div class="form-group col-md-2 col-sm-12">
+                      <label for="edatanascimento">Data Nascimento</label>
+                      <input type="text" placeholder="Data nascimento" class="form-control" [textMask]="{mask: maskDATE}"
+                             formControlName="csdatanascimento">
+                    </div>
+
+                    <div class="form-group col-md-2 col-sm-12">
+                      <label for="exampleInputSexo">Sexo</label>
+                      <select class="form-control" formControlName="cssexo">
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-md-4 col-sm-12">
+                      <label for="exampleInputNacionalidade">Nacionalidade</label>
+                      <input type="text" class="form-control" id="exampleInputNacionalidade" placeholder="Nacionalidade"
+                             formControlName="csnacionalidade">
+                    </div>
+
+                    <div class="form-group col-md-2 col-sm-12">
+                      <label for="estadocivil">Estado Civil</label>
+                      <select class="form-control" formControlName="csestadocivil">
+                        <option value="Casado(a)">Casado(a)</option>
+                        <option value="Divorciado(a)">Divorciado(a)</option>
+                        <option value="Separado(a)">Separado(a)</option>
+                        <option value="Solteiro(a)">Solteiro(a)</option>
+                        <option value="Viúvo(a) ">Viúvo(a)</option>
+                      </select>
+                    </div>
+
+                  <div class="form-group col-md-4 col-sm-12">
+                    <label for="exampleInputEmail2">Email</label>
+                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email"
+                           formControlName="csemail">
+                  </div>
+
+
+                  <div class="form-group col-md-3 col-sm-12">
+                    <label for="TelefoneFixo">Telefone Fixo</label>
+                    <input type="text" class="form-control" [textMask]="{mask: maskFONE}" id="TelefoneFixo" placeholder="(00)0000-0000"
+                           formControlName="csfonefixo" >
+                  </div>
+                  <div class="form-group col-md-3 col-sm-12">
+                    <label for="telefoneCelular">Telefone Celular</label>
+                    <input type="text" class="form-control" [textMask]="{mask: maskCELULAR}" id="TelefoneCelular" placeholder="(00)00000-0000"
+                           formControlName="csfonecelular" >
+                  </div>
+      
+                  <div  class="form-group col-md-2 col-sm-12">
+                    <label for="cpf">CPF</label>
+      
+                    <input type="text" class="form-control" [textMask]="{mask: maskCPF}" id="cpf" formControlName="cscpf"
+                    placeholder="000.000.000-00"/>
+      
+                  </div>
+               
+                  
+                    
+                     
+      
+                    <div class="form-group col-md-2 col-sm-12">
+                      <label for="rg">RG</label>
+                      <input type="text" class="form-control" id="rg" placeholder="RG" formControlName="csrg">
+                    </div>
+                    <div class="form-group col-md-2 col-sm-12">
+                      <label for="exampleInputEmissor">Emissor</label>
+                      <input type="text" class="form-control" id="exampleInputEmissor" placeholder="Emissor"
+                             formControlName="csemissor">
+                    </div>
+
+                    <div class="form-group col-md-4 col-sm-12">
+                      <label for="exampleInputProfissao">Local de Trabalho</label>
+                      <input type="text" class="form-control" id="exampleInputProfissao" placeholder="Profissão"
+                             formControlName="csprofissao">
+                    </div>
+
+                    <div class="form-group col-md-2 col-sm-12">
+                      <label for="exampleInputProfissao">Profissão</label>
+                      <input type="text" class="form-control" id="exampleInputProfissao" placeholder="Profissão"
+                             formControlName="csprofissao">
+                    </div>
+                   
+          
+
+                    <div class="form-group col-md-12 col-sm-12">
+                      <input type="checkbox" id="utilizarenderco"  value="true" formControlName="utilizarendereco" (change)="setUtilizarEndereco()" >
+                      <label for="cep"> Utilizar Endereço Residencial</label>
+                    </div>
+              
+              <div class="form-group col-md-2 col-sm-12">
+                <label for="cep">CEP</label>
+                
+                
+                <input type="text" class="form-control" id="cep" [textMask]="{mask: maskCEP}" placeholder="00000-000" formControlName="cscep"
+                       (blur)="consultarCEP('s')" >
+              </div>
+              <div class="form-group col-md-5 col-sm-12">
+                <label for="logradouro">Logradouro</label>
+                <input type="text" class="form-control" id="logradouro" placeholder="Logradouro"
+                       formControlName="csendereco">
+              </div>
+              <div class="form-group col-md-2 col-sm-12">
+                <label for="numero">Número</label>
+                <input type="text" class="form-control" id="numero" placeholder="Número"
+                       formControlName="csnumero">
+              </div>
+              <div class="form-group col-md-3 col-sm-12">
+                <label for="exampleInputComplemento">Complemento</label>
+                <input type="text" class="form-control" id="exampleInputComplemento" placeholder="Complemento"
+                       formControlName="cscomplemento">
+              </div>
+
+              <div class="form-group col-md-3 col-sm-12">
+                <label for="exampleInputBairro">Bairro</label>
+                <input type="text" class="form-control" id="exampleInputNumero" placeholder="Bairro"
+                       formControlName="csbairro">
+              </div>
+              <div class="form-group col-md-4 col-sm-12">
+                <label for="exampleInputCidade">Cidade</label>
+                <input type="text" class="form-control" id="exampleInputCidade" placeholder="Cidade"
+                       formControlName="cscidade">
+              </div>
+              <div class="form-group col-md-2 col-sm-12">
+                <label for="exampleInputResidencialEstado">Estado</label>
+                <select class="form-control" formControlName="csestado">
+                  <option value="AC">AC</option>
+                  <option value="AL">AL</option>
+                  <option value="AP">AP</option>
+                  <option value="BA">BA</option>
+                  <option value="CE">CE</option>
+                  <option value="DF">DF</option>
+                  <option value="ES">ES</option>
+                  <option value="GO">GO</option>
+                  <option value="MA">MA</option>
+                  <option value="MT">MT</option>
+                  <option value="MS">MS</option>
+                  <option value="MG">MG</option>
+                  <option value="PA">PA</option>
+                  <option value="PB">PB</option>
+                  <option value="PR">PR</option>
+                  <option value="PE">PE</option>
+                  <option value="PI">PI</option>
+                  <option value="RJ">RJ</option>
+                  <option value="RN">RN</option>
+                  <option value="RS">RS</option>
+                  <option value="RO">RO</option>
+                  <option value="RR">RR</option>
+                  <option value="SE">SE</option>
+                  <option value="SC">SC</option>
+                  <option value="SP">SP</option>
+                  <option value="TO">TO</option>
+                </select>
+              </div>
+              </div>
           </div>
         </accordion-group>
       </accordion>
