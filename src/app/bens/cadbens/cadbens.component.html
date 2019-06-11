@@ -1,0 +1,72 @@
+<br/><br/>
+<h2 style="margin-left:10%;">Movimento de Bens</h2>
+<br/>
+
+<div style="margin-left:10%;width:80%;">
+
+    <form [formGroup]="formulario">
+          <div class="row">
+              <div class="form-group col-xs-12" >
+                  <label for="descricao">Descrição</label>
+                  <input type="text" class="form-control" id="descricao" placeholder="Descrição"
+                  formControlName="descricao" readonly='false'>
+                </div>
+              <div class="form-group col-xs-3" >
+                  <label for="dataentrada">Data Entrada</label>
+                  <input type="date" class="form-control" id="dataentrada" placeholder="data de Entrada"
+                  formControlName="dataentrada" readonly='telaEntrada'>
+                </div>
+
+                <div class="form-group col-xs-3" >
+                    <label for="valorentrada">Valor Entrada</label>
+                    <input type="text" style="text-align:right" class="form-control" id="valorentrada" placeholder="Valor de Entrada"
+                    formControlName="valorentrada" readonly='telaEntrada'>
+                </div>
+
+                <div class="form-group col-xs-6" >
+                    <label >Plano de Contas</label>
+                    <select class="form-control" formControlName="planoconta"  [compareWith]="compararPalnoConta" (change)="setPalnoConta()" readonly='telaEntrada'>
+                      <option *ngFor="let conta of listaPlanoContas" [ngValue]="conta"> {{ conta.descricao }}</option >
+                   </select >
+                  </div>
+
+                  <div class="form-group col-xs-3" >
+                      <label for="datasaida">Data Saída</label>
+                      <input type="date" class="form-control" id="datasaida" placeholder="data de Saída"
+                      formControlName="datasaida" readonly='telaSaida'>
+                    </div>
+    
+                    <div class="form-group col-xs-3" >
+                        <label for="valorsaida">Valor Saída</label>
+                        <input type="text" style="text-align:right" class="form-control" id="valorsaida" placeholder="Valor de Saída"
+                        formControlName="valorsaida" readonly='telasaida'>
+                    </div>
+                    <div class="form-group col-xs-3" >
+                        <label for="diferenca">Diferença</label>
+                        <input type="text" style="text-align:right" class="form-control" id="diferenca" placeholder="Diferença de valores"
+                        formControlName="valorsaida" readonly='telaSaida'>
+                    </div>
+                    <div class="form-group col-xs-3" >
+                        <label for="percentual">Percentual</label>
+                        <input type="text" style="text-align:right" class="form-control" id="percentual" placeholder="Percentual"
+                        formControlName="percentual" readonly='telaSaida'>
+                    </div>
+
+                 
+            </div>
+
+           
+      <br/>
+      <hr/>
+
+    <div style="margin-left:40%;">
+        <button type="button" class="btn btn-primary"  (click)="salvar()" >
+            <i class="fa fa-floppy-o" aria-hidden="true" ></i>
+            Salvar</button>
+            <button type="submit" class="btn btn-danger" style="margin-left:1%;" (click)="cancelar()"  >
+                <i class="fa fa-times" aria-hidden="true"></i>
+                Cancelar</button>
+
+      </div>
+    </form>
+</div>

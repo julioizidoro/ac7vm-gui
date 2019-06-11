@@ -1,3 +1,5 @@
+import { CadbensComponent } from './bens/cadbens/cadbens.component';
+import { ConsbensComponent } from './bens/consbens/consbens.component';
 import { AppComponent } from './app.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
@@ -43,7 +45,10 @@ const APP_ROUTER: Routes = [
     { path: 'cadfaseobra/:id', component: CadFaseObraComponent },
     { path: 'consplanocontas', component: ConsPlanoContasComponent },
     { path: 'cadplanocontas', component: CadsPlanoContasComponent },
-    { path: 'cadplanocontas/:id', component: CadsPlanoContasComponent }
+    { path: 'cadplanocontas/:id', component: CadsPlanoContasComponent },
+    { path: 'consbens', component: ConsbensComponent },
+    { path: 'cadbens/:tipo', component: CadbensComponent },
+    { path: 'cadbens/:tipo/:id', component: CadbensComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTER);

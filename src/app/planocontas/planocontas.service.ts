@@ -14,6 +14,10 @@ export class PlanoContasService {
     return this.httpCliente.get<Planocontas>(env.baseApiUrl + 'planocontas');
   }
 
+  pesquisarBens(): Observable<Planocontas> {
+    return this.httpCliente.get<Planocontas>(env.baseApiUrl + 'planocontas/bens');
+  }
+
   pesquisarDescricao(descricao: string): Observable<Planocontas> {
     return this.httpCliente.get<Planocontas>(env.baseApiUrl + 'planocontas/descricao/' + descricao);
   }
@@ -26,8 +30,8 @@ export class PlanoContasService {
     return this.httpCliente.get<Planocontas>(env.baseApiUrl + 'planocontas/grupo/' + idgrupo);
   }
 
-  salvar(obraFase: Planocontas): Observable<any> {
-      return this.httpCliente.post<any>(env.baseApiUrl + 'planocontas/salvar', obraFase);
+  salvar(conta: Planocontas): Observable<any> {
+      return this.httpCliente.post<any>(env.baseApiUrl + 'planocontas/salvar', conta);
   }
 
   pesquisarId(id: number): Observable<Planocontas> {

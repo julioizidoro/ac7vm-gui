@@ -33,7 +33,7 @@
         <ul class="aw-menu__list">
 
           <li class="aw-menu__item is-active">
-            <a href="#"><i class="fa fa-fw fa-home"></i><span>Dashboard</span></a>
+            <a href="#"><i class="fa fa-fw fa-dashboard"></i><span>Dashboard</span></a>
           </li>
 
           <li class="aw-menu__item  is-active">
@@ -55,10 +55,10 @@
               <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consfaseobra">Fases da Obra</a></li>
             </ul>
             <ul class="aw-menu__list  aw-menu__list--sublist">
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consproduto">Produtos</a></li>
+              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consservicos">Sub Fase da Obra</a></li>
             </ul>
             <ul class="aw-menu__list  aw-menu__list--sublist">
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consservicos">Serviços</a></li>
+              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consproduto">Produtos</a></li>
             </ul>
             <ul class="aw-menu__list  aw-menu__list--sublist">
               <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consgrupocontas">Grupo de Contas</a></li>
@@ -72,7 +72,18 @@
 
           <li class="aw-menu__item  is-active">
             <a href="#">
-              <i class="fa  fa-fw  fa-bank"></i><span>Obras</span>
+              <i class="fa  fa-fw  fa-car"></i><span>Bens</span>
+              <i class="aw-menu__navigation-icon  fa"></i>
+            </a>
+
+            <ul class="aw-menu__list  aw-menu__list--sublist">
+              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consbens">Controle</a></li>
+            </ul>
+          </li>
+
+          <li class="aw-menu__item  is-active">
+            <a href="#">
+              <i class="fa  fa-fw  fa-home"></i><span>Obras</span>
               <i class="aw-menu__navigation-icon  fa"></i>
             </a>
 
@@ -84,20 +95,20 @@
 
           <li class="aw-menu__item  is-active">
             <a href="#">
-              <i class="fa  fa-fw  fa-bank"></i><span>Compras</span>
+              <i class="fa  fa-fw  fa-shopping-cart"></i><span>Compras</span>
               <i class="aw-menu__navigation-icon  fa"></i>
             </a>
 
             <ul class="aw-menu__list  aw-menu__list--sublist">
               <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consobras">Solicitação</a></li>
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consfaseobra">Emissão</a></li>
+              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consfaseobra">Pedido</a></li>
             </ul>
           </li>
 
 
           <li class="aw-menu__item  is-active">
             <a href="#">
-              <i class="fa  fa-fw  fa-bank"></i><span>Financeiro</span>
+              <i class="fa  fa-fw  fa-dollar"></i><span>Financeiro</span>
               <i class="aw-menu__navigation-icon  fa"></i>
             </a>
 

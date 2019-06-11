@@ -1,3 +1,4 @@
+import { BensModule } from './bens/bens.module';
 import { ShareModule } from './share/share.module';
 import { ClienteService } from './cliente/cliente.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,10 +17,12 @@ import { ProdutoModule } from './produto/produto.module';
 import { FaseObraModule } from './faseobra/faseobra.module';
 import { PlanoContasModule } from './planocontas/planocontas.module';
 import { TextMaskModule } from 'angular2-text-mask';
+import { CadbensComponent } from './bens/cadbens/cadbens.component';
+import { ConsbensComponent } from './bens/consbens/consbens.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     ProdutoModule,
     FaseObraModule,
     TextMaskModule,
-    PlanoContasModule
+    PlanoContasModule,
+    BensModule,
   ],
   providers: [
 
