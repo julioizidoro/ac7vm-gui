@@ -24,6 +24,8 @@ export class CadclienteComponent implements OnInit {
   pessoaJuridica = false;
   pessoaFisica = false;
   segundo = false;
+  isFirstOpen = false;
+  oneAtATime: true;
   public maskCPF = [/[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
   // tslint:disable-next-line:max-line-length
   public maskCNPJ = [/[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];

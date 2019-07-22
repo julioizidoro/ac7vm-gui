@@ -23,11 +23,11 @@
         <accordion [closeOthers]="oneAtATime">
           <accordion-group heading="Pesquisar" [isOpen]="isFirstOpen">
             <div class="row">
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-6 col-sm-12">
                 <label for="conta">Descrição</label>
                 <input type="text" class="form-control" id="descricao" placeholder="Descrição" formControlName="descricao">
               </div>
-              <div class="form-group col-xs-6" >
+              <div class="form-group col-md-6 col-sm-12">
                 <label >Plano de Contas</label>
                 <select class="form-control" formControlName="planoconta"  [compareWith]="compararPalnoConta" (change)="setPlanoConta()">
                   <option *ngFor="let conta of planoContas" [ngValue]="conta"> {{ conta.descricao }}</option>
@@ -60,41 +60,41 @@
             </th>
             <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-lg hidden-md hidden-xs">Descrição
             </th>
-            <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Descrição</th>
+            <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Descrição</th>
             <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Entrada</th>
             <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Saída</th>
-            <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Diferença</th>
-            <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
+            <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Diferença</th>
+            <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let bem of bens"
             class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-            <td class="col-lg-4 col-xs mb-1 text-muted text-small w-sm-100">{{bem.descricao}}</td>
+            <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100">{{bem.descricao}}</td>
             <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{bem.dataentrada | date: 'dd/MM/yyyy' }}</td>
             <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100" *ngIf="comDataSaida( bem )">{{bem.datasaida | date: 'dd/MM/yyyy' }}</td>
             <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100" *ngIf="semDataSaida( bem )">Em Estoque</td>
             <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{bem.diferenca | currency: 'BRL':true}}</td>
-            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">
-              <button (click)="editar( conta )" class="btn btn-success hidden-xs hidden-sm"
+            <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100">
+              <button (click)="editar( bem )" class="btn btn-success hidden-xs hidden-sm"
                 style="margin-top: -9px;float: right">
                 <i class="fa  fa-pencil"></i>
               </button>
-              <button (click)="editar( conta )" class="btn btn-success hidden-lg hidden-md" style="float: right">
+              <button (click)="editar( bem )" class="btn btn-success hidden-lg hidden-md" style="float: right">
                 <i class="fa  fa-pencil"></i>
               </button>
-              <button (click)="saida( conta )" class="btn btn-success hidden-xs hidden-sm"
+              <button (click)="saida( bem )" class="btn btn-success hidden-xs hidden-sm"
                 style="margin-top: -9px;float: right">
                 <i class="fa  fa-sign-out"></i>
               </button>
-              <button (click)="saida( conta )" class="btn btn-success hidden-lg hidden-md" style="float: right">
+              <button (click)="saida( bem )" class="btn btn-success hidden-lg hidden-md" style="float: right">
                 <i class="fa  fa-sign-out"></i>
               </button>
-              <button (click)="visualizar( conta )" class="btn btn-success hidden-xs hidden-sm"
+              <button (click)="visualizar( bem )" class="btn btn-success hidden-xs hidden-sm"
                 style="margin-top: -9px;float: right">
                 <i class="fa  fa-eye"></i>
               </button>
-              <button (click)="visualizar( conta )" class="btn btn-success hidden-lg hidden-md" style="float: right">
+              <button (click)="visualizar( bem )" class="btn btn-success hidden-lg hidden-md" style="float: right">
                 <i class="fa  fa-eye"></i>
               </button>
             </td>

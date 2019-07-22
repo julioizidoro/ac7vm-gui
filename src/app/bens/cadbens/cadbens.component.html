@@ -6,50 +6,50 @@
 
     <form [formGroup]="formulario">
           <div class="row">
-              <div class="form-group col-xs-12" >
+              <div class="form-group col-md-12 col-sm-12" >
                   <label for="descricao">Descrição</label>
                   <input type="text" class="form-control" id="descricao" placeholder="Descrição"
-                  formControlName="descricao" readonly='false'>
+                  formControlName="descricao" (readonly)='true' >
                 </div>
-              <div class="form-group col-xs-3" >
+              <div class="form-group col-md-4 col-sm-12" >
                   <label for="dataentrada">Data Entrada</label>
                   <input type="date" class="form-control" id="dataentrada" placeholder="data de Entrada"
-                  formControlName="dataentrada" readonly='telaEntrada'>
+                  formControlName="dataentrada" >
                 </div>
 
-                <div class="form-group col-xs-3" >
+                <div class="form-group col-md-4 col-sm-12" >
                     <label for="valorentrada">Valor Entrada</label>
                     <input type="text" style="text-align:right" class="form-control" id="valorentrada" placeholder="Valor de Entrada"
-                    formControlName="valorentrada" readonly='telaEntrada'>
+                    formControlName="valorentrada" (blur)="calcularValores()" >
                 </div>
 
-                <div class="form-group col-xs-6" >
-                    <label >Plano de Contas</label>
-                    <select class="form-control" formControlName="planoconta"  [compareWith]="compararPalnoConta" (change)="setPalnoConta()" readonly='telaEntrada'>
-                      <option *ngFor="let conta of listaPlanoContas" [ngValue]="conta"> {{ conta.descricao }}</option >
-                   </select >
-                  </div>
-
-                  <div class="form-group col-xs-3" >
+                  <div class="form-group col-md-4 col-sm-12" >
                       <label for="datasaida">Data Saída</label>
                       <input type="date" class="form-control" id="datasaida" placeholder="data de Saída"
-                      formControlName="datasaida" readonly='telaSaida'>
+                      formControlName="datasaida" >
                     </div>
+
+                    <div class="form-group col-md-12 col-sm-12" >
+                        <label >Plano de Contas</label>
+                        <select class="form-control" formControlName="planoconta"  [compareWith]="compararPalnoConta" (change)="setPlanoConta()" >
+                          <option *ngFor="let conta of listaPlanoContas" [ngValue]="conta"> {{ conta.descricao }}</option >
+                       </select >
+                      </div>
     
-                    <div class="form-group col-xs-3" >
+                    <div class="form-group col-md-4 col-sm-12" >
                         <label for="valorsaida">Valor Saída</label>
                         <input type="text" style="text-align:right" class="form-control" id="valorsaida" placeholder="Valor de Saída"
-                        formControlName="valorsaida" readonly='telasaida'>
+                        formControlName="valorsaida"  (blur)="calcularValores()">
                     </div>
-                    <div class="form-group col-xs-3" >
+                    <div class="form-group col-md-4 col-sm-12" >
                         <label for="diferenca">Diferença</label>
                         <input type="text" style="text-align:right" class="form-control" id="diferenca" placeholder="Diferença de valores"
-                        formControlName="valorsaida" readonly='telaSaida'>
+                        formControlName="diferenca" readonly >
                     </div>
-                    <div class="form-group col-xs-3" >
+                    <div class="form-group col-md-4 col-sm-12" >
                         <label for="percentual">Percentual</label>
                         <input type="text" style="text-align:right" class="form-control" id="percentual" placeholder="Percentual"
-                        formControlName="percentual" readonly='telaSaida'>
+                        formControlName="percentual"  readonly>
                     </div>
 
                  

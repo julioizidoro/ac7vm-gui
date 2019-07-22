@@ -54,5 +54,12 @@ export class ConsuFornecedoresComponent implements OnInit {
    this.router.navigate([ '/cadfornecedor' ,   instituicao.idinstituicao ]);
  }
 
+ pesquisarLimpar() {
+   this.formulario.reset();
+   this.consultar();
+ }
+
+
+
 
 }

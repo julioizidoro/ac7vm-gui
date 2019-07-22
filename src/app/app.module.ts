@@ -1,6 +1,5 @@
 import { BensModule } from './bens/bens.module';
 import { ShareModule } from './share/share.module';
-import { ClienteService } from './cliente/cliente.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -9,7 +8,6 @@ import { AppComponent } from './app.component';
 import { ClienteModule } from './cliente/cliente.module';
 import { routing } from './app.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ConsultacepService } from './share/consultacep.service';
 import { ObrasModule } from './obras/obras.module';
 import { ServicoModule } from './servicos/servicos.module';
 import { GrupoContasModule } from './grupocontas/grupocontas.module';
@@ -17,8 +15,7 @@ import { ProdutoModule } from './produto/produto.module';
 import { FaseObraModule } from './faseobra/faseobra.module';
 import { PlanoContasModule } from './planocontas/planocontas.module';
 import { TextMaskModule } from 'angular2-text-mask';
-import { CadbensComponent } from './bens/cadbens/cadbens.component';
-import { ConsbensComponent } from './bens/consbens/consbens.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -40,6 +37,7 @@ import { ConsbensComponent } from './bens/consbens/consbens.component';
     TextMaskModule,
     PlanoContasModule,
     BensModule,
+    BrowserAnimationsModule,
   ],
   providers: [
 

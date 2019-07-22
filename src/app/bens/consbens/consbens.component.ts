@@ -101,7 +101,7 @@ export class ConsbensComponent implements OnInit {
     this.router.navigate([ '/cadbens' ,   'e' ]);
   }
 
-  edit( bem: Bens) {
+  editar( bem: Bens) {
     this.router.navigate([ '/cadbens' ,   'e', bem.idbens ]);
   }
 

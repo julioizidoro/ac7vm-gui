@@ -18,8 +18,8 @@ export class CadbensComponent implements OnInit {
   bens: Bens;
   planoConta: Planocontas;
   listaPlanoContas: Planocontas[];
-  telaSaida = false;
-  telaEntrada = false;
+  telaSaida = true;
+  telaEntrada = true;
   inscricao: Subscription;
 
   constructor(
@@ -28,7 +28,7 @@ export class CadbensComponent implements OnInit {
     private formBuilder: FormBuilder,
     private activeRrouter: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
@@ -126,6 +126,28 @@ export class CadbensComponent implements OnInit {
   cancelar() {
     this.formulario.reset();
     this.router.navigate(['/consbens']);
+  }
+
+  calcularValores() {
+    this.bens.valorsaida = this.formulario.get('valorsaida').value;
+    this.bens.valorentrada = this.formulario.get('valorentrada').value;
+    this.bens.diferenca = this.bens.valorsaida - this.bens.valorentrada;
+    if (this.bens.valorsaida === 0) {
+      this.bens.percentual = 0.00;
+    } else {
+      this.bens.percentual = ((this.bens.diferenca * 100) / this.bens.valorentrada);
+    }
+    this.formulario = this.formBuilder.group({
+      idbens: this.bens.idbens,
+      descricao: this.bens.descricao,
+      dataentrada: this.bens.dataentrada,
+      valorentrada: this.bens.valorentrada,
+      datasaida: this.bens.datasaida,
+      valorsaida: this.bens.valorsaida,
+      diferenca: this.bens.diferenca,
+      percentual: this.bens.percentual,
+      planoconta: this.bens.planoconta
+    });
   }
 
 
