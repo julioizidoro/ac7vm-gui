@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Instituicao } from '../model/instituicao';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-consucliente',
@@ -16,17 +17,31 @@ export class ConsuclienteComponent implements OnInit {
     isFirstOpen = false;
     oneAtATime: true;
     instituicao: Instituicao[];
+    rotaAnterior: string;
+    habilitarConsulta: boolean;
+    inscricao: Subscription;
 
 
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private clienteService: ClienteService) {}
+    private clienteService: ClienteService,
+    private activeRrouter: ActivatedRoute
+    ) {}
 
 
 
   ngOnInit() {
+    this.inscricao = this.activeRrouter.params.subscribe(params => {
+      this.rotaAnterior = params.rota;
+    });
+    console.log(this.rotaAnterior);
+    if ( this.rotaAnterior === null) {
+      this.habilitarConsulta = false;
+    } else {
+      this.habilitarConsulta = true;
+    }
     this.formulario = this.formBuilder.group({
       nome: [null],
       email: [null],
@@ -56,6 +71,13 @@ export class ConsuclienteComponent implements OnInit {
     editar(instituicao: Instituicao) {
       console.log(instituicao);
       this.router.navigate([ '/cadcliente' ,   instituicao.idinstituicao ]);
+    }
+
+    selecionarCliente(clienteSelecionado: Instituicao) {
+      console.log(clienteSelecionado.nome);
+      if ( this.rotaAnterior === 'bens') {
+        this.router.navigate([ '/cadbens' ,   'e', clienteSelecionado.idinstituicao, 'conscliente' ]);
+      }
     }
 
 

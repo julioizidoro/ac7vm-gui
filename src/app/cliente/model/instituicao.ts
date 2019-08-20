@@ -14,7 +14,6 @@ export class Instituicao {
   datacadastro: Date;
   tipo: string;
   tipojuridico: string;
-  segundo: boolean;
   clientesocio: Clientesocio;
   clienteenderecoresidencial: Clienteenderecoresidencial;
   clienteenderecocomercial: Clienteenderecocomercial;

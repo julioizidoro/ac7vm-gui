@@ -6,6 +6,18 @@
 
     <form [formGroup]="formulario">
           <div class="row">
+            <div class="form-group col-md-11 col-sm-11" >
+              <label for="nomeCliente">Cliente</label>
+              <input type="text" class="form-control" id="nomecliente" placeholder="Nome do Cliente"
+              [value]="instituicaoSelecionada.nome" readonly="false">
+            </div>
+                <div class="form-group col-md-1 col-sm-1" >
+                  <br/>
+                  <button type="button" class="btn btn-info"  (click)="consultaCliente()" style="margin-top: 10%" >
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                  </button>
+                </div>
+              
               <div class="form-group col-md-12 col-sm-12" >
                   <label for="descricao">Descrição</label>
                   <input type="text" class="form-control" id="descricao" placeholder="Descrição"

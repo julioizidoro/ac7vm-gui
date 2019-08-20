@@ -214,7 +214,6 @@ export class CadclienteComponent implements OnInit {
                 })
               });
             } else {
-              this.segundo = this.instituicao.segundo;
               if (this.instituicao.tipojuridico === 'PF') {
                 this.pessoaFisica = true;
                 this.pessoaJuridica = false;
@@ -247,7 +246,6 @@ export class CadclienteComponent implements OnInit {
                 datacadastro: this.instituicao.datacadastro,
                 tipo: this.instituicao.tipo,
                 tipojuridico: this.instituicao.tipojuridico,
-                segundo: this.instituicao.segundo,
                 clientesocio: this.formBuilder.group({
                   idclientesocio: this.instituicao.clientesocio.idclientesocio,
                   csnome: this.instituicao.clientesocio.nome,

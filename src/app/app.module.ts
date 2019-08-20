@@ -1,3 +1,6 @@
+import { FormapagamentoModule } from './formapagamento/formapagamento.module';
+import { Formapagamento } from './formapagamento/model/formapagamento';
+import { ContasModule } from './contas/contas.module';
 import { BensModule } from './bens/bens.module';
 import { ShareModule } from './share/share.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -37,6 +40,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TextMaskModule,
     PlanoContasModule,
     BensModule,
+    ContasModule,
+    FormapagamentoModule,
     BrowserAnimationsModule,
   ],
   providers: [

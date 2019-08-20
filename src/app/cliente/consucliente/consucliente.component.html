@@ -72,6 +72,20 @@
               <button (click)="editar( i )" class="btn btn-success hidden-lg hidden-md" style="float: right">
                 <i class="fa  fa-pencil"></i>
               </button>
+
+              <div *ngIf="habilitarConsulta">
+
+                <button (click)="selecionarCliente( i )" class="btn btn-success hidden-xs hidden-sm"
+                  style="margin-top: -9px;float: right">
+                  <i class="glyphicon glyphicon-ok"></i>
+                </button>
+                <button (click)="selecionarCliente( i )" class="btn btn-success hidden-lg hidden-md"
+                  style="float: right">
+                  <i class="glyphicon glyphicon-ok"></i>
+                </button>
+
+
+              </div>
             </td>
           </tr>
         </tbody>

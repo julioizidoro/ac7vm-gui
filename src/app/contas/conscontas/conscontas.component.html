@@ -1,0 +1,96 @@
+<br/><br/>
+<div class="page-header">
+  <div class="container-fluid">
+    <h3>
+      {{ titulo }}
+    </h3>
+    <hr/>
+  </div>
+  <form [formGroup]="formulario">
+    <div class="container-fluid" style="width:100%;">
+      <div class="w-100">
+        <button type="button" style="float:right;" class="btn btn-primary font-weight-light" routerLink="/cadconta/r">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          <a class="ml-2">Adicionar</a>
+        </button>
+      </div>
+      <br><br>
+      <div class="w-100">
+        <accordion [closeOthers]="oneAtATime">
+          <accordion-group heading="Pesquisar" [isOpen]="isFirstOpen">
+            <div class="row">
+                <div class="form-group col-md-2">
+                    <label for="iddocumento">No. Documento</label>
+                    <input type="text" class="form-control" id="iddocumento" placeholder="No. Documento"
+                           formControlName="documento">
+                  </div>
+              <div class="form-group col-md-4">
+                <label for="idcliente">Cliente</label>
+                <input type="text" class="form-control" id="idcliente" placeholder="Cliente"
+                       formControlName="cliente">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="datavencimentoinicial">Data vencimento inicial</label>
+                <input type="date" class="form-control" id="datavencimentoinicial" placeholder="Data vencimento"
+                       formControlName="datainicial">
+              </div>
+              <div class="form-group col-md-3">
+                  <label for="datavencimentofinal">Data vencimento final</label>
+                  <input type="date" class="form-control" id="datavencimentofinal" placeholder="Data vencimento"
+                         formControlName="datafinal">
+                </div>
+              <div class="form-group col-md-12 text-right">
+                <button type="button" class="btn btn-success" onclick="pesquisar()">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                  Pesquisar
+                </button>
+                <button type="submit" class="btn btn-success" style="margin-left:1%;" onclick="consultar()">
+                  <i class="fa fa-refresh" aria-hidden="true"></i>
+                  Limpar
+                </button>
+              </div>
+            </div>
+          </accordion-group>
+        </accordion>
+      </div>
+
+      <table class="table table-striped">
+        <thead>
+        <tr
+          class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+          <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-lg hidden-md hidden-sm">Cliente - Valor</th>
+          <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-lg hidden-md hidden-xs">Documento - cliente - Data Vencimento - Valor - Data Pagamento - Valor Pago</th>
+          <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Documento</th>
+          <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Cliente</th>
+          <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Vencimento</th>
+          <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Valor</th>
+          <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Pagamento</th>
+          <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let conta of contas"
+              class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{conta.documento}}</td>
+            <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100">{{conta.instituicao.nome}}</td>
+            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{conta.datavencimento | date: 'dd/MM/yyyy' }}</td>
+            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{conta.valorparcela | currency: 'BRL':true }}</td>
+            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{conta.datapagamento | date: 'dd/MM/yyyy' }}</td>
+            <td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
+              <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
+                      style="margin-top: -9px;float: right">
+                <i class="fa  fa-pencil"></i>
+              </button>
+              <button (click)="editar( i )" class="btn btn-success hidden-lg hidden-md" style="float: right">
+                <i class="fa  fa-pencil"></i>
+              </button>
+
+             
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>
+

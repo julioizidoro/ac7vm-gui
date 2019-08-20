@@ -19,10 +19,13 @@ import { ConsFaseObraComponent } from './faseobra/consfaseobra/consfaseobra.comp
 import { CadFaseObraComponent } from './faseobra/cadfaseobra/cadfaseobra.component';
 import { ConsPlanoContasComponent } from './planocontas/consplanocontas/consplanocontas.component';
 import { CadsPlanoContasComponent } from './planocontas/cadplanocontas/cadplanocontas.component';
+import { ConscontasComponent } from './contas/conscontas/conscontas.component';
+import { CadcontasComponent } from './contas/cadcontas/cadcontas.component';
 
 const APP_ROUTER: Routes = [
     { path: '', component: AppComponent },
     { path: 'consCliente', component: ConsuclienteComponent },
+    { path: 'consCliente/:rota', component: ConsuclienteComponent },
     { path: 'cadCliente', component: CadclienteComponent },
     { path: 'cadcliente/:id', component: CadclienteComponent },
     { path: 'consFornecedores', component: ConsuFornecedoresComponent },
@@ -49,6 +52,10 @@ const APP_ROUTER: Routes = [
     { path: 'consbens', component: ConsbensComponent },
     { path: 'cadbens/:tipo', component: CadbensComponent },
     { path: 'cadbens/:tipo/:id', component: CadbensComponent },
+    { path: 'cadbens/:tipo/:id/:rota', component: CadbensComponent },
+    { path: 'consconta/:tipo', component: ConscontasComponent },
+    { path: 'cadconta/:tipo', component: CadcontasComponent },
+    { path: 'cadconta/:tipo/:id', component: CadcontasComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTER);

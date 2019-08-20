@@ -6,6 +6,8 @@ import { Bens } from '../model/bens';
 import { PlanoContasService } from 'src/app/planocontas/planocontas.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Instituicao } from 'src/app/cliente/model/instituicao';
+import { ClienteService } from 'src/app/cliente/cliente.service';
 
 @Component({
   selector: 'app-cadbens',
@@ -17,6 +19,7 @@ export class CadbensComponent implements OnInit {
   formulario: FormGroup;
   bens: Bens;
   planoConta: Planocontas;
+  instituicaoSelecionada: Instituicao;
   listaPlanoContas: Planocontas[];
   telaSaida = true;
   telaEntrada = true;
@@ -27,7 +30,8 @@ export class CadbensComponent implements OnInit {
     private bensService: BensService,
     private formBuilder: FormBuilder,
     private activeRrouter: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private clienteService: ClienteService
   ) {}
 
   ngOnInit() {
@@ -40,14 +44,19 @@ export class CadbensComponent implements OnInit {
       valorsaida: [null],
       diferenca: [null],
       percentual: [null],
-      planoconta: [null]
+      planoconta: [null],
+      instituicao: [null]
     });
     this.listarPlanoContas();
+    this.instituicaoSelecionada = new Instituicao();
+    this.instituicaoSelecionada.nome = '';
     let id;
     let tipo;
+    let rota;
     this.inscricao = this.activeRrouter.params.subscribe(params => {
       id = params.id;
       tipo = params.tipo;
+      rota = params.rota;
       if ( tipo === 'e') {
         this.telaEntrada = false;
         this.telaSaida = true;
@@ -59,11 +68,13 @@ export class CadbensComponent implements OnInit {
         this.telaSaida = true;
       }
       console.log(this.telaEntrada, this.telaSaida);
+      if ( rota == null ) {
       if ( id != null ) {
         this.bensService.getBens(id).subscribe(
             resposta => {
               this.bens = resposta as Bens;
               this.planoConta = this.bens.planoconta;
+              this.instituicaoSelecionada = this.bens.instituicao;
               this.formulario = this.formBuilder.group({
                 idbens: this.bens.idbens,
                 descricao: this.bens.descricao,
@@ -73,7 +84,8 @@ export class CadbensComponent implements OnInit {
                 valorsaida: this.bens.valorsaida,
                 diferenca: this.bens.diferenca,
                 percentual: this.bens.percentual,
-                planoconta: this.bens.planoconta
+                planoconta: this.bens.planoconta,
+                instituicao: this.bens.instituicao
               });
             },
             error => {
@@ -90,9 +102,34 @@ export class CadbensComponent implements OnInit {
           valorsaida: [null],
           diferenca: [null],
           percentual: [null],
-          planoconta: [null]
+          planoconta: [null],
+          instituicao: [null],
         });
       }
+    } else {
+      if ( rota === 'conscliente') {
+        this.clienteService.pesquisarId(id).subscribe(
+          resposta => {
+            this.instituicaoSelecionada = resposta as Instituicao;
+            this.formulario = this.formBuilder.group({
+              idbens: [null],
+              descricao: [null],
+              dataentrada: [null],
+              valorentrada: [null],
+              datasaida: [null],
+              valorsaida: [null],
+              diferenca: [null],
+              percentual: [null],
+              planoconta: [null],
+              instituicao: this.instituicaoSelecionada
+            });
+          },
+          error => {
+            console.log(error.error.erros.join(' '));
+          }
+      );
+      }
+    }
 
     });
   }
@@ -115,6 +152,8 @@ export class CadbensComponent implements OnInit {
 
   salvar() {
     this.bens = this.formulario.value;
+    this.bens.instituicao = this.instituicaoSelecionada;
+    this.bens.planoconta = this.planoConta;
     this.bensService.salvar( this.bens).subscribe(
       resposta => {
         this.bens = resposta as any;
@@ -150,5 +189,7 @@ export class CadbensComponent implements OnInit {
     });
   }
 
-
+  consultaCliente() {
+      this.router.navigate(['/consCliente' ,  'bens']);
+  }
 }
