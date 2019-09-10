@@ -77,6 +77,8 @@ export class ConsuclienteComponent implements OnInit {
       console.log(clienteSelecionado.nome);
       if ( this.rotaAnterior === 'bens') {
         this.router.navigate([ '/cadbens' ,   'e', clienteSelecionado.idinstituicao, 'conscliente' ]);
+      } else  if ( this.rotaAnterior === 'contasr') {
+        this.router.navigate([ '/cadconta' ,   'r', clienteSelecionado.idinstituicao, 'conscliente' ]);
       }
     }
 

@@ -19,8 +19,10 @@ import { ConsFaseObraComponent } from './faseobra/consfaseobra/consfaseobra.comp
 import { CadFaseObraComponent } from './faseobra/cadfaseobra/cadfaseobra.component';
 import { ConsPlanoContasComponent } from './planocontas/consplanocontas/consplanocontas.component';
 import { CadsPlanoContasComponent } from './planocontas/cadplanocontas/cadplanocontas.component';
-import { ConscontasComponent } from './contas/conscontas/conscontas.component';
-import { CadcontasComponent } from './contas/cadcontas/cadcontas.component';
+import { ConspagarComponent } from './contas/pagar/conspagar/conspagar.component';
+import { ConsreceberComponent } from './contas/receber/consreceber/consreceber.component';
+import { CadreceberComponent } from './contas/receber/cadreceber/cadreceber.component';
+import { CadpagarComponent } from './contas/pagar/cadpagar/cadpagar.component';
 
 const APP_ROUTER: Routes = [
     { path: '', component: AppComponent },
@@ -53,9 +55,14 @@ const APP_ROUTER: Routes = [
     { path: 'cadbens/:tipo', component: CadbensComponent },
     { path: 'cadbens/:tipo/:id', component: CadbensComponent },
     { path: 'cadbens/:tipo/:id/:rota', component: CadbensComponent },
-    { path: 'consconta/:tipo', component: ConscontasComponent },
-    { path: 'cadconta/:tipo', component: CadcontasComponent },
-    { path: 'cadconta/:tipo/:id', component: CadcontasComponent },
+    { path: 'conspagar', component: ConspagarComponent },
+    { path: 'consreceber', component: ConsreceberComponent },
+    { path: 'cadpagar', component: CadpagarComponent },
+    { path: 'cadreceber', component: CadreceberComponent },
+    { path: 'cadpagar/:id', component: CadpagarComponent },
+    { path: 'cadreceber/:id', component: CadreceberComponent },
+    { path: 'cadpagar/:id/:rota', component: CadpagarComponent },
+    { path: 'cadreceber/:id/:rota', component: CadreceberComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTER);

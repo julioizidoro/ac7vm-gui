@@ -1,24 +1,23 @@
-import { ContasService } from './../contas.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Contas } from '../model/contas';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Contas } from '../../model/contas';
+import { ContasService } from '../../contas.service';
 
 @Component({
-  selector: 'app-conscontas',
-  templateUrl: './conscontas.component.html',
-  styleUrls: ['./conscontas.component.css']
+  selector: 'app-consreceber',
+  templateUrl: './consreceber.component.html',
+  styleUrls: ['./consreceber.component.css']
 })
-export class ConscontasComponent implements OnInit {
+export class ConsreceberComponent implements OnInit {
 
   formulario: FormGroup;
   isFirstOpen = false;
   oneAtATime = true;
   contas: Contas[];
-  tipo: string;
   inscricao: Subscription;
-  titulo: string;
+  pagas: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,30 +27,24 @@ export class ConscontasComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.inscricao = this.activeRrouter.params.subscribe(params => {
-      this.tipo = params.tipo;
-      if (this.tipo === 'r') {
-        this.titulo = 'Contas a Receber';
-      } else {
-        this.titulo = 'Contas a Pagar';
-      }
-    });
+    this.pagas = false;
     this.formulario = this.formBuilder.group({
       documento: [null],
       cliente: [null],
       datainicial: [null],
-      datafinal: [null]
+      datafinal: [null],
+      tipoConta: ['todas'],
     });
     this.consultar();
   }
 
   consultar() {
-    this.contasService.listar(this.tipo).subscribe(
-      resposta => {
-        this.contas = resposta as any;
-      }
-    );
-    this.formulario.reset();
+      this.contasService.listarCR().subscribe(
+        resposta => {
+          this.contas = resposta as any;
+        }
+      );
+      this.formulario.reset();
   }
 
   pesquisar() {

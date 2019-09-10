@@ -2,7 +2,7 @@
 <div class="page-header">
   <div class="container-fluid">
     <h3>
-      {{ titulo }}
+      Contas a Receber
     </h3>
     <hr/>
   </div>
@@ -24,9 +24,9 @@
                     <input type="text" class="form-control" id="iddocumento" placeholder="No. Documento"
                            formControlName="documento">
                   </div>
-              <div class="form-group col-md-4">
-                <label for="idcliente">Cliente</label>
-                <input type="text" class="form-control" id="idcliente" placeholder="Cliente"
+              <div class="form-group col-md-4" >
+                  <label for="idcliente">Cliente</label>
+                  <input type="text" class="form-control" id="idcliente" placeholder="Cliente"
                        formControlName="cliente">
               </div>
               <div class="form-group col-md-3">
@@ -38,7 +38,31 @@
                   <label for="datavencimentofinal">Data vencimento final</label>
                   <input type="date" class="form-control" id="datavencimentofinal" placeholder="Data vencimento"
                          formControlName="datafinal">
+              </div>
+              <div class="form-group">
+                  <div class="col-md-12">
+                        <label class="radio-inline" >
+                            <input type="radio"  formControlName="tipoConta" value="todas">Todas as Contas
+                        </label>
+                    </div>
                 </div>
+
+                <div class="form-group">
+                  <div class="col-md-12">
+                        <label class="radio-inline" for="idpagar">
+                            <input type="radio"  id="idpagar" formControlName="tipoConta" value="pagar">Contas a Pagar
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                  <div class="col-md-12">
+                        <label class="radio-inline" for="idpagas">
+                            <input type="radio" id="idpagas" formControlName="tipoConta" value="pagas">Contas Pagas
+                        </label>
+                    </div>
+                </div>
+
               <div class="form-group col-md-12 text-right">
                 <button type="button" class="btn btn-success" onclick="pesquisar()">
                   <i class="fa fa-search" aria-hidden="true"></i>
@@ -64,8 +88,10 @@
           <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Cliente</th>
           <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Vencimento</th>
           <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Valor</th>
-          <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Pagamento</th>
-          <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
+          <th  *ngIf="pagas" class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Pagamento</th>
+          <th  *ngIf="pagas" class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
+          <th *ngIf="!pagas" class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
+          
         </tr>
         </thead>
         <tbody>
@@ -75,18 +101,25 @@
             <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100">{{conta.instituicao.nome}}</td>
             <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{conta.datavencimento | date: 'dd/MM/yyyy' }}</td>
             <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{conta.valorparcela | currency: 'BRL':true }}</td>
-            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{conta.datapagamento | date: 'dd/MM/yyyy' }}</td>
-            <td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
-              <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
-                      style="margin-top: -9px;float: right">
-                <i class="fa  fa-pencil"></i>
-              </button>
-              <button (click)="editar( i )" class="btn btn-success hidden-lg hidden-md" style="float: right">
-                <i class="fa  fa-pencil"></i>
-              </button>
-
-             
+           <td *ngIf="pagas" class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{conta.datapagamento | date: 'dd/MM/yyyy' }}</td>
+           <td *ngIf="pagas" class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
+                  <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
+                          style="margin-top: -9px;float: right">
+                    <i class="fa  fa-pencil"></i>
+                  </button>
+                  <button (click)="editar( i )" class="btn btn-success hidden-lg hidden-md" style="float: right">
+                    <i class="fa  fa-pencil"></i>
+                  </button>
             </td>
+            <td *ngIf="!pagas" class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100">
+                <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
+                        style="margin-top: -9px;float: right">
+                  <i class="fa  fa-pencil"></i>
+                </button>
+                <button (click)="editar( i )" class="btn btn-success hidden-lg hidden-md" style="float: right">
+                  <i class="fa  fa-pencil"></i>
+                </button>
+              </td>
           </tr>
         </tbody>
       </table>

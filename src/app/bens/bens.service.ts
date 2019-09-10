@@ -29,5 +29,5 @@ export class BensService {
 
   salvar(bem: Bens): Observable<any> {
     return this.httpCliente.post<any>(env.baseApiUrl + 'bens/salvar', bem);
-}
+  }
 }
