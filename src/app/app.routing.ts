@@ -23,6 +23,7 @@ import { ConspagarComponent } from './contas/pagar/conspagar/conspagar.component
 import { ConsreceberComponent } from './contas/receber/consreceber/consreceber.component';
 import { CadreceberComponent } from './contas/receber/cadreceber/cadreceber.component';
 import { CadpagarComponent } from './contas/pagar/cadpagar/cadpagar.component';
+import { LoginComponent } from './usuario/login/login.component';
 
 const APP_ROUTER: Routes = [
     { path: '', component: AppComponent },
@@ -63,6 +64,7 @@ const APP_ROUTER: Routes = [
     { path: 'cadreceber/:id', component: CadreceberComponent },
     { path: 'cadpagar/:id/:rota', component: CadpagarComponent },
     { path: 'cadreceber/:id/:rota', component: CadreceberComponent },
+    { path: 'login', component: LoginComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTER);

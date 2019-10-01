@@ -19,10 +19,15 @@ import { FaseObraModule } from './faseobra/faseobra.module';
 import { PlanoContasModule } from './planocontas/planocontas.module';
 import { TextMaskModule } from 'angular2-text-mask';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { LoginComponent } from './usuario/login/login.component';
+import { UsuarioModule } from './usuario/usuario.module';
 
 @NgModule({
   declarations: [
     AppComponent,
+    UsuarioComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +43,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProdutoModule,
     FaseObraModule,
     TextMaskModule,
+    UsuarioModule,
     PlanoContasModule,
     BensModule,
     ContasModule,
