@@ -1,22 +1,22 @@
-import { UsuarioService } from './usuario.service';
+import { UsuarioService } from '../usuario.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LoginComponent } from '../login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import {UsuarioComponent} from './usuario.component';
 
 @NgModule({
   declarations: [
-    UsuarioComponent
+    LoginComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
   ],
   exports: [
-    UsuarioComponent,
+    LoginComponent,
   ],
   providers: [
     UsuarioService
   ]
 })
-export class UsuarioModule { }
+export class LoginModule { }
