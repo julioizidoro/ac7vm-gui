@@ -1,14 +1,8 @@
-<app-navigation></app-navigation>
+<app-navigation *ngIf="usuario.idusuario"></app-navigation>
 
-<main [ngClass]="{'py-0 px-0 my-0 mx-0': specialPage}"  class="mx-lg-5" >
-
+<main [ngClass]="usuario.idusuario ? {'py-0 px-0 my-0 mx-0': specialPage}"  class="mx-lg-5" >
   <div class="mt-5">
     <router-outlet></router-outlet>
   </div>
 </main>
 
-<div class="aw-layout-loading  js-loading-overlay">
-  <div class="aw-layout-loading__container">
-    <span class="aw-balls-spinner">Carregando...</span>
-  </div>
-</div>

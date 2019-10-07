@@ -28,7 +28,6 @@ import { UsuarioModule } from './usuario/usuario.module';
   declarations: [
     AppComponent,
     UsuarioComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,

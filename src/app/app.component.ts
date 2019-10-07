@@ -19,15 +19,19 @@ export class AppComponent implements OnInit {
     acesso = new Acesso();
     specialPage: boolean;
 
+    private currentUrl = '';
+
 
     constructor(
         private authService: AuthService,
-        private router: Router
+        private location: Location,
+    private router: Router
     ) {
-        console.log('teste');
+        this.router.events.subscribe((route: any) => {
+            this.currentUrl = route.url;
+        });
     }
 
-    // tslint:disable-next-line:use-lifecycle-interface
     ngOnInit() {
         this.usuario = this.authService.usuario;
         console.log(this.usuario.acesso.aso);
@@ -37,5 +41,9 @@ export class AppComponent implements OnInit {
             console.log(this.usuario.acesso.cadastro);
         }
         this.acesso = this.authService.usuario.acesso;
+    }
+
+    goBack(): void {
+        this.location.back();
     }
 }

@@ -2,7 +2,7 @@ import { Acesso } from './acesso';
 
 
 export class Usuario {
-    idusuario: number;
+    idusuario: number = 1323;
     nome: string;
     nascimento: Date;
     login: string;
