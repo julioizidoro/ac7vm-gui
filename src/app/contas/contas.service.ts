@@ -12,7 +12,7 @@ export class ContasService {
   constructor( private httpCliente: HttpClient ) { }
 
 
-  //Contas a recever
+  // Contas a recever
 
   listarCR(): Observable<Contas> {
     return this.httpCliente.get<Contas>(env.baseApiUrl + 'cr');
@@ -27,7 +27,7 @@ export class ContasService {
 }
 
 
-//Contas a pagar
+// Contas a pagar
 
   listarCP(): Observable<Contas> {
     return this.httpCliente.get<Contas>(env.baseApiUrl + 'cp');

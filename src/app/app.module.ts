@@ -20,10 +20,15 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NavigationModule} from './main-layout/navigation/navigation.module';
 import {DashboardModule} from './dashboard/dashboard.module';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { LoginComponent } from './usuario/login/login.component';
+import { UsuarioModule } from './usuario/usuario.module';
 
 @NgModule({
   declarations: [
     AppComponent,
+    UsuarioComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +44,7 @@ import {DashboardModule} from './dashboard/dashboard.module';
     ProdutoModule,
     FaseObraModule,
     TextMaskModule,
+    UsuarioModule,
     PlanoContasModule,
     BensModule,
     ContasModule,
