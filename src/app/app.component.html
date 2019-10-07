@@ -1,132 +1,14 @@
+<app-navigation></app-navigation>
+
+<main [ngClass]="{'py-0 px-0 my-0 mx-0': specialPage}"  class="mx-lg-5" >
+
+  <div class="mt-5">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+
 <div class="aw-layout-loading  js-loading-overlay">
   <div class="aw-layout-loading__container">
     <span class="aw-balls-spinner">Carregando...</span>
   </div>
 </div>
-
-<div class="aw-layout-page">
-  <nav class="navbar  navbar-fixed-top  navbar-default  js-sticky-reference" id="main-navbar">
-    <div class="container-fluid">
-      <div class="w-100 navbar-header" style="font-size: 22px;">
-        <ul class="nav navbar-nav">
-          <li>
-            <a href="#" class="js-sidebar-toggle"><i class="fa fa-bars"></i></a>
-          </li>
-        </ul>
-        <a class="navbar-brand hidden-xs w-auto text-center" href="#">
-          <span>
-            <strong style="font-size: 22px;">AC7VM</strong>
-          </span>
-        </a>
-        <ul class="nav navbar-nav  navbar-right">
-          <li>
-            <a href="index.jsf"><em class="fa  fa-sign-out"></em></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <aside class="aw-layout-sidebar  js-sidebar">
-    <div class="aw-layout-sidebar__content">
-      <nav class="aw-menu  js-menu">
-        <ul class="aw-menu__list">
-
-          <li class="aw-menu__item is-active">
-            <a href="#"><i class="fa fa-fw fa-dashboard"></i><span>Dashboard</span></a>
-          </li>
-
-          <li class="aw-menu__item  is-active">
-            <a href="#">
-              <i class="fa  fa-fw  fa-file-text"></i><span>Cadastros</span>
-              <i class="aw-menu__navigation-icon  fa"></i>
-            </a>
-
-            <ul class="aw-menu__list  aw-menu__list--sublist">
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consCliente">Clientes</a></li>
-            </ul>
-            <ul class="aw-menu__list  aw-menu__list--sublist">
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consFornecedores">Fornecedores</a></li>
-            </ul>
-            <ul class="aw-menu__list  aw-menu__list--sublist">
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consobras">Obras</a></li>
-            </ul>
-            <ul class="aw-menu__list  aw-menu__list--sublist">
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consfaseobra">Fases da Obra</a></li>
-            </ul>
-            <ul class="aw-menu__list  aw-menu__list--sublist">
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consservicos">Sub Fase da Obra</a></li>
-            </ul>
-            <ul class="aw-menu__list  aw-menu__list--sublist">
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consproduto">Produtos</a></li>
-            </ul>
-            <ul class="aw-menu__list  aw-menu__list--sublist">
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consgrupocontas">Grupo de Contas</a></li>
-            </ul>
-            <ul class="aw-menu__list  aw-menu__list--sublist">
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consplanocontas">Plano de Contas</a></li>
-            </ul>
-
-           
-          </li>
-
-          <li class="aw-menu__item  is-active">
-            <a href="#">
-              <i class="fa  fa-fw  fa-car"></i><span>Bens</span>
-              <i class="aw-menu__navigation-icon  fa"></i>
-            </a>
-
-            <ul class="aw-menu__list  aw-menu__list--sublist">
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consbens">Controle</a></li>
-            </ul>
-          </li>
-
-          <li class="aw-menu__item  is-active">
-            <a href="#">
-              <i class="fa  fa-fw  fa-home"></i><span>Obras</span>
-              <i class="aw-menu__navigation-icon  fa"></i>
-            </a>
-
-            <ul class="aw-menu__list  aw-menu__list--sublist">
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consFornecedores">Fase</a></li>
-            </ul>
-          </li>
-
-
-          <li class="aw-menu__item  is-active">
-            <a href="#">
-              <i class="fa  fa-fw  fa-shopping-cart"></i><span>Compras</span>
-              <i class="aw-menu__navigation-icon  fa"></i>
-            </a>
-
-            <ul class="aw-menu__list  aw-menu__list--sublist">
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consobras">Solicitação</a></li>
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consfaseobra">Pedido</a></li>
-            </ul>
-          </li>
-
-
-          <li class="aw-menu__item  is-active">
-            <a href="#">
-              <i class="fa  fa-fw  fa-dollar"></i><span>Financeiro</span>
-              <i class="aw-menu__navigation-icon  fa"></i>
-            </a>
-
-            <ul class="aw-menu__list  aw-menu__list--sublist">
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consreceber">Contas a Receber</a></li>
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/conspagar">Contas a Pagar</a></li>
-              <li class="aw-menu__item  aw-menu__item--link"><a routerLink="/consplanocontas">Fluxo de Caixa</a></li>
-            </ul>
-          </li>
-
-
-        </ul>
-      </nav>
-
-    </div>
-  </aside>
-  <section class="aw-layout-content  js-content">
-    <router-outlet></router-outlet>
-  </section>
-</div>
-

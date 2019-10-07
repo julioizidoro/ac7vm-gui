@@ -1,5 +1,4 @@
 import { FormapagamentoModule } from './formapagamento/formapagamento.module';
-import { Formapagamento } from './formapagamento/model/formapagamento';
 import { ContasModule } from './contas/contas.module';
 import { BensModule } from './bens/bens.module';
 import { ShareModule } from './share/share.module';
@@ -19,6 +18,8 @@ import { FaseObraModule } from './faseobra/faseobra.module';
 import { PlanoContasModule } from './planocontas/planocontas.module';
 import { TextMaskModule } from 'angular2-text-mask';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NavigationModule} from './main-layout/navigation/navigation.module';
+import {DashboardModule} from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ContasModule,
     FormapagamentoModule,
     BrowserAnimationsModule,
+    NavigationModule,
+    DashboardModule,
   ],
   providers: [
 

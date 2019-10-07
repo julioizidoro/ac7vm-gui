@@ -62,7 +62,7 @@ export class CadreceberComponent implements OnInit {
     );
     } else {
       if (id != null) {
-      this.contasService.getConta(id).subscribe(
+      this.contasService.getcrId(id).subscribe(
         resposta => {
           this.conta = resposta as Contas;
           this.planoContaSelecionado = this.conta.planocontas;
@@ -155,7 +155,7 @@ export class CadreceberComponent implements OnInit {
       this.conta.planocontas = this.planoContaSelecionado;
       this.conta.formapagamento = this.formaPagamentoSelecionada;
       this.conta.tipo = this.tipo;
-      this.contasService.salvar( this.conta).subscribe(
+      this.contasService.salvarCR( this.conta).subscribe(
         resposta => {
           this.conta = resposta as any;
           this.router.navigate(['/consconta', this.tipo]);
