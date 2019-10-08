@@ -24,8 +24,10 @@
     "angular-bootstrap-md": "file:angular-bootstrap-md-8.3.0.tgz",
     "angular-calendar": "^0.25.2",
     "angular2-text-mask": "^9.0.0",
+    "angular4-datepicker": "^1.0.1",
     "chart.js": "^2.7.3",
     "core-js": "^2.5.4",
+    "moment": "^2.24.0",
     "ngx-bootstrap": "^5.1.2",
     "rxjs": "~6.5.2",
     "zone.js": "~0.9.1"

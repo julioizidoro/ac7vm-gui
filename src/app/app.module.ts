@@ -22,6 +22,7 @@ import {NavigationModule} from './main-layout/navigation/navigation.module';
 import {DashboardModule} from './dashboard/dashboard.module';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { LoginComponent } from './usuario/login/login.component';
+import {LinhaTempoModule} from './main-layout/linha-tempo/linha-tempo.module';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { LoginComponent } from './usuario/login/login.component';
     BrowserAnimationsModule,
     NavigationModule,
     DashboardModule,
+    LinhaTempoModule,
   ],
   providers: [
 

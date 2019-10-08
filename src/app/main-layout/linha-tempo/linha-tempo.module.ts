@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DashboardComponent } from './dashboard.component';
-import {LinhaTempoModule} from "../main-layout/linha-tempo/linha-tempo.module";
+import { LinhaTempoComponent } from './linha-tempo.component';
 
 @NgModule({
   imports: [
@@ -12,13 +11,12 @@ import {LinhaTempoModule} from "../main-layout/linha-tempo/linha-tempo.module";
     RouterModule,
     FormsModule,
     MDBBootstrapModule.forRoot(),
-      LinhaTempoModule,
   ],
   declarations: [
-    DashboardComponent,
+    LinhaTempoComponent,
   ],
   exports: [
-    DashboardComponent
+    LinhaTempoComponent
   ],
   schemas: [
     NO_ERRORS_SCHEMA,
@@ -26,6 +24,6 @@ import {LinhaTempoModule} from "../main-layout/linha-tempo/linha-tempo.module";
   ],
   providers: []
 })
-export class DashboardModule {
+export class LinhaTempoModule {
 
 }

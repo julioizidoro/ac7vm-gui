@@ -20,7 +20,8 @@ export class ConsuclienteComponent implements OnInit {
     rotaAnterior: string;
     habilitarConsulta: boolean;
     inscricao: Subscription;
-
+    dataInicial: Date;
+    dataFinal: Date;
 
 
   constructor(
