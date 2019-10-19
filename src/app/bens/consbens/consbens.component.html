@@ -52,57 +52,44 @@
         </accordion>
       </div>
       <br /><br />
-      <table class="table table-striped">
-        <thead>
-          <tr
-            class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-            <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-lg hidden-md hidden-sm">Descrição
-            </th>
-            <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-lg hidden-md hidden-xs">Descrição
-            </th>
-            <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Descrição</th>
-            <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Entrada</th>
-            <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Saída</th>
-            <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Diferença</th>
-            <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let bem of bens"
-            class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-            <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100">{{bem.descricao}}</td>
-            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{bem.dataentrada | date: 'dd/MM/yyyy' }}</td>
-            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100" *ngIf="comDataSaida( bem )">{{bem.datasaida | date: 'dd/MM/yyyy' }}</td>
-            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100" *ngIf="semDataSaida( bem )">Em Estoque</td>
-            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{bem.diferenca | currency: 'BRL':true}}</td>
-            <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100">
-              <button (click)="editar( bem )" class="btn btn-success hidden-xs hidden-sm"
-                style="margin-top: -9px;float: right">
-                <i class="fa  fa-pencil"></i>
-              </button>
-              <button (click)="editar( bem )" class="btn btn-success hidden-lg hidden-md" style="float: right">
-                <i class="fa  fa-pencil"></i>
-              </button>
-              <button (click)="saida( bem )" class="btn btn-success hidden-xs hidden-sm"
-                style="margin-top: -9px;float: right">
-                <i class="fa  fa-sign-out"></i>
-              </button>
-              <button (click)="saida( bem )" class="btn btn-success hidden-lg hidden-md" style="float: right">
-                <i class="fa  fa-sign-out"></i>
-              </button>
-              <button (click)="visualizar( bem )" class="btn btn-success hidden-xs hidden-sm"
-                style="margin-top: -9px;float: right">
-                <i class="fa  fa-eye"></i>
-              </button>
-              <button (click)="visualizar( bem )" class="btn btn-success hidden-lg hidden-md" style="float: right">
-                <i class="fa  fa-eye"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
 
+      <div class="table-responsive-lg">
+        <table class="table table-striped">
+            <thead>
+            <tr class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
+                <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Descrição</th>
+                <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Entrada</th>
+                <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Saída</th>
+                <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Diferença</th>
+                <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  *ngFor="let bem of bens"
+                class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                <td class="col-lg-4 col-xs mb-1 text-muted text-small w-sm-100">{{bem.descricao}}</td>
+                <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{bem.dataentrada | date: 'dd/MM/yyyy'}}</td>
+                <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{bem.datasaida | date: 'dd/MM/yyyy'}}</td>
+                <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{bem.diferenca}}</td>
+                <td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
+                    <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
+                            style="margin-top: -9px;float: right">
+                        <i class="fa  fa-pencil"></i>
+                    </button>
 
+            
+                    <div *ngIf="habilitarConsulta">
+
+                        <button (click)="selecionarCliente( i )" class="btn btn-success hidden-xs hidden-sm"
+                                style="margin-top: -9px;float: right">
+                            <i class="glyphicon glyphicon-ok"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     </div>
   </form>
 </div>

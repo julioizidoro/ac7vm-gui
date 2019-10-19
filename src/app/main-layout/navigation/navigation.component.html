@@ -138,12 +138,24 @@
         <links>
             <ul class="navbar-nav mr-auto"></ul>
 
-            <ul class="navbar-nav nav-flex-icons">
-                <li class="nav-item">
-                    <a class="ml-1 nav-link border border-light rounded" mdbWavesEffect>
-                        <i class="fas fa-sign-out-alt"></i> Sair</a>
-                </li>
-            </ul>
+           <!-- Informações do usuário -->
+      <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item dropdown btn-group" dropdown>
+              <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light " mdbWavesEffect>
+                <label>Julio</label>
+                <i class="fas fa-user"></i>
+                <img src="https://tecseg.s3.us-east-2.amazonaws.com/usuario/1.jpg"  width=60 height=40>
+              </a>
+              <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
+                <a class="dropdown-item" href="#">exemplo 1</a>
+                <a class="dropdown-item" href="#">exemplo 2</a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <label class="ml-1 mb-0" (click)="logof">Sair</label>
+                </a>
+              </div>
+            </li>
+          </ul>
         </links>
 
     </mdb-navbar>

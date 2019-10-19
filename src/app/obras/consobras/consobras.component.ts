@@ -12,17 +12,17 @@ export class ConsObrasComponent implements OnInit {
 
     formulario: FormGroup;
     isFirstOpen = true;
-    oneAtATime: boolean = true;
+    oneAtATime = true;
 
 
 
   constructor(
-    private obrasService: ObrasService,) {}
+    private obrasService: ObrasService, ) {}
 
 
 
   ngOnInit() {
-    
+
   }
 
 }

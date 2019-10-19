@@ -38,12 +38,11 @@ export class ConspagarComponent implements OnInit {
   }
 
   consultar() {
-      this.contasService.listarCR().subscribe(
+      this.contasService.listarCP().subscribe(
         resposta => {
           this.contas = resposta as any;
         }
       );
-      this.formulario.reset();
       this.formulario.reset();
     }
 

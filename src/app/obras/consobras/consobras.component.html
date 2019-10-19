@@ -38,25 +38,37 @@
   
   </accordion>
   <br/><br/>
-   <table class="table table-striped" >
-      <thead>
-          <tr>
-              <th>Nome</th>
-            </tr>
-      </thead>
-      <tbody>
-
+  <div class="table-responsive-lg">
+      <table class="table table-striped">
+          <thead>
+          <tr class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
+              <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Nome</th>
+              <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
+          </tr>
+          </thead>
+          <tbody>
             <tr *ngFor="">
+              class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+              <td class="col-lg-10 col-xs mb-1 text-muted text-small w-sm-100">{{i.nome}}</td>
+              <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">
+                  <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
+                          style="margin-top: -9px;float: right">
+                      <i class="fa  fa-pencil"></i>
+                  </button>
 
-              <td>{{i.nome}}</td>
-              <td>
-                <button routerLink="/cadCliente" class="btn btn-success">
-                  <i class="fa  fa-pencil"></i>
-                </button>
+          
+                  <div *ngIf="habilitarConsulta">
+
+                      <button (click)="selecionarCliente( i )" class="btn btn-success hidden-xs hidden-sm"
+                              style="margin-top: -9px;float: right">
+                          <i class="glyphicon glyphicon-ok"></i>
+                      </button>
+                  </div>
               </td>
-            </tr>
+          </tr>
           </tbody>
-        </table>
+      </table>
+  </div>
 
 
   </div>
