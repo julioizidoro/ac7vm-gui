@@ -60,32 +60,34 @@
                 <table class="table table-striped">
                     <thead>
                     <tr class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
-                        <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Nome</th>
+                        <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Nome</th>
                         <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">CPF</th>
                         <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Email</th>
                         <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Telefone</th>
-                        <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
+                        <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm" style="text-align: center;">Ações</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr *ngFor="let i of instituicao"
-                        class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-                        <td class="col-lg-4 col-xs mb-1 text-muted text-small w-sm-100">{{i.nome}}</td>
-                        <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{i.cpfcnpj}}</td>
-                        <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{i.email}}</td>
-                        <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{i.fonecelular}}</td>
-                        <td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
-                            <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
-                                    style="margin-top: -9px;float: right">
-                                <i class="fa  fa-pencil"></i>
+                        class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                        <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100" style="border: none;">{{i.nome}}</td>
+                        <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100"  style="border: none;">{{i.cpfcnpj}}</td>
+                        <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs"  style="border: none;">{{i.email}}</td>
+                        <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs"  style="border: none;">{{i.fonecelular}}</td>
+                        <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">
+
+                            <button type="button" style="float:right;" class="btn btn-light font-weight-light"
+                                    (click)="editar(i)" title="Deletar">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
-
-                    
+                            <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                                    (click)="editar(i)" title="Editar">
+                                <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                            </button>
                             <div *ngIf="habilitarConsulta">
-
-                                <button (click)="selecionarCliente( i )" class="btn btn-success hidden-xs hidden-sm"
-                                        style="margin-top: -9px;float: right">
-                                    <i class="glyphicon glyphicon-ok"></i>
+                                <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                                        (click)="selecionarCliente(i)" title="Selecionar Cliente">
+                                    <i class="fa fa-check-circle" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </td>
