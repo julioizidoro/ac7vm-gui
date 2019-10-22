@@ -14,6 +14,7 @@ import {Usuario} from './usuario/model/usuario';
 
 export class AppComponent implements OnInit {
     title = 'ac7vm-gui';
+    logado = false;
 
     usuario = new Usuario();
     acesso = new Acesso();
@@ -26,12 +27,12 @@ export class AppComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        console.log(this.usuario.idusuario);
-        this.usuario = this.authService.usuario;
-        if (this.usuario.idusuario == null) {
+        if (this.logado === false) {
             this.router.navigate(['/login']);
-        }
-        this.acesso = this.authService.usuario.acesso;
+          }
+          this.authService.mostrarMenuEmitter.subscribe(
+            mostrar => this.logado = mostrar
+          );
     }
 
     goBack(): void {

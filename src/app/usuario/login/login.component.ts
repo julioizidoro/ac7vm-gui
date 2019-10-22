@@ -1,36 +1,50 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { AuthService } from './auth.service';
-
+import { Router } from '@angular/router';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-basic-table',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
   formulario: FormGroup;
+  uusario: Usuario;
+
+  idusuario: number;
+  nome: string;
+  fonecelular: string;
+  user: string;
+  password: string;
+  email: string;
 
   constructor(
-    private router: Router,
     private formBuilder: FormBuilder,
-    private authSErvice: AuthService
-    ) { }
+    private router: Router,
+    private authService: AuthService,
+  ) { }
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
+      idusuario: [null],
+      nome: [null],
+      nascimento: [null],
       login: [null],
       senha: [null],
+      sexo: [null],
+      email: [null],
+      fonecelular: [null],
+      situacao: [null],
+      acesso: [null],
     });
+
   }
 
   logar() {
-    this.authSErvice.fazerLogin(this.formulario.get('login').value, this.formulario.get('senha').value);
-  }
-
-  sair() {
-
+    this.uusario = this.formulario.value;
+    this.authService.fazerLogin(this.uusario);
   }
 }

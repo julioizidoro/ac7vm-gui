@@ -1,7 +1,7 @@
-.center {
-    margin: auto;
-    width: 50%;
-    border: 1px solid rgba(247, 247, 247, 0.67);
-    background-color: rgba(247, 247, 247, 0.67);
-    padding: 10px;
+.login {
+  padding: 30px;
+  left: 50%;
+  width: 400px;
+  margin-left:-200px;
+  border: 1px solid #ced4da;
 }

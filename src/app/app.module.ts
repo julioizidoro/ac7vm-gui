@@ -23,6 +23,7 @@ import {DashboardModule} from './dashboard/dashboard.module';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { LoginComponent } from './usuario/login/login.component';
 import {LinhaTempoModule} from './main-layout/linha-tempo/linha-tempo.module';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {LinhaTempoModule} from './main-layout/linha-tempo/linha-tempo.module';
   ],
   imports: [
     BrowserModule,
+    MDBBootstrapModule.forRoot(),
     ReactiveFormsModule,
     FormsModule,
     ClienteModule,

@@ -14,4 +14,8 @@ export class UsuarioService {
   logar(login: string, senha: string): Observable<Usuario> {
     return this.httpClient.get<Usuario>(env.baseApiUrl + 'usuarios/' + login + '/' + senha);
   }
+
+  logar1(usuario: Usuario): Observable<any> {
+    return this.httpClient.post<any>(env.baseApiUrl + 'usuarios/logar', usuario);
+  }
 }

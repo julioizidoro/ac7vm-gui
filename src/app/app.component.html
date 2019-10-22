@@ -1,4 +1,4 @@
-<app-navigation *ngIf="usuario.idusuario"></app-navigation>
+<app-navigation *ngIf="logado" ></app-navigation>
 
 <main [ngClass]="usuario.idusuario ? '' : 'pl-0'"  class="mx-lg-5" >
   <div class="mt-5">
