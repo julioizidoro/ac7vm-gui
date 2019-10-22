@@ -27,12 +27,13 @@ export class AppComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        if (this.logado === false) {
+        /*if (this.logado === false) {
             this.router.navigate(['/login']);
           }
           this.authService.mostrarMenuEmitter.subscribe(
             mostrar => this.logado = mostrar
-          );
+          );*/
+          this.logado = true;
     }
 
     goBack(): void {
