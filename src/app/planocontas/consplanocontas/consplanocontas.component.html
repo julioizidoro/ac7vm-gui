@@ -12,7 +12,8 @@
   <form [formGroup]="formulario">
     <div class="container-fluid" style="width:100%;">
       <div class="w-100">
-        <button type="button" style="float:right;" class="btn btn-primary font-weight-light" routerLink="/cadplanocontas">
+        <button type="button" style="float:right;" class="btn btn-primary font-weight-light"
+          routerLink="/cadplanocontas">
           <i class="fa fa-plus" aria-hidden="true"></i>
           <a class="ml-2">Adicionar</a>
         </button>
@@ -32,65 +33,67 @@
                 <input type="text" class="form-control" id="descricao" placeholder="Descrição"
                   formControlName="descricao">
               </div>
-              <div class="form-group col-xs-6" >
-                <label >Grupo de Contas</label>
-                <select class="form-control" formControlName="grupocontas"  [compareWith]="compararGrupo" (change)="setGrupo()">
+              <div class="form-group col-xs-6">
+                <label>Grupo de Contas</label>
+                <select class="form-control" formControlName="grupocontas" [compareWith]="compararGrupo"
+                  (change)="setGrupo()">
                   <option *ngFor="let grupo of listaGrupoContas" [ngValue]="grupo"> {{ grupo.descricao }}</option>
-               </select>
+                </select>
               </div>
 
 
-              
+
               <div class="form-group col-md-12 text-right">
                 <button type="button" style="float:right;" class="btn btn-success" (click)="pesquisar()">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                    Pesquisar
-                  </button>
-                  <button type="button" style="margin-left:1%;" class="btn btn-success" (click)="consultar()" title="Limpar a pesquisa">
-                        <i class="fa fa-ban" aria-hidden="true" ></i>
-                        Limpar
-                  </button>
-                
-            </div>
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                  Pesquisar
+                </button>
+                <button type="button" style="margin-left:1%;" class="btn btn-success" (click)="consultar()"
+                  title="Limpar a pesquisa">
+                  <i class="fa fa-ban" aria-hidden="true"></i>
+                  Limpar
+                </button>
+
+              </div>
             </div>
           </accordion-group>
         </accordion>
       </div>
       <br /><br />
       <div class="table-responsive-lg">
-          <table class="table table-striped">
-              <thead>
-              <tr class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
-                  <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Conta</th>
-                  <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Descrição</th>
-                  <th class="col-lg-5 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Grupo</th>
-                  <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
-              </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let conta of planoContas"
-                  class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-                  <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{conta.conta}}</td>
-                  <td class="col-lg-4 col-xs mb-1 text-muted text-small w-sm-100">{{conta.descricao}}</td>
-                  <td class="col-lg-5 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{conta.grupoplanoconta.descricao}}</td>
-                  <td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
-                      <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
-                              style="margin-top: -9px;float: right">
-                          <i class="fa  fa-pencil"></i>
-                      </button>
+        <table class="table table-striped">
+          <thead>
+            <tr
+              class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
+              <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Conta</th>
+              <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Descrição</th>
+              <th class="col-lg-5 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Grupo</th>
+              <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let conta of planoContas"
+              class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+              <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{conta.conta}}</td>
+              <td class="col-lg-4 col-xs mb-1 text-muted text-small w-sm-100">{{conta.descricao}}</td>
+              <td class="col-lg-5 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">
+                {{conta.grupoplanoconta.descricao}}</td>
+              <td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
 
-              
-                      <div *ngIf="habilitarConsulta">
-
-                          <button (click)="selecionarCliente( i )" class="btn btn-success hidden-xs hidden-sm"
-                                  style="margin-top: -9px;float: right">
-                              <i class="glyphicon glyphicon-ok"></i>
-                          </button>
-                      </div>
-                  </td>
-              </tr>
-              </tbody>
-          </table>
+                <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                  (click)="editar(i)" title="Editar">
+                  <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                </button>
+                <div *ngIf="habilitarConsulta">
+                  <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                    (click)="selecionarCliente(i)" title="Selecionar Cliente">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
 

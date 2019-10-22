@@ -1,10 +1,10 @@
-<br/><br/>
+<br /><br />
 <div class="page-header">
   <div class="container-fluid">
     <h3>
       Contas a Pagar
     </h3>
-    <hr/>
+    <hr />
   </div>
   <form [formGroup]="formulario">
     <div class="container-fluid" style="width:100%;">
@@ -19,49 +19,49 @@
         <accordion [closeOthers]="oneAtATime">
           <accordion-group heading="Pesquisar" [isOpen]="isFirstOpen">
             <div class="row">
-                <div class="form-group col-md-2">
-                    <label for="iddocumento">No. Documento</label>
-                    <input type="text" class="form-control" id="iddocumento" placeholder="No. Documento"
-                           formControlName="documento">
-                  </div>
-              <div class="form-group col-md-4" >
-                  <label for="idcliente">Fornecedor</label>
-                  <input type="text" class="form-control" id="idcliente" placeholder="Fornecedor"
-                       formControlName="cliente">
+              <div class="form-group col-md-2">
+                <label for="iddocumento">No. Documento</label>
+                <input type="text" class="form-control" id="iddocumento" placeholder="No. Documento"
+                  formControlName="documento">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="idcliente">Fornecedor</label>
+                <input type="text" class="form-control" id="idcliente" placeholder="Fornecedor"
+                  formControlName="cliente">
               </div>
               <div class="form-group col-md-3">
                 <label for="datavencimentoinicial">Data vencimento inicial</label>
                 <input type="date" class="form-control" id="datavencimentoinicial" placeholder="Data vencimento"
-                       formControlName="datainicial">
+                  formControlName="datainicial">
               </div>
               <div class="form-group col-md-3">
-                  <label for="datavencimentofinal">Data vencimento final</label>
-                  <input type="date" class="form-control" id="datavencimentofinal" placeholder="Data vencimento"
-                         formControlName="datafinal">
+                <label for="datavencimentofinal">Data vencimento final</label>
+                <input type="date" class="form-control" id="datavencimentofinal" placeholder="Data vencimento"
+                  formControlName="datafinal">
               </div>
               <div class="form-group">
-                  <div class="col-md-12">
-                        <label class="radio-inline" >
-                            <input type="radio"  formControlName="tipoConta" value="todas">Todas as Contas
-                        </label>
-                    </div>
+                <div class="col-md-12">
+                  <label class="radio-inline">
+                    <input type="radio" formControlName="tipoConta" value="todas">Todas as Contas
+                  </label>
                 </div>
+              </div>
 
-                <div class="form-group">
-                  <div class="col-md-12">
-                        <label class="radio-inline" for="idpagar">
-                            <input type="radio"  id="idpagar" formControlName="tipoConta" value="pagar">Contas a Pagar
-                        </label>
-                    </div>
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label class="radio-inline" for="idpagar">
+                    <input type="radio" id="idpagar" formControlName="tipoConta" value="pagar">Contas a Pagar
+                  </label>
                 </div>
-                
-                <div class="form-group">
-                  <div class="col-md-12">
-                        <label class="radio-inline" for="idpagas">
-                            <input type="radio" id="idpagas" formControlName="tipoConta" value="pagas">Contas Pagas
-                        </label>
-                    </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label class="radio-inline" for="idpagas">
+                    <input type="radio" id="idpagas" formControlName="tipoConta" value="pagas">Contas Pagas
+                  </label>
                 </div>
+              </div>
 
               <div class="form-group col-md-12 text-right">
                 <button type="button" class="btn btn-success" onclick="pesquisar()">
@@ -81,54 +81,73 @@
 
       <div class="table-responsive-lg">
         <table class="table table-striped">
-            <thead>
-              
+          <thead>
 
-            <tr class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
-                <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">No. Doc</th>
-                <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Fornecedor</th>
-                <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Vencimento</th>
-                <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Valor</th>
-                <th *ngIf="pagas" class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Pagamento</th>
-                <th *ngIf="pagas" class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
-                <th *ngIf="!pagas" class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
+
+            <tr
+              class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
+              <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">No. Doc</th>
+              <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Fornecedor</th>
+              <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Vencimento</th>
+              <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Valor</th>
+              <th *ngIf="pagas" class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Pagamento
+              </th>
+              <th *ngIf="pagas" class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
+              <th *ngIf="!pagas" class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
             </tr>
-            </thead>
+          </thead>
 
 
-            <tbody>
-              <tr *ngFor="let conta of contas"
-                class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-                <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{conta.documento}}</td>
-                <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100">{{conta.instituicao.nome}}</td>
-                <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{conta.datafinal | date: 'dd/MM/yyyy'}}</td>
-                <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{conta.valorparcela | currency: 'BRL':true}}</td>
-                <td *ngIf="pagas" class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{conta.datapagamento | date: 'dd/MM/yyyy'}}</td>
-                <td *ngIf="pagas" class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
-                    <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
-                            style="margin-top: -9px;float: right">
-                      <i class="fa  fa-pencil"></i>
-                    </button>
-                    <button (click)="editar( i )" class="btn btn-success hidden-lg hidden-md" style="float: right">
-                      <i class="fa  fa-pencil"></i>
-                    </button>
+          <tbody>
+            <tr *ngFor="let conta of contas"
+              class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+              <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{conta.documento}}</td>
+              <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100">{{conta.instituicao.nome}}</td>
+              <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">
+                {{conta.datafinal | date: 'dd/MM/yyyy'}}</td>
+              <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">
+                {{conta.valorparcela | currency: 'BRL':true}}</td>
+              <td *ngIf="pagas" class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">
+                {{conta.datapagamento | date: 'dd/MM/yyyy'}}</td>
+              <td *ngIf="pagas" class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
+
+                <button type="button" style="float:right;" class="btn btn-light font-weight-light" (click)="editar(i)"
+                  title="Deletar">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+                <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                  (click)="editar(i)" title="Editar">
+                  <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                </button>
+                <div *ngIf="habilitarConsulta">
+                  <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                    (click)="selecionarCliente(i)" title="Selecionar Cliente">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                  </button>
+                </div>
               </td>
-              <td *ngIf="!pagas" class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100">
-                  <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
-                          style="margin-top: -9px;float: right">
-                    <i class="fa  fa-pencil"></i>
-                  </button>
-                  <button (click)="editar( i )" class="btn btn-success hidden-lg hidden-md" style="float: right">
-                    <i class="fa  fa-pencil"></i>
-                  </button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
 
-    
+              <td *ngIf="!pagas" class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
+
+                <button type="button" style="float:right;" class="btn btn-light font-weight-light" (click)="editar(i)"
+                  title="Deletar">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+                <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                  (click)="editar(i)" title="Editar">
+                  <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                </button>
+                <div *ngIf="habilitarConsulta">
+                  <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                    (click)="selecionarCliente(i)" title="Selecionar Cliente">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </form>
 </div>
-

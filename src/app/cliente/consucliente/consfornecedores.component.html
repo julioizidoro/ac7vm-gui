@@ -1,15 +1,16 @@
-<br/><br/>
+<br /><br />
 <div class="page-header">
   <div class="container-fluid">
     <h3>
       Consulta Fornecedores
     </h3>
-    <hr/>
+    <hr />
   </div>
   <form [formGroup]="formulario">
     <div class="container-fluid" style="width:100%;">
       <div class="w-100">
-        <button type="button" style="float:right;" class="btn btn-primary font-weight-light" routerLink="/cadFornecedores">
+        <button type="button" style="float:right;" class="btn btn-primary font-weight-light"
+          routerLink="/cadFornecedores">
           <i class="fa fa-plus" aria-hidden="true"></i>
           <a class="ml-2">Adicionar</a>
         </button>
@@ -22,19 +23,20 @@
               <div class="form-group col-md-6">
                 <label for="exampleInputNome2">Nome</label>
                 <input type="text" class="form-control" id="exampleInputNome2" placeholder="Nome"
-                       formControlName="nome">
+                  formControlName="nome">
               </div>
               <div class="form-group col-md-12 text-right">
                 <button type="button" style="float:right;" class="btn btn-success" (click)="pesquisar()">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                    Pesquisar
-                  </button>
-                  <button type="button" style="margin-left:1%;" class="btn btn-success" (click)="pesquisarLimpar()" title="Limpar a pesquisa">
-                        <i class="fa fa-ban" aria-hidden="true" ></i>
-                        Limpar
-                  </button>
-                  
-            </div>
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                  Pesquisar
+                </button>
+                <button type="button" style="margin-left:1%;" class="btn btn-success" (click)="pesquisarLimpar()"
+                  title="Limpar a pesquisa">
+                  <i class="fa fa-ban" aria-hidden="true"></i>
+                  Limpar
+                </button>
+
+              </div>
 
 
             </div>
@@ -42,46 +44,44 @@
         </accordion>
       </div>
 
-      
-     
+
+
       <div class="table-responsive-lg">
         <table class="table table-striped">
-            <thead>
-            <tr class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
-                <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Nome</th>
-                <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">CPF</th>
-                <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Email</th>
-                <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Telefone</th>
-                <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
+          <thead>
+            <tr
+              class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
+              <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Nome</th>
+              <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">CPF</th>
+              <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Email</th>
+              <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Telefone</th>
+              <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
             </tr>
-            </thead>
-            <tbody>
+          </thead>
+          <tbody>
             <tr *ngFor="let i of instituicao"
-                class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-                <td class="col-lg-4 col-xs mb-1 text-muted text-small w-sm-100">{{i.nome}}</td>
-                <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{i.cpfcnpj}}</td>
-                <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{i.email}}</td>
-                <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{i.fonecelular}}</td>
-                <td class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
-                    <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
-                            style="margin-top: -9px;float: right">
-                        <i class="fa  fa-pencil"></i>
-                    </button>
+              class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+              <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100">{{i.nome}}</td>
+              <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{i.cpfcnpj}}</td>
+              <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{i.email}}</td>
+              <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{i.fonecelular}}</td>
+              <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">
 
-            
-                    <div *ngIf="habilitarConsulta">
-
-                        <button (click)="selecionarCliente( i )" class="btn btn-success hidden-xs hidden-sm"
-                                style="margin-top: -9px;float: right">
-                            <i class="glyphicon glyphicon-ok"></i>
-                        </button>
-                    </div>
-                </td>
+                <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                  (click)="editar(i)" title="Editar">
+                  <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                </button>
+                <div *ngIf="habilitarConsulta">
+                  <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                    (click)="selecionarCliente(i)" title="Selecionar Cliente">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </td>
             </tr>
-            </tbody>
+          </tbody>
         </table>
-    </div>
+      </div>
     </div>
   </form>
 </div>
-

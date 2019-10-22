@@ -104,22 +104,39 @@
                   <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{conta.valorparcela | currency: 'BRL':true}}</td>
                   <td *ngIf="pagas" class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{conta.datapagamento | date: 'dd/MM/yyyy'}}</td>
                   <td *ngIf="pagas" class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
-                      <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
-                              style="margin-top: -9px;float: right">
-                        <i class="fa  fa-pencil"></i>
-                      </button>
-                      <button (click)="editar( i )" class="btn btn-success hidden-lg hidden-md" style="float: right">
-                        <i class="fa  fa-pencil"></i>
-                      </button>
-                </td>
-                <td *ngIf="!pagas" class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100">
-                    <button (click)="editar( i )" class="btn btn-success hidden-xs hidden-sm"
-                            style="margin-top: -9px;float: right">
-                      <i class="fa  fa-pencil"></i>
+
+                    <button type="button" style="float:right;" class="btn btn-light font-weight-light" (click)="editar(i)"
+                      title="Deletar">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
-                    <button (click)="editar( i )" class="btn btn-success hidden-lg hidden-md" style="float: right">
-                      <i class="fa  fa-pencil"></i>
+                    <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                      (click)="editar(i)" title="Editar">
+                      <i class="fa fa-pencil-alt" aria-hidden="true"></i>
                     </button>
+                    <div *ngIf="habilitarConsulta">
+                      <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                        (click)="selecionarCliente(i)" title="Selecionar Cliente">
+                        <i class="fa fa-check-circle" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </td>
+    
+                  <td *ngIf="!pagas" class="col-lg-1 col-xs mb-1 text-muted text-small w-sm-100">
+    
+                    <button type="button" style="float:right;" class="btn btn-light font-weight-light" (click)="editar(i)"
+                      title="Deletar">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                      (click)="editar(i)" title="Editar">
+                      <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                    </button>
+                    <div *ngIf="habilitarConsulta">
+                      <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                        (click)="selecionarCliente(i)" title="Selecionar Cliente">
+                        <i class="fa fa-check-circle" aria-hidden="true"></i>
+                      </button>
+                    </div>
                   </td>
               </tr>
               </tbody>
