@@ -72,23 +72,23 @@
                     <tbody>
                         <tr *ngFor="let i of instituicao"
                             class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-                            <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100" style="border: none;">
+                            <td class="col-lg-3 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
                                 {{i.nome}}</td>
-                            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100" style="border: none;">
+                            <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
                                 {{i.cpfcnpj}}</td>
-                            <td class="col-lg-3 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs"
+                            <td class="col-lg-3 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
                                 style="border: none;">{{i.email}}</td>
-                            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs"
+                            <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
                                 style="border: none;">{{i.fonecelular}}</td>
-                            <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">
+                            <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
 
-                                <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                                <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1 p-1"
                                     (click)="editar(i)" title="Editar">
                                     <i class="fa fa-pencil-alt" aria-hidden="true"></i>
                                 </button>
                                 <div *ngIf="habilitarConsulta">
                                     <button type="button" style="float:right;"
-                                        class="btn btn-light font-weight-light mr-1" (click)="selecionarCliente(i)"
+                                        class="btn btn-light font-weight-light mr-1 p-1" (click)="selecionarCliente(i)"
                                         title="Selecionar Cliente">
                                         <i class="fa fa-check-circle" aria-hidden="true"></i>
                                     </button>

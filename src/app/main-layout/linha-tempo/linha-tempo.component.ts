@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-timeline',
@@ -6,40 +7,33 @@ import {Component, Input} from '@angular/core';
     styleUrls: ['./linha-tempo.component.scss']
 })
 export class LinhaTempoComponent {
-    public chartType: String = 'line';
+    data: any;
 
-    private chartDatasets: Array<any> = [
-        {data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: 'Fluxo de caixa'}
-    ];
-
-    public chartLabels: Array<any> = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-
-    public chartColors: Array<any> = [
-        {
-            backgroundColor: 'rgba(0,23,255,0.19)',
-            borderColor: 'rgba(0, 10, 130, .7)',
-            borderWidth: 2,
-        }
-    ];
-
-    public chartOptions: any = {
-        responsive: true
-    };
-
-    public chartClicked(e: any): void {
+    constructor() {
+        this.data = {
+            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+            datasets: [
+                {
+                    label: 'First Dataset',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                },
+            ]
+        };
     }
 
-    public chartHovered(e: any): void {
-    }
-
-    @Input()
-    set listChart(array: Array<any>) {
-        this.chartDatasets = [{data: array, label: 'Fluxo de caixa'}];
+    selectData(event) {
+        console.log('valor', this.data.datasets[event.element._datasetIndex].data[event.element._index]);
+        console.log('dia', this.data.labels[event.element._index] + '/2019');
+        console.log('dia formatado',  moment(this.data.labels[event.element._index] + '/2019', 'DD/MM/YYYY').toDate());
     }
 
     @Input()
     set listDates(array: Array<any>) {
-        this.chartLabels = array;
+        this.data.labels = array;
     }
 
+    @Input()
+    set listChart(array: Array<any>) {
+        this.data.datasets[0] = {data: array, label: 'Fluxo de caixa'};
+    }
 }
