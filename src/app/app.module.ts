@@ -22,8 +22,8 @@ import {NavigationModule} from './main-layout/navigation/navigation.module';
 import {DashboardModule} from './dashboard/dashboard.module';
 import { AgmCoreModule } from '@agm/core';
 import {LinhaTempoModule} from './main-layout/linha-tempo/linha-tempo.module';
-import { MDBBootstrapModule, IconsModule } from 'angular-bootstrap-md';
-
+import {MDBBootstrapModule, IconsModule} from 'angular-bootstrap-md';
+import {UsuarioModule} from './usuario/usuario.module';
 
 @NgModule({
   declarations: [
@@ -55,6 +55,7 @@ import { MDBBootstrapModule, IconsModule } from 'angular-bootstrap-md';
     BrowserAnimationsModule,
     NavigationModule,
     DashboardModule,
+    UsuarioModule,
     LinhaTempoModule,
   ],
   providers: [

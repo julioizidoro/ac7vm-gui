@@ -4,14 +4,16 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import {UsuarioComponent} from './usuario.component';
 import { LoginComponent } from './login/login.component';
+import {IconsModule, MdbIconComponent} from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
     UsuarioComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     CommonModule,
+    IconsModule,
     ReactiveFormsModule,
   ],
   exports: [

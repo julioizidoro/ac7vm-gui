@@ -1,8 +1,9 @@
 <app-navigation *ngIf="logado" ></app-navigation>
-
-<main [ngClass]="usuario.idusuario ? '1' : 'pl-0'"  class="mx-lg-5" >
+<div id="fundo"></div>
+<main [ngClass]="usuario.idusuario ? '1 mx-lg-5' : 'pl-0'" >
   <div class="mt-5">
     <router-outlet></router-outlet>
   </div>
 </main>
+
 
