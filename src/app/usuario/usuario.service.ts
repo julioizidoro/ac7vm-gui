@@ -12,7 +12,7 @@ export class UsuarioService {
   constructor( private httpClient: HttpClient ) { }
 
   logar(login: string, senha: string): Observable<Usuario> {
-    return this.httpClient.get<Usuario>(env.baseApiUrl + 'usuarios/' + login + '/' + senha);
+    return this.httpClient.get<Usuario>(env.baseApiUrl + 'usuarios/logar/' + login + '/' + senha);
   }
 
   logar1(usuario: Usuario): Observable<any> {

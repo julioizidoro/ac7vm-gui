@@ -10,7 +10,7 @@
             <mdb-navbar SideClass="navbar navbar-1 navbar-light lighten-2 p-0 box border-bottom" [containerInside]="false">
                 <!-- Navbar brand -->
                 <mdb-navbar-brand>
-                    <a  class="list-group-item list-group-item-action waves-effect mt-1" href="#">
+                    <a  class="list-group-item list-group-item-action waves-effect mt-1" >
                         <mdb-icon fas icon="file" class="mr-3"></mdb-icon><span>Cadastros</span>
                     </a>
                 </mdb-navbar-brand>
@@ -54,7 +54,7 @@
             <mdb-navbar SideClass="navbar navbar-1 navbar-light lighten-2 p-0 box border-bottom" [containerInside]="false">
                 <!-- Navbar brand -->
                 <mdb-navbar-brand>
-                    <a  class="list-group-item list-group-item-action waves-effect mt-1" href="#">
+                    <a  class="list-group-item list-group-item-action waves-effect mt-1" >
                         <mdb-icon fas icon="car" class="mr-3"></mdb-icon><span>Bens</span>
                     </a>
                 </mdb-navbar-brand>
@@ -70,7 +70,7 @@
             <mdb-navbar SideClass="navbar navbar-1 navbar-light lighten-2 p-0 box border-bottom" [containerInside]="false">
                 <!-- Navbar brand -->
                 <mdb-navbar-brand>
-                    <a  class="list-group-item list-group-item-action waves-effect mt-1" href="#">
+                    <a  class="list-group-item list-group-item-action waves-effect mt-1" >
                         <mdb-icon fas icon="home" class="mr-3"></mdb-icon><span>Obras</span>
                     </a>
                 </mdb-navbar-brand>
@@ -86,7 +86,7 @@
             <mdb-navbar SideClass="navbar navbar-1 navbar-light lighten-2 p-0 box border-bottom" [containerInside]="false">
                 <!-- Navbar brand -->
                 <mdb-navbar-brand>
-                    <a  class="list-group-item list-group-item-action waves-effect mt-1" href="#">
+                    <a  class="list-group-item list-group-item-action waves-effect mt-1" >
                         <mdb-icon fas icon="shopping-cart" class="mr-3"></mdb-icon><span>Compras</span>
                     </a>
                 </mdb-navbar-brand>
@@ -106,7 +106,7 @@
             <mdb-navbar SideClass="navbar navbar-1 navbar-light lighten-2 p-0 box border-bottom" [containerInside]="false">
                 <!-- Navbar brand -->
                 <mdb-navbar-brand>
-                    <a  class="list-group-item list-group-item-action waves-effect mt-1" href="#">
+                    <a  class="list-group-item list-group-item-action waves-effect mt-1" >
                         <mdb-icon fas icon="dollar-sign" class="mr-3"></mdb-icon><span>Financeiro</span>
                     </a>
                 </mdb-navbar-brand>
@@ -136,22 +136,30 @@
     <mdb-navbar [containerInside]="false" SideClass="navbar navbar-expand-lg navbar-light white">
         <!-- Collapsible content -->
         <links>
-            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav mr-auto">
+                    
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <div class="text-left ">
+                    <img src='../../../assets/img/logo.png' width="75" height="50"   />
+            </div>   
+            </ul>
+                
 
            <!-- Informações do usuário -->
       <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item dropdown btn-group" dropdown>
               <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light " mdbWavesEffect>
-                <label>Julio</label>
+                <label>{{ usuario.nome}}</label>
                 <i class="fas fa-user"></i>
-                <img src="https://tecseg.s3.us-east-2.amazonaws.com/usuario/1.jpg"  width=60 height=40>
+               <!--<img src="https://tecseg.s3.us-east-2.amazonaws.com/usuario/1.jpg"  width=60 height=40> -->
               </a>
               <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
                 <a class="dropdown-item" href="#">exemplo 1</a>
                 <a class="dropdown-item" href="#">exemplo 2</a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-sign-out-alt"></i>
-                  <label class="ml-1 mb-0" (click)="logof">Sair</label>
+                  <label class="ml-1 mb-0" (click)="logof()">Sair</label>
                 </a>
               </div>
             </li>

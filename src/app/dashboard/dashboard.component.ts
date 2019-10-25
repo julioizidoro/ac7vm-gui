@@ -10,8 +10,8 @@ export class DashboardComponent implements OnInit {
     @ViewChild('sidenav', {static: true}) sidenav: ElementRef;
 
     clicked: boolean;
-    private listaFluxoCaixa = [440.88, 10.99, 20.30, 30.60, 390.99, 50.00, 40.4, 30.3, 20.49, 110.55];
-    private listaDate = [];
+    listaFluxoCaixa = [440.88, 10.99, 20.30, 30.60, 390.99, 50.00, 40.4, 30.3, 20.49, 110.55];
+    listaDate = [];
 
     constructor() {
         this.clicked = this.clicked === undefined ? false : true;

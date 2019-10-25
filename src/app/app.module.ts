@@ -4,7 +4,7 @@ import { BensModule } from './bens/bens.module';
 import { ShareModule } from './share/share.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ClienteModule } from './cliente/cliente.module';
@@ -20,20 +20,22 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NavigationModule} from './main-layout/navigation/navigation.module';
 import {DashboardModule} from './dashboard/dashboard.module';
-import { UsuarioComponent } from './usuario/usuario.component';
-import { LoginComponent } from './usuario/login/login.component';
+import { AgmCoreModule } from '@agm/core';
 import {LinhaTempoModule} from './main-layout/linha-tempo/linha-tempo.module';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MDBBootstrapModule, IconsModule } from 'angular-bootstrap-md';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsuarioComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,
+    IconsModule,
     MDBBootstrapModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: ''
+    }),
     ReactiveFormsModule,
     FormsModule,
     ClienteModule,
@@ -58,6 +60,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
   providers: [
 
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA ]
+
 })
 export class AppModule { }

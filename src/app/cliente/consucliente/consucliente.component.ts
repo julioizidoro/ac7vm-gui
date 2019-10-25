@@ -18,7 +18,7 @@ export class ConsuclienteComponent implements OnInit {
     oneAtATime: true;
     instituicao: any[];
     rotaAnterior: string;
-    habilitarConsulta: boolean =true;
+    habilitarConsulta = true;
     inscricao: Subscription;
     dataInicial: Date;
     dataFinal: Date;
@@ -34,7 +34,6 @@ export class ConsuclienteComponent implements OnInit {
 
 
     ngOnInit() {
-        this.instituicao = [{nome: 'kamila', cpfcnpj: 'fnfnnf', email: '', fonecelular: ''}, {nome: 'kamila', cpfcnpj: 'fnfnnf', email: '', fonecelular: ''},{nome: 'kamila', cpfcnpj: 'fnfnnf', email: '', fonecelular: ''}];
         this.inscricao = this.activeRrouter.params.subscribe(params => {
             this.rotaAnterior = params.rota;
         });

@@ -54,4 +54,10 @@ export class AuthService {
         }
       );
     }
+
+    fazerLogof() {
+      this.usuario = null;
+      this.usuairoAutenticado = false;
+      this.mostrarMenuEmitter.emit(false);
+    }
 }

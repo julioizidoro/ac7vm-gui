@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
     title = 'ac7vm-gui';
     logado = false;
 
-    usuario = new Usuario();
+    usuario: Usuario;
     acesso = new Acesso();
     specialPage: boolean;
 
@@ -27,13 +27,17 @@ export class AppComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        /*if (this.logado === false) {
+        this.usuario = new Usuario();
+        if (this.logado === false) {
             this.router.navigate(['/login']);
           }
           this.authService.mostrarMenuEmitter.subscribe(
             mostrar => this.logado = mostrar
-          );*/
-          this.logado = true;
+          );
+          if (this.logado === true) {
+            this.usuario = this.authService.usuario;
+            console.log(this.usuario.nome);
+          }
     }
 
     goBack(): void {
