@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
     listaDate = [];
     dataInicial: Date;
     dataFinal: Date;
+    view = false;
 
     constructor(
         private fluxoCaixaService: FluxocaixaService,
@@ -24,10 +25,8 @@ export class DashboardComponent implements OnInit {
         this.clicked = this.clicked === undefined ? false : true;
     }
 
-    ngOnInit() {
-        console.log('test');
-        this.fluxoCaixaService. listarInicial().subscribe(
-           
+    async ngOnInit() {
+        await this.fluxoCaixaService.listarInicial().subscribe(
         resposta => {
               this.lista = resposta as any;
               let dia;
@@ -36,14 +35,8 @@ export class DashboardComponent implements OnInit {
                 dia = this.lista[i].data;
                 this.listaDate.push(moment(dia).format('DD/MM'));
               }
-              console.log(this.listaFluxoCaixa);
-            }
-          );
-
-
-       /* for (let i = 9; i >= 0; i--) {
-            this.listaDate.push(moment().subtract(i, 'days').format('DD/MM'));
-        }*/
+              this.view = true;
+            });
     }
 
     setClicked(val: boolean): void {

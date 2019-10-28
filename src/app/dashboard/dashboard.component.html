@@ -1,6 +1,6 @@
 <div>
     <h3>Inicial</h3>
-    <div class="row-dashboard">
+    <div class="row-dashboard" *ngIf="view">
         <app-timeline class="col-12"
             [listChart]="listaFluxoCaixa"
             [listDates]="listaDate"></app-timeline>

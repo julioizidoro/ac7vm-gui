@@ -34,6 +34,6 @@ export class LinhaTempoComponent {
 
     @Input()
     set listChart(array: Array<any>) {
-        this.data.datasets[0] = {data: array, label: array};
+        this.data.datasets[0] = {data: array, label: 'Fluxo de caixa'};
     }
 }
