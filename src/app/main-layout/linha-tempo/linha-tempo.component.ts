@@ -14,7 +14,7 @@ export class LinhaTempoComponent {
             labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
             datasets: [
                 {
-                    label: 'First Dataset',
+                    label: 'Fluxo de caixa',
                     data: [65, 59, 80, 81, 56, 55, 40],
                 },
             ]
@@ -34,6 +34,6 @@ export class LinhaTempoComponent {
 
     @Input()
     set listChart(array: Array<any>) {
-        this.data.datasets[0] = {data: array, label: 'Fluxo de caixa'};
+        this.data.datasets[0] = {data: array, label: array};
     }
 }

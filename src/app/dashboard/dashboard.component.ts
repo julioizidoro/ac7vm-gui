@@ -12,7 +12,8 @@ export class DashboardComponent implements OnInit {
     @ViewChild('sidenav', {static: true}) sidenav: ElementRef;
 
     clicked: boolean;
-    listaFluxoCaixa: Fluxocaixa[];
+    listaFluxoCaixa = [];
+    lista: Fluxocaixa[];
     listaDate = [];
     dataInicial: Date;
     dataFinal: Date;
@@ -24,22 +25,25 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('test');
         this.fluxoCaixaService. listarInicial().subscribe(
-            resposta => {
-              this.listaFluxoCaixa = resposta as any;
+           
+        resposta => {
+              this.lista = resposta as any;
               let dia;
-              for (let i = 0; i <= (this.listaFluxoCaixa.length - 1); i++ ) {
-                dia = this.listaFluxoCaixa[i].data;
-                this.listaDate.push(dia.format('DD/MM'));
+              for (let i = 0; i <= (this.lista.length - 1); i++ ) {
+                this.listaFluxoCaixa.push(this.lista[i].saldoatual);
+                dia = this.lista[i].data;
+                this.listaDate.push(moment(dia).format('DD/MM'));
               }
               console.log(this.listaFluxoCaixa);
             }
           );
 
 
-      //  for (let i = 9; i >= 0; i--) {
-       //     this.listaDate.push(moment().subtract(i, 'days').format('DD/MM'));
-     //   }
+       /* for (let i = 9; i >= 0; i--) {
+            this.listaDate.push(moment().subtract(i, 'days').format('DD/MM'));
+        }*/
     }
 
     setClicked(val: boolean): void {
