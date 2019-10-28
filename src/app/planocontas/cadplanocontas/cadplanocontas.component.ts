@@ -1,12 +1,11 @@
-import { GrupoContasService } from './../../grupocontas/grupocontas.service';
-import { GrupoContasModule } from './../../grupocontas/grupocontas.module';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { PlanoContasService } from '../planocontas.service';
-import { Grupocontas } from 'src/app/grupocontas/model/grupocontas';
-import { Planocontas } from '../model/planoconta';
+import { Planoconta } from '../model/planoconta';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Grupoplanoconta } from 'src/app/grupocontas/model/grupoplanoconta';
+import { GrupoContasService } from 'src/app/grupocontas/grupocontas.service';
 
 @Component({
   selector: 'app-cadplanocontas',
@@ -16,9 +15,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CadsPlanoContasComponent implements OnInit {
 
     formulario: FormGroup;
-    grupoSeleconado: Grupocontas;
-    listaGrupoContas: Grupocontas[];
-    planoConta: Planocontas;
+    grupoSeleconado: Grupoplanoconta;
+    listaGrupoContas: Grupoplanoconta[];
+    planoConta: Planoconta;
 
   constructor(
     private planocontaservice: PlanoContasService,
@@ -42,7 +41,7 @@ export class CadsPlanoContasComponent implements OnInit {
         if (id != null) {
           this.planocontaservice.pesquisarId(id).subscribe(
             resposta => {
-              this.planoConta = resposta as Planocontas;
+              this.planoConta = resposta as Planoconta;
               if (this.planoConta == null ) {
                 this.formulario = this.formBuilder.group({
                   conta: [null],

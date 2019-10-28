@@ -1,5 +1,5 @@
 import {BensService} from './../bens.service';
-import {Planocontas} from 'src/app/planocontas/model/planoconta';
+import {Planoconta} from 'src/app/planocontas/model/planoconta';
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder} from '@angular/forms';
 import {Bens} from '../model/bens';
@@ -18,9 +18,9 @@ export class CadbensComponent implements OnInit {
 
     formulario: FormGroup;
     bens: Bens;
-    planoConta: Planocontas;
+    planoConta: Planoconta;
     instituicaoSelecionada: Instituicao;
-    listaPlanoContas: Planocontas[];
+    listaPlanoContas: Planoconta[];
     telaSaida = true;
     telaEntrada = true;
     inscricao: Subscription;

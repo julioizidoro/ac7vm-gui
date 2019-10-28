@@ -1,3 +1,5 @@
+import { Fluxocaixa } from './../fluxocaixa/model/fluxocaixa';
+import { FluxocaixaService } from './../fluxocaixa/fluxocaixa.service';
 import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import * as moment from 'moment';
 
@@ -10,21 +12,40 @@ export class DashboardComponent implements OnInit {
     @ViewChild('sidenav', {static: true}) sidenav: ElementRef;
 
     clicked: boolean;
-    listaFluxoCaixa = [440.88, 10.99, 20.30, 30.60, 390.99, 50.00, 40.4, 30.3, 20.49, 110.55];
+    listaFluxoCaixa: Fluxocaixa[];
     listaDate = [];
+    dataInicial: Date;
+    dataFinal: Date;
 
-    constructor() {
+    constructor(
+        private fluxoCaixaService: FluxocaixaService,
+    ) {
         this.clicked = this.clicked === undefined ? false : true;
     }
 
     ngOnInit() {
-        for (let i = 9; i >= 0; i--) {
-            this.listaDate.push(moment().subtract(i, 'days').format('DD/MM'));
-        }
+        this.fluxoCaixaService. listarInicial().subscribe(
+            resposta => {
+              this.listaFluxoCaixa = resposta as any;
+              let dia;
+              for (let i = 0; i <= (this.listaFluxoCaixa.length - 1); i++ ) {
+                dia = this.listaFluxoCaixa[i].data;
+                this.listaDate.push(dia.format('DD/MM'));
+              }
+              console.log(this.listaFluxoCaixa);
+            }
+          );
+
+
+      //  for (let i = 9; i >= 0; i--) {
+       //     this.listaDate.push(moment().subtract(i, 'days').format('DD/MM'));
+     //   }
     }
 
     setClicked(val: boolean): void {
         this.clicked = val;
     }
+
+
 
 }

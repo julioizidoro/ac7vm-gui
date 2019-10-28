@@ -18,17 +18,19 @@ export class CadServicosComponent implements OnInit {
 
 
   constructor(
-    private router: Router
-    ,private formBuilder: FormBuilder,
-    private obrasService: ServicosService,) {}
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private obrasService: ServicosService) 
+    {
+
+    }
 
 
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
-      
         descricao: [null],
-      })
+      });
   }
 
 
@@ -39,7 +41,7 @@ export class CadServicosComponent implements OnInit {
       });
     this.servico = this.formulario.value;
     console.log(this.servico);
-    this.router.navigate([ "/consservicos"]);
+    this.router.navigate([ '/consservicos']);
   }
 
   cancelar() {

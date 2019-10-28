@@ -1,3 +1,4 @@
+import { FluxocaixaService } from './../fluxocaixa/fluxocaixa.service';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -24,7 +25,9 @@ import {LinhaTempoModule} from '../main-layout/linha-tempo/linha-tempo.module';
     NO_ERRORS_SCHEMA,
     CUSTOM_ELEMENTS_SCHEMA
   ],
-  providers: []
+  providers: [
+    FluxocaixaService,
+  ]
 })
 export class DashboardModule {
 

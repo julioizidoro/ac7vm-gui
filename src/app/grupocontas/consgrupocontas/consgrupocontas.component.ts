@@ -1,9 +1,9 @@
-import { Grupocontas } from './../model/grupocontas';
 import { GrupoContasService } from '../grupocontas.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { Router } from '@angular/router';
+import { Grupoplanoconta } from '../model/grupoplanoconta';
 
 @Component({
   selector: 'app-consgrupocontas',
@@ -15,7 +15,7 @@ export class ConsGrupoContasComponent implements OnInit {
     formulario: FormGroup;
     isFirstOpen = false;
     oneAtATime = true;
-    grupoContas: Grupocontas[];
+    grupoContas: Grupoplanoconta[];
 
 
   constructor(
@@ -59,8 +59,8 @@ export class ConsGrupoContasComponent implements OnInit {
     }
  }
 
- editar(grupoConta: Grupocontas) {
-  this.router.navigate([ '/cadgrupocontas' ,   grupoConta.idgrupoplanoconta ]);
+ editar(grupoConta: Grupoplanoconta) {
+  this.router.navigate([ '/cadGrupoplanoconta' ,   grupoConta.idgrupoplanoconta ]);
 }
 
 }

@@ -1,6 +1,6 @@
 export class Clientecomplemento {
 
-  idclienteclientecomplemento: number;
+  idclientecomplemento: number;
   nacionalidade: string;
   naturalidade: string;
   nomepai: string;
@@ -11,4 +11,5 @@ export class Clientecomplemento {
   dataemissao: Date;
   emissor: string;
   sexo: string;
+  datanascimento: Date;
 }

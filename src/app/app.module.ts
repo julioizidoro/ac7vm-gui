@@ -24,10 +24,12 @@ import { AgmCoreModule } from '@agm/core';
 import {LinhaTempoModule} from './main-layout/linha-tempo/linha-tempo.module';
 import {MDBBootstrapModule, IconsModule} from 'angular-bootstrap-md';
 import {UsuarioModule} from './usuario/usuario.module';
+import { FluxocaixaComponent } from './fluxocaixa/fluxocaixa.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    FluxocaixaComponent,
   ],
   imports: [
     BrowserModule,

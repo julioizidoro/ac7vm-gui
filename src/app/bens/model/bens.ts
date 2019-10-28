@@ -1,4 +1,4 @@
-import { Planocontas } from '../../planocontas/model/planoconta';
+import { Planoconta } from '../../planocontas/model/planoconta';
 import { Instituicao } from 'src/app/cliente/model/instituicao';
 export class Bens {
 
@@ -10,6 +10,6 @@ export class Bens {
   valorsaida: number;
   diferenca: number;
   percentual: number;
-  planoconta: Planocontas;
+  planoconta: Planoconta;
   instituicao: Instituicao;
 }

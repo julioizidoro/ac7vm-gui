@@ -27,6 +27,7 @@ export class ConspagarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.pagas = false;
     this.formulario = this.formBuilder.group({
       documento: [null],
       cliente: [null],
@@ -44,10 +45,65 @@ export class ConspagarComponent implements OnInit {
         }
       );
       this.formulario.reset();
-    }
-
-  pesquisar() {
-
   }
 
+  pesquisar() {
+    // tslint:disable-next-line:prefer-const
+    let documento = this.formulario.get('documento').value;
+    const cliente = this.formulario.get('cliente').value;
+    const datainicial = this.formulario.get('datainicial').value;
+    const datafinal = this.formulario.get('datafinal').value;
+    const tipoConta = this.formulario.get('tipoConta').value;
+    if (cliente === null) {
+       const nome = '@';
+    }
+    if (documento != null) {
+      this.pesquisarDocumento(documento);
+    } else if ((datainicial != null) && (datafinal != null ))  {
+      this.pesquisarDataVencimento( tipoConta, datainicial, datafinal, cliente);
+    }
+  }
+
+  pesquisarDocumento(ducumento: string) {
+    this.contasService.pesquisarDocumentoCP( ducumento ).subscribe(
+      resposta => {
+        this.contas = resposta as any;
+      }
+    );
+  }
+
+  pesquisarNome(cliente: string) {
+    this.contasService.listarCP().subscribe(
+      resposta => {
+        this.contas = resposta as any;
+      }
+    );
+  }
+
+  pesquisarDataVencimento( tipoConta: string, dataInicial: string, dataFinal: string, cliente: string) {
+    if (tipoConta === 'todas')  {
+      this.contasService.pesquisarTodasVencimentoCP(dataInicial, dataFinal, cliente).subscribe(
+        resposta => {
+          this.contas = resposta as any;
+        }
+      );
+    } else if (tipoConta === 'pagas')  {
+      this.contasService.pesquisarRecebidasVencimentoCP(dataInicial, dataFinal, cliente).subscribe(
+        resposta => {
+          this.contas = resposta as any;
+        }
+      );
+    } else if (tipoConta === 'pagar')  {
+      this.contasService.pesquisarReceberVencimentoCP(dataInicial, dataFinal, cliente).subscribe(
+        resposta => {
+          this.contas = resposta as any;
+        }
+      );
+    }
+  }
+
+  editar(c: Contas) {
+    console.log(c);
+    this.router.navigate(['/cadpagar', c.idcontas]);
+  }
 }

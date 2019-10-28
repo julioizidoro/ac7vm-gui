@@ -1,11 +1,11 @@
-import { Grupocontas } from './../../grupocontas/model/grupocontas';
-import { Planocontas } from './../model/planoconta';
+import { Planoconta } from './../model/planoconta';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { PlanoContasService } from '../planocontas.service';
 import { Router } from '@angular/router';
 import { GrupoContasService } from 'src/app/grupocontas/grupocontas.service';
+import { Grupoplanoconta } from 'src/app/grupocontas/model/grupoplanoconta';
 
 @Component({
   selector: 'app-consplanocontas',
@@ -17,9 +17,9 @@ export class ConsPlanoContasComponent implements OnInit {
     formulario: FormGroup;
     isFirstOpen = false;
     oneAtATime = true;
-    planoContas: Planocontas[];
-    listaGrupoContas: Grupocontas[];
-    grupoContasSelecionado: Grupocontas;
+    planoContas: Planoconta[];
+    listaGrupoplanoconta: Grupoplanoconta[];
+    grupoContasSelecionado: Grupoplanoconta;
 
 
 
@@ -52,7 +52,7 @@ export class ConsPlanoContasComponent implements OnInit {
   listarGrupoConta() {
     this.grupocontasservice.listar().subscribe(
       resposta => {
-        this.listaGrupoContas = resposta as any;
+        this.listarGrupoConta = resposta as any;
       }
     );
   }
@@ -94,7 +94,7 @@ export class ConsPlanoContasComponent implements OnInit {
     this.formulario.reset();
    }
 
-  editar(conta: Planocontas) {
+  editar(conta: Planoconta) {
     this.router.navigate([ '/cadplanocontas' ,   conta.idplanoconta ]);
   }
 

@@ -25,7 +25,7 @@
     "angular-calendar": "^0.25.2",
     "angular2-text-mask": "^9.0.0",
     "angular4-datepicker": "^1.0.1",
-    "chart.js": "^2.7.3",
+    "chart.js": "^2.9.0",
     "core-js": "^2.6.10",
     "moment": "^2.24.0",
     "ngx-bootstrap": "^5.2.0",

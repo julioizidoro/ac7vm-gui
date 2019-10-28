@@ -25,6 +25,7 @@ import { CadreceberComponent } from './contas/receber/cadreceber/cadreceber.comp
 import { CadpagarComponent } from './contas/pagar/cadpagar/cadpagar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './usuario/login/login.component';
+import { FluxocaixaComponent } from './fluxocaixa/fluxocaixa.component';
 
 const APP_ROUTER: Routes = [
     { path: '', component: DashboardComponent },
@@ -33,6 +34,7 @@ const APP_ROUTER: Routes = [
     { path: 'cadCliente', component: CadclienteComponent },
     { path: 'cadcliente/:id', component: CadclienteComponent },
     { path: 'consFornecedores', component: ConsuFornecedoresComponent },
+    { path: 'consFornecedores/:rota', component: ConsuFornecedoresComponent },
     { path: 'cadFornecedores', component: CadFornecedoresComponent },
     { path: 'cadFornecedores/:id', component: CadFornecedoresComponent },
     { path: 'consobras', component: ConsObrasComponent },
@@ -66,6 +68,7 @@ const APP_ROUTER: Routes = [
     { path: 'cadpagar/:id/:rota', component: CadpagarComponent },
     { path: 'cadreceber/:id/:rota', component: CadreceberComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'fluxocaixa', component: FluxocaixaComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTER);

@@ -23,8 +23,30 @@ export class ContasService {
   }
 
   salvarCR(conta: Contas): Observable<any> {
+    console.log(conta);
     return this.httpCliente.post<any>(env.baseApiUrl + 'cr/salvar', conta);
-}
+  }
+
+  pesquisarDocumentoCR(documento: string):  Observable<any> {
+    console.log('teste');
+    return this.httpCliente.get<any>(env.baseApiUrl + 'cr/doc/' + documento);
+  }
+
+  // Todas com dataVencimento
+  pesquisarTodasVencimentoCR(dataInicial: string, dataFinal: string, nome: string):  Observable<any> {
+    return this.httpCliente.post<any>(env.baseApiUrl + 'cr/dvtodas/', dataInicial + '/' + dataFinal + '/' + nome );
+  }
+
+  // Recebidas com dataVencimento dvrecebidas/{datainicial}/{datafinal}/{nome}
+  pesquisarRecebidasVencimentoCR(dataInicial: string, dataFinal: string, nome: string):  Observable<any> {
+    return this.httpCliente.post<any>(env.baseApiUrl + 'cr/dvrecebidas/', dataInicial + '/' + dataFinal + '/' + nome );
+  }
+
+  // Recebidas com dataVencimento dvrecebidas/{datainicial}/{datafinal}/{nome}
+  pesquisarReceberVencimentoCR(dataInicial: string, dataFinal: string, nome: string):  Observable<any> {
+    return this.httpCliente.post<any>(env.baseApiUrl + 'cr/dvreceber/', dataInicial + '/' + dataFinal + '/' + nome );
+  }
+
 
 
 // Contas a pagar
@@ -41,6 +63,25 @@ export class ContasService {
     return this.httpCliente.post<any>(env.baseApiUrl + 'cp/salvar', conta);
 }
 
+pesquisarDocumentoCP(documento: string):  Observable<any> {
+  console.log('teste');
+  return this.httpCliente.get<any>(env.baseApiUrl + 'cp/doc/' + documento);
+}
+
+// Todas com dataVencimento
+pesquisarTodasVencimentoCP(dataInicial: string, dataFinal: string, nome: string):  Observable<any> {
+  return this.httpCliente.post<any>(env.baseApiUrl + 'cp/dvtodas/', dataInicial + '/' + dataFinal + '/' + nome );
+}
+
+// Recebidas com dataVencimento dvrecebidas/{datainicial}/{datafinal}/{nome}
+pesquisarRecebidasVencimentoCP(dataInicial: string, dataFinal: string, nome: string):  Observable<any> {
+  return this.httpCliente.post<any>(env.baseApiUrl + 'cp/dvrecebidas/', dataInicial + '/' + dataFinal + '/' + nome );
+}
+
+// Recebidas com dataVencimento dvrecebidas/{datainicial}/{datafinal}/{nome}
+pesquisarReceberVencimentoCP(dataInicial: string, dataFinal: string, nome: string):  Observable<any> {
+  return this.httpCliente.post<any>(env.baseApiUrl + 'cp/dvreceber/', dataInicial + '/' + dataFinal + '/' + nome );
+}
 
 
 }

@@ -7,13 +7,14 @@ export class Instituicao {
 
   idinstituicao: number;
   nome: string;
+  tipojuridico: string;
+  tipo: string;
   cpfcnpj: string;
-  email: string;
   fonecelular: string;
   fonefixo: string;
+  email: string;
   datacadastro: Date;
-  tipo: string;
-  tipojuridico: string;
+  segundo: boolean;
   clientesocio: Clientesocio;
   clienteenderecoresidencial: Clienteenderecoresidencial;
   clienteenderecocomercial: Clienteenderecocomercial;

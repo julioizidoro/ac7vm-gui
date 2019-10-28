@@ -1,4 +1,4 @@
-export class Formapagamento{
+export class Formapagamento {
 
     idformapagamento: number;
     descricao: string;

@@ -1,7 +1,7 @@
 import { BensService } from './../bens.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Planocontas } from 'src/app/planocontas/model/planoconta';
+import { Planoconta } from 'src/app/planocontas/model/planoconta';
 import { Router } from '@angular/router';
 import { PlanoContasService } from 'src/app/planocontas/planocontas.service';
 import { Bens } from '../model/bens';
@@ -16,8 +16,8 @@ export class ConsbensComponent implements OnInit {
   formulario: FormGroup;
   isFirstOpen = false;
   oneAtATime = true;
-  planoContas: Planocontas[];
-  planoContasSelecinado: Planocontas;
+  planoContas: Planoconta[];
+  planoContasSelecinado: Planoconta;
   bens: Bens[];
 
   constructor(private formBuilder: FormBuilder,

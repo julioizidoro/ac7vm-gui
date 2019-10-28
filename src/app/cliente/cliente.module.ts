@@ -1,3 +1,4 @@
+import { FornecedorService } from './fornecedor.service';
 import { ConsuFornecedoresComponent } from './consucliente/consfornecedores.component';
 import { CadFornecedoresComponent } from './cadcliente/cadfornecedores.component';
 import { ClienteService } from './cliente.service';
@@ -36,6 +37,7 @@ import { TextMaskModule } from 'angular2-text-mask';
   ],
   providers: [
     ClienteService,
+    FornecedorService,
   ]
 })
 export class ClienteModule { }

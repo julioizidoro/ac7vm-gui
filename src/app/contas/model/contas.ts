@@ -1,9 +1,10 @@
 import { Formapagamento } from './../../formapagamento/model/formapagamento';
 import { Instituicao } from 'src/app/cliente/model/instituicao';
-import { Planocontas } from 'src/app/planocontas/model/planoconta';
+import { Planoconta } from 'src/app/planocontas/model/planoconta';
+
 
 export class Contas {
-    idocntas: number;
+    idcontas: number;
     documento: string;
     dataemissao: Date;
     datavencimento: Date;
@@ -15,7 +16,7 @@ export class Contas {
     valorpago: number;
     observacao: string;
     tipo: string;
+    planoconta: Planoconta;
     instituicao: Instituicao;
-    planocontas: Planocontas;
     formapagamento: Formapagamento;
 }

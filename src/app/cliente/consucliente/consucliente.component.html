@@ -31,12 +31,12 @@
                                     formControlName="email">
                             </div>
                             <div class="form-group col-md-12 text-right">
-                                <button type="button" class="btn btn-color" onclick="pesquisar()">
+                                <button type="button" class="btn btn-primary" (click)="pesquisar()">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                     Pesquisar
                                 </button>
-                                <button type="submit" class="btn btn-color" style="margin-left:1%;"
-                                    onclick="consultar()">
+                                <button type="submit" class="btn btn-danger" style="margin-left:1%;"
+                                    (click)="consultar()">
                                     <i class="fa fa-refresh" aria-hidden="true"></i>
                                     Limpar
                                 </button>

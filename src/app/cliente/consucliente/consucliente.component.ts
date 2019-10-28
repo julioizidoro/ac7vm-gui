@@ -66,6 +66,7 @@ export class ConsuclienteComponent implements OnInit {
                 this.instituicao = resposta as any;
             }
         );
+        console.log('test');
     }
 
     editar(instituicao: Instituicao) {
@@ -78,7 +79,7 @@ export class ConsuclienteComponent implements OnInit {
         if (this.rotaAnterior === 'bens') {
             this.router.navigate(['/cadbens', 'e', clienteSelecionado.idinstituicao, 'conscliente']);
         } else if (this.rotaAnterior === 'contasr') {
-            this.router.navigate(['/cadconta', 'r', clienteSelecionado.idinstituicao, 'conscliente']);
+            this.router.navigate(['/cadreceber', clienteSelecionado.idinstituicao, 'conscliente']);
         }
     }
 

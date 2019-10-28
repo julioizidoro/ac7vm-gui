@@ -1,4 +1,4 @@
-import { Planocontas } from './model/planoconta';
+import { Planoconta } from './model/planoconta';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment as env } from '../../environments/environment.prod';
@@ -10,31 +10,31 @@ export class PlanoContasService {
 
   constructor( private httpCliente: HttpClient) { }
 
-  listar(): Observable<Planocontas> {
-    return this.httpCliente.get<Planocontas>(env.baseApiUrl + 'planocontas');
+  listar(): Observable<Planoconta> {
+    return this.httpCliente.get<Planoconta>(env.baseApiUrl + 'planocontas');
   }
 
-  pesquisarBens(): Observable<Planocontas> {
-    return this.httpCliente.get<Planocontas>(env.baseApiUrl + 'planocontas/bens');
+  pesquisarBens(): Observable<Planoconta> {
+    return this.httpCliente.get<Planoconta>(env.baseApiUrl + 'planocontas/bens');
   }
 
-  pesquisarDescricao(descricao: string): Observable<Planocontas> {
-    return this.httpCliente.get<Planocontas>(env.baseApiUrl + 'planocontas/descricao/' + descricao);
+  pesquisarDescricao(descricao: string): Observable<Planoconta> {
+    return this.httpCliente.get<Planoconta>(env.baseApiUrl + 'planocontas/descricao/' + descricao);
   }
 
-  pesquisarConta(conta: string): Observable<Planocontas> {
-    return this.httpCliente.get<Planocontas>(env.baseApiUrl + 'planocontas/conta/' + conta);
+  pesquisarConta(conta: string): Observable<Planoconta> {
+    return this.httpCliente.get<Planoconta>(env.baseApiUrl + 'planocontas/conta/' + conta);
   }
 
-  pesquisarGrupo(idgrupo: number): Observable<Planocontas> {
-    return this.httpCliente.get<Planocontas>(env.baseApiUrl + 'planocontas/grupo/' + idgrupo);
+  pesquisarGrupo(idgrupo: number): Observable<Planoconta> {
+    return this.httpCliente.get<Planoconta>(env.baseApiUrl + 'planocontas/grupo/' + idgrupo);
   }
 
-  salvar(conta: Planocontas): Observable<any> {
+  salvar(conta: Planoconta): Observable<any> {
       return this.httpCliente.post<any>(env.baseApiUrl + 'planocontas/salvar', conta);
   }
 
-  pesquisarId(id: number): Observable<Planocontas> {
-    return this.httpCliente.get<Planocontas>(env.baseApiUrl + 'planocontas/id/' + id);
+  pesquisarId(id: number): Observable<Planoconta> {
+    return this.httpCliente.get<Planoconta>(env.baseApiUrl + 'planocontas/id/' + id);
   }
 }

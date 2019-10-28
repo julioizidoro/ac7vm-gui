@@ -1,9 +1,10 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Instituicao } from '../model/instituicao';
-import { ClienteService } from '../cliente.service';
+import { FornecedorService } from '../fornecedor.service';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 
 @Component({
@@ -17,16 +18,28 @@ export class ConsuFornecedoresComponent implements OnInit {
     isFirstOpen = false;
     oneAtATime = true;
     instituicao: Instituicao[];
+    rotaAnterior: string;
+    habilitarConsulta = true;
+    inscricao: Subscription;
 
 
   constructor(
-    private clienteService: ClienteService,
+    private fornecedorService: FornecedorService,
     private formBuilder: FormBuilder,
-    private router: Router) {}
+    private router: Router,
+    private activeRrouter: ActivatedRoute) {}
 
 
 
   ngOnInit() {
+    this.inscricao = this.activeRrouter.params.subscribe(params => {
+      this.rotaAnterior = params.rota;
+  });
+  if (this.rotaAnterior === null) {
+      this.habilitarConsulta = false;
+  } else {
+      this.habilitarConsulta = true;
+  }
     this.formulario = this.formBuilder.group({
       nome: [null]
     });
@@ -34,7 +47,7 @@ export class ConsuFornecedoresComponent implements OnInit {
   }
 
   consultar() {
-    this.clienteService.listar('f').subscribe(
+    this.fornecedorService.listar('f').subscribe(
       resposta => {
         this.instituicao = resposta as any;
       }
@@ -43,7 +56,7 @@ export class ConsuFornecedoresComponent implements OnInit {
 
   pesquisar() {
     const nome = this.formulario.get('nome').value;
-    this.clienteService.pesquisarNome(nome).subscribe(
+    this.fornecedorService.pesquisarNome(nome).subscribe(
      resposta => {
        this.instituicao = resposta as any;
      }
@@ -51,13 +64,20 @@ export class ConsuFornecedoresComponent implements OnInit {
  }
 
  editar(instituicao: Instituicao) {
-   this.router.navigate([ '/cadfornecedor' ,   instituicao.idinstituicao ]);
+   this.router.navigate([ 'cadFornecedores' ,   instituicao.idinstituicao ]);
  }
 
  pesquisarLimpar() {
    this.formulario.reset();
    this.consultar();
  }
+
+ selecionarCliente(clienteSelecionado: Instituicao) {
+  console.log(clienteSelecionado.nome);
+  if (this.rotaAnterior === 'contasp') {
+      this.router.navigate(['/cadpagar', clienteSelecionado.idinstituicao, 'conscliente']);
+  }
+}
 
 
 

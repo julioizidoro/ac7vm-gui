@@ -1,4 +1,4 @@
-import { Grupocontas } from './grupocontas';
+import { Grupocontas } from './grupoplanoconta';
 
 describe('Grupocontas', () => {
   it('should create an instance', () => {

@@ -1,8 +1,10 @@
-import { Grupocontas } from './../../grupocontas/model/grupocontas';
-export class Planocontas {
+import { Grupoplanoconta } from 'src/app/grupocontas/model/grupoplanoconta';
+
+export class Planoconta {
 
     idplanoconta: number;
     descricao: string;
     conta: string;
-    grupoplanoconta: Grupocontas;
+    grupoplanoconta: Grupoplanoconta;
+    lancamentobens: boolean;
 }

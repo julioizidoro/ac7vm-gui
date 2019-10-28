@@ -29,11 +29,10 @@ export class CadclienteComponent implements OnInit {
   public maskCPF = [/[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
   // tslint:disable-next-line:max-line-length
   public maskCNPJ = [/[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '.', /[0-9]/, /[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/];
-  public maskFONE = ['(', /[0-9]/, /[0-9]/, /[0-9]/, ')', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/];
+  public maskFONE = ['(', /[0-9]/, /[0-9]/, ')', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/];
   // tslint:disable-next-line:max-line-length
-  public maskCELULAR = ['(', /[0-9]/, /[0-9]/, /[0-9]/, ')', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/];
+  public maskCELULAR = ['(', /[0-9]/, /[0-9]/, ')', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/];
   public maskCEP = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/];
-  public maskDATE = [/[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, '/', /[0-9]/,  /[0-9]/, /[0-9]/, /[0-9]/];
 
   constructor(
     private consultacepService: ConsultacepService,
@@ -46,86 +45,7 @@ export class CadclienteComponent implements OnInit {
 
 
   ngOnInit() {
-    this.formulario = this.formBuilder.group({
-
-      idinstituicao: [null],
-      nome: [null],
-      cpfcnpj: [null],
-      email: [null],
-      fonecelular: [null],
-      fonefixo: [null],
-      datacadastro: [null],
-      tipo: [null],
-      tipojuridico: [null],
-      segundo: [false],
-      clientesocio: this.formBuilder.group({
-        idclientesocio: [null],
-        csnome: [null],
-        cscpf: [null],
-        csfonecelular: [null],
-        csemail: [null]
-      }),
-      clienteenderecoresidencial: this.formBuilder.group({
-        idclienteenderecoresidencial: [null],
-        cercep: [null],
-        cerendereco: [null],
-        cernumero: [null],
-        cerbairro: [null],
-        cercomplemento: [null],
-        cercidade: [null],
-        cerestado: [null],
-        cerfoneresidencial: [null]
-      }),
-      clienteenderecocomercial: this.formBuilder.group({
-        idclienteenderecocomercial: [null],
-        ceccep: [null],
-        cecendereco: [null],
-        cecnumero: [null],
-        ceccomplemento: [null],
-        cecbairro: [null],
-        ceccidade: [null],
-        cecestado: [null],
-        cecfonecomercial: [null]
-      }),
-      clientecomplemento: this.formBuilder.group({
-        idclienteclientecomplemento: [null],
-        nacionalidade: [null],
-        naturalidade: [null],
-        nomepai: [null],
-        nomemae: [null],
-        profissao: [null],
-        estadocivil: [null],
-        numerorg: [null],
-        dataemissao: [null],
-        emissor: [null],
-        sexo: [null]
-      }),
-      clientesegundo: this.formBuilder.group({
-        idclientesegundo: [null],
-        csnome: [null],
-        cscpf: [null],
-        csrg: [null],
-        csemissor: [null],
-        csdatanascimento: [null],
-        cssexo: [null],
-        csestadocivil: [null],
-        csfonecelular: [null],
-        csfonefixo: [null],
-        cscep: [null],
-        csendereco: [null],
-        csnumero: [null],
-        cscomplemento: [null],
-        csbairro:  [null],
-        cscidade: [null],
-        csestado: [null],
-        csemail: [null],
-        csnacionalidade: [null],
-        csprofissao: [null],
-        cslocaltrabalho: [null],
-        utilizarendereco: [false]
-
-      })
-    });
+    this.setFormularioNulo();
     let id: number;
     this.activeRrouter.params.subscribe(params => {
       id = params.id;
@@ -133,87 +53,7 @@ export class CadclienteComponent implements OnInit {
         this.clienteService.pesquisarId(id).subscribe(
           resposta => {
             this.instituicao = resposta as Instituicao;
-            if (this.instituicao == null) {
-              this.formulario = this.formBuilder.group({
-
-                idinstituicao: [null],
-                nome: [null],
-                cpfcnpj: [null],
-                email: [null],
-                fonecelular: [null],
-                fonefixo: [null],
-                datacadastro: [null],
-                tipo: [null],
-                tipojuridico: [null],
-                segundo: [false],
-                clientesocio: this.formBuilder.group({
-                  idclientesocio: [null],
-                  csnome: [null],
-                  cscpf: [null],
-                  csfonecelular: [null],
-                  csemail: [null]
-                }),
-                clienteenderecoresidencial: this.formBuilder.group({
-                  idclienteenderecoresidencial: [null],
-                  cercep: [null],
-                  cerendereco: [null],
-                  cernumero: [null],
-                  cerbairro: [null],
-                  cercomplemento: [null],
-                  cercidade: [null],
-                  cerestado: [null],
-                  cerfoneresidencial: [null]
-                }),
-                clienteenderecocomercial: this.formBuilder.group({
-                  idclienteenderecocomercial: [null],
-                  ceccep: [null],
-                  cecendereco: [null],
-                  cecnumero: [null],
-                  ceccomplemento: [null],
-                  cecbairro: [null],
-                  ceccidade: [null],
-                  cecestado: [null],
-                  cecfonecomercial: [null]
-                }),
-                clientecomplemento: this.formBuilder.group({
-                  idclienteclientecomplemento: [null],
-                  nacionalidade: [null],
-                  naturalidade: [null],
-                  nomepai: [null],
-                  nomemae: [null],
-                  profissao: [null],
-                  estadocivil: [null],
-                  numerorg: [null],
-                  dataemissao: [null],
-                  emissor: [null],
-                  sexo: [null]
-                }),
-                clientesegundo: this.formBuilder.group({
-                  idclientesegundo: [null],
-                  csnome: [null],
-                  cscpf: [null],
-                  csrg: [null],
-                  csemissor: [null],
-                  csdatanascimento: [null],
-                  cssexo: [null],
-                  csestadocivil: [null],
-                  csfonecelular: [null],
-                  csfonefixo: [null],
-                  cscep: [null],
-                  csendereco: [null],
-                  csnumero: [null],
-                  cscomplemento: [null],
-                  csbairro:  [null],
-                  cscidade: [null],
-                  csestado: [null],
-                  csemail: [null],
-                  csnacionalidade: [null],
-                  csprofissao: [null],
-                  cslocaltrabalho: [null],
-                  utilizarendereco: [false]
-                })
-              });
-            } else {
+            if (this.instituicao != null) {
               if (this.instituicao.tipojuridico === 'PF') {
                 this.pessoaFisica = true;
                 this.pessoaJuridica = false;
@@ -221,6 +61,7 @@ export class CadclienteComponent implements OnInit {
                 this.pessoaJuridica = true;
                 this.pessoaFisica = false;
               }
+              this.segundo = this.instituicao.segundo;
               if (this.instituicao.clientesocio == null) {
                 this.instituicao.clientesocio = new Clientesocio();
               }
@@ -235,6 +76,7 @@ export class CadclienteComponent implements OnInit {
               }
               if (this.instituicao.clientesegundo == null) {
                 this.instituicao.clientesegundo = new Clientesegundo();
+              } else {
               }
               this.formulario = this.formBuilder.group({
                 idinstituicao: this.instituicao.idinstituicao,
@@ -246,37 +88,38 @@ export class CadclienteComponent implements OnInit {
                 datacadastro: this.instituicao.datacadastro,
                 tipo: this.instituicao.tipo,
                 tipojuridico: this.instituicao.tipojuridico,
+                segundo: this.instituicao.segundo,
                 clientesocio: this.formBuilder.group({
                   idclientesocio: this.instituicao.clientesocio.idclientesocio,
-                  csnome: this.instituicao.clientesocio.nome,
-                  cscpf: this.instituicao.clientesocio.cpf,
-                  csfonecelular: this.instituicao.clientesocio.fonecelular,
-                  csemail: this.instituicao.clientesocio.email
+                  nome: this.instituicao.clientesocio.nome,
+                  cpf: this.instituicao.clientesocio.cpf,
+                  fonecelular: this.instituicao.clientesocio.fonecelular,
+                  email: this.instituicao.clientesocio.email
                 }),
                 clienteenderecoresidencial: this.formBuilder.group({
                   idclienteenderecoresidencial: this.instituicao.clienteenderecoresidencial.idclienteenderecoresidencial,
-                  cercep: this.instituicao.clienteenderecoresidencial.cep,
-                  cerendereco: this.instituicao.clienteenderecoresidencial.endereco,
-                  cernumero: this.instituicao.clienteenderecoresidencial.numero,
-                  cerbairro: this.instituicao.clienteenderecoresidencial.bairro,
-                  cercomplemento: this.instituicao.clienteenderecoresidencial.complemento,
-                  cercidade: this.instituicao.clienteenderecoresidencial.cidade,
-                  cerestado: this.instituicao.clienteenderecoresidencial.estado,
-                  cerfoneresidencial: this.instituicao.clienteenderecoresidencial.foneresidencial
+                  cep: this.instituicao.clienteenderecoresidencial.cep,
+                  endereco: this.instituicao.clienteenderecoresidencial.endereco,
+                  numero: this.instituicao.clienteenderecoresidencial.numero,
+                  bairro: this.instituicao.clienteenderecoresidencial.bairro,
+                  complemento: this.instituicao.clienteenderecoresidencial.complemento,
+                  cidade: this.instituicao.clienteenderecoresidencial.cidade,
+                  estado: this.instituicao.clienteenderecoresidencial.estado,
+                  foneresidencial: this.instituicao.clienteenderecoresidencial.foneresidencial
                 }),
                 clienteenderecocomercial: this.formBuilder.group({
                   idclienteenderecocomercial: this.instituicao.clienteenderecocomercial.idclienteenderecocomercial,
-                  ceccep: this.instituicao.clienteenderecocomercial.cep,
-                  cecendereco: this.instituicao.clienteenderecocomercial.endereco,
-                  cecnumero: this.instituicao.clienteenderecocomercial.numero,
-                  ceccomplemento: this.instituicao.clienteenderecocomercial.complemento,
-                  cecbairro: this.instituicao.clienteenderecocomercial.bairro,
-                  ceccidade: this.instituicao.clienteenderecocomercial.cidade,
-                  cecestado: this.instituicao.clienteenderecocomercial.estado,
-                  cecfonecomercial: this.instituicao.clienteenderecocomercial.fonefixo
+                  cep: this.instituicao.clienteenderecocomercial.cep,
+                  endereco: this.instituicao.clienteenderecocomercial.endereco,
+                  numero: this.instituicao.clienteenderecocomercial.numero,
+                  complemento: this.instituicao.clienteenderecocomercial.complemento,
+                  bairro: this.instituicao.clienteenderecocomercial.bairro,
+                  cidade: this.instituicao.clienteenderecocomercial.cidade,
+                  estado: this.instituicao.clienteenderecocomercial.estado,
+                  fonecomercial: this.instituicao.clienteenderecocomercial.fonefixo
                 }),
                 clientecomplemento: this.formBuilder.group({
-                  idclienteclientecomplemento: this.instituicao.clientecomplemento.idclienteclientecomplemento,
+                  idclientecomplemento: this.instituicao.clientecomplemento.idclientecomplemento,
                   nacionalidade: this.instituicao.clientecomplemento.nacionalidade,
                   naturalidade: this.instituicao.clientecomplemento.naturalidade,
                   nomepai: this.instituicao.clientecomplemento.nomepai,
@@ -286,30 +129,31 @@ export class CadclienteComponent implements OnInit {
                   numerorg: this.instituicao.clientecomplemento.numerorg,
                   dataemissao: this.instituicao.clientecomplemento.dataemissao,
                   emissor: this.instituicao.clientecomplemento.emissor,
-                  sexo: this.instituicao.clientecomplemento.sexo
+                  sexo: this.instituicao.clientecomplemento.sexo,
+                  datanascimento: this.instituicao.clientecomplemento.datanascimento
                 }),
                 clientesegundo: this.formBuilder.group({
                   idclientesegundo: this.instituicao.clientesegundo.idclientesegundo,
-                  csnome: this.instituicao.clientesegundo.nome,
-                  cscpf: this.instituicao.clientesegundo.cpf,
-                  csrg: this.instituicao.clientesegundo.rg,
-                  csemissor: this.instituicao.clientesegundo.emissor,
-                  csdatanascimento: this.instituicao.clientesegundo.datanascimento,
-                  cssexo: this.instituicao.clientesegundo.sexo,
-                  csestadocivil: this.instituicao.clientesegundo.estadocivil,
-                  csfonecelular: this.instituicao.clientesegundo.fonecelular,
-                  csfonefixo: this.instituicao.clientesegundo.fonefixo,
-                  cscep: this.instituicao.clientesegundo.cep,
-                  csendereco: this.instituicao.clientesegundo.endereco,
-                  csnumero: this.instituicao.clientesegundo.numero,
-                  cscomplemento: this.instituicao.clientesegundo.complemento,
-                  csbairro:  this.instituicao.clientesegundo.bairro,
-                  cscidade: this.instituicao.clientesegundo.cidade,
-                  csestado: this.instituicao.clientesegundo.estado,
-                  csemail: this.instituicao.clientesegundo.email,
-                  csnacionalidade: this.instituicao.clientesegundo.nacionalidade,
-                  csprofissao: this.instituicao.clientesegundo.profissao,
-                  cslocaltrabalho: this.instituicao.clientesegundo.localtrabalho,
+                  nome: this.instituicao.clientesegundo.nome,
+                  cpf: this.instituicao.clientesegundo.cpf,
+                  rg: this.instituicao.clientesegundo.rg,
+                  emissor: this.instituicao.clientesegundo.emissor,
+                  datanascimento: this.instituicao.clientesegundo.datanascimento,
+                  sexo: this.instituicao.clientesegundo.sexo,
+                  estadocivil: this.instituicao.clientesegundo.estadocivil,
+                  fonecelular: this.instituicao.clientesegundo.fonecelular,
+                  fonefixo: this.instituicao.clientesegundo.fonefixo,
+                  cep: this.instituicao.clientesegundo.cep,
+                  endereco: this.instituicao.clientesegundo.endereco,
+                  numero: this.instituicao.clientesegundo.numero,
+                  complemento: this.instituicao.clientesegundo.complemento,
+                  bairro:  this.instituicao.clientesegundo.bairro,
+                  cidade: this.instituicao.clientesegundo.cidade,
+                  estado: this.instituicao.clientesegundo.estado,
+                  email: this.instituicao.clientesegundo.email,
+                  nacionalidade: this.instituicao.clientesegundo.nacionalidade,
+                  profissao: this.instituicao.clientesegundo.profissao,
+                  localtrabalho: this.instituicao.clientesegundo.localtrabalho,
                   utilizarendereco: [false]
                 })
               });
@@ -321,17 +165,16 @@ export class CadclienteComponent implements OnInit {
         );
       }
     });
-
   }
 
   consultarCEP(tipo: string) {
     let cepInformado;
     if (tipo === 'c') {
-        cepInformado = this.formulario.get('clienteenderecocomercial.ceccep').value;
+        cepInformado = this.formulario.get('clienteenderecocomercial.cep').value;
     } else if ( tipo === 'r') {
-      cepInformado = this.formulario.get('clienteenderecoresidencial.cercep').value;
+      cepInformado = this.formulario.get('clienteenderecoresidencial.cep').value;
     } else if ( tipo === 's') {
-      cepInformado = this.formulario.get('clientesegundo.cscep').value;
+      cepInformado = this.formulario.get('clientesegundo.cep').value;
     }
 
     cepInformado = cepInformado.replace(/\D/g, '');
@@ -341,33 +184,31 @@ export class CadclienteComponent implements OnInit {
         if (tipo === 'c') {
           this.formulario.patchValue({
             clienteenderecocomercial: {
-                cecendereco: this.cep.logradouro,
-                cecbairro: this.cep.bairro,
-                ceccidade: this.cep.localidade,
-                cecestado: this.cep.uf
+                endereco: this.cep.logradouro,
+                bairro: this.cep.bairro,
+                cidade: this.cep.localidade,
+                estado: this.cep.uf
             }
         });
         } else if (tipo === 'r') {
           this.formulario.patchValue({
             clienteenderecoresidencial: {
-                cerendereco: this.cep.logradouro,
-                cerbairro: this.cep.bairro,
-                cercidade: this.cep.localidade,
-                cerestado: this.cep.uf
+                endereco: this.cep.logradouro,
+                bairro: this.cep.bairro,
+                cidade: this.cep.localidade,
+                estado: this.cep.uf
             }
         });
         }  else if ( tipo === 's') {
           this.formulario.patchValue({
             clientesegundo: {
-              csendereco: this.cep.logradouro,
-              csbairro: this.cep.bairro,
-              cscidade: this.cep.localidade,
-              csestado: this.cep.uf
+              endereco: this.cep.logradouro,
+              bairro: this.cep.bairro,
+              cidade: this.cep.localidade,
+              estado: this.cep.uf
             }
         });
         }
-
-        console.log(this.cep);
       },
       err => {
         console.log(JSON.stringify(err));
@@ -396,25 +237,25 @@ export class CadclienteComponent implements OnInit {
     if (this.formulario.get('clientesegundo.utilizarendereco').value === true) {
       this.formulario.patchValue({
         clientesegundo: {
-          cscep: this.formulario.get('clienteenderecoresidencial.cercep').value,
-          csendereco: this.formulario.get('clienteenderecoresidencial.cerendereco').value,
-          csnumero: this.formulario.get('clienteenderecoresidencial.cernumero').value,
-          cscomplemento: this.formulario.get('clienteenderecoresidencial.cercomplemento').value,
-          csbairro: this.formulario.get('clienteenderecoresidencial.cerbairro').value,
-          cscidade: this.formulario.get('clienteenderecoresidencial.cercidade').value,
-          csestado: this.formulario.get('clienteenderecoresidencial.cerestado').value,
+          cep: this.formulario.get('clienteenderecoresidencial.cep').value,
+          endereco: this.formulario.get('clienteenderecoresidencial.endereco').value,
+          numero: this.formulario.get('clienteenderecoresidencial.numero').value,
+          complemento: this.formulario.get('clienteenderecoresidencial.complemento').value,
+          bairro: this.formulario.get('clienteenderecoresidencial.bairro').value,
+          cidade: this.formulario.get('clienteenderecoresidencial.cidade').value,
+          estado: this.formulario.get('clienteenderecoresidencial.estado').value,
         }
     });
     } else {
       this.formulario.patchValue({
         clientesegundo: {
-          cscep: [null],
-          csendereco: [null],
-          csnumero: [null],
-          cscomplemento: [null],
-          csbairro: [null],
-          cscidade: [null],
-          csestado: [null],
+          cep: [null],
+          endereco: [null],
+          numero: [null],
+          complemento: [null],
+          bairro: [null],
+          cidade: [null],
+          estado: [null],
         }
     });
     }
@@ -423,13 +264,17 @@ export class CadclienteComponent implements OnInit {
   salvar() {
     this.formulario.patchValue( {
       datacadastro: new Date(),
-      tipo: 'c'
+      tipo: 'c',
+      segundo: this.segundo
       });
     this.instituicao = this.formulario.value;
     this.clienteService.salvar( this.instituicao).subscribe(
       resposta => {
         this.instituicao = resposta as any;
         this.router.navigate(['/consCliente']);
+      },
+      err => {
+        console.log(err.error.erros.join(' '));
       }
     );
 
@@ -439,6 +284,88 @@ export class CadclienteComponent implements OnInit {
   cancelar() {
     this.formulario.reset();
     this.router.navigate(['/consCliente']);
+  }
+
+  setFormularioNulo() {
+    this.formulario = this.formBuilder.group({
+
+      idinstituicao: [null],
+      nome: [null],
+      cpfcnpj: [null],
+      email: [null],
+      fonecelular: [null],
+      fonefixo: [null],
+      datacadastro: [null],
+      tipo: [null],
+      tipojuridico: [null],
+      clientesocio: this.formBuilder.group({
+        idclientesocio: [null],
+        nome: [null],
+        cpf: [null],
+        fonecelular: [null],
+        email: [null]
+      }),
+      clienteenderecoresidencial: this.formBuilder.group({
+        idclienteenderecoresidencial: [null],
+        cep: [null],
+        endereco: [null],
+        numero: [null],
+        bairro: [null],
+        complemento: [null],
+        cidade: [null],
+        estado: [null],
+        foneresidencial: [null]
+      }),
+      clienteenderecocomercial: this.formBuilder.group({
+        idclienteenderecocomercial: [null],
+        cep: [null],
+        endereco: [null],
+        numero: [null],
+        complemento: [null],
+        bairro: [null],
+        cidade: [null],
+        estado: [null],
+        fonecomercial: [null]
+      }),
+      clientecomplemento: this.formBuilder.group({
+        idclientecomplemento: [null],
+        nacionalidade: [null],
+        naturalidade: [null],
+        nomepai: [null],
+        nomemae: [null],
+        profissao: [null],
+        estadocivil: [null],
+        numerorg: [null],
+        dataemissao: [null],
+        emissor: [null],
+        sexo: [null],
+        datanascimento: [null],
+      }),
+      clientesegundo: this.formBuilder.group({
+        idclientesegundo: [null],
+        nome: [null],
+        cpf: [null],
+        rg: [null],
+        emissor: [null],
+        datanascimento: [null],
+        sexo: [null],
+        estadocivil: [null],
+        fonecelular: [null],
+        fonefixo: [null],
+        cep: [null],
+        endereco: [null],
+        numero: [null],
+        complemento: [null],
+        bairro:  [null],
+        cidade: [null],
+        estado: [null],
+        email: [null],
+        nacionalidade: [null],
+        profissao: [null],
+        localtrabalho: [null],
+        utilizarendereco: [false]
+      })
+    });
   }
 
 }

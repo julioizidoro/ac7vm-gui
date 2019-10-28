@@ -1,4 +1,4 @@
-import { Grupocontas } from './../model/grupocontas';
+import { Grupoplanoconta } from './../model/grupoplanoconta';
 import { GrupoContasService } from '../grupocontas.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -13,7 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CadGrupoContasComponent implements OnInit {
 
     formulario: FormGroup;
-    grupoConta: Grupocontas;
+    grupoConta: Grupoplanoconta;
 
 
 
@@ -37,7 +37,7 @@ export class CadGrupoContasComponent implements OnInit {
       if (id != null) {
         this.grupocontasservice.pesquisarId(id).subscribe(
           resposta => {
-            this.grupoConta = resposta as Grupocontas;
+            this.grupoConta = resposta as Grupoplanoconta;
             if (this.grupoConta == null ) {
               this.formulario = this.formBuilder.group({
                 conta: [null],
