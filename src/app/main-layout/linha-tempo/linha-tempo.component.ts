@@ -22,6 +22,7 @@ export class LinhaTempoComponent {
     }
 
     selectData(event) {
+        console.log(event.element._index);
         console.log('valor', this.data.datasets[event.element._datasetIndex].data[event.element._index]);
         console.log('dia', this.data.labels[event.element._index] + '/2019');
         console.log('dia formatado',  moment(this.data.labels[event.element._index] + '/2019', 'DD/MM/YYYY').toDate());
@@ -30,10 +31,11 @@ export class LinhaTempoComponent {
     @Input()
     set listDates(array: Array<any>) {
         this.data.labels = array;
+        console.log(array);
     }
 
     @Input()
     set listChart(array: Array<any>) {
-        this.data.datasets[0] = {data: array, label: 'Fluxo de caixa'};
+        this.data.datasets[0] = {data: array, label: 'Saldo atual'};
     }
 }

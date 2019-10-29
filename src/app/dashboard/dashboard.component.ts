@@ -42,7 +42,4 @@ export class DashboardComponent implements OnInit {
     setClicked(val: boolean): void {
         this.clicked = val;
     }
-
-
-
 }
