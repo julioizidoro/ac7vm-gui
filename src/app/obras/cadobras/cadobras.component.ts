@@ -67,7 +67,7 @@ export class CadObrasComponent implements OnInit {
     });
   }
 
-  consultarCEP(tipo: string) {
+  consultarCEP() {
     let cepInformado = this.formulario.get('cep').value;
     cepInformado = cepInformado.replace(/\D/g, '');
     this.consultacepService.consultar(cepInformado).subscribe(
