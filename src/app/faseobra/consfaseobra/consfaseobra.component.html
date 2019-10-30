@@ -2,14 +2,15 @@
 <div class="page-header">
   <div class="container-fluid">
     <h3>
-      Consulta Fase da Obra
+      Consulta Fases da Obra
     </h3>
     <hr />
   </div>
   <form [formGroup]="formulario">
     <div class="container-fluid" style="width:100%;">
       <div class="w-100">
-        <button type="button" style="float:right;" class="btn btn-primary font-weight-light" routerLink="/cadfaseobra">
+        <button type="button" style="float:right;" class="btn btn-color font-weight-light"
+          routerLink="/cadfaseobra">
           <i class="fa fa-plus" aria-hidden="true"></i>
           <a class="ml-2">Adicionar</a>
         </button>
@@ -29,56 +30,55 @@
                   formControlName="descricao">
               </div>
               <div class="form-group col-md-12 text-right">
-                <button type="button" style="float:right;" class="btn btn-success" (click)="pesquisar()">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                  Pesquisar
+                <button type="button" class="btn btn-primary" (click)="pesquisar()">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    Pesquisar
                 </button>
-                <button type="button" style="margin-left:1%;" class="btn btn-success" (click)="consultar()"
-                  title="Limpar a pesquisa">
-                  <i class="fa fa-ban" aria-hidden="true"></i>
-                  Limpar
+                <button type="submit" class="btn btn-danger" style="margin-left:1%;"
+                    (click)="consultar()">
+                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                    Limpar
                 </button>
-
-              </div>
+            </div>
             </div>
           </accordion-group>
         </accordion>
       </div>
 
+
+
       <div class="table-responsive-lg">
         <table class="table table-striped">
-          <thead>
-            <tr
-              class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
-              <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Conta</th>
-              <th class="col-lg-6 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Descrição</th>
-              <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Tempo</th>
-              <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let fase of obraFases"
-              class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-              <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">{{fase.conta}}</td>
-              <td class="col-lg-6 col-xs mb-1 text-muted text-small w-sm-100">{{fase.descricao}}</td>
-              <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100 hidden-xs">{{fase.tempomedio}}</td>
-              <td class="col-lg-2 col-xs mb-1 text-muted text-small w-sm-100">
+            <thead>
+                <tr
+                    class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
+                    <th class="col-lg-5 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Descrição</th>
+                    <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Tempo médio</th>
+                    <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Conta</th>
+                    <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm"
+                        style="text-align: center;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let fase of obraFases"
+                    class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                    <td class="col-lg-5 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
+                        {{fase.descricao}}</td>
+                    <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
+                        {{fase.tempomedio}}</td>
+                    <td class="col-lg-3 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
+                        style="border: none;">{{fase.conta}}</td>
+                    <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
 
-                <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
-                  (click)="editar(i)" title="Editar">
-                  <i class="fa fa-pencil-alt" aria-hidden="true"></i>
-                </button>
-                <div *ngIf="habilitarConsulta">
-                  <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
-                    (click)="selecionarCliente(i)" title="Selecionar Cliente">
-                    <i class="fa fa-check-circle" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
+                        <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1 p-1"
+                            (click)="editar(fase)" title="Editar">
+                            <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
-      </div>
+    </div>
     </div>
   </form>
 </div>
