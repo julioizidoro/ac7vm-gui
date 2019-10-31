@@ -51,6 +51,7 @@ export class ConsuclienteComponent implements OnInit {
 
 
     consultar() {
+        this.formulario.reset();
         this.clienteService.listar('c').subscribe(
             resposta => {
                 this.instituicao = resposta as any;
