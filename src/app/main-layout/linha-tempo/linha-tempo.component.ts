@@ -16,6 +16,8 @@ export class LinhaTempoComponent {
                 {
                     label: 'Fluxo de caixa',
                     data: [65, 59, 80, 81, 56, 55, 40],
+                    fill: false,
+                    borderColor: '#880E4F'
                 },
             ]
         };
@@ -36,6 +38,7 @@ export class LinhaTempoComponent {
 
     @Input()
     set listChart(array: Array<any>) {
-        this.data.datasets[0] = {data: array, label: 'Saldo atual'};
+        this.data.datasets[0] = {data: array, label: 'Saldo atual', fill: false,
+            borderColor: '#880E4F'};
     }
 }
