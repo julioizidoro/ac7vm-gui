@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import {Component, Input} from '@angular/core';
 import * as moment from 'moment';
 
@@ -9,7 +10,9 @@ import * as moment from 'moment';
 export class LinhaTempoComponent {
     data: any;
 
-    constructor() {
+    constructor(
+        private router: Router,
+    ) {
         this.data = {
             labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
             datasets: [
@@ -24,16 +27,14 @@ export class LinhaTempoComponent {
     }
 
     selectData(event) {
-        console.log(event.element._index);
-        console.log('valor', this.data.datasets[event.element._datasetIndex].data[event.element._index]);
-        console.log('dia', this.data.labels[event.element._index] + '/2019');
-        console.log('dia formatado',  moment(this.data.labels[event.element._index] + '/2019', 'DD/MM/YYYY').toDate());
+        let data = (this.data.labels[event.element._index] + '/2019');
+        data = data.substring(6, 10) + '-' + data.substring(3, 5) + '-' + data.substring(0, 2);
+        this.router.navigate(['fluxocaixa', data]);
     }
 
     @Input()
     set listDates(array: Array<any>) {
         this.data.labels = array;
-        console.log(array);
     }
 
     @Input()

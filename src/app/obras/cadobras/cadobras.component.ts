@@ -43,7 +43,7 @@ export class CadObrasComponent implements OnInit {
             this.obra = resposta as Obra;
             if ( this.obra != null) {
               this.formulario = this.formBuilder.group({
-                idora: this.obra.idobra,
+                idobra: this.obra.idobra,
                 cei: this.obra.cei,
                 nome: this.obra.nome,
                 descricao: this.obra.descricao,
@@ -88,7 +88,7 @@ export class CadObrasComponent implements OnInit {
 
 setFormulario() {
   this.formulario = this.formBuilder.group({
-    idora: [null],
+    idobra: [null],
     cei: [null],
     nome: [null],
     descricao: [null],
@@ -114,6 +114,7 @@ salvar() {
     resposta => {
       this.obra = resposta as any;
       this.router.navigate(['consobras']);
+      console.log(this.obra);
     },
     err => {
       console.log(err.error.erros.join(' '));

@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class ConsObrasComponent implements OnInit {
 
     formulario: FormGroup;
-    isFirstOpen = true;
+    isFirstOpen = false;
     oneAtATime = true;
     obras: Obra[];
 
@@ -35,6 +35,7 @@ export class ConsObrasComponent implements OnInit {
   }
 
   consultar() {
+    this.formulario.reset();
     this.obrasService.listar().subscribe(
         resposta => {
             this.obras = resposta as any;

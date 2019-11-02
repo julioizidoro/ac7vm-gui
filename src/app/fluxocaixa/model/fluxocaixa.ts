@@ -11,6 +11,6 @@ export class Fluxocaixa {
     saldoatual: number;
     entradasprevistas: number;
     saidasprevistas: number;
-    fluxocontas: Fluxocontas[];
-    fluxolancamento: Fluxolancamento[];
+    fluxocontasList: Fluxocontas[];
+    fluxolancamentoList: Fluxolancamento[];
 }

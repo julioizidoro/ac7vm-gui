@@ -10,7 +10,7 @@
     <div class="container-fluid" style="width:100%;">
       <div class="w-100">
         <button type="button" style="float:right;" class="btn btn-color font-weight-light"
-          routerLink="/cadobras">
+          routerLink="/cadservicos">
           <i class="fa fa-plus" aria-hidden="true"></i>
           <a class="ml-2">Adicionar</a>
         </button>
@@ -20,10 +20,6 @@
         <accordion [closeOthers]="oneAtATime">
           <accordion-group heading="Pesquisar" [isOpen]="isFirstOpen">
             <div class="row">
-              <div class="form-group col-md-2">
-                <label for="conta">Conta</label>
-                <input type="text" class="form-control" id="conta" placeholder="Conta" formControlName="conta">
-              </div>
               <div class="form-group col-md-6">
                 <label for="descricao">Descrição</label>
                 <input type="text" class="form-control" id="descricao" placeholder="Descrição"
@@ -68,7 +64,7 @@
                     <td class="col-lg-5 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
                         {{servico.descricao}}</td>
                     <td class="col-lg-5 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
-                        {{servico.conta}}</td>
+                        {{servico.planoconta.descricao}}</td>
                     <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
 
                         <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1 p-1"

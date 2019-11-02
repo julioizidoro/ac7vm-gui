@@ -44,13 +44,13 @@
             </div>
             <div class="row mb-4">
                 <div class="col-12">
-                    <h4 style="text-align: center;">Titulo 1</h4>
+                    <h4 style="text-align: center;">Fluxo de Caixa</h4>
                     <div class="table-responsive-lg">
                         <table class="table table-striped">
                             <thead>
                             <tr
                                     class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
-                                <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">data</th>
+                                <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data</th>
                                 <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Entradas
                                     Previstas
                                 </th>
@@ -71,8 +71,8 @@
                             <tr *ngFor="let fluxo of fluxoCaixa"
                                 class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
                                 <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
-                                    style="border: none;">
-                                    {{fluxo.data | date: 'dd/MM/yyyy' }}</td>
+                                    style="border: none;"><a (click)="selectFluxoCaixa(fluxo)">
+                                    {{fluxo.data | date: 'dd/MM/yyyy' }}</a></td>
                                 <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
                                     style="border: none;">
                                     {{fluxo.entradasprevistas  | currency: 'BRL' :true }}</td>
@@ -90,52 +90,60 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-xs-12">
-                    <h4 style="text-align: center;">Titulo 2</h4>
+                    <h4 style="text-align: center;">Lançamentos</h4>
                     <div class="table-responsive-lg">
                         <table class="table table-striped">
                             <thead>
                             <tr class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
-                                <th class="col-lg-6 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">data</th>
-                                <th class="col-lg-6 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Entradas
-                                    Previstas
-                                </th>
+                                <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data</th>
+                                <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Forma Pagto</th>
+                                <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Valor</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let fluxo of fluxoCaixa"
+                            <tr *ngFor="let fluxo of fluxoCaixaSelecionado.fluxolancamentoList"
                                 class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-                                <td class="col-lg-6 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
+                                <td class="col-lg-4 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
                                     style="border: none;">
                                     {{fluxo.data | date: 'dd/MM/yyyy' }}</td>
-                                <td class="col-lg-6 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
+                                <td class="col-lg-4 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
                                     style="border: none;">
-                                    {{fluxo.entradasprevistas  | currency: 'BRL' :true }}</td>
+                                    {{fluxo.formapagamento.descricao }}</td>
+                                <td class="col-lg-4 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
+                                    style="border: none;">
+                                    {{fluxo.valorentrada  | currency: 'BRL' :true }}</td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-xs-12">
-                    <h4 style="text-align: center;">Titulo 3</h4>
+                    <h4 style="text-align: center;">Contas</h4>
                     <div class="table-responsive-lg">
                         <table class="table table-striped">
                             <thead>
                             <tr class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
-                                <th class="col-lg-6 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">data</th>
-                                <th class="col-lg-6 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Entradas
-                                    Previstas
-                                </th>
+                                <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">No. Doc</th>
+                                <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Vencimento</th>
+                                <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Valor</th>
+                                <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Paga/Recebida</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let fluxo of fluxoCaixa"
+                            <tr *ngFor="let fluxo of fluxoCaixaSelecionado.fluxocontasList"
                                 class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-                                <td class="col-lg-6 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
+                                <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
                                     style="border: none;">
-                                    {{fluxo.data | date: 'dd/MM/yyyy' }}</td>
-                                <td class="col-lg-6 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
+                                    {{fluxo.contas.documento }}</td>
+                                <td class="col-lg-4 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
                                     style="border: none;">
-                                    {{fluxo.entradasprevistas  | currency: 'BRL' :true }}</td>
+                                    {{fluxo.contas.datavencimento | date: 'dd/MM/yyyy' }}</td>
+                                <td class="col-lg-4 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
+                                    style="border: none;">
+                                    {{fluxo.contas.valorparcela  | currency: 'BRL' :true }}</td>
+                                <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
+                                    style="border: none;">
+                                    {{fluxo.contas.id }}</td>
                             </tr>
                             </tbody>
                         </table>

@@ -19,4 +19,13 @@ export class FluxocaixaService {
   listarInicial(): Observable<Fluxocaixa> {
     return this.httpCliente.get<Fluxocaixa>(env.baseApiUrl + 'fluxocaixa/listar');
   }
+
+  getId(id: number): Observable<Fluxocaixa> {
+    return this.httpCliente.get<Fluxocaixa>(env.baseApiUrl + 'fluxocaixa/id' + id);
+  }
+
+  getData(data: Date): Observable<Fluxocaixa> {
+    return this.httpCliente.get<Fluxocaixa>(env.baseApiUrl + 'fluxocaixa/data/' + data);
+  }
+
 }

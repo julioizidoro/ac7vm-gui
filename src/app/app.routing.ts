@@ -69,6 +69,7 @@ const APP_ROUTER: Routes = [
     { path: 'cadreceber/:id/:rota', component: CadreceberComponent },
     { path: 'login', component: LoginComponent },
     { path: 'fluxocaixa', component: FluxocaixaComponent },
+    { path: 'fluxocaixa/:data', component: FluxocaixaComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTER);
