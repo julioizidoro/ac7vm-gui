@@ -3,13 +3,14 @@ import { Fluxocontas } from './model/fluxoconta';
 import { Fluxolancamento } from './model/fluxolancamento';
 import { FluxocaixaService } from './fluxocaixa.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Fluxocaixa } from './model/fluxocaixa';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Contas } from '../contas/model/contas';
 import { Formapagamento } from '../formapagamento/model/formapagamento';
 import { Planoconta } from '../planocontas/model/planoconta';
+import {ModalDirective} from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-fluxocaixa',
@@ -29,6 +30,7 @@ export class FluxocaixaComponent implements OnInit {
   paga: boolean;
   recebida: boolean;
   conta: Contas;
+  @ViewChild('centralLarge', null) public showModalOnClick: ModalDirective;
 
   constructor(
     private router: Router,
@@ -164,6 +166,10 @@ export class FluxocaixaComponent implements OnInit {
       planocontas: [null],
       formapagamento: new Formapagamento(),
     });
+  }
+
+  openModal() {
+    this.showModalOnClick.show();
   }
 
 }
