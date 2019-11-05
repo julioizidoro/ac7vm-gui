@@ -105,6 +105,7 @@ export class ConsreceberComponent implements OnInit {
   }
   editar(conta: Contas) {
     console.log(conta);
-    this.router.navigate(['/cadreceber', conta.idcontas]);
+    this.contasService.setContas(conta);
+    this.router.navigate(['/cadreceber']);
   }
 }

@@ -3,13 +3,34 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Contas } from './model/contas';
 import { environment as env } from '../../environments/environment.prod';
+import { Instituicao } from '../cliente/model/instituicao';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContasService {
 
+  private conta: Contas;
+  private isntituicao: Instituicao;
+
   constructor( private httpCliente: HttpClient ) { }
+
+
+  setContas( conta: Contas) {
+    this.conta = conta;
+  }
+
+  getContas() {
+    return this.conta;
+  }
+
+  setInstituicao( instituicao: Instituicao) {
+    this.isntituicao = instituicao;
+  }
+
+  getInstituicao() {
+    return this.isntituicao;
+  }
 
 
   // Contas a recever

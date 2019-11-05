@@ -8,6 +8,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Fluxocaixa } from './model/fluxocaixa';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Contas } from '../contas/model/contas';
+import { Formapagamento } from '../formapagamento/model/formapagamento';
+import { Planoconta } from '../planocontas/model/planoconta';
 
 @Component({
   selector: 'app-fluxocaixa',
@@ -16,6 +18,7 @@ import { Contas } from '../contas/model/contas';
 })
 export class FluxocaixaComponent implements OnInit {
 
+  titulo: String;
   pformulario: FormGroup;
   formulario: FormGroup;
   isFirstOpen = false;
@@ -23,16 +26,28 @@ export class FluxocaixaComponent implements OnInit {
   fluxoCaixa: Fluxocaixa[];
   inscricao: Subscription;
   fluxoCaixaSelecionado: Fluxocaixa;
+  paga: boolean;
+  recebida: boolean;
+  conta: Contas;
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private fluxoCaixaService: FluxocaixaService,
     private activeRrouter: ActivatedRoute,
-  ) { }
+  ) {
+    this.conta = new Contas;
+    this.conta.instituicao = new Instituicao;
+    this.conta.instituicao.nome = '';
+    this.conta.planoconta = new Planoconta();
+    this.conta.planoconta.descricao = '';
+    this.conta.formapagamento = new Formapagamento();
+    this.conta.formapagamento.descricao = '';
+    this.setFormulario(this.conta);
+  }
 
   ngOnInit() {
-    this.IniciaFormulario();
+    this.titulo = 'Conta';
     this.fluxoCaixaSelecionado = new Fluxocaixa();
     this.pformulario = this.formBuilder.group({
       datainicial: [null],
@@ -84,11 +99,29 @@ export class FluxocaixaComponent implements OnInit {
 
   selectFluxoCaixa(fluxoCaixa: Fluxocaixa) {
     this.fluxoCaixaSelecionado = fluxoCaixa;
+    this.selectFluxoCaixaConta(this.fluxoCaixaSelecionado.fluxocontasList[0]);
   }
 
   selectFluxoCaixaConta(fluxoconta: Fluxocontas) {
     this.formulario.reset();
     this.setFormulario(fluxoconta.contas);
+    if (fluxoconta.contas.tipo === 'R') {
+      if (fluxoconta.contas.valorpago === 0) {
+        this.recebida = false;
+      } else {
+        this.recebida = true;
+      }
+      this.titulo = 'Contas a receber';
+      this.paga = false;
+    } else {
+      if (fluxoconta.contas.valorpago === 0) {
+        this.paga = false;
+      } else {
+        this.paga = true;
+      }
+      this.recebida = false;
+      this.titulo = 'Cota a pagar';
+    }
     return 'centralLarge.show()';
   }
 
@@ -127,9 +160,9 @@ export class FluxocaixaComponent implements OnInit {
       datapagamento: [null],
       valorpago : 0,
       observacao: [null],
-      instituicao: instituicao,
+      instituicao: [null],
       planocontas: [null],
-      formapagamento: [null],
+      formapagamento: new Formapagamento(),
     });
   }
 

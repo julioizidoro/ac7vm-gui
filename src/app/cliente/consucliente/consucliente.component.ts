@@ -1,3 +1,4 @@
+import { ContasService } from './../../contas/contas.service';
 import {ClienteService} from '../cliente.service';
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
@@ -28,7 +29,8 @@ export class ConsuclienteComponent implements OnInit {
         private formBuilder: FormBuilder,
         private router: Router,
         private clienteService: ClienteService,
-        private activeRrouter: ActivatedRoute
+        private activeRrouter: ActivatedRoute,
+        private contasService: ContasService,
     ) {
     }
 
@@ -71,8 +73,8 @@ export class ConsuclienteComponent implements OnInit {
     }
 
     editar(instituicao: Instituicao) {
-        console.log(instituicao);
-        this.router.navigate(['/cadcliente', instituicao.idinstituicao]);
+        this.clienteService.setCliente(instituicao);
+        this.router.navigate(['/cadCliente']);
     }
 
     selecionarCliente(clienteSelecionado: Instituicao) {
@@ -80,7 +82,8 @@ export class ConsuclienteComponent implements OnInit {
         if (this.rotaAnterior === 'bens') {
             this.router.navigate(['/cadbens', 'e', clienteSelecionado.idinstituicao, 'conscliente']);
         } else if (this.rotaAnterior === 'contasr') {
-            this.router.navigate(['/cadreceber', clienteSelecionado.idinstituicao, 'conscliente']);
+            this.contasService.setInstituicao(clienteSelecionado);
+            this.router.navigate(['/cadreceber']);
         }
     }
 
