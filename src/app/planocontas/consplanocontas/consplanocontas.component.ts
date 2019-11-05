@@ -95,7 +95,8 @@ export class ConsPlanoContasComponent implements OnInit {
    }
 
   editar(conta: Planoconta) {
-    this.router.navigate([ '/cadplanocontas' ,   conta.idplanoconta ]);
+    this.planocontaservice.setPlanoConta(conta);
+    this.router.navigate([ '/cadplanocontas']);
   }
 
 }

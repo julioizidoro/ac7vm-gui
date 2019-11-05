@@ -36,28 +36,32 @@ export class CadbensComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.formulario = this.formBuilder.group({
-            idbens: [null],
-            descricao: [null],
-            dataentrada: [null],
-            valorentrada: [null],
-            datasaida: [null],
-            valorsaida: [null],
-            diferenca: [null],
-            percentual: [null],
-            planoconta: [null],
-            instituicao: [null]
-        });
         this.listarPlanoContas();
-        this.instituicaoSelecionada = new Instituicao();
-        this.instituicaoSelecionada.nome = '';
-        let id;
-        let tipo;
-        let rota;
-        this.inscricao = this.activeRrouter.params.subscribe(params => {
-            id = params.id;
-            tipo = params.tipo;
-            rota = params.rota;
+        this.instituicaoSelecionada = this.clienteService.getCliente();
+        if (this.instituicaoSelecionada == null) {
+            this.instituicaoSelecionada = new Instituicao();
+            this.instituicaoSelecionada.nome = '';
+        }
+        this.bens = this.bensService.getBens();
+        if (this.bens == null) {
+            this.formulario = this.formBuilder.group({
+                idbens: [null],
+                descricao: [null],
+                dataentrada: [null],
+                valorentrada: [null],
+                datasaida: [null],
+                valorsaida: [null],
+                diferenca: [null],
+                percentual: [null],
+                planoconta: [null],
+                instituicao: [null]
+            });
+        } else {
+            let tipo;
+            this.inscricao = this.activeRrouter.params.subscribe(params => {
+                tipo = params.tipo;
+            });
+
             if (tipo === 'e') {
                 this.telaEntrada = false;
                 this.telaSaida = true;
@@ -68,71 +72,20 @@ export class CadbensComponent implements OnInit {
                 this.telaEntrada = true;
                 this.telaSaida = true;
             }
-            console.log(this.telaEntrada, this.telaSaida);
-            if (rota == null) {
-                if (id != null) {
-                    this.bensService.getBens(id).subscribe(
-                        resposta => {
-                            this.bens = resposta as Bens;
-                            this.planoConta = this.bens.planoconta;
-                            this.instituicaoSelecionada = this.bens.instituicao;
-                            this.formulario = this.formBuilder.group({
-                                idbens: this.bens.idbens,
-                                descricao: this.bens.descricao,
-                                dataentrada: this.bens.dataentrada,
-                                valorentrada: this.bens.valorentrada,
-                                datasaida: this.bens.datasaida,
-                                valorsaida: this.bens.valorsaida,
-                                diferenca: this.bens.diferenca,
-                                percentual: this.bens.percentual,
-                                planoconta: this.bens.planoconta,
-                                instituicao: this.bens.instituicao
-                            });
-                        },
-                        error => {
-                            console.log(error.error.erros.join(' '));
-                        }
-                    );
-                } else {
-                    this.formulario = this.formBuilder.group({
-                        idbens: [null],
-                        descricao: [null],
-                        dataentrada: [null],
-                        valorentrada: [null],
-                        datasaida: [null],
-                        valorsaida: [null],
-                        diferenca: [null],
-                        percentual: [null],
-                        planoconta: [null],
-                        instituicao: [null],
-                    });
-                }
-            } else {
-                if (rota === 'conscliente') {
-                    this.clienteService.pesquisarId(id).subscribe(
-                        resposta => {
-                            this.instituicaoSelecionada = resposta as Instituicao;
-                            this.formulario = this.formBuilder.group({
-                                idbens: [null],
-                                descricao: [null],
-                                dataentrada: [null],
-                                valorentrada: [null],
-                                datasaida: [null],
-                                valorsaida: [null],
-                                diferenca: [null],
-                                percentual: [null],
-                                planoconta: [null],
-                                instituicao: this.instituicaoSelecionada
-                            });
-                        },
-                        error => {
-                            console.log(error.error.erros.join(' '));
-                        }
-                    );
-                }
-            }
+            this.formulario = this.formBuilder.group({
+                idbens: this.bens.idbens,
+                descricao: this.bens.descricao,
+                dataentrada: this.bens.dataentrada,
+                valorentrada: this.bens.valorentrada,
+                datasaida: this.bens.datasaida,
+                valorsaida: this.bens.valorsaida,
+                diferenca: this.bens.diferenca,
+                percentual: this.bens.percentual,
+                planoconta: this.bens.planoconta,
+                instituicao: this.bens.instituicao
+            });
+        }
 
-        });
     }
 
     compararPalnoConta(obj1, obj2) {

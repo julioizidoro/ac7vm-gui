@@ -9,7 +9,17 @@ import { environment as env } from '../../environments/environment.prod';
 })
 export class FormapagamentoService {
 
+  private formaPagamento: Formapagamento;
+
   constructor( private httpCliente: HttpClient ) { }
+
+  setFormaPagamento( formaPagamento: Formapagamento) {
+    this.formaPagamento = formaPagamento;
+  }
+
+  getFormaPagamento() {
+    return this.formaPagamento;
+  }
 
   listar(): Observable<Formapagamento> {
     return this.httpCliente.get<Formapagamento>(env.baseApiUrl + 'formapagamento');

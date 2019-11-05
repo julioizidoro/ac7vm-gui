@@ -8,7 +8,17 @@ import { Grupoplanoconta } from './model/grupoplanoconta';
 @Injectable()
 export class GrupoContasService {
 
+  private grupoPlannoContas : Grupoplanoconta;
+
   constructor( private httpCliente: HttpClient) { }
+
+  setGrupoPlanoContas( grupoPlanoContas: Grupoplanoconta) {
+    this.grupoPlannoContas = grupoPlanoContas;
+  }
+
+  getGrupoPlanoContas() {
+    return this.grupoPlannoContas;
+  }
 
   listar(): Observable<Grupoplanoconta> {
     return this.httpCliente.get<Grupoplanoconta>(env.baseApiUrl + 'grupoplanocontas');

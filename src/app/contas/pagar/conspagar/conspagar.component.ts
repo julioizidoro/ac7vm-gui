@@ -103,7 +103,7 @@ export class ConspagarComponent implements OnInit {
   }
 
   editar(c: Contas) {
-    console.log(c);
-    this.router.navigate(['/cadpagar', c.idcontas]);
+    this.contasService.setContas( c );
+    this.router.navigate(['/cadpagar']);
   }
 }

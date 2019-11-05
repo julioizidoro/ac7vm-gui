@@ -60,7 +60,8 @@ export class ConsGrupoContasComponent implements OnInit {
  }
 
  editar(grupoConta: Grupoplanoconta) {
-  this.router.navigate([ '/cadgrupocontas' ,   grupoConta.idgrupoplanoconta ]);
+   this.grupocontasservice.setGrupoPlanoContas(grupoConta);
+  this.router.navigate([ '/cadgrupocontas']);
 }
 
 }

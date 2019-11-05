@@ -10,6 +10,7 @@ import { Contas } from '../../model/contas';
 import { Formapagamento } from 'src/app/formapagamento/model/formapagamento';
 import { ContasService } from '../../contas.service';
 import { FormapagamentoService } from 'src/app/formapagamento/formapagamento.service';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-cad0pagar',
@@ -40,63 +41,37 @@ export class CadpagarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.habilitar = '';
+    this.listarPlanoContas();
+    this.listarFormaPagamento();
     this.setFormulario();
     this.habilitar = 'readonly';
-    this.instituicaoSelecionada = new Instituicao();
-    this.instituicaoSelecionada.nome = '';
-    let id;
-    let rota;
-    this.inscricao = this.activeRrouter.params.subscribe(params => {
-      id = params.id;
-      rota = params.rota;
-      this.tipo = params.tipo;
-    });
-    if ( rota === 'conscliente') {
-      this.clienteService.pesquisarId(id).subscribe(
-        resposta => {
-          this.instituicaoSelecionada = resposta as Instituicao;
-          if (this.instituicaoSelecionada != null ) {
-            this.formulario.patchValue({
-              instituicao : this.instituicaoSelecionada,
-            });
-            this.habilitar = '';
-            this.listarPlanoContas();
-            this.listarFormaPagamento();
-          }
-        },
-        error => {
-          console.log(error.error.erros.join(' '));
-        }
-    );
-    } else {
-      if (id != null) {
-      this.contasService.getcpId(id).subscribe(
-        resposta => {
-          this.conta = resposta as Contas;
-          this.planoContaSelecionado = this.conta.planoconta;
-          this.instituicaoSelecionada = this.conta.instituicao;
-          this.formulario = this.formBuilder.group({
-            idcontas: this.conta.idcontas,
-            documento: this.conta.documento,
-            dataemissao: this.conta.dataemissao,
-            datavencimento: this.conta.datavencimento,
-            numeroparcela: this.conta.numeroparcela,
-            valorparcela: this.conta.valorparcela,
-            desconto: this.conta.desconto,
-            juros: this.conta.juros,
-            datapagamento: this.conta.datapagamento,
-            valorpago : this.conta.valorpago,
-            observacao: this.conta.observacao,
-            instituicao: this.conta.instituicao,
-            planocontas: this.conta.planoconta,
-            formapagamento: this.conta.formapagamento
-          });
-        },
-        error => {
-          console.log(error.error.erros.join(' '));
-        }
-    );
-      }
+    this.instituicaoSelecionada = this.clienteService.getCliente();
+    if (this.instituicaoSelecionada == null) {
+      this.instituicaoSelecionada = new Instituicao();
+      this.instituicaoSelecionada.nome = '';
+      this.formulario.patchValue({
+        instituicao : this.instituicaoSelecionada,
+      });
+    }
+    this.conta = this.contasService.getContas();
+    if ( this.conta != null ){
+      this.formulario = this.formBuilder.group({
+        idcontas: this.conta.idcontas,
+        documento: this.conta.documento,
+        dataemissao: this.conta.dataemissao,
+        datavencimento: this.conta.datavencimento,
+        numeroparcela: this.conta.numeroparcela,
+        valorparcela: this.conta.valorparcela,
+        desconto: this.conta.desconto,
+        juros: this.conta.juros,
+        datapagamento: this.conta.datapagamento,
+        valorpago : this.conta.valorpago,
+        observacao: this.conta.observacao,
+        instituicao: this.conta.instituicao,
+        planocontas: this.conta.planoconta,
+        formapagamento: this.conta.formapagamento
+      });
     }
   }
 

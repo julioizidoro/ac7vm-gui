@@ -8,7 +8,17 @@ import { Servicos } from './model/servicos';
 @Injectable()
 export class ServicosService {
 
+  private servico: Servicos;
+
   constructor( private httpCliente: HttpClient) { }
+
+  setServico(servico: Servicos) {
+    this.servico= servico;
+  }
+
+  getServico() {
+    return this.servico;
+  }
 
   listar(): Observable<Servicos> {
     return this.httpCliente.get<Servicos>(env.baseApiUrl + 'servicos');

@@ -8,7 +8,17 @@ import { Obrafase } from './model/obrafase';
 @Injectable()
 export class FaseObraService {
 
+  private faseObra: Obrafase;
+
   constructor( private httpCliente: HttpClient) { }
+
+  setFaseObra( faseObra: Obrafase) {
+    this.faseObra = faseObra;
+  }
+
+  getFaseObra() {
+    return this.faseObra;
+  }
 
   listar(): Observable<Obrafase> {
     return this.httpCliente.get<Obrafase>(env.baseApiUrl + 'faseobras');

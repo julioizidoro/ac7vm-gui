@@ -32,34 +32,16 @@ export class CadProdutoComponent implements OnInit {
       unidade: [null],
       quantidademinima: [null]
     });
-    let id: number;
-    this.activeRrouter.params.subscribe(params => {
-      id = params.id;
-      if (id != null) {
-        this.produtoservice.pesquisarId(id).subscribe(
-          resposta => {
-            this.produto = resposta as Produto;
-            if (this.produto == null) {
-              this.formulario = this.formBuilder.group({
-                idproduto: [null],
-                descricao: [null],
-                unidade: [null],
-                quantidademinima: [null]
-              });
-            } else {
-              this.formulario = this.formBuilder.group({
-                idproduto: this.produto.idproduto,
-                descricao: this.produto.descricao,
-                unidade: this.produto.unidade,
-                quantidademinima: this.produto.quantidademinima
-              });
-            }
-          },
-          err => {
-            console.log(err.error.erros.join(' '));
-          });
-      }
-    });
+    this.produto = this.produtoservice.getProduto();
+    if (this.produto !=null){
+      this.formulario = this.formBuilder.group({
+        idproduto: this.produto.idproduto,
+        descricao: this.produto.descricao,
+        unidade: this.produto.unidade,
+        quantidademinima: this.produto.quantidademinima
+      });
+    }
+    
   }
 
   salvar() {

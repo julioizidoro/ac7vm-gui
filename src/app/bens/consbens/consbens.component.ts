@@ -98,18 +98,22 @@ export class ConsbensComponent implements OnInit {
   }
 
   novo() {
+    this.bensService.setBens(null);
     this.router.navigate([ '/cadbens' ,   'e' ]);
   }
 
   editar( bem: Bens) {
-    this.router.navigate([ '/cadbens' ,   'e', bem.idbens ]);
+    this.bensService.setBens(bem);
+    this.router.navigate([ '/cadbens' ,   'e' ]);
   }
 
   saida( bem: Bens ) {
-    this.router.navigate([ '/cadbens' ,   's', bem.idbens ]);
+    this.bensService.setBens(bem);
+    this.router.navigate([ '/cadbens' ,   's' ]);
   }
 
   visualizar( bem: Bens) {
-    this.router.navigate([ '/cadbens' ,   'v', bem.idbens ]);
+    this.bensService.setBens(bem);
+    this.router.navigate([ '/cadbens' ,   'v' ]);
   }
 }

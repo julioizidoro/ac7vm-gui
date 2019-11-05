@@ -61,7 +61,8 @@ export class ConsServicosComponent implements OnInit {
  }
 
  editar(servico: Servicos) {
-  this.router.navigate([ '/cadservicos' ,  servico.idservico ]);
+   this.servicosService.setServico(servico);
+  this.router.navigate([ '/cadservicos']);
  }
 
 }

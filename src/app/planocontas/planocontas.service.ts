@@ -8,7 +8,17 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class PlanoContasService {
 
+  private planoConta: Planoconta;
+
   constructor( private httpCliente: HttpClient) { }
+
+  setPlanoConta(planoConta: Planoconta) {
+    this.planoConta = planoConta;
+  }
+
+  getPlanoConta(){
+    return this.planoConta;
+  }
 
   listar(): Observable<Planoconta> {
     return this.httpCliente.get<Planoconta>(env.baseApiUrl + 'planocontas');

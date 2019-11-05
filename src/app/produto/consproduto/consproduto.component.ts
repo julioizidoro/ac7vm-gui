@@ -42,7 +42,8 @@ export class ConsProdutoComponent implements OnInit {
   }
 
   editar(produto: Produto) {
-    this.router.navigate([ '/cadproduto' ,   produto.idproduto ]);
+    this.produtoservice.setProduto(produto);
+    this.router.navigate([ '/cadproduto']);
   }
 
   pesquisar() {

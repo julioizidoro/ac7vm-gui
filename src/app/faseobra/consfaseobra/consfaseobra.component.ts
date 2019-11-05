@@ -40,7 +40,8 @@ export class ConsFaseObraComponent implements OnInit {
   }
 
   editar(obraFase: Obrafase) {
-    this.router.navigate([ '/cadfaseobra' ,  obraFase.idobrafase ]);
+    this.faseObraService.setFaseObra(obraFase);
+    this.router.navigate([ '/cadfaseobra' ]);
   }
 
   pesquisar() {

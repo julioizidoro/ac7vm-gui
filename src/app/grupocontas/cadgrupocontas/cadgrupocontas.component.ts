@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { Router, ActivatedRoute } from '@angular/router';
+import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-cadgrupocontas',
@@ -31,29 +32,13 @@ export class CadGrupoContasComponent implements OnInit {
       conta: [null],
       descricao: [null],
     });
-    let id;
-    this.activeRrouter.params.subscribe(params => {
-      id = params.id;
-      if (id != null) {
-        this.grupocontasservice.pesquisarId(id).subscribe(
-          resposta => {
-            this.grupoConta = resposta as Grupoplanoconta;
-            if (this.grupoConta == null ) {
-              this.formulario = this.formBuilder.group({
-                conta: [null],
-                descricao: [null],
-              });
-            } else {
-              this.formulario = this.formBuilder.group({
-                conta: this.grupoConta.conta,
-                descricao: this.grupoConta.descricao,
-              });
-            }
-          }
-        );
-      }
-  });
-
+    this.grupoConta = this.grupocontasservice.getGrupoPlanoContas();
+    if ( this.grupoConta !=null ){
+      this.formulario = this.formBuilder.group({
+        conta: this.grupoConta.conta,
+        descricao: this.grupoConta.descricao,
+      });
+    }
 }
 
 salvar() {

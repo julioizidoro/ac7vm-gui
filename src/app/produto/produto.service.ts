@@ -8,7 +8,17 @@ import { Produto } from './model/produto';
 @Injectable()
 export class ProdutoService {
 
+  private produto: Produto;
+
   constructor( private httpCliente: HttpClient) { }
+
+  setProduto(produto: Produto) {
+    this.produto = produto;
+  }
+
+  getProduto(){
+    return this.produto;
+  }
 
   listar(): Observable<Produto> {
     return this.httpCliente.get<Produto>(env.baseApiUrl + 'produtos');

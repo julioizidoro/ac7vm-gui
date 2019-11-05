@@ -34,37 +34,28 @@ export class CadObrasComponent implements OnInit {
 
   ngOnInit() {
     this.setFormulario();
-    this.obra = new Obra;
-    let id: number;
-    this.activeRrouter.params.subscribe(params => {
-      id = params.id;
-      if ( id != null) {
-        this.obrasService.pesquisarId(id).subscribe( resposta => {
-            this.obra = resposta as Obra;
-            if ( this.obra != null) {
-              this.formulario = this.formBuilder.group({
-                idobra: this.obra.idobra,
-                cei: this.obra.cei,
-                nome: this.obra.nome,
-                descricao: this.obra.descricao,
-                datainicio: this.obra.datainicio,
-                endereco: this.obra.endereco,
-                numero: this.obra.numero,
-                bairro: this.obra.bairro,
-                cidade: this.obra.cidade,
-                cep: this.obra.cep,
-                estado: this.obra.estado,
-                engenheiro: this.obra.engenheiro,
-                previsaotermino: this.obra.previsaotermino,
-                datatermino: this.obra.datatermino,
-                padraoacabamento: this.obra.padraoacabamento,
-                blocos: this.obra.blocos,
-                unidades: this.obra.unidades
-              });
-            }
-        });
-      }
-    });
+    this.obra = this.obrasService.getObra();
+    if (this.obra !=null) {
+      this.formulario = this.formBuilder.group({
+        idobra: this.obra.idobra,
+        cei: this.obra.cei,
+        nome: this.obra.nome,
+        descricao: this.obra.descricao,
+        datainicio: this.obra.datainicio,
+        endereco: this.obra.endereco,
+        numero: this.obra.numero,
+        bairro: this.obra.bairro,
+        cidade: this.obra.cidade,
+        cep: this.obra.cep,
+        estado: this.obra.estado,
+        engenheiro: this.obra.engenheiro,
+        previsaotermino: this.obra.previsaotermino,
+        datatermino: this.obra.datatermino,
+        padraoacabamento: this.obra.padraoacabamento,
+        blocos: this.obra.blocos,
+        unidades: this.obra.unidades
+      });
+    }
   }
 
   consultarCEP() {

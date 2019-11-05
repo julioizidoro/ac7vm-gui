@@ -8,7 +8,17 @@ import { Obra } from './model/obra';
 @Injectable()
 export class ObrasService {
 
+  private obra: Obra;
+
   constructor( private httpCliente: HttpClient) { }
+
+  setObra( obra: Obra) {
+    this.obra = obra;
+  }
+
+  getObra() {
+    return this.obra;
+  }
 
   listar(): Observable<Obra> {
       return this.httpCliente.get<Obra>(env.baseApiUrl + 'obras');

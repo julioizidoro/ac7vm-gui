@@ -29,36 +29,20 @@ export class CadsPlanoContasComponent implements OnInit {
 
 
   ngOnInit() {
+    this.listarGrupoConta();
       this.formulario = this.formBuilder.group({
         conta: [null],
         descricao: [null],
         grupo: [null],
       });
-      this.listarGrupoConta();
-      let id;
-      this.activeRrouter.params.subscribe(params => {
-        id = params.id;
-        if (id != null) {
-          this.planocontaservice.pesquisarId(id).subscribe(
-            resposta => {
-              this.planoConta = resposta as Planoconta;
-              if (this.planoConta == null ) {
-                this.formulario = this.formBuilder.group({
-                  conta: [null],
-                  descricao: [null],
-                  grupo: [null],
-                });
-              } else {
-                this.formulario = this.formBuilder.group({
-                  conta: this.planoConta.conta,
-                  descricao: this.planoConta.descricao,
-                  grupo: this.planoConta.grupoplanoconta
-                });
-              }
-            }
-          );
-        }
-    });
+      this.planoConta = this.planocontaservice.getPlanoConta();
+      if (this.planoConta !=null) {
+        this.formulario = this.formBuilder.group({
+          conta: this.planoConta.conta,
+          descricao: this.planoConta.descricao,
+          grupo: this.planoConta.grupoplanoconta
+        });
+      }
   }
 
   listarGrupoConta() {

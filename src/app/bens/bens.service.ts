@@ -9,7 +9,17 @@ import { environment as env } from '../../environments/environment.prod';
 })
 export class BensService {
 
+  private bens: Bens;
+
   constructor( private httpCliente: HttpClient ) { }
+
+  setBens( bens: Bens) {
+    this.bens = bens;
+  }
+
+  getBens() {
+    return this.bens;
+  }
 
   listar(): Observable<Bens> {
     return this.httpCliente.get<Bens>(env.baseApiUrl + 'bens');
@@ -23,7 +33,7 @@ export class BensService {
     return this.httpCliente.get<Bens>(env.baseApiUrl + 'bens/planocontas/' + idplanoconta);
   }
 
-  getBens(id: number): Observable<Bens> {
+  getId(id: number): Observable<Bens> {
     return this.httpCliente.get<Bens>(env.baseApiUrl + 'bens/id/' + id);
   }
 

@@ -38,40 +38,21 @@ export class CadFaseObraComponent implements OnInit {
       tempomedio: [null],
       conta: [null],
       planoconta: [null]
-  });
-    let id: number;
-    this.activeRrouter.params.subscribe(params => {
-      id = params.id;
-      if (id != null) {
-        this.faseobraservice.pesquisarId(id).subscribe(
-          resposta => {
-            this.obraFase = resposta as Obrafase;
-            if (this.obraFase == null) {
-              this.formulario = this.formBuilder.group({
-                idobrafase: [null],
-                descricao: [null],
-                tempomedio: [null],
-                conta: [null],
-                planoconta: [null]
-              });
-            } else {
-              this.formulario = this.formBuilder.group({
-                idobrafase: this.obraFase.idobrafase,
-                descricao: this.obraFase.descricao,
-                tempomedio: this.obraFase.tempomedio,
-                conta: this.obraFase.conta,
-                planoconta: this.obraFase.planoconta
-              });
-            }
-          },
-          err => {
-            console.log(err.error.erros.join(' '));
-          });
-      }
-  });
-}
+    });
+    this.obraFase = this.faseobraservice.getFaseObra();
+    if ( this.obraFase !=null ){
+      this.formulario = this.formBuilder.group({
+        idobrafase: this.obraFase.idobrafase,
+        descricao: this.obraFase.descricao,
+        tempomedio: this.obraFase.tempomedio,
+        conta: this.obraFase.conta,
+        planoconta: this.obraFase.planoconta
+      });
+    }
+  }
 
 salvar() {
+  this.listarPlanoConta();
   this.obraFase = this.formulario.value;
   this.obraFase.planoconta = this.planoConta;
   this.faseobraservice.salvar( this.obraFase ).subscribe(

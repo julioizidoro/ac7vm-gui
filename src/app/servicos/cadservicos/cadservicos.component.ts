@@ -44,36 +44,16 @@ export class CadServicosComponent implements OnInit {
       obrafase: [null],
       planoconta: [null]
     });
-    let id: number;
-    this.activeRrouter.params.subscribe(params => {
-      id = params.id;
-      if (id != null) {
-        this.servicoService.pesquisarId(id).subscribe(
-          resposta => {
-            this.servico = resposta as Servicos;
-            if (this.servico == null) {
-              this.formulario = this.formBuilder.group({
-                idservico: [null],
-                descricao: [null],
-                conta: [null],
-                obrafase: [],
-                planoconta: [null]
-              });
-            } else {
-              this.formulario = this.formBuilder.group({
-                idservico: this.servico.idservico,
-                descricao: this.servico.descricao,
-                conta: this.servico.conta,
-                obrafase: this.servico.obrafase,
-                planoconta: this.servico.planoconta
-              });
-            }
-          },
-          err => {
-            console.log(err.error.erros.join(' '));
-          });
-      }
-  });
+    this.servico = this.servicoService.getServico();
+    if (this.servico !=null) {
+      this.formulario = this.formBuilder.group({
+        idservico: this.servico.idservico,
+        descricao: this.servico.descricao,
+        conta: this.servico.conta,
+        obrafase: this.servico.obrafase,
+        planoconta: this.servico.planoconta
+      });
+    }
 }
 
 

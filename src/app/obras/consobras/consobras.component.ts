@@ -53,7 +53,8 @@ export class ConsObrasComponent implements OnInit {
   }
 
   editar(obra: Obra) {
-    this.router.navigate([ '/cadobras' , obra.idobra ]);
+    this.obrasService.setObra(obra);
+    this.router.navigate([ '/cadobras']);
   }
 
 }
