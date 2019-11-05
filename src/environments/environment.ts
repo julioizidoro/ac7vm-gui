@@ -7,6 +7,8 @@ export const environment = {
   baseUrl: 'http://ac7vm.com.br/ac7vm-api/api/',
   baseApiUrl: 'http://ac7vm.com.br/ac7vm-api/api/'
 
+};
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
