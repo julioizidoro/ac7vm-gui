@@ -21,6 +21,7 @@ export class FluxocaixaComponent implements OnInit {
 
   titulo: String;
   pformulario: FormGroup;
+  lformulario: FormGroup;
   formulario: FormGroup;
   isFirstOpen = false;
   oneAtATime = true;
@@ -30,7 +31,8 @@ export class FluxocaixaComponent implements OnInit {
   paga: boolean;
   recebida: boolean;
   conta: Contas;
-  @ViewChild('centralLarge', null) public showModalOnClick: ModalDirective;
+  @ViewChild('contas', null) public showModalContasOnClick: ModalDirective;
+  @ViewChild('lancamentos', null) public showModalLancamentosOnClick: ModalDirective;
 
   constructor(
     private router: Router,
@@ -49,6 +51,7 @@ export class FluxocaixaComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.iniciarFormularioLancamentos();
     this.titulo = 'Conta';
     this.fluxoCaixaSelecionado = new Fluxocaixa();
     this.pformulario = this.formBuilder.group({
@@ -101,31 +104,9 @@ export class FluxocaixaComponent implements OnInit {
 
   selectFluxoCaixa(fluxoCaixa: Fluxocaixa) {
     this.fluxoCaixaSelecionado = fluxoCaixa;
-    this.selectFluxoCaixaConta(this.fluxoCaixaSelecionado.fluxocontasList[0]);
   }
 
-  selectFluxoCaixaConta(fluxoconta: Fluxocontas) {
-    this.formulario.reset();
-    this.setFormulario(fluxoconta.contas);
-    if (fluxoconta.contas.tipo === 'R') {
-      if (fluxoconta.contas.valorpago === 0) {
-        this.recebida = false;
-      } else {
-        this.recebida = true;
-      }
-      this.titulo = 'Contas a receber';
-      this.paga = false;
-    } else {
-      if (fluxoconta.contas.valorpago === 0) {
-        this.paga = false;
-      } else {
-        this.paga = true;
-      }
-      this.recebida = false;
-      this.titulo = 'Cota a pagar';
-    }
-    return 'centralLarge.show()';
-  }
+ 
 
   setFormulario(conta: Contas) {
     this.formulario = this.formBuilder.group({
@@ -146,7 +127,7 @@ export class FluxocaixaComponent implements OnInit {
     });
   }
 
-  IniciaFormulario() {
+  IniciaFormularioContas() {
     let instituicao: Instituicao;
     instituicao = new Instituicao();
     instituicao.nome = '';
@@ -168,8 +149,59 @@ export class FluxocaixaComponent implements OnInit {
     });
   }
 
-  openModal() {
-    this.showModalOnClick.show();
+  iniciarFormularioLancamentos() {
+    this.lformulario = this.formBuilder.group({
+      idfluxolancamento: [null],
+      data: [null],
+      valorentrada: [null],
+      valorsaida: [null],
+      planoconta: [null],
+      formapagamento: [null],
+      fluxocaixa: [null],
+      usuario: [null],
+    });  
+  }
+
+  setFormularioLancamentos(fluxolancamento: Fluxolancamento) {
+    this.lformulario = this.formBuilder.group({
+      idfluxolancamento: fluxolancamento.idfluxolancamento,
+      data: fluxolancamento.data,
+      valorentrada: fluxolancamento.valorentrada,
+      valrosaida: fluxolancamento.valorsaida,
+      planoconta: fluxolancamento.planoconta,
+      formapagamento: fluxolancamento.formapgamento,
+      fluxocaixa: fluxolancamento.fluxocaixa,
+      usuario: fluxolancamento.usuario,
+    });  
+  }
+
+  openModalContas(fluxoconta: Fluxocontas) {
+    this.formulario.reset();
+    this.setFormulario(fluxoconta.contas);
+    if (fluxoconta.contas.tipo === 'R') {
+      if (fluxoconta.contas.valorpago === 0) {
+        this.recebida = false;
+      } else {
+        this.recebida = true;
+      }
+      this.titulo = 'Contas a receber';
+      this.paga = false;
+    } else {
+      if (fluxoconta.contas.valorpago === 0) {
+        this.paga = false;
+      } else {
+        this.paga = true;
+      }
+      this.recebida = false;
+      this.titulo = 'Cota a pagar';
+    }
+    this.showModalContasOnClick.show();
+  }
+
+  openModalLancamentos(fluxolancamento: Fluxolancamento) {
+    this.lformulario.reset();
+    this.setFormularioLancamentos(fluxolancamento);
+    this.showModalLancamentosOnClick.show();
   }
 
 }
