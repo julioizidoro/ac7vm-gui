@@ -84,7 +84,7 @@ export class FluxocaixaComponent implements OnInit {
   }
 
   listar() {
-    this.fluxoCaixaService.listar().subscribe(
+    this.fluxoCaixaService.listarInicial().subscribe(
       resposta => {
         this.fluxoCaixa = resposta as any;
         if (this.fluxoCaixaService != null) {
@@ -105,8 +105,6 @@ export class FluxocaixaComponent implements OnInit {
   selectFluxoCaixa(fluxoCaixa: Fluxocaixa) {
     this.fluxoCaixaSelecionado = fluxoCaixa;
   }
-
- 
 
   setFormulario(conta: Contas) {
     this.formulario = this.formBuilder.group({
@@ -159,7 +157,7 @@ export class FluxocaixaComponent implements OnInit {
       formapagamento: [null],
       fluxocaixa: [null],
       usuario: [null],
-    });  
+    });
   }
 
   setFormularioLancamentos(fluxolancamento: Fluxolancamento) {
@@ -172,7 +170,7 @@ export class FluxocaixaComponent implements OnInit {
       formapagamento: fluxolancamento.formapgamento,
       fluxocaixa: fluxolancamento.fluxocaixa,
       usuario: fluxolancamento.usuario,
-    });  
+    });
   }
 
   openModalContas(fluxoconta: Fluxocontas) {

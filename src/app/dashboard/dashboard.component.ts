@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
         await this.fluxoCaixaService.listarInicial().subscribe(
         resposta => {
               this.lista = resposta as any;
+              if (this.lista != null) {
               let dia;
               for (let i = 0; i <= (this.lista.length - 1); i++ ) {
                 this.listaFluxoCaixa.push(this.lista[i].saldoatual);
@@ -36,6 +37,7 @@ export class DashboardComponent implements OnInit {
                 this.listaDate.push(moment(dia).format('DD/MM'));
               }
               this.view = true;
+            }
             });
     }
 

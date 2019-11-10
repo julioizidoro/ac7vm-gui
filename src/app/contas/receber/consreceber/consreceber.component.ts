@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Contas } from '../../model/contas';
 import { ContasService } from '../../contas.service';
-import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-consreceber',
@@ -17,6 +16,7 @@ export class ConsreceberComponent implements OnInit {
   isFirstOpen = false;
   oneAtATime = true;
   contas: Contas[];
+  contaSelecinada: Contas;
   inscricao: Subscription;
   pagas: boolean;
 
@@ -55,7 +55,6 @@ export class ConsreceberComponent implements OnInit {
     const datainicial = this.formulario.get('datainicial').value;
     const datafinal = this.formulario.get('datafinal').value;
     const tipoConta = this.formulario.get('tipoConta').value;
-    console.log('teste');
     if (cliente === null) {
        const nome = '@';
     }
@@ -104,8 +103,20 @@ export class ConsreceberComponent implements OnInit {
     }
   }
   editar(conta: Contas) {
-    console.log(conta);
+    this.contasService.setReceber(false);
     this.contasService.setContas(conta);
+    this.router.navigate(['/cadreceber']);
+  }
+
+  adicionar() {
+    this.contasService.setContas(null);
+    this.contasService.setReceber(false);
+    this.router.navigate(['/cadreceber']);
+  }
+
+  baixar(conta: Contas) {
+    this.contasService.setContas(conta);
+    this.contasService.setReceber(true);
     this.router.navigate(['/cadreceber']);
   }
 }

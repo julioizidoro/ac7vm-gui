@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { PlanoContasService } from '../planocontas.service';
 import { Planoconta } from '../model/planoconta';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -36,7 +35,7 @@ export class CadsPlanoContasComponent implements OnInit {
         grupo: [null],
       });
       this.planoConta = this.planocontaservice.getPlanoConta();
-      if (this.planoConta !=null) {
+      if (this.planoConta != null) {
         this.formulario = this.formBuilder.group({
           conta: this.planoConta.conta,
           descricao: this.planoConta.descricao,

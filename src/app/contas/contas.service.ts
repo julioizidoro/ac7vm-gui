@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Contas } from './model/contas';
@@ -12,9 +12,11 @@ export class ContasService {
 
   private conta: Contas;
   private isntituicao: Instituicao;
+  private receber: boolean;
 
-  constructor( private httpCliente: HttpClient ) { }
+  constructor( private httpCliente: HttpClient ) {
 
+  }
 
   setContas( conta: Contas) {
     this.conta = conta;
@@ -32,6 +34,14 @@ export class ContasService {
     return this.isntituicao;
   }
 
+  setReceber( receber: boolean ) {
+    this.receber = receber;
+  }
+
+  getReceber() {
+    return this.receber;
+  }
+
 
   // Contas a recever
 
@@ -44,12 +54,14 @@ export class ContasService {
   }
 
   salvarCR(conta: Contas): Observable<any> {
-    console.log(conta);
     return this.httpCliente.post<any>(env.baseApiUrl + 'cr/salvar', conta);
   }
 
+  baixarCR(conta: Contas): Observable<any> {
+    return this.httpCliente.post<any>(env.baseApiUrl + 'cr/baixar', conta);
+  }
+
   pesquisarDocumentoCR(documento: string):  Observable<any> {
-    console.log('teste');
     return this.httpCliente.get<any>(env.baseApiUrl + 'cr/doc/' + documento);
   }
 
@@ -82,10 +94,13 @@ export class ContasService {
 
   salvarCP(conta: Contas): Observable<any> {
     return this.httpCliente.post<any>(env.baseApiUrl + 'cp/salvar', conta);
+  }
+
+  baixarCP(conta: Contas): Observable<any> {
+  return this.httpCliente.post<any>(env.baseApiUrl + 'cp/baixar', conta);
 }
 
 pesquisarDocumentoCP(documento: string):  Observable<any> {
-  console.log('teste');
   return this.httpCliente.get<any>(env.baseApiUrl + 'cp/doc/' + documento);
 }
 

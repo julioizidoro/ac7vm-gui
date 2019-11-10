@@ -8,6 +8,12 @@
   </div>
   <form [formGroup]="formulario">
     <div class="container-fluid" style="width:100%;">
+        <div class="w-100">
+            <button type="button" style="float:right;" class="btn btn-color font-weight-light" (click)="adicionar()">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              <a class="ml-2">Adicionar</a>
+            </button>
+          </div>
       <br><br>
       <div class="w-100">
         <accordion [closeOthers]="oneAtATime">
@@ -78,7 +84,7 @@
             <thead>
                 <tr
                     class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
-                    <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">No. Doc</th>
+                    <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm" style="text-align:right">No. Doc</th>
                     <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Cliente</th>
                     <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Vencimento</th>
                     <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Valor</th>
@@ -97,47 +103,34 @@
                     <td class="col-lg-3 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
                         {{conta.instituicao.nome}}</td>
                     <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
-                        style="border: none;">{{conta.vencimento | date: 'dd/MM/yyyy'}}</td>
+                        style="border: none;">{{conta.datavencimento | date: 'dd/MM/yyyy'}}</td>
                     <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
-                        style="border: none;">{{conta.valorparcela | currency: 'BRL' :true}}</td>
+                        style="border: none;text-align:right">{{conta.valorparcela | currency: ' '}}</td>
                     <td *ngIf="pagas" class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
                         style="border: none;">{{conta.datapagamento | date: 'dd/mm/yyyy'}}</td>
                         
-                    <td *ngIf="pagas" class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
-
-                        <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1 p-1"
-                            (click)="editar(conta)" title="Editar">
-                            <i class="fa fa-pencil-alt" aria-hidden="true"></i>
-                        </button>
-                        <div *ngIf="habilitarConsulta">
-                            <button type="button" style="float:right;"
-                                class="btn btn-light font-weight-light mr-1 p-1" (click)="editar(conta)"
-                                title="Editar">
-                                <i class="fa fa-pencil-alt" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </td>
+                   
                     <td *ngIf="!pagas" class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
 
                       <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1 p-1"
                           (click)="editar(conta)" title="Editar">
                           <i class="fa fa-pencil-alt" aria-hidden="true"></i>
                       </button>
-                      <div *ngIf="habilitarConsulta">
-                          <button type="button" style="float:right;"
-                              class="btn btn-light font-weight-light mr-1 p-1" (click)="editar(conta)"
-                              title="Editar">
-                              <i class="fa fa-pencil-alt" aria-hidden="true"></i>
-                          </button>
-                      </div>
+                      <button type="button" style="float:right;"
+                              class="btn btn-light font-weight-light mr-1 p-1" (click)="baixar(conta)"
+                              title="Receber">
+                              <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
+                      </button>
                   </td>
+              
                 </tr>
             </tbody>
         </table>
     </div>
-
+    
       
     </div>
   </form>
 </div>
+
 

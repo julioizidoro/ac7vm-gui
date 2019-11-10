@@ -22,12 +22,14 @@ export class CadreceberComponent implements OnInit {
   conta: Contas;
   planoContaSelecionado: Planoconta;
   instituicaoSelecionada: Instituicao;
+  nomeCliente: string;
   formaPagamentoSelecionada: Formapagamento;
   listaPlanoContas: Planoconta[];
   listaFormaPagamento: Formapagamento[];
   inscricao: Subscription;
   tipo: string;
   habilitar: string;
+  receber: boolean;
 
   constructor(
     private planocontaservice: PlanoContasService,
@@ -42,11 +44,16 @@ export class CadreceberComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.receber = this.contasService.getReceber();
+    this.instituicaoSelecionada = new Instituicao();
+    this.instituicaoSelecionada.nome = '';
+    this.nomeCliente = '';
     this.setFormulario();
     this.listarFormaPagamento();
     this.listarPlanoContas();
     if (this.conta != null) {
       this.planoContaSelecionado = this.conta.planoconta;
+      this.formaPagamentoSelecionada = this.conta.formapagamento;
       this.instituicaoSelecionada = this.conta.instituicao;
       this.formulario = this.formBuilder.group({
         idcontas: this.conta.idcontas,
@@ -65,8 +72,11 @@ export class CadreceberComponent implements OnInit {
         formapagamento: this.conta.formapagamento
       });
     } else {
-      if (this.clienteService.getCliente != null ) {
-        this.instituicaoSelecionada = this.clienteService.getCliente();
+      this.conta = new Contas();
+      this.conta.dataemissao = new Date();
+      this.instituicaoSelecionada = this.contasService.getInstituicao();
+      if (this.instituicaoSelecionada != null  ) {
+        this.nomeCliente = this.instituicaoSelecionada.nome;
       }
     }
 }
@@ -108,7 +118,15 @@ export class CadreceberComponent implements OnInit {
       this.router.navigate(['/consCliente' ,  'contasr']);
   }
 
-    salvar() {
+  salvar() {
+    if (this.receber) {
+      this.baixar();
+    } else {
+      this.incluir();
+    }
+  }
+
+    incluir() {
       this.conta = this.formulario.value;
       this.conta.instituicao = this.instituicaoSelecionada;
       this.conta.planoconta = this.planoContaSelecionado;
@@ -121,7 +139,9 @@ export class CadreceberComponent implements OnInit {
       this.contasService.salvarCR( this.conta).subscribe(
         resposta => {
           this.conta = resposta as any;
-          this.router.navigate(['/cadreceber']);
+          this.contasService.setContas(null);
+          this.contasService.setInstituicao(null);
+          this.router.navigate(['/consreceber']);
         },
         err => {
           console.log(err.error.erros.join(' '));
@@ -147,10 +167,38 @@ export class CadreceberComponent implements OnInit {
         datapagamento: [null],
         valorpago : 0,
         observacao: [null],
-        instituicao: this.instituicaoSelecionada,
+        instituicao: [null],
         planocontas: [null],
         formapagamento: [null],
       });
     }
+
+    calcularValorPago() {
+      this.conta = this.formulario.value;
+      this.conta.valorpago = (this.conta.valorparcela + this.conta.juros) - this.conta.desconto;
+      this.formulario.patchValue({
+        valorpago : this.conta.valorpago
+      });
+    }
+
+    baixar() {
+      this.conta = this.formulario.value;
+      this.conta.instituicao = this.instituicaoSelecionada;
+      this.conta.planoconta = this.planoContaSelecionado;
+      this.conta.formapagamento = this.formaPagamentoSelecionada;
+      this.contasService.baixarCR( this.conta).subscribe(
+        resposta => {
+          this.conta = resposta as any;
+          this.contasService.setContas(null);
+          this.contasService.setInstituicao(null);
+          this.router.navigate(['/consreceber']);
+        },
+        err => {
+          console.log(err.error.erros.join(' '));
+        }
+      );
+    }
+
+
 }
 

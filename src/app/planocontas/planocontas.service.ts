@@ -16,7 +16,7 @@ export class PlanoContasService {
     this.planoConta = planoConta;
   }
 
-  getPlanoConta(){
+  getPlanoConta() {
     return this.planoConta;
   }
 

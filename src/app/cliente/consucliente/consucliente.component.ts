@@ -78,12 +78,14 @@ export class ConsuclienteComponent implements OnInit {
     }
 
     selecionarCliente(clienteSelecionado: Instituicao) {
-        console.log(clienteSelecionado.nome);
         if (this.rotaAnterior === 'bens') {
             this.router.navigate(['/cadbens', 'e', clienteSelecionado.idinstituicao, 'conscliente']);
         } else if (this.rotaAnterior === 'contasr') {
             this.contasService.setInstituicao(clienteSelecionado);
             this.router.navigate(['/cadreceber']);
+        } else if (this.rotaAnterior === 'contasp') {
+            this.contasService.setInstituicao(clienteSelecionado);
+            this.router.navigate(['/cadpagar']);
         }
     }
 

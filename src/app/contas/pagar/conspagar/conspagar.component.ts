@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -16,6 +16,7 @@ export class ConspagarComponent implements OnInit {
   isFirstOpen = false;
   oneAtATime = true;
   contas: Contas[];
+  contaSelecinada: Contas;
   inscricao: Subscription;
   pagas: boolean;
 
@@ -65,7 +66,7 @@ export class ConspagarComponent implements OnInit {
   }
 
   pesquisarDocumento(ducumento: string) {
-    this.contasService.pesquisarDocumentoCP( ducumento ).subscribe(
+    this.contasService.pesquisarDocumentoCR( ducumento ).subscribe(
       resposta => {
         this.contas = resposta as any;
       }
@@ -102,8 +103,21 @@ export class ConspagarComponent implements OnInit {
     }
   }
 
-  editar(c: Contas) {
-    this.contasService.setContas( c );
+  editar(conta: Contas) {
+    this.contasService.setReceber(false);
+    this.contasService.setContas(conta);
+    this.router.navigate(['/cadpagar']);
+  }
+
+  adicionar() {
+    this.contasService.setContas(null);
+    this.contasService.setReceber(false);
+    this.router.navigate(['/cadpagar']);
+  }
+
+  baixar(conta: Contas) {
+    this.contasService.setContas(conta);
+    this.contasService.setReceber(true);
     this.router.navigate(['/cadpagar']);
   }
 }
