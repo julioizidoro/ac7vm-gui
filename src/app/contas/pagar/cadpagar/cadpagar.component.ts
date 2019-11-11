@@ -11,6 +11,9 @@ import { Formapagamento } from 'src/app/formapagamento/model/formapagamento';
 import { ContasService } from '../../contas.service';
 import { FormapagamentoService } from 'src/app/formapagamento/formapagamento.service';
 import { TouchSequence } from 'selenium-webdriver';
+import { FluxocaixaService } from 'src/app/fluxocaixa/fluxocaixa.service';
+import { Fluxocaixa } from 'src/app/fluxocaixa/model/fluxocaixa';
+import { FluxocaixaModule } from 'src/app/fluxocaixa/fluxocaixa.module';
 
 @Component({
   selector: 'app-cad0pagar',
@@ -38,7 +41,7 @@ export class CadpagarComponent implements OnInit {
     private formBuilder: FormBuilder,
     private activeRrouter: ActivatedRoute,
     private router: Router,
-    private clienteService: ClienteService,
+    private fluxoCaixaService: FluxocaixaService,
     private formaPagamentoService: FormapagamentoService,
   ) {
     this.conta = this.contasService.getContas();
@@ -122,7 +125,7 @@ export class CadpagarComponent implements OnInit {
     if (this.receber) {
       this.baixar();
     } else {
-      this.incluir();
+      this.verificarSaldoFluxoCaixa();
     }
   }
 
@@ -191,6 +194,22 @@ export class CadpagarComponent implements OnInit {
           this.contasService.setContas(null);
           this.contasService.setInstituicao(null);
           this.router.navigate(['/conspagar']);
+        },
+        err => {
+          console.log(err.error.erros.join(' '));
+        }
+      );
+    }
+
+    verificarSaldoFluxoCaixa() {
+      this.fluxoCaixaService.getData(this.conta.datavencimento).subscribe(
+        resposta => {
+          let fluxocaixa = resposta as Fluxocaixa;
+          if (fluxocaixa.saldoatual< this.conta.valorparcela) {
+            console.log('MEnsagm de erro');
+          } else {
+            this.incluir();
+          }
         },
         err => {
           console.log(err.error.erros.join(' '));

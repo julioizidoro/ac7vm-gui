@@ -4,12 +4,13 @@ import { Planoconta } from 'src/app/planocontas/model/planoconta';
 import { Instituicao } from 'src/app/cliente/model/instituicao';
 import { PlanoContasService } from 'src/app/planocontas/planocontas.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ClienteService } from 'src/app/cliente/cliente.service';
 import { Subscription } from 'rxjs';
 import { Contas } from '../../model/contas';
 import { Formapagamento } from 'src/app/formapagamento/model/formapagamento';
 import { ContasService } from '../../contas.service';
 import { FormapagamentoService } from 'src/app/formapagamento/formapagamento.service';
+import { Fluxocaixa } from 'src/app/fluxocaixa/model/fluxocaixa';
+import { FluxocaixaService } from 'src/app/fluxocaixa/fluxocaixa.service';
 
 @Component({
   selector: 'app-cadreceber',
@@ -37,7 +38,7 @@ export class CadreceberComponent implements OnInit {
     private formBuilder: FormBuilder,
     private activeRrouter: ActivatedRoute,
     private router: Router,
-    private clienteService: ClienteService,
+    private fluxoCaixaService: FluxocaixaService,
     private formaPagamentoService: FormapagamentoService,
   ) {
     this.conta = this.contasService.getContas();
@@ -122,7 +123,7 @@ export class CadreceberComponent implements OnInit {
     if (this.receber) {
       this.baixar();
     } else {
-      this.incluir();
+      this.verificarSaldoFluxoCaixa();
     }
   }
 
@@ -192,6 +193,22 @@ export class CadreceberComponent implements OnInit {
           this.contasService.setContas(null);
           this.contasService.setInstituicao(null);
           this.router.navigate(['/consreceber']);
+        },
+        err => {
+          console.log(err.error.erros.join(' '));
+        }
+      );
+    }
+
+    verificarSaldoFluxoCaixa() {
+      this.fluxoCaixaService.getData(this.conta.datavencimento).subscribe(
+        resposta => {
+          let fluxocaixa = resposta as Fluxocaixa;
+          if (fluxocaixa.saldoatual< this.conta.valorparcela) {
+            console.log('MEnsagm de erro');
+          } else {
+            this.incluir();
+          }
         },
         err => {
           console.log(err.error.erros.join(' '));
