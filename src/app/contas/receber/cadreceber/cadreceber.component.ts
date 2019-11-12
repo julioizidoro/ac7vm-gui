@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Planoconta } from 'src/app/planocontas/model/planoconta';
 import { Instituicao } from 'src/app/cliente/model/instituicao';
@@ -11,6 +11,7 @@ import { ContasService } from '../../contas.service';
 import { FormapagamentoService } from 'src/app/formapagamento/formapagamento.service';
 import { Fluxocaixa } from 'src/app/fluxocaixa/model/fluxocaixa';
 import { FluxocaixaService } from 'src/app/fluxocaixa/fluxocaixa.service';
+import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-cadreceber',
@@ -31,6 +32,7 @@ export class CadreceberComponent implements OnInit {
   tipo: string;
   habilitar: string;
   receber: boolean;
+  @ViewChild('fluxoCaixa', null) public showModalFluxoCaixaOnClick: ModalDirective;
 
   constructor(
     private planocontaservice: PlanoContasService,
@@ -66,7 +68,7 @@ export class CadreceberComponent implements OnInit {
         desconto: this.conta.desconto,
         juros: this.conta.juros,
         datapagamento: this.conta.datapagamento,
-        valorpago : this.conta.valorpago,
+        valorpago: this.conta.valorpago,
         observacao: this.conta.observacao,
         instituicao: this.conta.instituicao,
         planocontas: this.conta.planoconta,
@@ -76,11 +78,11 @@ export class CadreceberComponent implements OnInit {
       this.conta = new Contas();
       this.conta.dataemissao = new Date();
       this.instituicaoSelecionada = this.contasService.getInstituicao();
-      if (this.instituicaoSelecionada != null  ) {
+      if (this.instituicaoSelecionada != null) {
         this.nomeCliente = this.instituicaoSelecionada.nome;
       }
     }
-}
+  }
 
   listarPlanoContas() {
     this.planocontaservice.listar().subscribe(
@@ -116,96 +118,100 @@ export class CadreceberComponent implements OnInit {
   }
 
   consultaCliente() {
-      this.router.navigate(['/consCliente' ,  'contasr']);
+    this.router.navigate(['/consCliente', 'contasr']);
   }
 
-  salvar() {
+  salvar(liberarSaldo: boolean) {
     if (this.receber) {
       this.baixar();
     } else {
-      this.verificarSaldoFluxoCaixa();
+      this.showModalFluxoCaixaOnClick.hide();
+      this.verificarSaldoFluxoCaixa(liberarSaldo);
     }
   }
 
-    incluir() {
-      this.conta = this.formulario.value;
-      this.conta.instituicao = this.instituicaoSelecionada;
-      this.conta.planoconta = this.planoContaSelecionado;
-      this.conta.formapagamento = this.formaPagamentoSelecionada;
-      this.conta.valorpago = 0;
-      this.conta.desconto = 0;
-      this.conta.juros = 0;
-      this.conta.tipo = 'r';
-      console.log(this.conta);
-      this.contasService.salvarCR( this.conta).subscribe(
-        resposta => {
-          this.conta = resposta as any;
-          this.contasService.setContas(null);
-          this.contasService.setInstituicao(null);
-          this.router.navigate(['/consreceber']);
-        },
-        err => {
-          console.log(err.error.erros.join(' '));
-        }
-      );
-    }
+  incluir() {
+    this.conta = this.formulario.value;
+    this.conta.instituicao = this.instituicaoSelecionada;
+    this.conta.planoconta = this.planoContaSelecionado;
+    this.conta.formapagamento = this.formaPagamentoSelecionada;
+    this.conta.valorpago = 0;
+    this.conta.desconto = 0;
+    this.conta.juros = 0;
+    this.conta.tipo = 'r';
+    console.log(this.conta);
+    this.contasService.salvarCR(this.conta).subscribe(
+      resposta => {
+        this.conta = resposta as any;
+        this.contasService.setContas(null);
+        this.contasService.setInstituicao(null);
+        this.router.navigate(['/consreceber']);
+      },
+      err => {
+        console.log(err.error.erros.join(' '));
+      }
+    );
+  }
 
-    cancelar() {
-      this.formulario.reset();
-      this.router.navigate(['/consreceber']);
-    }
+  cancelar() {
+    this.formulario.reset();
+    this.router.navigate(['/consreceber']);
+  }
 
-    setFormulario() {
-      this.formulario = this.formBuilder.group({
-        idcontas: [null],
-        documento: [null],
-        dataemissao: new Date(),
-        datavencimento: [null],
-        numeroparcela: [null],
-        valorparcela: [null],
-        desconto: [null],
-        juros: [null],
-        datapagamento: [null],
-        valorpago : 0,
-        observacao: [null],
-        instituicao: [null],
-        planocontas: [null],
-        formapagamento: [null],
-      });
-    }
+  setFormulario() {
+    this.formulario = this.formBuilder.group({
+      idcontas: [null],
+      documento: [null],
+      dataemissao: new Date(),
+      datavencimento: [null],
+      numeroparcela: [null],
+      valorparcela: [null],
+      desconto: [null],
+      juros: [null],
+      datapagamento: [null],
+      valorpago: 0,
+      observacao: [null],
+      instituicao: [null],
+      planocontas: [null],
+      formapagamento: [null],
+    });
+  }
 
-    calcularValorPago() {
-      this.conta = this.formulario.value;
-      this.conta.valorpago = (this.conta.valorparcela + this.conta.juros) - this.conta.desconto;
-      this.formulario.patchValue({
-        valorpago : this.conta.valorpago
-      });
-    }
+  calcularValorPago() {
+    this.conta = this.formulario.value;
+    this.conta.valorpago = (this.conta.valorparcela + this.conta.juros) - this.conta.desconto;
+    this.formulario.patchValue({
+      valorpago: this.conta.valorpago
+    });
+  }
 
-    baixar() {
-      this.conta = this.formulario.value;
-      this.conta.instituicao = this.instituicaoSelecionada;
-      this.conta.planoconta = this.planoContaSelecionado;
-      this.conta.formapagamento = this.formaPagamentoSelecionada;
-      this.contasService.baixarCR( this.conta).subscribe(
-        resposta => {
-          this.conta = resposta as any;
-          this.contasService.setContas(null);
-          this.contasService.setInstituicao(null);
-          this.router.navigate(['/consreceber']);
-        },
-        err => {
-          console.log(err.error.erros.join(' '));
-        }
-      );
-    }
+  baixar() {
+    this.conta = this.formulario.value;
+    this.conta.instituicao = this.instituicaoSelecionada;
+    this.conta.planoconta = this.planoContaSelecionado;
+    this.conta.formapagamento = this.formaPagamentoSelecionada;
+    this.contasService.baixarCR(this.conta).subscribe(
+      resposta => {
+        this.conta = resposta as any;
+        this.contasService.setContas(null);
+        this.contasService.setInstituicao(null);
+        this.router.navigate(['/consreceber']);
+      },
+      err => {
+        console.log(err.error.erros.join(' '));
+      }
+    );
+  }
 
-    verificarSaldoFluxoCaixa() {
+  verificarSaldoFluxoCaixa(liberarSaldo: boolean) {
+    if (liberarSaldo) {
+      this.incluir();
+    } else {
       this.fluxoCaixaService.getData(this.conta.datavencimento).subscribe(
         resposta => {
-          let fluxocaixa = resposta as Fluxocaixa;
-          if (fluxocaixa.saldoatual< this.conta.valorparcela) {
-            console.log('MEnsagm de erro');
+          const fluxocaixa = resposta as Fluxocaixa;
+          if (fluxocaixa.saldoatual < this.conta.valorparcela) {
+            this.showModalFluxoCaixaOnClick.show();
           } else {
             this.incluir();
           }
@@ -215,7 +221,5 @@ export class CadreceberComponent implements OnInit {
         }
       );
     }
-
-
+  }
 }
-

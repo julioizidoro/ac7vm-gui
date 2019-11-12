@@ -4,7 +4,7 @@ import { BensModule } from './bens/bens.module';
 import { ShareModule } from './share/share.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ClienteModule } from './cliente/cliente.module';
@@ -26,6 +26,11 @@ import {MDBBootstrapModule, IconsModule, DropdownModule} from 'angular-bootstrap
 import {UsuarioModule} from './usuario/usuario.module';
 import { FluxocaixaComponent } from './fluxocaixa/fluxocaixa.component';
 import { FluxocaixaModule } from './fluxocaixa/fluxocaixa.module';
+import { registerLocaleData } from '@angular/common';
+import br from '@angular/common/locales/br';
+
+registerLocaleData(br, 'pt-BR');
+
 
 @NgModule({
   declarations: [
@@ -63,7 +68,7 @@ import { FluxocaixaModule } from './fluxocaixa/fluxocaixa.module';
     FluxocaixaModule,
   ],
   providers: [
-
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA ]

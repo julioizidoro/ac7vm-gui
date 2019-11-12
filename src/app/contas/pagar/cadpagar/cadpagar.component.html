@@ -55,8 +55,8 @@
                     </div>
 
                     <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                      <label class="col-8" for="plano">Plano de Contas</label>
-                      <p-dropdown class="col-8" id="plano"
+                      <label  for="plano">Plano de Contas</label>
+                      <p-dropdown id="plano" [style]="{'width':'100%'}"
                                   [options]="listaPlanoContas" [(ngModel)]="planoContaSelecionado" optionLabel="descricao"
                                   [filter]="true" filterBy="label,value.descricao" [ngModelOptions]="{standalone: true}">
                       </p-dropdown>
@@ -99,7 +99,7 @@
       <hr/>
 
     <div style="margin-left:40%;">
-        <button type="button" class="btn btn-primary"  (click)="salvar()" >
+        <button type="button" class="btn btn-primary"  (click)="salvar(false)" >
             <i class="fa fa-floppy-o" aria-hidden="true" ></i>
             Salvar</button>
             <button type="submit" class="btn btn-danger" style="margin-left:1%;" (click)="cancelar()"  >
@@ -116,34 +116,34 @@
 -->
 
 
-  <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  <div mdbModal #fluxoCaixa="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog modal-notify modal-danger" role="document">
+  <div class="modal-dialog modal-notify modal-warning" role="document">
     <!--Content-->
     <div class="modal-content">
       <!--Header-->
       <div class="modal-header">
-        <p class="heading lead">Erro</p>
+        <p class="heading lead">Aviso</p>
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
-          <span aria-hidden="true" class="white-text">&times;</span>
-        </button>
+      
       </div>
 
       <!--Body-->
       <div class="modal-body">
         <div class="text-center">
           <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
-          <p>Fluxo de caixa do dia não possui saldo para pagamento desta conta</p>
+          <p>Fluxo de caixa do dia {{conta.datavencimento | date: 'dd/MM/yyyy'}} não possui saldo para pagamento desta conta</p>
         </div>
       </div>
 
       <!--Footer-->
       <div class="modal-footer justify-content-center">
-        <a type="button" mdbBtn color="success" class="waves-effect" mdbWavesEffect>Continuar
-          <mdb-icon far icon="gem" class="ml-1"></mdb-icon>
+        <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" (click)="fluxoCaixa.hide()"  mdbWavesEffect>Corrigir
+          <mdb-icon far icon="edit" class="ml-1"></mdb-icon>
         </a>
-        <a type="button" mdbBtn color="success" outline="true" class="waves-effect" mdbWavesEffect (click)="cacnelar()">Cacnelar</a>
+        <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect (click)="salvar(true)">Continuar
+          <mdb-icon far icon="arrow-alt-circle-right" class="ml-1"></mdb-icon>
+        </a>
       </div>
     </div>
     <!--/.Content-->

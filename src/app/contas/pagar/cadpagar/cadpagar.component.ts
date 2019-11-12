@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Planoconta } from 'src/app/planocontas/model/planoconta';
 import { Instituicao } from 'src/app/cliente/model/instituicao';
@@ -14,6 +14,7 @@ import { TouchSequence } from 'selenium-webdriver';
 import { FluxocaixaService } from 'src/app/fluxocaixa/fluxocaixa.service';
 import { Fluxocaixa } from 'src/app/fluxocaixa/model/fluxocaixa';
 import { FluxocaixaModule } from 'src/app/fluxocaixa/fluxocaixa.module';
+import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-cad0pagar',
@@ -34,6 +35,7 @@ export class CadpagarComponent implements OnInit {
   tipo: string;
   habilitar: string;
   receber: boolean;
+  @ViewChild('fluxoCaixa', null) public showModalFluxoCaixaOnClick: ModalDirective;
 
   constructor(
     private planocontaservice: PlanoContasService,
@@ -121,11 +123,12 @@ export class CadpagarComponent implements OnInit {
       this.router.navigate(['/consCliente' ,  'contasp']);
   }
 
-  salvar() {
+  salvar(liberarSaldo: boolean) {
     if (this.receber) {
       this.baixar();
     } else {
-      this.verificarSaldoFluxoCaixa();
+      this.showModalFluxoCaixaOnClick.hide();
+      this.verificarSaldoFluxoCaixa(liberarSaldo);
     }
   }
 
@@ -201,12 +204,15 @@ export class CadpagarComponent implements OnInit {
       );
     }
 
-    verificarSaldoFluxoCaixa() {
+  verificarSaldoFluxoCaixa(liberarSaldo: boolean) {
+    if (liberarSaldo) {
+      this.incluir();
+    } else {
       this.fluxoCaixaService.getData(this.conta.datavencimento).subscribe(
         resposta => {
-          let fluxocaixa = resposta as Fluxocaixa;
-          if (fluxocaixa.saldoatual< this.conta.valorparcela) {
-            console.log('MEnsagm de erro');
+          const fluxocaixa = resposta as Fluxocaixa;
+          if (fluxocaixa.saldoatual < this.conta.valorparcela) {
+            this.openModalFluxoCaixa();
           } else {
             this.incluir();
           }
@@ -216,7 +222,10 @@ export class CadpagarComponent implements OnInit {
         }
       );
     }
+  }
 
-
+    openModalFluxoCaixa() {
+      this.showModalFluxoCaixaOnClick.show();
+    }
 }
 
