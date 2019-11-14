@@ -155,7 +155,7 @@
                <!--<img src="https://tecseg.s3.us-east-2.amazonaws.com/usuario/1.jpg"  width=60 height=40> -->
               </a>
               <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
-                <a class="dropdown-item" href="#">exemplo 1</a>
+                <a class="dropdown-item" (click)="frame.show()" mdbWavesEffect>Alterar senha</a>
                 <a class="dropdown-item" href="#">exemplo 2</a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-sign-out-alt"></i>
@@ -171,3 +171,58 @@
 
 </header>
 <!--Main Navigation-->
+
+<form [formGroup]="formulario">
+<div mdbModal #mudarsenha="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="mudarsenha.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="password" id="senha" class="form-control" [formControl]="senha" >
+          <label for="senha">Senha atual</label>
+        </div>
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+ <!--         <input type="password" id="orangeForm-email" class="form-control" [formControl]="novasenha"
+                 mdbInput mdbValidate>
+          <label for="orangeForm-email">Nova senha</label>
+          <mdb-error
+            *ngIf="signupFormModalEmail.invalid && (signupFormModalEmail.dirty || signupFormModalEmail.touched)">Input
+            invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="signupFormModalEmail.valid && (signupFormModalEmail.dirty || signupFormModalEmail.touched)">Input
+            valid
+          </mdb-success> -->
+        </div>
+
+        <div class="md-form mb-4">
+          <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+    <!--      <input type="password" id="orangeForm-pass" class="form-control" [formControl]="confirmanovasenha"
+                 mdbInput mdbValidate>
+          <label for="orangeForm-pass">Confirma nova senha</label>
+          <mdb-error
+            *ngIf="signupFormModalPassword.invalid && (signupFormModalPassword.dirty || signupFormModalPassword.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="signupFormModalPassword.valid && (signupFormModalPassword.dirty || signupFormModalPassword.touched)">
+            Input valid
+          </mdb-success>  -->
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="deep-orange" class="waves-light" mdbWavesEffect>Sign up</button>
+      </div>
+    </div>
+  </div>
+</div>
+<form [formGroup]="formulario"></form>
