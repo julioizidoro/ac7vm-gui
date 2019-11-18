@@ -4,22 +4,19 @@ import { Planoconta } from 'src/app/planocontas/model/planoconta';
 import { Instituicao } from 'src/app/cliente/model/instituicao';
 import { PlanoContasService } from 'src/app/planocontas/planocontas.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ClienteService } from 'src/app/cliente/cliente.service';
 import { Subscription } from 'rxjs';
 import { Contas } from '../../model/contas';
 import { Formapagamento } from 'src/app/formapagamento/model/formapagamento';
 import { ContasService } from '../../contas.service';
 import { FormapagamentoService } from 'src/app/formapagamento/formapagamento.service';
-import { TouchSequence } from 'selenium-webdriver';
 import { FluxocaixaService } from 'src/app/fluxocaixa/fluxocaixa.service';
 import { Fluxocaixa } from 'src/app/fluxocaixa/model/fluxocaixa';
-import { FluxocaixaModule } from 'src/app/fluxocaixa/fluxocaixa.module';
 import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-cad0pagar',
   templateUrl: './cadpagar.component.html',
-  styleUrls: ['./cadpagar.component.css']
+  styleUrls: ['./cadpagar.component.scss']
 })
 export class CadpagarComponent implements OnInit {
 
@@ -212,6 +209,7 @@ export class CadpagarComponent implements OnInit {
         resposta => {
           const fluxocaixa = resposta as Fluxocaixa;
           if (fluxocaixa.saldoatual < this.conta.valorparcela) {
+          // if (fluxocaixa.saldoatual < this.conta.valorparcela) {
             this.openModalFluxoCaixa();
           } else {
             this.incluir();
