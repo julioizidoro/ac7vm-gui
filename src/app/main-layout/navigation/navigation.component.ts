@@ -16,6 +16,7 @@ export class NavigationComponent implements OnInit {
   clicked: boolean;
   usuario: Usuario;
   formulario: FormGroup;
+  caminhoFoto: string;
 
   constructor(
       private authService: AuthService,
@@ -28,6 +29,8 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
     this.setFormulario();
     this.usuario = this.authService.usuario;
+    this.caminhoFoto = 'https://minhasfotos.s3-sa-east-1.amazonaws.com/' + this.usuario.idusuario + '.jpg';
+    console.log(this.caminhoFoto);
   }
 
   setClicked(val: boolean): void {
@@ -42,13 +45,13 @@ export class NavigationComponent implements OnInit {
 
   setFormulario() {
     this.formulario = this.formBuilder.group({
-      senhatual: [null], 
+      senhaatual: [null], 
       novasenha: [null],
       confirmanovasenha: [null],
     });
   }
   alterarSenha() {
-    let senha = this.formulario.get('senha').value;
+    let senha = this.formulario.get('senhaatual').value;
     let novasenha = this.formulario.get('novasenha').value;
     let confirmanovasenha = this.formulario.get('confirmanovasenha').value;
   }

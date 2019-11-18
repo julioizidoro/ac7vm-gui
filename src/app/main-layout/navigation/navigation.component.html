@@ -151,12 +151,12 @@
             <li class="nav-item dropdown btn-group" dropdown>
               <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light text-white" mdbWavesEffect>
                 <label>{{ usuario.nome}}</label>
-                <i class="fas fa-user"></i>
-               <!--<img src="https://tecseg.s3.us-east-2.amazonaws.com/usuario/1.jpg"  width=60 height=40> -->
+               <!-- <i class="fas fa-user"></i> -->
+               <img src={{caminhoFoto}} width=40 height=40> 
               </a>
               <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
-                <a class="dropdown-item" (click)="frame.show()" mdbWavesEffect>Alterar senha</a>
-                <a class="dropdown-item" href="#">exemplo 2</a>
+                <a class="dropdown-item" (click)="mudarsenha.show()" mdbWavesEffect>Alterar senha</a>
+                <a class="dropdown-item" href="#">Alterar foto</a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-sign-out-alt"></i>
                   <label class="ml-1 mb-0" (click)="logof()">Sair</label>
@@ -172,7 +172,6 @@
 </header>
 <!--Main Navigation-->
 
-<form [formGroup]="formulario">
 <div mdbModal #mudarsenha="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -184,45 +183,33 @@
         </button>
       </div>
       <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="password" id="senha" class="form-control" [formControl]="senha" >
-          <label for="senha">Senha atual</label>
-        </div>
-        <div class="md-form mb-5">
-          <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
- <!--         <input type="password" id="orangeForm-email" class="form-control" [formControl]="novasenha"
-                 mdbInput mdbValidate>
-          <label for="orangeForm-email">Nova senha</label>
-          <mdb-error
-            *ngIf="signupFormModalEmail.invalid && (signupFormModalEmail.dirty || signupFormModalEmail.touched)">Input
-            invalid
-          </mdb-error>
-          <mdb-success
-            *ngIf="signupFormModalEmail.valid && (signupFormModalEmail.dirty || signupFormModalEmail.touched)">Input
-            valid
-          </mdb-success> -->
-        </div>
-
-        <div class="md-form mb-4">
-          <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
-    <!--      <input type="password" id="orangeForm-pass" class="form-control" [formControl]="confirmanovasenha"
-                 mdbInput mdbValidate>
-          <label for="orangeForm-pass">Confirma nova senha</label>
-          <mdb-error
-            *ngIf="signupFormModalPassword.invalid && (signupFormModalPassword.dirty || signupFormModalPassword.touched)">
-            Input invalid
-          </mdb-error>
-          <mdb-success
-            *ngIf="signupFormModalPassword.valid && (signupFormModalPassword.dirty || signupFormModalPassword.touched)">
-            Input valid
-          </mdb-success>  -->
-        </div>
-
+            <form [formGroup]="formulario">
+                    <div class="row">
+                            <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
+                                <input type="password" class="form-control" id="senhaatual" 
+                                formControlName="senhaatual"   >
+                              </div>
+    
+                              <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
+                                <label for="novasenha">Nova senha</label>
+                                <input type="password"  class="form-control" id="novasenha" 
+                                formControlName="novasenha"  >
+                              </div>
+    
+                              <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
+                                    <label for="confirmanovasenha">Confirma nova senha</label>
+                                    <input type="password"  class="form-control" id="confirmanovasenha" 
+                                    formControlName="confirmanovasenha" y>
+                                  </div>
+                        </div>
+          </form>
       </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button mdbBtn color="deep-orange" class="waves-light" mdbWavesEffect>Sign up</button>
-      </div>
-    </div>
+      <div class="modal-footer justify-content-center">
+            <a button mdbBtn color="success" class="waves-effect" mdbWavesEffect>Confirmar
+              <mdb-icon far icon="gem" class="ml-1"></mdb-icon>
+            </a>
+            <a button mdbBtn color="success" outline="true" class="waves-effect" mdbWavesEffect (click)="mudarsenha.hide()">Cacnelar</a>
+        </div>
   </div>
 </div>
-<form [formGroup]="formulario"></form>
+<form [formGroup]="formulario"></form> -->
