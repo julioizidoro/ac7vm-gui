@@ -110,45 +110,27 @@
     </form>
 </div>
 
-<!--
-  Modal erro cadastro
--->
+<div mdbModal #fluxoCaixa="mdb-modal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="myBasicModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="heading lead">Aviso</p>
+            </div>
+            <div class="text-center p-5">
+                <p>Fluxo de caixa do dia {{conta.datavencimento | date: 'dd/MM/yyyy'}} não possui saldo para pagamento
+                    desta conta</p>
 
+                <button type="submit" class="btn btn-warning col-4" style="margin-left:1%;" (click)="fluxoCaixa.hide()">
+                    Corrigir
+                </button>
 
-<div mdbModal #fluxoCaixa="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-notify modal-warning" role="document">
-  <!--Content-->
-  <div class="modal-content">
-    <!--Header-->
-    <div class="modal-header">
-      <p class="heading lead">Aviso</p>
-
-    
+                <button type="submit" class="btn btn-success col-4" style="margin-left:1%;" (click)="salvar(true)">
+                    Continuar
+                </button>
+            </div>
+        </div>
     </div>
-
-    <!--Body-->
-    <div class="modal-body">
-      <div class="text-center">
-        <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
-        <p>Fluxo de caixa do dia {{conta.datavencimento | date: 'dd/MM/yyyy'}} não possui saldo para pagamento desta conta</p>
-      </div>
-    </div>
-
-    <!--Footer-->
-    <div class="modal-footer justify-content-center">
-      <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" (click)="fluxoCaixa.hide()"  mdbWavesEffect>Corrigir
-        <mdb-icon far icon="edit" class="ml-1"></mdb-icon>
-      </a>
-      <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect (click)="salvar(true)">Continuar
-        <mdb-icon far icon="arrow-alt-circle-right" class="ml-1"></mdb-icon>
-      </a>
-    </div>
-  </div>
-  <!--/.Content-->
 </div>
-</div>
-
-
 
 
