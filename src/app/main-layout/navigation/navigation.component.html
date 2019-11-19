@@ -177,39 +177,45 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Alterar Senha</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="mudarsenha.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body mx-3">
             <form [formGroup]="formulario">
-                    <div class="row">
-                            <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
-                                <input type="password" class="form-control" id="senhaatual" 
-                                formControlName="senhaatual"   >
-                              </div>
-    
-                              <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
-                                <label for="novasenha">Nova senha</label>
-                                <input type="password"  class="form-control" id="novasenha" 
-                                formControlName="novasenha"  >
-                              </div>
-    
-                              <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
-                                    <label for="confirmanovasenha">Confirma nova senha</label>
-                                    <input type="password"  class="form-control" id="confirmanovasenha" 
-                                    formControlName="confirmanovasenha" y>
-                                  </div>
-                        </div>
+                <div class="md-form mb-5">
+                    <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+                    <input type="password" class="form-control" id="senhaatual" 
+                        formControlName="senhaatual"   >
+                    <label for="senhaatual">Senha atual</label>
+                </div>
+                <div class="md-form mb-5">
+                    <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+                    <input type="password" class="form-control" id="novasenha" 
+                        formControlName="novasenha"   >
+                    <label for="novasenha">Nova atual</label>
+
+               </div>
+               <div class="md-form mb-5">
+                <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+                <input type="password" class="form-control" id="confirmanovasenha" 
+                    formControlName="confirmanovasenha"   >
+                <label for="confirmanovasenha">Confirma nova atual</label>
+
+           </div>
           </form>
       </div>
       <div class="modal-footer justify-content-center">
-            <a button mdbBtn color="success" class="waves-effect" mdbWavesEffect>Confirmar
-              <mdb-icon far icon="gem" class="ml-1"></mdb-icon>
-            </a>
-            <a button mdbBtn color="success" outline="true" class="waves-effect" mdbWavesEffect (click)="mudarsenha.hide()">Cacnelar</a>
+            <button type="button" color="success" class="btn btn-primary"  (click)=" confirmarModalMudarSenha()">
+                <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                Confirmar
+            </button>
+            <button type="button" class="btn btn-danger"   (click)="cancelarModalMudarSenha()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                Cacnelar
+            </button>
         </div>
   </div>
 </div>
-<form [formGroup]="formulario"></form> -->
+

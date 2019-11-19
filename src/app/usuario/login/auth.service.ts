@@ -1,5 +1,5 @@
+import { Usuario } from 'src/app/usuario/model/usuario';
 import { Injectable, EventEmitter } from '@angular/core';
-import { Usuario } from '../model/usuario';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../usuario.service';
 
@@ -15,6 +15,7 @@ export class AuthService {
   private usuairoAutenticado = false;
   mostrarMenuEmitter = new EventEmitter<boolean>();
   usuario: Usuario;
+  senhaCripto: string;
 
 
   constructor(

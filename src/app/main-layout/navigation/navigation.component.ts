@@ -1,8 +1,10 @@
+import { UsuarioService } from './../../usuario/usuario.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Usuario } from 'src/app/usuario/model/usuario';
 import { AuthService } from 'src/app/usuario/login/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { ModalDirective } from 'ngx-bootstrap';
 
 
 @Component({
@@ -18,10 +20,13 @@ export class NavigationComponent implements OnInit {
   formulario: FormGroup;
   caminhoFoto: string;
 
+  @ViewChild('mudarsenha', null) public showModalMudarSenhaOnClick: ModalDirective;
+
   constructor(
       private authService: AuthService,
       private router: Router,
       private formBuilder: FormBuilder,
+      private usuarioService: UsuarioService,
   ) {
     this.clicked = this.clicked === undefined ? false : true;
   }
@@ -45,15 +50,48 @@ export class NavigationComponent implements OnInit {
 
   setFormulario() {
     this.formulario = this.formBuilder.group({
-      senhaatual: [null], 
+      senhaatual: [null],
       novasenha: [null],
       confirmanovasenha: [null],
     });
   }
-  alterarSenha() {
+
+  confirmarModalMudarSenha() {
+    this.showModalMudarSenhaOnClick.hide();
     let senha = this.formulario.get('senhaatual').value;
-    let novasenha = this.formulario.get('novasenha').value;
-    let confirmanovasenha = this.formulario.get('confirmanovasenha').value;
+    const novasenha = this.formulario.get('novasenha').value;
+    const confirmanovasenha = this.formulario.get('confirmanovasenha').value;
+    this.formulario.reset();
+    let usuarioSenha = new Usuario();
+    this.usuarioService.criptoSenha(senha).subscribe(
+    resposta => {
+       usuarioSenha = resposta as any;
+       senha = usuarioSenha.senha;
+       if (senha === this.usuario.senha) {
+        if (novasenha === confirmanovasenha) {
+          this.usuario.senha = novasenha;
+          this.usuarioService.salvar(this.usuario).subscribe(
+              resposta1 => {
+                this.usuario = resposta1 as any;
+                this.authService.usuario = this.usuario;
+              },
+              err1 => {
+                console.log(err1.error.erros.join(' '));
+              }
+          );
+      }
+    }
+    },
+     err => {
+      console.log(err.error.erros.join(' '));
+      return '';
+    }
+    );
+  }
+
+  cancelarModalMudarSenha() {
+    this.showModalMudarSenhaOnClick.hide();
+    this.formulario.reset();
   }
 
 }

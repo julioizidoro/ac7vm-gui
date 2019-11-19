@@ -18,4 +18,12 @@ export class UsuarioService {
   logar1(usuario: Usuario): Observable<any> {
     return this.httpClient.post<any>(env.baseApiUrl + 'usuarios/logar', usuario);
   }
+
+  criptoSenha(senha: string): Observable<any> {
+    return this.httpClient.get(env.baseApiUrl + 'usuarios/cripto/' + senha);
+  }
+
+  salvar(usuario: Usuario): Observable<any> {
+    return this.httpClient.post<any>(env.baseApiUrl + 'usuarios/salvar', usuario);
+}
 }
