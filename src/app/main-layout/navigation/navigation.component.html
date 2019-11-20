@@ -156,7 +156,7 @@
               </a>
               <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
                 <a class="dropdown-item" (click)="mudarsenha.show()" mdbWavesEffect>Alterar senha</a>
-                <a class="dropdown-item" href="#">Alterar foto</a>
+                <a class="dropdown-item" (click)="abrirModalAlterarFoto()">Alterar foto</a>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-sign-out-alt"></i>
                   <label class="ml-1 mb-0" (click)="logof()">Sair</label>
@@ -170,6 +170,31 @@
     <!--/.Navbar-->
 
 </header>
+
+<div mdbModal #alterarfoto="mdb-modal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="myBasicModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="heading lead">Alterar foto</p>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" (change)="onChange($event)" />
+                <label class="custom-file-label" for="customFile" id="customFileLabel">Selecionar arquivo</label>
+                
+            </div>
+            <div style="margin-top: 10px;"> 
+                <button type="button" class="btn btn-primary" (click)="onUpload()" [disabled]="!file">
+                    Upload
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 <!--Main Navigation-->
 
 <div mdbModal #mudarsenha="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
@@ -219,3 +244,6 @@
   </div>
 </div>
 
+
+
+<!-- altear foto-->

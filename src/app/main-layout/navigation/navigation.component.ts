@@ -19,8 +19,10 @@ export class NavigationComponent implements OnInit {
   usuario: Usuario;
   formulario: FormGroup;
   caminhoFoto: string;
+  file: File;
 
   @ViewChild('mudarsenha', null) public showModalMudarSenhaOnClick: ModalDirective;
+  @ViewChild('alterarfoto', null) public showModalAlterarFotoOnClick: ModalDirective;
 
   constructor(
       private authService: AuthService,
@@ -93,5 +95,29 @@ export class NavigationComponent implements OnInit {
     this.showModalMudarSenhaOnClick.hide();
     this.formulario.reset();
   }
+
+  abrirModalAlterarFoto() {
+    console.log('entrou');
+    this.showModalAlterarFotoOnClick.show();
+  }
+
+  onChange(event) {
+    console.log(event);
+    const selectedFiles = <FileList>event.srcElement.files;
+    this.file = selectedFiles[0];
+    document.getElementById('customFileLabel').innerHTML = selectedFiles[0].name;
+ }
+
+ onUpload() {
+    this.usuarioService.upload(this.file).subscribe(
+       resposta => {
+         const uri = resposta as any;
+         console.log(uri);
+       },
+       err => {
+        console.log(err.error.erros.join(' '));
+       }
+    );
+ }
 
 }
