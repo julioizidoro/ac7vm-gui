@@ -28,6 +28,8 @@ import { FluxocaixaComponent } from './fluxocaixa/fluxocaixa.component';
 import { FluxocaixaModule } from './fluxocaixa/fluxocaixa.module';
 import { registerLocaleData } from '@angular/common';
 import br from '@angular/common/locales/br';
+import { CadacessoComponent } from './acesso/cadacesso/cadacesso.component';
+import { ConsacessoComponent } from './acesso/consacesso/consacesso.component';
 
 registerLocaleData(br, 'pt-BR');
 
@@ -35,6 +37,8 @@ registerLocaleData(br, 'pt-BR');
 @NgModule({
   declarations: [
     AppComponent,
+    CadacessoComponent,
+    ConsacessoComponent,
   ],
   imports: [
     BrowserModule,

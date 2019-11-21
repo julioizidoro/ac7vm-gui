@@ -2,7 +2,7 @@ import { FluxocaixaService } from './fluxocaixa.service';
 import { FluxocaixaComponent } from './fluxocaixa.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { routing } from '../app.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { AccordionModule } from 'ngx-bootstrap';
@@ -28,6 +28,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
       apiKey: ''
     }),
     BrowserAnimationsModule,
+    FormsModule,
   ],
   exports: [
     FluxocaixaComponent,

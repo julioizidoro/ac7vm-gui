@@ -1,4 +1,4 @@
-import { Acesso } from './acesso';
+import { Acesso } from 'src/app/acesso/model/acesso';
 
 
 export class Usuario {
@@ -11,5 +11,6 @@ export class Usuario {
     email: string;
     fonecelular: string;
     situacao: boolean;
+    urifoto: string;
     acesso: Acesso;
 }
