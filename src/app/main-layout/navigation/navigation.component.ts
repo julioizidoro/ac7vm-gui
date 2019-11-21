@@ -18,7 +18,6 @@ export class NavigationComponent implements OnInit {
   clicked: boolean;
   usuario: Usuario;
   formulario: FormGroup;
-  caminhoFoto: string;
   file: File;
 
   @ViewChild('mudarsenha', null) public showModalMudarSenhaOnClick: ModalDirective;
@@ -36,8 +35,6 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
     this.setFormulario();
     this.usuario = this.authService.usuario;
-    this.caminhoFoto = 'https://minhasfotos.s3-sa-east-1.amazonaws.com/' + this.usuario.idusuario + '.jpg';
-    console.log(this.caminhoFoto);
   }
 
   setClicked(val: boolean): void {

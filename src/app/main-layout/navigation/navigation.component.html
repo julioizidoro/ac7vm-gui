@@ -15,8 +15,9 @@
                     </a>
                 </mdb-navbar-brand>
                 <links>
-                    <ul class="navbar-nav mr-auto">
-                        <li>
+                    
+                    <ul class="navbar-nav mr-auto" >
+                        <li *ngIf="usuario.acesso.cadcliente">
                             <a class="nav-item list-group-item list-group-item-action waves-effect border-bottom"
                                routerLink="/consCliente">Clientes</a>
                         </li>
@@ -152,7 +153,7 @@
               <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light text-white" mdbWavesEffect>
                 <label>{{ usuario.nome}}</label>
                <!-- <i class="fas fa-user"></i> -->
-               <img src={{caminhoFoto}} width=40 height=40> 
+               <img src={{usuario.urifoto}} width=40 height=40> 
               </a>
               <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu">
                 <a class="dropdown-item" (click)="mudarsenha.show()" mdbWavesEffect>Alterar senha</a>

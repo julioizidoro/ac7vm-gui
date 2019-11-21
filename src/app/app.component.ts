@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
-import {Acesso} from './usuario/model/acesso';
 import {AuthService} from './usuario/login/auth.service';
 import {Usuario} from './usuario/model/usuario';
 
@@ -17,7 +16,6 @@ export class AppComponent implements OnInit {
     logado = false;
 
     usuario: Usuario;
-    acesso = new Acesso();
     specialPage: boolean;
 
     constructor(
