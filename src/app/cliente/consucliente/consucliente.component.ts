@@ -1,3 +1,5 @@
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from './../../usuario/login/auth.service';
 import { ContasService } from './../../contas/contas.service';
 import {ClienteService} from '../cliente.service';
 import {Component, OnInit} from '@angular/core';
@@ -6,6 +8,7 @@ import {Instituicao} from '../model/instituicao';
 import {listLazyRoutes} from '@angular/compiler/src/aot/lazy_routes';
 import {Router, ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
     selector: 'app-consucliente',
@@ -23,6 +26,7 @@ export class ConsuclienteComponent implements OnInit {
     inscricao: Subscription;
     dataInicial: Date;
     dataFinal: Date;
+    usuario: Usuario;
 
 
     constructor(
@@ -31,11 +35,13 @@ export class ConsuclienteComponent implements OnInit {
         private clienteService: ClienteService,
         private activeRrouter: ActivatedRoute,
         private contasService: ContasService,
+        private authService: AuthService,
     ) {
     }
 
 
     ngOnInit() {
+        this.usuario = this.authService.usuario;
         this.inscricao = this.activeRrouter.params.subscribe(params => {
             this.rotaAnterior = params.rota;
         });

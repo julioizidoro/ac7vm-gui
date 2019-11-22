@@ -1,36 +1,37 @@
 export class Acesso {
     idacesso: number;
     nome: string;
-    dashBoard: boolean;
+    dashboard: boolean;
     cadastro: boolean;
     cadcliente: boolean;
     cadclienteincluir: boolean;
     cadclienteeditar: boolean;
     cadfornecedor: boolean;
     cadfornecedorincluir: boolean;
-    cadfornecedoreditar:boolean;
+    cadfornecedoreditar: boolean;
     cadobras: boolean;
-    cadobrasincluir:boolean;
+    cadobrasincluir: boolean;
     cadobraseditar: boolean;
     cadfaseobras: boolean;
-    cadfaseobraincluir:boolean;
+    cadfaseobraincluir: boolean;
     cadfaseobraseditar: boolean;
     cadsubfaseobras: boolean;
-    cadsubfaseobraincluir:boolean;
+    cadsubfaseobraincluir: boolean;
     cadsubfaseobraeditar: boolean;
     cadprodutos: boolean;
-    cadprodutosincluir:boolean;
+    cadprodutosincluir: boolean;
     cadprodutoseditar: boolean;
     cadgrupocontas: boolean;
-    cadgrupocontasincluir:boolean;
+    cadgrupocontasincluir: boolean;
     cadgrupocontaseditar: boolean;
     cadplanocontas: boolean;
-    cadplanocontasincluir:boolean;
+    cadplanocontasincluir: boolean;
     cadplanocontaseditar: boolean;
 
     bens: boolean;
-    bensincluir: boolean;
-    benseditar: boolean; 
+    benscontrole: boolean;
+    benscontroleincluir: boolean;
+    benscontroleeditar: boolean;
 
     obras: boolean;
     obrainclir: boolean;
@@ -42,7 +43,7 @@ export class Acesso {
     compraspedido: boolean;
     compraspedidoincluir: boolean;
     compraspedidoeditar: boolean;
-    
+
     financeiro: boolean;
     financeirocp: boolean;
     financeirocpincluir: boolean;
@@ -53,6 +54,5 @@ export class Acesso {
     financeirocreditar: boolean;
     financeirocrreceber: boolean;
     financeirofc: boolean;
-    
-    
+
 }
