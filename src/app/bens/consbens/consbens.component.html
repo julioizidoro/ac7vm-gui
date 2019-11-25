@@ -9,8 +9,7 @@
   <form [formGroup]="formulario">
     <div class="container-fluid" style="width:100%;">
       <div class="w-100">
-        <button type="button" style="float:right;" class="btn btn-color font-weight-light"
-        (click)="novo()">
+        <button type="button" style="float:right;" class="btn btn-color font-weight-light" (click)="novo()">
           <i class="fa fa-plus" aria-hidden="true"></i>
           <a class="ml-2">Adicionar</a>
         </button>
@@ -34,15 +33,14 @@
               </div>
               <div class="form-group col-md-12 text-right">
                 <button type="button" class="btn btn-primary" (click)="pesquisar()">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                    Pesquisar
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                  Pesquisar
                 </button>
-                <button type="submit" class="btn btn-danger" style="margin-left:1%;"
-                    (click)="consultar()">
-                    <i class="fa fa-refresh" aria-hidden="true"></i>
-                    Limpar
+                <button type="submit" class="btn btn-danger" style="margin-left:1%;" (click)="consultar()">
+                  <i class="fa fa-refresh" aria-hidden="true"></i>
+                  Limpar
                 </button>
-            </div>
+              </div>
 
 
             </div>
@@ -50,49 +48,51 @@
         </accordion>
       </div>
 
-
-
       <div class="table-responsive-lg">
         <table class="table table-striped">
-            <thead>
-                <tr
-                    class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
-                    <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Descrição</th>
-                    <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Entrada</th>
-                    <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Saída</th>
-                    <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Diferença</th>
-                    <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm"
-                        style="text-align: center;">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let bem of bens"
-                    class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-                    <td class="col-lg-4 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
-                      {{bem.descricao}}</td>
-                    <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
-                      {{bem.dataentrada | date: 'dd/MM/yyyy'}}</td>
-                    <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
-                        style="border: none;">{{bem.datasaida | date: 'dd/MM/yyyy'}}</td>
-                    <td class="col-lg-3 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
-                        style="border: none;">{{bem.diferenca}}</td>
-                    <td class="col-lg-1 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
+          <thead>
+            <tr
+              class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
+              <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Descrição</th>
+              <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Entrada</th>
+              <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Saída</th>
+              <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Diferença</th>
+              <th class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm" style="text-align: center;">
+                Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bem of bens"
+              class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+              <td class="col-lg-4 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
+                {{bem.descricao}}</td>
+              <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0" style="border: none;">
+                {{bem.dataentrada | date: 'dd/MM/yyyy'}}</td>
+              <td class="col-lg-3 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0" style="border: none;">
+                {{bem.datasaida | date: 'dd/MM/yyyy'}}</td>
+              <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
+                style="border: none;text-align:right">{{bem.diferenca | currency: ' '}}</td>
+              <td *ngIf="pagas" class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
+                style="border: none;">{{conta.datapagamento | date: 'dd/mm/yyyy'}}</td>
+              <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                (click)="editar(bem)" title="Editar">
+                <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+              </button>
+              <div *ngIf="habilitarConsulta">
+                <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+                  (click)="selecionarBem(bem)" title="Selecionar Bem">
+                  <i class="fa fa-check-circle" aria-hidden="true"></i>
+                </button>
+              </div>
 
-                      <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
-                      (click)="editar(i)" title="Editar">
-                      <i class="fa fa-pencil-alt" aria-hidden="true"></i>
-                    </button>
-                    <div *ngIf="habilitarConsulta">
-                      <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
-                        (click)="selecionarCliente(i)" title="Selecionar Cliente">
-                        <i class="fa fa-check-circle" aria-hidden="true"></i>
-                      </button>
-                    </div>
-                    </td>
-                </tr>
-            </tbody>
+              </td>
+
+            </tr>
+          </tbody>
         </table>
-    </div>
+      </div>
+
+
     </div>
   </form>
 </div>

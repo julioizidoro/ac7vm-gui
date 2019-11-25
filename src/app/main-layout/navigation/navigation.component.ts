@@ -94,7 +94,6 @@ export class NavigationComponent implements OnInit {
   }
 
   abrirModalAlterarFoto() {
-    console.log('entrou');
     this.showModalAlterarFotoOnClick.show();
   }
 
@@ -109,7 +108,6 @@ export class NavigationComponent implements OnInit {
     this.usuarioService.upload(this.file).subscribe(
        resposta => {
          const uri = resposta as any;
-         console.log(uri);
        },
        err => {
         console.log(err.error.erros.join(' '));

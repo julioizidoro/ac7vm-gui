@@ -19,6 +19,7 @@ export class ConsreceberComponent implements OnInit {
   contaSelecinada: Contas;
   inscricao: Subscription;
   pagas: boolean;
+  file: File;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -119,4 +120,22 @@ export class ConsreceberComponent implements OnInit {
     this.contasService.setReceber(true);
     this.router.navigate(['/cadreceber']);
   }
+
+  onChange(event) {
+    console.log(event);
+    const selectedFiles = <FileList>event.srcElement.files;
+    this.file = selectedFiles[0];
+    document.getElementById('customFileLabel').innerHTML = selectedFiles[0].name;
+ }
+
+ onUpload() {
+    this.contasService.upload(this.file).subscribe(
+       resposta => {
+         const uri = resposta as any;
+       },
+       err => {
+        console.log(err.error.erros.join(' '));
+       }
+    );
+ }
 }

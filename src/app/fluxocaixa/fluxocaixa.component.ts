@@ -2,7 +2,7 @@ import { Instituicao } from 'src/app/cliente/model/instituicao';
 import { Fluxocontas } from './model/fluxoconta';
 import { Fluxolancamento } from './model/fluxolancamento';
 import { FluxocaixaService } from './fluxocaixa.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Data } from '@angular/router';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Fluxocaixa } from './model/fluxocaixa';
@@ -200,6 +200,33 @@ export class FluxocaixaComponent implements OnInit {
     this.lformulario.reset();
     this.setFormularioLancamentos(fluxolancamento);
     this.showModalLancamentosOnClick.show();
+  }
+
+  pesquisar(data: Date) {
+    if (data== null) {
+      if (this.fluxoCaixa.length>0) {
+        data = this.fluxoCaixa[this.fluxoCaixa.length-1].data;
+        data.setDate(data.getDate() +1);
+      } else {
+        data = new Date();
+      }
+    }
+    this.fluxoCaixaService.listarInicial().subscribe(
+      resposta => {
+        this.fluxoCaixa = resposta as any;
+        if (this.fluxoCaixaService != null) {
+          if (this.fluxoCaixa.length > 0 ) {
+            if (this.fluxoCaixa[0].fluxolancamentoList == null) {
+              this.fluxoCaixa[0].fluxolancamentoList.push(new Fluxolancamento());
+            }
+            if (this.fluxoCaixa[0].fluxocontasList == null) {
+            }
+            this.selectFluxoCaixa(this.fluxoCaixa[0]);
+            this.setFormulario(this.fluxoCaixa[0].fluxocontasList[0].contas);
+          }
+        }
+      }
+    );
   }
 
 }

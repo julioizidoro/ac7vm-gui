@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Contas } from './model/contas';
 import { environment as env } from '../../environments/environment.prod';
@@ -117,6 +117,15 @@ pesquisarRecebidasVencimentoCP(dataInicial: string, dataFinal: string, nome: str
 // Recebidas com dataVencimento dvrecebidas/{datainicial}/{datafinal}/{nome}
 pesquisarReceberVencimentoCP(dataInicial: string, dataFinal: string, nome: string):  Observable<any> {
   return this.httpCliente.post<any>(env.baseApiUrl + 'cp/dvreceber/', dataInicial + '/' + dataFinal + '/' + nome );
+}
+
+upload(file: File): Observable<any> {
+  const uri = env.baseApiUrl + 'usuarios/picture';
+  const formData = new FormData();
+  
+  formData.append('file', file, file.name);
+  const request = new HttpRequest('POST', uri, formData);
+  return this.httpCliente.request(request);
 }
 
 
