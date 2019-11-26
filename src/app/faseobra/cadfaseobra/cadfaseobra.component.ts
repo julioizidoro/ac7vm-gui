@@ -6,6 +6,8 @@ import { Obrafase } from '../model/obrafase';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Planoconta } from 'src/app/planocontas/model/planoconta';
 import { PlanoContasService } from 'src/app/planocontas/planocontas.service';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 
 
@@ -20,17 +22,21 @@ export class CadFaseObraComponent implements OnInit {
     obraFase: Obrafase;
     listaPlanoConta: Planoconta[];
     planoConta: Planoconta;
+    usuario: Usuario;
 
   constructor(
     private faseobraservice: FaseObraService,
     private router: Router,
     private formBuilder: FormBuilder,
     private planocontaservice: PlanoContasService,
-    private activeRrouter: ActivatedRoute) {}
+    private activeRrouter: ActivatedRoute,
+    private authService: AuthService,
+  ) {}
 
 
 
   ngOnInit() {
+    this.usuario = this.authService.usuario;
     this.listarPlanoConta();
     this.formulario = this.formBuilder.group({
       idobrafase: [null],

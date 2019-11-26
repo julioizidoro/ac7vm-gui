@@ -5,6 +5,8 @@ import { Planoconta } from '../model/planoconta';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Grupoplanoconta } from 'src/app/grupocontas/model/grupoplanoconta';
 import { GrupoContasService } from 'src/app/grupocontas/grupocontas.service';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 @Component({
   selector: 'app-cadplanocontas',
@@ -17,17 +19,21 @@ export class CadsPlanoContasComponent implements OnInit {
     grupoSeleconado: Grupoplanoconta;
     listaGrupoContas: Grupoplanoconta[];
     planoConta: Planoconta;
+    usuario: Usuario;
 
   constructor(
     private planocontaservice: PlanoContasService,
     private grupoContaService: GrupoContasService,
     private formBuilder: FormBuilder,
     private activeRrouter: ActivatedRoute,
-    private router: Router) {}
+    private router: Router,
+    private authService: AuthService,
+  ) {}
 
 
 
   ngOnInit() {
+    this.usuario = this.authService.usuario;
     this.listarGrupoConta();
       this.formulario = this.formBuilder.group({
         conta: [null],

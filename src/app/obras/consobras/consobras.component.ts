@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { Obra } from '../model/obra';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 @Component({
   selector: 'app-consobras',
@@ -16,6 +18,7 @@ export class ConsObrasComponent implements OnInit {
     isFirstOpen = false;
     oneAtATime = true;
     obras: Obra[];
+    usuairo: Usuario;
 
 
 
@@ -23,6 +26,7 @@ export class ConsObrasComponent implements OnInit {
     private obrasService: ObrasService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private authService: AuthService,
     ) {}
 
 

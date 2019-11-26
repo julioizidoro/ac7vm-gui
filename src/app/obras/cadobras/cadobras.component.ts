@@ -6,6 +6,8 @@ import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { Cep } from 'src/app/share/model/cep';
 import { ConsultacepService } from './../../share/consultacep.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 @Component({
   selector: 'app-cadobras',
@@ -20,6 +22,7 @@ export class CadObrasComponent implements OnInit {
     cep: Cep;
     obra: Obra;
     public maskCEP = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/];
+    usuario: Usuario;
 
 
 
@@ -27,7 +30,8 @@ export class CadObrasComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private obrasService: ObrasService,
-    private activeRrouter: ActivatedRoute
+    private activeRrouter: ActivatedRoute,
+    private authService: AuthService,
     ) {}
 
 

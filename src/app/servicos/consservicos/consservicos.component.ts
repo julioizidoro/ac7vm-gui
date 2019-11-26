@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { Servicos } from '../model/servicos';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 @Component({
   selector: 'app-consservicos',
@@ -16,16 +18,20 @@ export class ConsServicosComponent implements OnInit {
     isFirstOpen = false;
     oneAtATime = true;
     servicos: Servicos[];
+    usuario: Usuario;
 
 
 
   constructor(
     private servicosService: ServicosService,
     private formBuilder: FormBuilder,
-    private router: Router) {}
+    private router: Router,
+    private authService: AuthService, 
+  ) {}
 
 
   ngOnInit() {
+    this.usuario = this.authService.usuario;
     this.formulario = this.formBuilder.group({
       descricao: [null],
       conta: [null]

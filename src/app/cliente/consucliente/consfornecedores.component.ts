@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Instituicao } from '../model/instituicao';
 import { FornecedorService } from '../fornecedor.service';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 
 @Component({
@@ -21,17 +23,21 @@ export class ConsuFornecedoresComponent implements OnInit {
     rotaAnterior: string;
     habilitarConsulta = true;
     inscricao: Subscription;
+    usuario: Usuario;
 
 
   constructor(
     private fornecedorService: FornecedorService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private activeRrouter: ActivatedRoute) {}
+    private activeRrouter: ActivatedRoute,
+    private authService: AuthService,
+    ) {}
 
 
 
   ngOnInit() {
+    this.usuario = this.authService.usuario;
     this.inscricao = this.activeRrouter.params.subscribe(params => {
       this.rotaAnterior = params.rota;
   });

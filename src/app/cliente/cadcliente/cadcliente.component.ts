@@ -10,6 +10,8 @@ import { Clienteenderecocomercial } from '../model/clienteenderecocomercial';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Clientesocio } from '../model/clientesocio';
 import { Clientecomplemento } from '../model/clientecomplemento';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 @Component({
   selector: 'app-cadcliente',
@@ -33,18 +35,22 @@ export class CadclienteComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   public maskCELULAR = ['(', /[0-9]/, /[0-9]/, ')', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/];
   public maskCEP = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/];
+  usuario: Usuario;
+
 
   constructor(
     private consultacepService: ConsultacepService,
     private formBuilder: FormBuilder,
     private clienteService: ClienteService,
     private router: Router,
-    private activeRrouter: ActivatedRoute
+    private activeRrouter: ActivatedRoute,
+    private authService: AuthService,
   ) { }
 
 
 
   ngOnInit() {
+    this.usuario = this.authService.usuario;
     this.setFormularioNulo();
     this.instituicao = this.clienteService.getCliente();
     if (this.instituicao != null) {

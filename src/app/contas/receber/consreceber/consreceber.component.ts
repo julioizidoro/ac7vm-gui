@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Contas } from '../../model/contas';
 import { ContasService } from '../../contas.service';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 @Component({
   selector: 'app-consreceber',
@@ -20,15 +22,18 @@ export class ConsreceberComponent implements OnInit {
   inscricao: Subscription;
   pagas: boolean;
   file: File;
+  usuario: Usuario;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private contasService: ContasService,
     private activeRrouter: ActivatedRoute,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
+    this.usuario = this.authService.usuario;
     this.pagas = false;
     this.formulario = this.formBuilder.group({
       documento: [null],

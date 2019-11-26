@@ -5,6 +5,8 @@ import { Planoconta } from 'src/app/planocontas/model/planoconta';
 import { Router } from '@angular/router';
 import { PlanoContasService } from 'src/app/planocontas/planocontas.service';
 import { Bens } from '../model/bens';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 @Component({
   selector: 'app-consbens',
@@ -19,13 +21,17 @@ export class ConsbensComponent implements OnInit {
   planoContas: Planoconta[];
   planoContasSelecinado: Planoconta;
   bens: Bens[];
+  usuario: Usuario;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private planocontaservice: PlanoContasService,
-              private bensService: BensService) { }
+              private bensService: BensService,
+              private authService: AuthService,
+    ) { }
 
   ngOnInit() {
+    this.usuario = this.authService.usuario;
     this.formulario = this.formBuilder.group({
       descricao: [null],
       planoconta: [null],

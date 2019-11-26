@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 
 @Component({
@@ -15,6 +17,7 @@ export class CadGrupoContasComponent implements OnInit {
 
     formulario: FormGroup;
     grupoConta: Grupoplanoconta;
+    usuario: Usuario;
 
 
 
@@ -22,7 +25,8 @@ export class CadGrupoContasComponent implements OnInit {
     private grupocontasservice: GrupoContasService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private activeRrouter: ActivatedRoute
+    private activeRrouter: ActivatedRoute,
+    private authService: AuthService,
     ) {}
 
 

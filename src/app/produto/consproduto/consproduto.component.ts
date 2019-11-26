@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { Router } from '@angular/router';
 import { Produto } from '../model/produto';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 @Component({
   selector: 'app-consproduto',
@@ -16,17 +18,20 @@ export class ConsProdutoComponent implements OnInit {
     isFirstOpen = false;
     oneAtATime = true;
     produtos: Produto[];
-
+    usuario: Usuario;
 
 
   constructor(
     private produtoservice: ProdutoService,
     private formBuilder: FormBuilder,
-    private router: Router) {}
+    private router: Router,
+    private authService: AuthService,
+  ) {}
 
 
 
   ngOnInit() {
+    this.usuario = this.authService.usuario;
     this.formulario = this.formBuilder.group({
       descricao: [null]
     });

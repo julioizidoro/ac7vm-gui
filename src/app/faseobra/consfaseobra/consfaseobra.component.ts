@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Obrafase } from '../model/obrafase';
 import { Router } from '@angular/router';
 import { FaseObraService } from '../faseobra.service';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 @Component({
   selector: 'app-consfaseobra',
@@ -15,15 +17,19 @@ export class ConsFaseObraComponent implements OnInit {
     isFirstOpen = false;
     oneAtATime = true;
     obraFases: Obrafase[];
+    usuario: Usuario;
 
   constructor(
     private router: Router,
     private faseObraService: FaseObraService,
-    private formBuilder: FormBuilder ) {}
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+   ) {}
 
 
 
   ngOnInit() {
+    this.usuario = this.authService.usuario;
     this.formulario = this.formBuilder.group({
       descricao: [null],
       conta: [null],

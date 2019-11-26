@@ -6,6 +6,8 @@ import { PlanoContasService } from '../planocontas.service';
 import { Router } from '@angular/router';
 import { GrupoContasService } from 'src/app/grupocontas/grupocontas.service';
 import { Grupoplanoconta } from 'src/app/grupocontas/model/grupoplanoconta';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 @Component({
   selector: 'app-consplanocontas',
@@ -20,6 +22,7 @@ export class ConsPlanoContasComponent implements OnInit {
     planoContas: Planoconta[];
     listaGrupoplanoconta: Grupoplanoconta[];
     grupoContasSelecionado: Grupoplanoconta;
+    usuario: Usuario;
 
 
 
@@ -27,11 +30,14 @@ export class ConsPlanoContasComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private grupocontasservice: GrupoContasService,
-    private planocontaservice: PlanoContasService) {}
+    private planocontaservice: PlanoContasService,
+    private authService: AuthService,
+  ) {}
 
 
 
-  ngOnInit() {
+  ngOnInit() {3
+    this.usuario = this.authService.usuario;
     this.formulario = this.formBuilder.group({
       conta: [null],
       descricao: [null],

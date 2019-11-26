@@ -11,6 +11,8 @@ import { Clienteenderecoresidencial } from '../model/clienteenderecoresidencial'
 import { Clientecomplemento } from '../model/clientecomplemento';
 import { Clientesegundo } from '../model/clientesegundo';
 import { FornecedorService } from '../fornecedor.service';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 
 @Component({
@@ -35,18 +37,21 @@ export class CadFornecedoresComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   public maskCELULAR = ['(', /[0-9]/, /[0-9]/, ')', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/];
   public maskCEP = [/[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/];
+  usuario: Usuario;
 
   constructor(
     private consultacepService: ConsultacepService,
     private formBuilder: FormBuilder,
     private fornecedorService: FornecedorService,
     private router: Router,
-    private activeRrouter: ActivatedRoute
+    private activeRrouter: ActivatedRoute,
+    private authService: AuthService,
     ) {}
 
 
 
   ngOnInit() {
+    this.usuario = this.authService.usuario;
     this.setFormularioNulo();
     let id: number;
     this.activeRrouter.params.subscribe(params => {

@@ -12,6 +12,8 @@ import { FormapagamentoService } from 'src/app/formapagamento/formapagamento.ser
 import { FluxocaixaService } from 'src/app/fluxocaixa/fluxocaixa.service';
 import { Fluxocaixa } from 'src/app/fluxocaixa/model/fluxocaixa';
 import { ModalDirective } from 'ngx-bootstrap';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 @Component({
   selector: 'app-cad0pagar',
@@ -32,6 +34,7 @@ export class CadpagarComponent implements OnInit {
   tipo: string;
   habilitar: string;
   receber: boolean;
+  usuario: Usuario;
   @ViewChild('fluxoCaixa', null) public showModalFluxoCaixaOnClick: ModalDirective;
 
   constructor(
@@ -42,11 +45,13 @@ export class CadpagarComponent implements OnInit {
     private router: Router,
     private fluxoCaixaService: FluxocaixaService,
     private formaPagamentoService: FormapagamentoService,
+    private authService: AuthService,
   ) {
     this.conta = this.contasService.getContas();
   }
 
   ngOnInit() {
+    this.usuario = this.authService.usuario;
     this.receber = this.contasService.getReceber();
     this.instituicaoSelecionada = new Instituicao();
     this.instituicaoSelecionada.nome = '';

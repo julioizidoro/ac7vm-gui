@@ -72,9 +72,8 @@
                 {{bem.datasaida | date: 'dd/MM/yyyy'}}</td>
               <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
                 style="border: none;text-align:right">{{bem.diferenca | currency: ' '}}</td>
-              <td *ngIf="pagas" class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
-                style="border: none;">{{conta.datapagamento | date: 'dd/mm/yyyy'}}</td>
-              <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
+              <td>
+               <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1"
                 (click)="editar(bem)" title="Editar">
                 <i class="fa fa-pencil-alt" aria-hidden="true"></i>
               </button>

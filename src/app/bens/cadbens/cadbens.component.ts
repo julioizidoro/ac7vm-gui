@@ -8,6 +8,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {Instituicao} from 'src/app/cliente/model/instituicao';
 import {ClienteService} from 'src/app/cliente/cliente.service';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 @Component({
     selector: 'app-cadbens',
@@ -24,6 +26,7 @@ export class CadbensComponent implements OnInit {
     telaSaida = true;
     telaEntrada = true;
     inscricao: Subscription;
+    usuario: Usuario;
 
     constructor(
         private planocontaservice: PlanoContasService,
@@ -31,11 +34,13 @@ export class CadbensComponent implements OnInit {
         private formBuilder: FormBuilder,
         private activeRrouter: ActivatedRoute,
         private router: Router,
-        private clienteService: ClienteService
+        private clienteService: ClienteService,
+        private authService: AuthService,
     ) {
     }
 
     ngOnInit() {
+        this.usuario = this.authService.usuario;
         this.listarPlanoContas();
         this.instituicaoSelecionada = this.clienteService.getCliente();
         if (this.instituicaoSelecionada == null) {

@@ -11,6 +11,8 @@ import { Contas } from '../contas/model/contas';
 import { Formapagamento } from '../formapagamento/model/formapagamento';
 import { Planoconta } from '../planocontas/model/planoconta';
 import {ModalDirective} from 'ngx-bootstrap';
+import { Usuario } from '../usuario/model/usuario';
+import { AuthService } from '../usuario/login/auth.service';
 
 @Component({
   selector: 'app-fluxocaixa',
@@ -33,12 +35,14 @@ export class FluxocaixaComponent implements OnInit {
   conta: Contas;
   @ViewChild('contas', null) public showModalContasOnClick: ModalDirective;
   @ViewChild('lancamentos', null) public showModalLancamentosOnClick: ModalDirective;
+  usuario: Usuario;
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private fluxoCaixaService: FluxocaixaService,
     private activeRrouter: ActivatedRoute,
+    private authService: AuthService,
   ) {
     this.conta = new Contas;
     this.conta.instituicao = new Instituicao;
@@ -51,6 +55,7 @@ export class FluxocaixaComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.usuario = this.authService.usuario;
     this.iniciarFormularioLancamentos();
     this.titulo = 'Conta';
     this.fluxoCaixaSelecionado = new Fluxocaixa();

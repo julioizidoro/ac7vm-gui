@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { Router } from '@angular/router';
 import { Grupoplanoconta } from '../model/grupoplanoconta';
+import { Usuario } from 'src/app/usuario/model/usuario';
+import { AuthService } from 'src/app/usuario/login/auth.service';
 
 @Component({
   selector: 'app-consgrupocontas',
@@ -16,14 +18,18 @@ export class ConsGrupoContasComponent implements OnInit {
     isFirstOpen = false;
     oneAtATime = true;
     grupoContas: Grupoplanoconta[];
+    usuario: Usuario;
 
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private grupocontasservice: GrupoContasService) {}
+    private grupocontasservice: GrupoContasService,
+    private authService: AuthService,
+  ) {}
 
   ngOnInit() {
+    this.usuario = this.authService.usuario;
     this.formulario = this.formBuilder.group({
       conta: [null],
       descricao: [null],
