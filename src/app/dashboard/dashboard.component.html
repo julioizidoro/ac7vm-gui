@@ -1,8 +1,17 @@
 <div>
     <h3>Inicial</h3>
+    
     <div class="row-dashboard" *ngIf="view">
         <app-timeline class="col-12"
             [listChart]="listaFluxoCaixa"
             [listDates]="listaDate"></app-timeline>
+    </div>
+    <div > 
+        <button mdbBtn type="button" color="unique"  size="sm" mdbWavesEffect (click)="consultarFluxoCaixa('v')">
+                <mdb-icon fas icon="angle-double-left" class="mr-1"></mdb-icon>Voltar
+        </button>
+        <button mdbBtn type="button" color="unique"  size="sm" mdbWavesEffect (click)="consultarFluxoCaixa('a')">Avançar
+                <mdb-icon fas icon="angle-double-right" class="ml-1"></mdb-icon>
+            </button>
     </div>
 </div>
