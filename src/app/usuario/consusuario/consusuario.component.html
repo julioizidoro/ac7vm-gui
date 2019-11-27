@@ -2,7 +2,7 @@
 <div class="page-header">
   <div class="container-fluid">
     <h3>
-      Consulta Acessos
+      Consulta Usuário
     </h3>
     <hr />
   </div>
@@ -12,24 +12,26 @@
             <thead>
                 <tr
                     class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
-                    <th class="col-lg-8 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Nome</th>
-                    <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Usuários</th>
+                    <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Nome</th>
+                    <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">E-mail</th>
+                    <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Fone Celular</th>
                     <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm"
                         style="text-align: center;">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let acesso of acessos"
+                <tr *ngFor="let usuario of usuarios"
                     class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-                    <td class="col-lg-8 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
-                        {{acesso.nome}}</td>
-                    <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
-                            <a (click)="openModalUsuarios(acesso)">{{acesso.numerousuario}}</a>
-                    </td>
+                    <td class="col-lg-4 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
+                        {{usuario.nome}}</td>
+                    <td class="col-lg-4 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
+                        {{usuario.email}}</td>
+                    <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
+                        style="border: none;">{{usuario.fonecelular}}</td>
                     <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
 
                         <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1 p-1"
-                            (click)="editar(acesso)" title="Editar">
+                            (click)="editar(usuario)" title="Editar">
                             <i class="fa fa-pencil-alt" aria-hidden="true"></i>
                         </button>
                     </td>

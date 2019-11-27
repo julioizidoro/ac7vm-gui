@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
     dataInicial: Date;
     dataFinal: Date;
     view = false;
+    ultimaData: Date;
 
     constructor(
         private fluxoCaixaService: FluxocaixaService,
@@ -50,13 +51,12 @@ export class DashboardComponent implements OnInit {
     consultarFluxoCaixa(tipo: String) {
         console.log(tipo);
         
-        let ultimaData: Date;
         if (tipo === 'v') {
-            ultimaData = this.lista[0].data;
-            ultimaData.setDate(ultimaData.getDate() - 1);
+            this.ultimaData = this.lista[0].data;
+            this.ultimaData.setDate(this.ultimaData.getDate() - 1);
         } else {
-            ultimaData = this.lista[this.lista.length - 1].data;
-            ultimaData.setDate(ultimaData.getDate() + 1);
+            this.ultimaData = this.lista[this.lista.length - 1].data;
+            this.ultimaData.setDate(this.ultimaData.getDate() + 1);
         }
          
         this.listaFluxoCaixa.length = 0;

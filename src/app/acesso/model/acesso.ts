@@ -1,3 +1,5 @@
+import { Usuario } from 'src/app/usuario/model/usuario';
+
 export class Acesso {
     idacesso: number;
     nome: string;
@@ -54,5 +56,16 @@ export class Acesso {
     financeirocreditar: boolean;
     financeirocrreceber: boolean;
     financeirofc: boolean;
+
+    cadacesso: boolean;
+    cadacessoincluir: boolean;
+    cadacessoeditar: boolean;
+    cadusuario: boolean;
+    cadusuarioincluir: boolean;
+    cadusuarioeditar: boolean;
+    //usuarioList: Usuario[];
+    numerousiario: number;
+    nomeusuario: string;
+
 
 }

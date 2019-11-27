@@ -49,6 +49,14 @@
                             <a class="nav-item list-group-item list-group-item-action waves-effect"
                                routerLink="/consplanocontas">Plano de Contas</a>
                         </li>
+                        <li *ngIf="usuario.acesso.cadacesso">
+                                <a class="nav-item list-group-item list-group-item-action waves-effect"
+                                   routerLink="/consacesso">Acesso</a>
+                        </li>
+                        <li *ngIf="usuario.acesso.cadusuario">
+                                <a class="nav-item list-group-item list-group-item-action waves-effect"
+                                   routerLink="/consusuairo">Usuário</a>
+                        </li>
                     </ul>
                 </links>
             </mdb-navbar>

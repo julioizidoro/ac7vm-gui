@@ -9,6 +9,16 @@ import { Observable } from 'rxjs';
 })
 export class UsuarioService {
 
+  private usuairo: Usuario;
+
+  getUsuario() {
+    return this.usuairo;
+  }
+
+  setUsuario(usuario: Usuario) {
+    this.usuairo = usuario;
+  }
+
   constructor( private httpClient: HttpClient ) { }
 
   logar(login: string, senha: string): Observable<Usuario> {
@@ -21,6 +31,10 @@ export class UsuarioService {
 
   criptoSenha(senha: string): Observable<any> {
     return this.httpClient.get(env.baseApiUrl + 'usuarios/cripto/' + senha);
+  }
+
+  listar(): Observable<any> {
+    return this.httpClient.get(env.baseApiUrl + 'usuarios/buscar/' + true);
   }
 
   salvar(usuario: Usuario): Observable<any> {

@@ -26,6 +26,10 @@ import { CadpagarComponent } from './contas/pagar/cadpagar/cadpagar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './usuario/login/login.component';
 import { FluxocaixaComponent } from './fluxocaixa/fluxocaixa.component';
+import { ConsusuarioComponent } from './usuario/consusuario/consusuario.component';
+import { CadusuarioComponent } from './usuario/cadusuario/cadusuario.component';
+import { ConsacessoComponent } from './acesso/consacesso/consacesso.component';
+import { CadacessoComponent } from './acesso/cadacesso/cadacesso.component';
 
 const APP_ROUTER: Routes = [
     { path: '', component: DashboardComponent },
@@ -70,6 +74,10 @@ const APP_ROUTER: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'fluxocaixa', component: FluxocaixaComponent },
     { path: 'fluxocaixa/:data', component: FluxocaixaComponent },
+    { path: 'consusuairo', component: ConsusuarioComponent },
+    { path: 'cadusuairo', component: CadusuarioComponent },
+    { path: 'consacesso', component: ConsacessoComponent },
+    { path: 'cadacesso', component: CadacessoComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTER);
