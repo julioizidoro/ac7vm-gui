@@ -114,8 +114,6 @@
         </div>
     </form>
 </div>
-
-
 <div mdbModal #fluxoCaixa="mdb-modal" class="modal fade" tabindex="-1" role="dialog"
      aria-labelledby="myBasicModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
     <div class="modal-dialog" role="document">
@@ -124,13 +122,11 @@
                 <p class="heading lead">Aviso</p>
             </div>
             <div class="text-center p-5">
-                <p>Fluxo de caixa do dia {{conta.datavencimento | date: 'dd/MM/yyyy'}} não possui saldo para pagamento
-                    desta conta</p>
-
+                <p>Fluxo de caixa do dia {{conta.datavencimento | date: 'dd/MM/yyyy'}}
+                    não possui saldo para pagamento desta conta</p>
                 <button type="submit" class="btn btn-warning col-4" style="margin-left:1%;" (click)="fluxoCaixa.hide()">
                     Corrigir
                 </button>
-
                 <button type="submit" class="btn btn-success col-4" style="margin-left:1%;" (click)="salvar(true)">
                     Continuar
                 </button>

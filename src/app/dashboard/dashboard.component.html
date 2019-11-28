@@ -6,12 +6,12 @@
             [listChart]="listaFluxoCaixa"
             [listDates]="listaDate"></app-timeline>
     </div>
-    <div > 
-        <button mdbBtn type="button" color="unique"  size="sm" mdbWavesEffect (click)="consultarFluxoCaixa('v')">
-                <mdb-icon fas icon="angle-double-left" class="mr-1"></mdb-icon>Voltar
+    <div >
+        <button type="submit" class="btn btn-color col-xl-1 col-lg-2  col-md-3  col-sm-4" style="margin-left:1%;" (click)="consultarFluxoCaixa('v')">
+            Voltar
         </button>
-        <button mdbBtn type="button" color="unique"  size="sm" mdbWavesEffect (click)="consultarFluxoCaixa('a')">Avançar
-                <mdb-icon fas icon="angle-double-right" class="ml-1"></mdb-icon>
-            </button>
+        <button type="submit" class="btn btn-color col-xl-1 col-lg-2  col-md-3  col-sm-4" style="margin-left:1%;" (click)="consultarFluxoCaixa('a')">
+            Avançar
+        </button>
     </div>
 </div>
