@@ -15,14 +15,21 @@ export class ConsusuarioComponent implements OnInit {
 
   usuarios: Usuario[];
   usuario: Usuario;
+  formulario: FormGroup;
+  isFirstOpen = false;
+  oneAtATime: true;
   
   constructor(
     private router: Router,
+    private formBuilder: FormBuilder,
     private authService: AuthService,
     private usuarioService: UsuarioService,
   ) { }
 
   ngOnInit() {
+    this.formulario = this.formBuilder.group({
+      nome: [null],
+    });
     this.usuario = this.authService.usuario;
     this.consultar();
   }

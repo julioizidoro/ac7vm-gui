@@ -6,6 +6,8 @@ import { LoginComponent } from './login/login.component';
 import {IconsModule, MdbIconComponent} from 'angular-bootstrap-md';
 import { CadusuarioComponent } from './cadusuario/cadusuario.component';
 import { ConsusuarioComponent } from './consusuario/consusuario.component';
+import { TextMaskModule } from 'angular2-text-mask';
+import { AccordionModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { ConsusuarioComponent } from './consusuario/consusuario.component';
     CommonModule,
     IconsModule,
     ReactiveFormsModule,
+    TextMaskModule,
+    AccordionModule.forRoot(),
   ],
   exports: [
     LoginComponent,
