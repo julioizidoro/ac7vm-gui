@@ -122,7 +122,6 @@ pesquisarReceberVencimentoCP(dataInicial: string, dataFinal: string, nome: strin
 upload(file: File): Observable<any> {
   const uri = env.baseApiUrl + 'usuarios/picture';
   const formData = new FormData();
-  
   formData.append('file', file, file.name);
   const request = new HttpRequest('POST', uri, formData);
   return this.httpCliente.request(request);

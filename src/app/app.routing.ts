@@ -74,8 +74,8 @@ const APP_ROUTER: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'fluxocaixa', component: FluxocaixaComponent },
     { path: 'fluxocaixa/:data', component: FluxocaixaComponent },
-    { path: 'consusuairo', component: ConsusuarioComponent },
-    { path: 'cadusuairo', component: CadusuarioComponent },
+    { path: 'consusuario', component: ConsusuarioComponent },
+    { path: 'cadusuario', component: CadusuarioComponent },
     { path: 'consacesso', component: ConsacessoComponent },
     { path: 'cadacesso', component: CadacessoComponent },
 ];

@@ -30,11 +30,20 @@
           <option value="false">Inativo</option>
         </select>
       </div>
+      
 
 
-      <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
         <label for="email">E-mail</label>
-        <input type="text" class="form-control" id="login" placeholder="E-mail" formControlName="email">
+        <input type="text" class="form-control" id="email" placeholder="E-mail" formControlName="email">
+      </div>
+
+      <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          <label for="tipoacesso">Acesso</label>
+          <p-dropdown id="tipoacesso" [style]="{'width':'100%'}"
+                      [options]="acessos"  [(ngModel)]="acessoSelecionado" optionLabel="nome"
+                      [filter]="true" filterBy="label,value.nome" [ngModelOptions]="{standalone: true}">
+          </p-dropdown>
       </div>
 
 
@@ -53,4 +62,29 @@
 
     </div>
   </form>
+</div>
+
+
+<!-- Modal para informar nova senha cadastrar -->
+
+<div mdbModal #novasenha="mdb-modal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="myBasicModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="heading lead">Dados de Acesso</p>
+            </div>
+            <div class="text-left p-5">
+                <p>Dados para acessar o sistema AC7VM</p>
+                <br />
+                <p>Login: {{usuario.login}}</p>
+                <br />
+                <p>Senha: {{usuario.senha}}</p>
+
+                <button type="submit" class="btn btn-warning col-4" style="margin-left:1%;" (click)="fecharModal()">
+                    Corrigir
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
