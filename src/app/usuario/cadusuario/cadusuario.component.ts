@@ -18,6 +18,8 @@ export class CadusuarioComponent implements OnInit {
     formulario: FormGroup;
     usuarioLogado: Usuario;
     usuario: Usuario;
+    login: string;
+    senha: string;
     acessoSelecionado: Acesso;
     acessos: Acesso[];
     public maskCELULAR = ['(', /[0-9]/, /[0-9]/, ')', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/];
@@ -36,6 +38,9 @@ export class CadusuarioComponent implements OnInit {
     const usuario = this.usuarioService.getUsuario();
     this.listarAcesso();
     if (usuario != null) {
+      this.usuario = new Usuario();
+      this.usuario.login='';
+      this.usuario.senha='';
       this.formulario = this.formBuilder.group({
         idusuario: usuario.idusuario,
         nome: usuario.nome,
@@ -83,6 +88,8 @@ export class CadusuarioComponent implements OnInit {
     this.usuarioService.salvar( this.usuario).subscribe(
       resposta => {
         this.usuario = resposta as any;
+        this.login = this.usuario.login;
+        this.senha = this.usuario.senha;
         this.showModalNovaSenhaOnClick.show();
       }
     );

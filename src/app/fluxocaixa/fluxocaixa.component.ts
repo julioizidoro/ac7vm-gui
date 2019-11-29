@@ -234,4 +234,14 @@ export class FluxocaixaComponent implements OnInit {
     );
   }
 
+  contaPaga(conta: Contas) {
+    if (conta.datapagamento != null) {
+        console.log(conta.datapagamento);
+        return true;
+    }else {
+      console.log(conta.datapagamento);
+      return false;
+    }
+  }
+
 }
