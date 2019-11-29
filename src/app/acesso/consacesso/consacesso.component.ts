@@ -25,7 +25,7 @@ export class ConsacessoComponent implements OnInit {
     this.usuario = this.authService.usuario;
     this.consultar();
   }
-  
+
   consultar() {
     this.acessoService.listar().subscribe(
       resposta => {

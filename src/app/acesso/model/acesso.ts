@@ -63,7 +63,6 @@ export class Acesso {
     cadusuario: boolean;
     cadusuarioincluir: boolean;
     cadusuarioeditar: boolean;
-    //usuarioList: Usuario[];
     numerousiario: number;
     nomeusuario: string;
 

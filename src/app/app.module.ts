@@ -1,3 +1,4 @@
+import { AcessoModule } from './acesso/acesso.module';
 import { FormapagamentoModule } from './formapagamento/formapagamento.module';
 import { ContasModule } from './contas/contas.module';
 import { BensModule } from './bens/bens.module';
@@ -22,14 +23,12 @@ import {NavigationModule} from './main-layout/navigation/navigation.module';
 import {DashboardModule} from './dashboard/dashboard.module';
 import { AgmCoreModule } from '@agm/core';
 import {LinhaTempoModule} from './main-layout/linha-tempo/linha-tempo.module';
-import {MDBBootstrapModule, IconsModule, DropdownModule} from 'angular-bootstrap-md';
+import {MDBBootstrapModule, IconsModule} from 'angular-bootstrap-md';
 import {UsuarioModule} from './usuario/usuario.module';
-import { FluxocaixaComponent } from './fluxocaixa/fluxocaixa.component';
 import { FluxocaixaModule } from './fluxocaixa/fluxocaixa.module';
 import { registerLocaleData } from '@angular/common';
 import br from '@angular/common/locales/br';
-import { CadacessoComponent } from './acesso/cadacesso/cadacesso.component';
-import { ConsacessoComponent } from './acesso/consacesso/consacesso.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 registerLocaleData(br, 'pt-BR');
 
@@ -37,8 +36,6 @@ registerLocaleData(br, 'pt-BR');
 @NgModule({
   declarations: [
     AppComponent,
-    CadacessoComponent,
-    ConsacessoComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +67,7 @@ registerLocaleData(br, 'pt-BR');
     UsuarioModule,
     LinhaTempoModule,
     FluxocaixaModule,
+    AcessoModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' }

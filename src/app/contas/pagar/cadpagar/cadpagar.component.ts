@@ -41,7 +41,6 @@ export class CadpagarComponent implements OnInit {
     private planocontaservice: PlanoContasService,
     private contasService: ContasService,
     private formBuilder: FormBuilder,
-    private activeRrouter: ActivatedRoute,
     private router: Router,
     private fluxoCaixaService: FluxocaixaService,
     private formaPagamentoService: FormapagamentoService,

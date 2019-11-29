@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Usuario } from '../model/usuario';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -6,6 +6,7 @@ import { AuthService } from '../login/auth.service';
 import { Acesso } from 'src/app/acesso/model/acesso';
 import { UsuarioService } from '../usuario.service';
 import { AcessoService } from 'src/app/acesso/acesso.service';
+import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-cadusuario',
@@ -20,6 +21,7 @@ export class CadusuarioComponent implements OnInit {
     acessoSelecionado: Acesso;
     acessos: Acesso[];
     public maskCELULAR = ['(', /[0-9]/, /[0-9]/, ')', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/, '-', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/];
+    @ViewChild('novasenha', null) public showModalNovaSenhaOnClick: ModalDirective;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,8 +33,9 @@ export class CadusuarioComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioLogado = this.authService.usuario;
-    let usuario = this.usuarioService.getUsuario();
-    if (this.usuario ! =null) {
+    const usuario = this.usuarioService.getUsuario();
+    this.listarAcesso();
+    if (usuario != null) {
       this.formulario = this.formBuilder.group({
         idusuario: usuario.idusuario,
         nome: usuario.nome,
@@ -59,7 +62,7 @@ export class CadusuarioComponent implements OnInit {
         situacao: [null],
         acesso: this.acessoSelecionado
       });
-    }    
+    }
   }
 
   listarAcesso() {
@@ -71,11 +74,16 @@ export class CadusuarioComponent implements OnInit {
   }
 
   salvar() {
+    let novo = false;
     this.usuario = this.formulario.value;
+    if (this.usuario.idusuario == null) {
+      this.usuario.senha = this.gerarSenha();
+      novo = true;
+    }
     this.usuarioService.salvar( this.usuario).subscribe(
       resposta => {
         this.usuario = resposta as any;
-        this.router.navigate(['/consusuairo']);
+        this.showModalNovaSenhaOnClick.show();
       }
     );
   }
@@ -85,5 +93,24 @@ export class CadusuarioComponent implements OnInit {
     this.router.navigate(['/consusuario']);
   }
 
+
+  gerarSenha() {
+    let senha = this.usuario.nome.substring(1, 4);
+    senha = senha + this.usuario.nome.substring((this.usuario.nome.length - 3), 3);
+    return senha;
+  }
+
+  fecharModal() {
+    this.showModalNovaSenhaOnClick.hide();
+    this.router.navigate(['/consusuairo']);
+  }
+
+  compararAcesso(obj1, obj2) {
+    return obj1 && obj2 ? obj1.idloja === obj2.idloja : obj1 === obj2;
+  }
+
+  setAcesso() {
+    this.acessoSelecionado = this.formulario.get('acesso').value;
+  }
 }
 

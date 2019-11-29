@@ -18,7 +18,7 @@ export class ConsusuarioComponent implements OnInit {
   formulario: FormGroup;
   isFirstOpen = false;
   oneAtATime: true;
-  
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -45,6 +45,19 @@ export class ConsusuarioComponent implements OnInit {
   editar(usuario: Usuario) {
     this.usuarioService.setUsuario(usuario);
     this.router.navigate([ '/cadusuario']);
+  }
+
+  novo() {
+    this.router.navigate([ '/cadusuario']);
+  }
+
+  pesquisar() {
+    const nome = this.formulario.get('nome').value;
+    this.usuarioService.buscarNome(nome).subscribe(
+      resposta => {
+        this.usuarios = resposta as any;
+      }
+    );
   }
 
 }
