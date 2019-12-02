@@ -29,6 +29,7 @@ import { FluxocaixaModule } from './fluxocaixa/fluxocaixa.module';
 import { registerLocaleData } from '@angular/common';
 import br from '@angular/common/locales/br';
 import { DropdownModule } from 'primeng/dropdown';
+import { ClipboardModule } from 'ngx-clipboard';
 
 registerLocaleData(br, 'pt-BR');
 
@@ -53,6 +54,7 @@ registerLocaleData(br, 'pt-BR');
     AppRoutingModule,
     ObrasModule,
     ServicoModule,
+    ClipboardModule,
     GrupoContasModule,
     ProdutoModule,
     FaseObraModule,

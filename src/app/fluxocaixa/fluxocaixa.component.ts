@@ -14,6 +14,7 @@ import {ModalDirective} from 'ngx-bootstrap';
 import { Usuario } from '../usuario/model/usuario';
 import { AuthService } from '../usuario/login/auth.service';
 
+
 @Component({
   selector: 'app-fluxocaixa',
   templateUrl: './fluxocaixa.component.html',
@@ -33,8 +34,10 @@ export class FluxocaixaComponent implements OnInit {
   paga: boolean;
   recebida: boolean;
   conta: Contas;
+  codigobarras: string;
   @ViewChild('contas', null) public showModalContasOnClick: ModalDirective;
   @ViewChild('lancamentos', null) public showModalLancamentosOnClick: ModalDirective;
+  @ViewChild('contasarquivos', null) public showModalContasArquivosOnClick: ModalDirective;
   usuario: Usuario;
 
   constructor(
@@ -236,12 +239,23 @@ export class FluxocaixaComponent implements OnInit {
 
   contaPaga(conta: Contas) {
     if (conta.datapagamento != null) {
-        console.log(conta.datapagamento);
         return true;
     }else {
-      console.log(conta.datapagamento);
       return false;
     }
+  }
+
+  openModalContasArquivos(conta: Contas) {
+    if (conta.contasarquivos !=null){
+      if (this.conta.contasarquivos.length>0){
+        this.conta = conta;
+        this.showModalContasArquivosOnClick.show();
+      }
+    }
+  }
+
+  copiarCodigoBarras(conta: Contas) {
+    console.log('copiar codigo barras');
   }
 
 }

@@ -73,7 +73,7 @@
                                 <tr *ngFor="let fluxo of fluxoCaixa"
                                     class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
                                     <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
-                                        style="border: none;"><a (click)="selectFluxoCaixa(fluxo)" >
+                                        style="border: none;"><a (click)="selectFluxoCaixa(fluxo)">
                                             {{fluxo.data | date: 'dd/MM/yyyy' }}</a></td>
                                     <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
                                         style="border: none;text-align:right">
@@ -81,11 +81,13 @@
                                     <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
                                         style="border: none;text-align:right">{{ fluxo.entradas | currency: ' ' }}</td>
                                     <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
-                                        style="border: none;text-align:right">{{ fluxo.saidasprevistas | currency: ' ' }}</td>
+                                        style="border: none;text-align:right">
+                                        {{ fluxo.saidasprevistas | currency: ' ' }}</td>
                                     <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
                                         style="border: none;text-align:right">{{ fluxo.saidas | currency: ' ' }}</td>
                                     <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
-                                        style="border: none;text-align:right">{{ fluxo.saldoatual | currency: ' ' }}</td>
+                                        style="border: none;text-align:right">{{ fluxo.saldoatual | currency: ' ' }}
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -111,7 +113,7 @@
                                     class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
                                     <td class="col-lg-4 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
                                         style="border: none;"><a (click)="openModalLancamentos(fluxo)">
-                                        {{fluxo.data | date: 'dd/MM/yyyy' }}</a></td>
+                                            {{fluxo.data | date: 'dd/MM/yyyy' }}</a></td>
                                     <td class="col-lg-4 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
                                         style="border: none;">
                                         {{fluxo.formapagamento.descricao }}</td>
@@ -136,9 +138,9 @@
                                         Vencimento</th>
                                     <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Valor
                                     </th>
-                                    <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">
-                                     </th>
-                                   
+                                    <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Ações
+                                    </th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -153,20 +155,30 @@
                                     <td class="col-lg-4 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
                                         style="border: none;text-align:right">
                                         {{fluxo.contas.valorparcela  | currency: ' ' }}</td>
-                                    <td  *ngIf="contaPaga(fluxo.contas)" class="col-lg-1 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
+                                    <td *ngIf="contaPaga(fluxo.contas)"
+                                        class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
                                         style="border: none;">
                                         <a style="color: green">
-                                        <i class="far fa-check-circle" title="Paga"></i></a>
-                                        <a style="color: blue;margin-left: 10%;">
+                                            <i class="far fa-check-circle" title="Paga"></i></a>
+                                        <a style="color: blue;margin-left: 10%;" (click)="openModalContasArquivos(fluxo.contas)">
                                             <i class="fas fa-file-invoice-dollar" title="Boletos"></i>
-                                            </a></td>                                 
-                                    <td  *ngIf="!contaPaga(fluxo.contas)" class="col-lg-1 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
+                                        </a>
+                                        <a style="margin-left: 10%;" (click)="copiarCodigoBarras(fluxo.contas)" >
+                                            <i class="fa fa-barcode" title="Códgio barras"></i>
+                                        </a>
+                                    </td>
+                                    <td *ngIf="!contaPaga(fluxo.contas)"
+                                        class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
                                         style="border: none;">
                                         <a style="color: red;">
-                                        <i class="fas fa-ban" title="Não Paga"></i></a>
+                                            <i class="fas fa-ban" title="Não Paga"></i></a>
                                         <a style="color: blue;margin-left: 10%;">
-                                        <i class="fas fa-file-invoice-dollar" title="Boletos"></i>
-                                        </a></td>                                                                                            
+                                            <i class="fas fa-file-invoice-dollar" title="Boletos" (click)="openModalContasArquivos(fluxo.contas)"></i>
+                                        </a>
+                                        <a style="margin-left: 10%;" (click)="copiarCodigoBarras(fluxo.contas)" >
+                                            <i class="fa fa-barcode" title="Códgio barras"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -184,109 +196,104 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title w-100" id="myModalLabel">{{ titulo }}</h4>
-                
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                    (click)="contas.hide()">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="contas.hide()">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form [formGroup]="formulario">
                     <div class="row">
-                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
                             <label for="numerodocumento">No. Documento</label>
                             <input type="text" class="form-control" id="numerodocumento" placeholder="No. Documento"
-                            formControlName="documento"  readonly >
-                          </div>
-                          <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
+                                formControlName="documento" readonly>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
                             <label for="dataentrada">Data Emissão</label>
                             <input type="date" class="form-control" id="dataemissao" placeholder="data de Emissão"
-                            formControlName="dataemissao"  readonly>
-                          </div>
-                          <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
+                                formControlName="dataemissao" readonly>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
                             <label for="datavencimento">Data Vencimento</label>
                             <input type="date" class="form-control" id="datavencimento" placeholder="data de Vencimento"
-                            formControlName="datavencimento"  readonly>
-                          </div>
-          
-                          <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
-                              <label for="numeroparcela">No. Parcelas</label>
-                              <input type="text" style="text-align:right" class="form-control" id="numeroparcela" placeholder="No. Parcelas"
-                              formControlName="numeroparcela" readonly >
-                          </div>
-
-                          <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
-                            <label for="formapagamento">Forma de Pagamento</label>
-                            <input type="text" style="text-align:left" class="form-control" id="formapagamento" placeholder="Forma de pagamento"
-                            formControlName="formapagamento"  readonly >
+                                formControlName="datavencimento" readonly>
                         </div>
 
-                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                            <label for="numeroparcela">No. Parcelas</label>
+                            <input type="text" style="text-align:right" class="form-control" id="numeroparcela"
+                                placeholder="No. Parcelas" formControlName="numeroparcela" readonly>
+                        </div>
+
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                            <label for="formapagamento">Forma de Pagamento</label>
+                            <input type="text" style="text-align:left" class="form-control" id="formapagamento"
+                                placeholder="Forma de pagamento" formControlName="formapagamento" readonly>
+                        </div>
+
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
                             <label for="valorparcela">Valor da Parcela</label>
-                            <input type="number" style="text-align:right" class="form-control" id="valorparcela" placeholder="Valor da Parcela"
-                            formControlName="valorparcela"  readonly>
-                          </div>
+                            <input type="number" style="text-align:right" class="form-control" id="valorparcela"
+                                placeholder="Valor da Parcela" formControlName="valorparcela" readonly>
+                        </div>
 
-                          <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+                        <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
                             <label for="planocontas">Plano Contas</label>
-                            <input type="text" style="text-align:left" class="form-control" id="planoconta" placeholder="Plano Contas"
-                            formControlName="planocontas"  readonly>
-                          </div>
+                            <input type="text" style="text-align:left" class="form-control" id="planoconta"
+                                placeholder="Plano Contas" formControlName="planocontas" readonly>
+                        </div>
 
-                          <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                        <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <label for="valorsaida">Observação</label>
-                            <input type="text"  class="form-control" id="observacao" placeholder="Observação"
-                            formControlName="observacao"  readonly>
+                            <input type="text" class="form-control" id="observacao" placeholder="Observação"
+                                formControlName="observacao" readonly>
                         </div>
                     </div>
-                        <div *ngIf="paga" class="row" >
-                                <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
-                                        <label for="datapagamento">Data pagamento</label>
-                                        <input type="text"  class="form-control" id="datapagamento" 
-                                        formControlName="datapagamento"  readonly>
-                                </div>    
-                                <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
-                                        <label for="desconto">Desconto</label>
-                                        <input type="number"  class="form-control" id="desconto" 
-                                        formControlName="desconto"  readonly>
-                                </div>                            
-                                <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
-                                        <label for="juros">Juros</label>
-                                        <input type="number"  class="form-control" id="juros" 
-                                        formControlName="juros"  readonly>
-                                </div>                            
-                                <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
-                                        <label for="valorpago">Valor Pago</label>
-                                        <input type="number"  class="form-control" id="valorpago" 
-                                        formControlName="valorpago"  readonly>
-                                </div>                            
+                    <div *ngIf="paga" class="row">
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                            <label for="datapagamento">Data pagamento</label>
+                            <input type="text" class="form-control" id="datapagamento" formControlName="datapagamento"
+                                readonly>
                         </div>
-                        <div *ngIf="recebida" class="row" >
-                                <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
-                                        <label for="datapagamento">Data recebimento</label>
-                                        <input type="text"  class="form-control" id="datapagamento" 
-                                        formControlName="datapagamento"  readonly>
-                                </div>    
-                                <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
-                                        <label for="desconto">Desconto</label>
-                                        <input type="number"  class="form-control" id="desconto" 
-                                        formControlName="desconto"  readonly>
-                                </div>                            
-                                <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
-                                        <label for="juros">Juros</label>
-                                        <input type="number"  class="form-control" id="juros" 
-                                        formControlName="juros"  readonly>
-                                </div>                            
-                                <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
-                                        <label for="valorpago">Valor Recebido</label>
-                                        <input type="number"  class="form-control" id="valorpago" 
-                                        formControlName="valorpago"  readonly>
-                                </div>                            
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                            <label for="desconto">Desconto</label>
+                            <input type="number" class="form-control" id="desconto" formControlName="desconto" readonly>
                         </div>
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                            <label for="juros">Juros</label>
+                            <input type="number" class="form-control" id="juros" formControlName="juros" readonly>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                            <label for="valorpago">Valor Pago</label>
+                            <input type="number" class="form-control" id="valorpago" formControlName="valorpago"
+                                readonly>
+                        </div>
+                    </div>
+                    <div *ngIf="recebida" class="row">
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                            <label for="datapagamento">Data recebimento</label>
+                            <input type="text" class="form-control" id="datapagamento" formControlName="datapagamento"
+                                readonly>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                            <label for="desconto">Desconto</label>
+                            <input type="number" class="form-control" id="desconto" formControlName="desconto" readonly>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                            <label for="juros">Juros</label>
+                            <input type="number" class="form-control" id="juros" formControlName="juros" readonly>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                            <label for="valorpago">Valor Recebido</label>
+                            <input type="number" class="form-control" id="valorpago" formControlName="valorpago"
+                                readonly>
+                        </div>
+                    </div>
 
-          
-                 
-              </form>
+
+
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger btn-sm waves-light" data-dismiss="modal"
@@ -304,7 +311,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title w-100" id="myModalLabel">Lançamentos Fluxo Caixa</h4>
-                
+
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"
                     (click)="lancamentos.hide()">
                     <span aria-hidden="true">×</span>
@@ -313,51 +320,50 @@
             <div class="modal-body">
                 <form [formGroup]="lformulario">
                     <div class="row">
-                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
                             <label for="numerodocumento">Data</label>
-                            <input type="date" class="form-control" id="data" 
-                            formControlName="data"  readonly >
-                          </div>
+                            <input type="date" class="form-control" id="data" formControlName="data" readonly>
+                        </div>
 
-                          <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
                             <label for="valorentrada">Valor Entrada</label>
-                            <input type="number" style="text-align:right" class="form-control" id="valorentrada" 
-                            formControlName="valorentrada"  readonly>
-                          </div>
+                            <input type="number" style="text-align:right" class="form-control" id="valorentrada"
+                                formControlName="valorentrada" readonly>
+                        </div>
 
-                          <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
                             <label for="valorsaida">Valor Saída</label>
                             <input type="number" style="text-align:right" class="form-control" id="valorsaida"
-                            formControlName="valorsaida"  readonly>
-                          </div>
-
-                          <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3" >
-                            <label for="formapagamento">Forma de Pagamento</label>
-                            <input type="text" style="text-align:left" class="form-control" id="formapagamento" 
-                            formControlName="formapagamento"  readonly >
+                                formControlName="valorsaida" readonly>
                         </div>
 
-                        
+                        <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                            <label for="formapagamento">Forma de Pagamento</label>
+                            <input type="text" style="text-align:left" class="form-control" id="formapagamento"
+                                formControlName="formapagamento" readonly>
+                        </div>
 
-                          <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+
+
+                        <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
                             <label for="planocontas">Plano Contas</label>
-                            <input type="text" style="text-align:left" class="form-control" id="planoconta" placeholder="Plano Contas"
-                            formControlName="planoconta"  readonly>
-                          </div>
+                            <input type="text" style="text-align:left" class="form-control" id="planoconta"
+                                placeholder="Plano Contas" formControlName="planoconta" readonly>
+                        </div>
 
-                          <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+                        <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
                             <label for="usuario">Usuário</label>
-                            <input type="text"  class="form-control" id="usuario"
-                            formControlName="usuario"  readonly>
+                            <input type="text" class="form-control" id="usuario" formControlName="usuario" readonly>
                         </div>
                     </div>
-                     
-          
-                 
-              </form>
+
+
+
+                </form>
             </div>
-            <div >
-                <button type="submit" class="btn btn-success col-4" style="margin-left:1%;" (click)="lancamentos.hide()">
+            <div>
+                <button type="submit" class="btn btn-success col-4" style="margin-left:1%;"
+                    (click)="lancamentos.hide()">
                     Continuar
                 </button>
             </div>
@@ -366,3 +372,54 @@
 </div>
 
 <!--  Lista de boletos -->
+
+<div mdbModal #contasarquivos="mdb-modal" class="modal fade" id="contasarquivos" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: true, ignoreBackdropClick: false}">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">Lançamentos Fluxo Caixa</h4>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                    (click)="contasarquivos.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-6 col-md-12 col-xs-12">
+                    <h4 style="text-align: center;">Contas</h4>
+                    <div class="table-responsive-lg">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr
+                                    class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
+                                    <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Arquivo
+                                    </th>
+                                    <th class="col-lg-8 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">
+                                        Endereço</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let arquivo of conta.contasarquivos"
+                                    class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                                    <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
+                                        style="border: none;">
+                                        {{arquivo.nomeoriginal }}</td>
+                                    <td class="col-lg-4 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
+                                        style="border: none;text-align:right">
+                                        {{arquivo.uri}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-success col-4" style="margin-left:1%;"
+                        (click)="lancamentos.hide()">
+                        Continuar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
