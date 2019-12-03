@@ -163,7 +163,7 @@
                                         <a style="color: blue;margin-left: 10%;" (click)="openModalContasArquivos(fluxo.contas)">
                                             <i class="fas fa-file-invoice-dollar" title="Boletos"></i>
                                         </a>
-                                        <a style="margin-left: 10%;" (click)="copiarCodigoBarras(fluxo.contas)" >
+                                        <a  style="color: blue;margin-left: 10%;" (click)="copiarCodigoBarras(fluxo.contas)"  >
                                             <i class="fa fa-barcode" title="Códgio barras"></i>
                                         </a>
                                     </td>
@@ -175,7 +175,7 @@
                                         <a style="color: blue;margin-left: 10%;">
                                             <i class="fas fa-file-invoice-dollar" title="Boletos" (click)="openModalContasArquivos(fluxo.contas)"></i>
                                         </a>
-                                        <a style="margin-left: 10%;" (click)="copiarCodigoBarras(fluxo.contas)" >
+                                        <a style="color: blue;margin-left: 10%;" (click)="copiarCodigoBarras(fluxo.contas)">
                                             <i class="fa fa-barcode" title="Códgio barras"></i>
                                         </a>
                                     </td>
@@ -296,7 +296,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-sm waves-light" data-dismiss="modal"
+                <button type="button" class="btn btn-danger btn-sm waves-light" data-dismiss="modal" 
                     (click)="contas.hide()" mdbWavesEffect>Fechar
                 </button>
             </div>
@@ -371,55 +371,58 @@
     </div>
 </div>
 
-<!--  Lista de boletos -->
 
-<div mdbModal #contasarquivos="mdb-modal" class="modal fade" id="contasarquivos" tabindex="-1" role="dialog"
-    aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: true, ignoreBackdropClick: false}">
-    <div class="modal-dialog modal-lg" role="document">
+
+
+<!-- Upload de Contas  -->
+
+<div mdbModal #contasarquivos="mdb-modal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="myBasicModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title w-100" id="myModalLabel">Lançamentos Fluxo Caixa</h4>
-
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                    (click)="contasarquivos.hide()">
-                    <span aria-hidden="true">×</span>
+                <p class="heading lead">Upload de Arquivo</p>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" (change)="onChange($event)" />
+                <label class="custom-file-label" for="customFile" id="customFileLabel">Selecionar arquivo</label>
+                
+            </div>
+            <div style="margin-top: 10px;"> 
+                <button type="button" class="btn btn-primary" (click)="onUpload()" [disabled]="!file">
+                    Upload
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="col-lg-6 col-md-12 col-xs-12">
-                    <h4 style="text-align: center;">Contas</h4>
-                    <div class="table-responsive-lg">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr
-                                    class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
-                                    <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Arquivo
-                                    </th>
-                                    <th class="col-lg-8 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">
-                                        Endereço</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let arquivo of conta.contasarquivos"
-                                    class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-                                    <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
-                                        style="border: none;">
-                                        {{arquivo.nomeoriginal }}</td>
-                                    <td class="col-lg-4 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
-                                        style="border: none;text-align:right">
-                                        {{arquivo.uri}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-success col-4" style="margin-left:1%;"
-                        (click)="lancamentos.hide()">
-                        Continuar
-                    </button>
-                </div>
+            <div class="table-responsive-lg">
+                <table class="table table-striped">
+                    <thead>
+                        <tr
+                            class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
+                            <th class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Arquivo
+                            </th>
+                            <th class="col-lg-8 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">
+                                Endereço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr *ngFor="let arquivo of conta.contasarquivos"
+                            class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                            <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
+                                style="border: none;">
+                                {{arquivo.nomeoriginal }}</td>
+                            <td class="col-lg-4 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
+                                style="border: none;text-align:right">
+                                {{arquivo.uri}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                    <button type="button" class="btn btn-primary"  (click)="contasarquivos.hide()" >
+                            Fechar
+                    </button>   
             </div>
         </div>
     </div>
+</div>
+

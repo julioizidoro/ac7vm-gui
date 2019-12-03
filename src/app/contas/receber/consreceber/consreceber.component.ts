@@ -6,6 +6,7 @@ import { Contas } from '../../model/contas';
 import { ContasService } from '../../contas.service';
 import { Usuario } from 'src/app/usuario/model/usuario';
 import { AuthService } from 'src/app/usuario/login/auth.service';
+import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-consreceber',
@@ -23,6 +24,7 @@ export class ConsreceberComponent implements OnInit {
   pagas: boolean;
   file: File;
   usuario: Usuario;
+  @ViewChild('contasarquivos', null) public showModalContasArquivosOnClick: ModalDirective;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,6 +35,7 @@ export class ConsreceberComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.contaSelecinada = new Contas();
     this.usuario = this.authService.usuario;
     this.pagas = false;
     this.formulario = this.formBuilder.group({
@@ -46,12 +49,12 @@ export class ConsreceberComponent implements OnInit {
   }
 
   consultar() {
-      this.contasService.listarCR().subscribe(
-        resposta => {
-          this.contas = resposta as any;
-        }
-      );
-      this.formulario.reset();
+    this.contasService.listarCR().subscribe(
+      resposta => {
+        this.contas = resposta as any;
+      }
+    );
+    this.formulario.reset();
   }
 
   pesquisar() {
@@ -62,17 +65,17 @@ export class ConsreceberComponent implements OnInit {
     const datafinal = this.formulario.get('datafinal').value;
     const tipoConta = this.formulario.get('tipoConta').value;
     if (cliente === null) {
-       const nome = '@';
+      const nome = '@';
     }
     if (documento != null) {
       this.pesquisarDocumento(documento);
-    } else if ((datainicial != null) && (datafinal != null ))  {
-      this.pesquisarDataVencimento( tipoConta, datainicial, datafinal, cliente);
+    } else if ((datainicial != null) && (datafinal != null)) {
+      this.pesquisarDataVencimento(tipoConta, datainicial, datafinal, cliente);
     }
   }
 
   pesquisarDocumento(ducumento: string) {
-    this.contasService.pesquisarDocumentoCR( ducumento ).subscribe(
+    this.contasService.pesquisarDocumentoCR(ducumento).subscribe(
       resposta => {
         this.contas = resposta as any;
       }
@@ -87,20 +90,20 @@ export class ConsreceberComponent implements OnInit {
     );
   }
 
-  pesquisarDataVencimento( tipoConta: string, dataInicial: string, dataFinal: string, cliente: string) {
-    if (tipoConta === 'todas')  {
+  pesquisarDataVencimento(tipoConta: string, dataInicial: string, dataFinal: string, cliente: string) {
+    if (tipoConta === 'todas') {
       this.contasService.pesquisarTodasVencimentoCR(dataInicial, dataFinal, cliente).subscribe(
         resposta => {
           this.contas = resposta as any;
         }
       );
-    } else if (tipoConta === 'pagas')  {
+    } else if (tipoConta === 'pagas') {
       this.contasService.pesquisarRecebidasVencimentoCR(dataInicial, dataFinal, cliente).subscribe(
         resposta => {
           this.contas = resposta as any;
         }
       );
-    } else if (tipoConta === 'pagar')  {
+    } else if (tipoConta === 'pagar') {
       this.contasService.pesquisarReceberVencimentoCR(dataInicial, dataFinal, cliente).subscribe(
         resposta => {
           this.contas = resposta as any;
@@ -131,16 +134,34 @@ export class ConsreceberComponent implements OnInit {
     const selectedFiles = <FileList>event.srcElement.files;
     this.file = selectedFiles[0];
     document.getElementById('customFileLabel').innerHTML = selectedFiles[0].name;
- }
+  }
 
- onUpload() {
+  onUpload() {
     this.contasService.upload(this.file).subscribe(
-       resposta => {
-         const uri = resposta as any;
-       },
-       err => {
+      resposta => {
+        const uri = resposta as any;
+      },
+      err => {
         console.log(err.error.erros.join(' '));
-       }
+      }
     );
- }
+  }
+  openModalContasArquivos(conta: Contas) {
+    this.contaSelecinada = conta;
+    this.showModalContasArquivosOnClick.show();
+  }
+
+  copiarCodigoBarras(conta: Contas) {
+    let cb = 'SEM CÓDIGO DE BARRAS';
+    if (conta.codigobarras != null) {
+      cb = conta.codigobarras;
+    }
+    const event = (e: ClipboardEvent) => {
+      e.clipboardData.setData('text/plain', cb);
+      e.preventDefault();
+      document.removeEventListener('copy', event);
+    };
+    document.addEventListener('copy', event);
+    document.execCommand('copy');
+  }
 }

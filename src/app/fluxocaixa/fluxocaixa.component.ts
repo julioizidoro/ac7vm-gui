@@ -211,10 +211,10 @@ export class FluxocaixaComponent implements OnInit {
   }
 
   pesquisar(data: Date) {
-    if (data== null) {
-      if (this.fluxoCaixa.length>0) {
-        data = this.fluxoCaixa[this.fluxoCaixa.length-1].data;
-        data.setDate(data.getDate() +1);
+    if (data == null) {
+      if (this.fluxoCaixa.length > 0) {
+        data = this.fluxoCaixa[this.fluxoCaixa.length - 1 ].data;
+        data.setDate(data.getDate() + 1);
       } else {
         data = new Date();
       }
@@ -240,22 +240,28 @@ export class FluxocaixaComponent implements OnInit {
   contaPaga(conta: Contas) {
     if (conta.datapagamento != null) {
         return true;
-    }else {
+    } else {
       return false;
     }
   }
 
   openModalContasArquivos(conta: Contas) {
-    if (conta.contasarquivos !=null){
-      if (this.conta.contasarquivos.length>0){
-        this.conta = conta;
-        this.showModalContasArquivosOnClick.show();
-      }
-    }
+    this.conta = conta;
+    this.showModalContasArquivosOnClick.show();
   }
 
   copiarCodigoBarras(conta: Contas) {
-    console.log('copiar codigo barras');
+    let cb = 'SEM CÓDIGO DE BARRAS';
+    if (conta.codigobarras != null ) {
+      cb = conta.codigobarras;
+    }
+    const event = (e: ClipboardEvent) => {
+      e.clipboardData.setData('text/plain', cb);
+      e.preventDefault();
+      document.removeEventListener('copy', event);
+  };
+  document.addEventListener('copy', event);
+  document.execCommand('copy');
   }
 
 }
