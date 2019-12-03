@@ -41,6 +41,10 @@ export class UsuarioService {
     return this.httpClient.post<any>(env.baseApiUrl + 'usuarios/salvar', usuario);
   }
 
+  salvarImagem(usuario: Usuario): Observable<any> {
+    return this.httpClient.post<any>(env.baseApiUrl + 'usuarios/salvarimagem', usuario);
+  }
+
   buscarNome(nome: String): Observable<any> {
     return this.httpClient.get(env.baseApiUrl + 'usuarios/buscarnome/' + nome);
   }

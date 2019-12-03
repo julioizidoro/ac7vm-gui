@@ -105,9 +105,20 @@ export class NavigationComponent implements OnInit {
  }
 
  onUpload() {
+   console.log('parei');
     this.usuarioService.upload(this.file).subscribe(
        resposta => {
          const uri = resposta as any;
+         this.usuario.urifoto = uri;
+         this.usuarioService.salvarImagem(this.usuario).subscribe(
+          resposta1 => {
+            this.usuario = resposta1 as any;
+            console.log(uri);
+          },
+          err1 => {
+            console.log(err1.error.erros.join(' '));
+           }   
+          );
        },
        err => {
         console.log(err.error.erros.join(' '));
