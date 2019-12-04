@@ -39,8 +39,8 @@ export class CadusuarioComponent implements OnInit {
     this.listarAcesso();
     if (usuario != null) {
       this.usuario = new Usuario();
-      this.usuario.login='';
-      this.usuario.senha='';
+      this.usuario.login = '';
+      this.usuario.senha = '';
       this.formulario = this.formBuilder.group({
         idusuario: usuario.idusuario,
         nome: usuario.nome,
@@ -64,7 +64,7 @@ export class CadusuarioComponent implements OnInit {
         senha: [null],
         email: [null],
         fonecelular: [null],
-        situacao: [null],
+        situacao: ['Ativo'],
         acesso: this.acessoSelecionado
       });
     }
@@ -84,15 +84,22 @@ export class CadusuarioComponent implements OnInit {
     if (this.usuario.idusuario == null) {
       this.usuario.senha = this.gerarSenha();
       novo = true;
+      this.usuarioService.salvar( this.usuario).subscribe(
+        resposta => {
+          this.usuario = resposta as any;
+          this.login = this.usuario.login;
+          this.senha = this.usuario.senha;
+          this.showModalNovaSenhaOnClick.show();
+        }
+      );
+    } else {
+      this.usuarioService.update( this.usuario).subscribe(
+        resposta => {
+          this.usuario = resposta as any;
+          this.cancelar();
+        }
+      );
     }
-    this.usuarioService.salvar( this.usuario).subscribe(
-      resposta => {
-        this.usuario = resposta as any;
-        this.login = this.usuario.login;
-        this.senha = this.usuario.senha;
-        this.showModalNovaSenhaOnClick.show();
-      }
-    );
   }
 
   cancelar() {
