@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/usuario/login/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap';
+import { formatNumber } from '@angular/common';
+import { parse } from 'querystring';
 
 
 @Component({
@@ -105,19 +107,34 @@ export class NavigationComponent implements OnInit {
  }
 
  onUpload() {
+<<<<<<< HEAD
    console.log('parei');
     this.usuarioService.upload(this.file, this.usuario).subscribe(
+=======
+   let fileName = this.file.name;
+   let nome = '';
+   for (let i = fileName.length - 1; i > 0; i--) {
+     if (fileName[i] !== '.' ) {
+        nome = fileName[i] + nome;
+     } else {
+       i = -100;
+     }
+   }
+   const id = this.usuario.idusuario;
+   fileName = id.toString() + '.' + nome;
+    this.usuarioService.upload(this.file, fileName).subscribe(
+>>>>>>> a10890b1f9b5af89e7cb061fe54c633140cb2906
        resposta => {
          const uri = resposta as any;
-         this.usuario.urifoto = uri;
-         this.usuarioService.salvarImagem(this.usuario).subscribe(
+         this.usuario.urlfoto = 'https://pictureuser.s3.us-east-2.amazonaws.com/' + fileName;
+         this.usuarioService.update(this.usuario).subscribe(
           resposta1 => {
             this.usuario = resposta1 as any;
-            console.log(uri);
+            this.showModalAlterarFotoOnClick.hide();
           },
           err1 => {
             console.log(err1.error.erros.join(' '));
-           }   
+           }
           );
        },
        err => {

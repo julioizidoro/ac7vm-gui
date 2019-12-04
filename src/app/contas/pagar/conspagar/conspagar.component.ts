@@ -25,6 +25,7 @@ export class ConspagarComponent implements OnInit {
   pagas: boolean;
   file: File;
   usuario: Usuario;
+  contaArquivo: Contasarquivos;
   @ViewChild('contasarquivos', null) public showModalContasArquivosOnClick: ModalDirective;
 
   constructor(
@@ -138,18 +139,7 @@ export class ConspagarComponent implements OnInit {
     document.getElementById('customFileLabel').innerHTML = selectedFiles[0].name;
   }
 
-  onUpload() {
-    this.contasService.upload(this.file).subscribe(
-      resposta => {
-        const uri = resposta as any;
-      },
-      err => {
-        console.log(err.error.erros.join(' '));
-      }
-    );
-  }
-
-  openModalContasArquivos(conta: Contas) {
+ openModalContasArquivos(conta: Contas) {
         this.contaSelecinada = conta;
         this.showModalContasArquivosOnClick.show();
   }
@@ -166,6 +156,42 @@ export class ConspagarComponent implements OnInit {
     };
     document.addEventListener('copy', event);
     document.execCommand('copy');
+  }
+
+  onUpload() {
+    this.contaArquivo = new Contasarquivos();
+    this.contaArquivo.contas = this.contaSelecinada;
+    this.contaArquivo.nomeorigial = this.file.name;
+    let fileName = this.file.name;
+    let nome = '';
+    for (let i = fileName.length - 1; i > 0; i--) {
+      if (fileName[i] !== '.' ) {
+         nome = fileName[i] + nome;
+      } else {
+        i = -100;
+      }
+    }
+    const id = this.contaSelecinada.idcontas;
+    const numeroArquivos = this.contaSelecinada.contasarquivos.length + 1;
+    fileName = id.toString() + '_'  + numeroArquivos.toString() + '.' + nome;
+     this.contasService.uploadPagar(this.file, fileName).subscribe(
+        resposta => {
+          const uri = resposta as any;
+          this.contaArquivo.uri = 'https://contaspagar.s3.us-east-2.amazonaws.com/' + fileName;
+          this.contasService.salvarArquivo(this.contaArquivo).subscribe(
+           resposta1 => {
+             this.contaArquivo = resposta1 as any;
+             this.contaSelecinada.contasarquivos.push(this.contaArquivo);
+           },
+           err1 => {
+             console.log(err1.error.erros.join(' '));
+            }
+           );
+        },
+        err => {
+         console.log(err.error.erros.join(' '));
+        }
+     );
   }
 
 }

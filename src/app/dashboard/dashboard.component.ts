@@ -50,7 +50,6 @@ export class DashboardComponent implements OnInit {
 
     consultarFluxoCaixa(tipo: String) {
         console.log(tipo);
-        
         if (tipo === 'v') {
             this.ultimaData = this.lista[0].data;
             this.ultimaData.setDate(this.ultimaData.getDate() - 1);
@@ -58,12 +57,10 @@ export class DashboardComponent implements OnInit {
             this.ultimaData = this.lista[this.lista.length - 1].data;
             this.ultimaData.setDate(this.ultimaData.getDate() + 1);
         }
-         
         this.listaFluxoCaixa.length = 0;
-        this.lista.length =0;
-        this.listaDate.length =0;
+        this.lista.length = 0;
+        this.listaDate.length = 0;
         this.fluxoCaixaService.listarInicial().subscribe(
-            
             resposta => {
                 this.lista = resposta as any;
                 if (this.lista != null) {

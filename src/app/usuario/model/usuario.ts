@@ -10,6 +10,6 @@ export class Usuario {
     email: string;
     fonecelular: string;
     situacao: boolean;
-    urifoto: string;
+    urlfoto: string;
     acesso: Acesso;
 }
