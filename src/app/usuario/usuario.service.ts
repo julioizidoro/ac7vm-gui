@@ -49,10 +49,11 @@ export class UsuarioService {
     return this.httpClient.get(env.baseApiUrl + 'usuarios/buscarnome/' + nome);
   }
 
-  upload(file: File): Observable<any> {
+  upload(file: File, usuario:Usuario): Observable<any> {
     const uri = env.baseApiUrl + 'usuarios/picture';
     const formData = new FormData();
     formData.append('file', file, file.name);
+    formData.append('usuario', '1', usuario.login);
     const request = new HttpRequest('POST', uri, formData);
     return this.httpClient.request(request);
   }

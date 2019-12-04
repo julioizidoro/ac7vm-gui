@@ -209,6 +209,7 @@ export class CadreceberComponent implements OnInit {
   }
 
   verificarSaldoFluxoCaixa(liberarSaldo: boolean) {
+    console.log('salvar');
     if (liberarSaldo) {
       this.incluir();
     } else {

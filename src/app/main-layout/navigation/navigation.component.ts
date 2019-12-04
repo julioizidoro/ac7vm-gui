@@ -106,7 +106,7 @@ export class NavigationComponent implements OnInit {
 
  onUpload() {
    console.log('parei');
-    this.usuarioService.upload(this.file).subscribe(
+    this.usuarioService.upload(this.file, this.usuario).subscribe(
        resposta => {
          const uri = resposta as any;
          this.usuario.urifoto = uri;
