@@ -7,6 +7,7 @@ import { ContasService } from '../../contas.service';
 import { Usuario } from 'src/app/usuario/model/usuario';
 import { AuthService } from 'src/app/usuario/login/auth.service';
 import { ModalDirective } from 'ngx-bootstrap';
+import { Contasarquivos } from '../../model/contasarquivos';
 
 @Component({
   selector: 'app-consreceber',
@@ -25,6 +26,7 @@ export class ConsreceberComponent implements OnInit {
   file: File;
   usuario: Usuario;
   @ViewChild('contasarquivos', null) public showModalContasArquivosOnClick: ModalDirective;
+  contaArquivo: Contasarquivos;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -136,16 +138,6 @@ export class ConsreceberComponent implements OnInit {
     document.getElementById('customFileLabel').innerHTML = selectedFiles[0].name;
   }
 
-  onUpload() {
-    this.contasService.upload(this.file).subscribe(
-      resposta => {
-        const uri = resposta as any;
-      },
-      err => {
-        console.log(err.error.erros.join(' '));
-      }
-    );
-  }
   openModalContasArquivos(conta: Contas) {
     this.contaSelecinada = conta;
     this.showModalContasArquivosOnClick.show();
@@ -163,5 +155,41 @@ export class ConsreceberComponent implements OnInit {
     };
     document.addEventListener('copy', event);
     document.execCommand('copy');
+  }
+
+  onUpload() {
+    this.contaArquivo = new Contasarquivos();
+    this.contaArquivo.contas = this.contaSelecinada;
+    this.contaArquivo.nomeorigial = this.file.name;
+    let fileName = this.file.name;
+    let nome = '';
+    for (let i = fileName.length - 1; i > 0; i--) {
+      if (fileName[i] !== '.' ) {
+         nome = fileName[i] + nome;
+      } else {
+        i = -100;
+      }
+    }
+    const id = this.contaSelecinada.idcontas;
+    const numeroArquivos = this.contaSelecinada.contasarquivos.length + 1;
+    fileName = id.toString() + '_'  + numeroArquivos.toString() + '.' + nome;
+     this.contasService.uploadReceber(this.file, fileName).subscribe(
+        resposta => {
+          const uri = resposta as any;
+          this.contaArquivo.uri = 'https://contasreceber.s3.us-east-2.amazonaws.com/' + fileName;
+          this.contasService.salvarArquivo(this.contaArquivo).subscribe(
+           resposta1 => {
+             this.contaArquivo = resposta1 as any;
+             this.contaSelecinada.contasarquivos.push(this.contaArquivo);
+           },
+           err1 => {
+             console.log(err1.error.erros.join(' '));
+            }
+           );
+        },
+        err => {
+         console.log(err.error.erros.join(' '));
+        }
+     );
   }
 }

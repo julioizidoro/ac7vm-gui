@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Contas } from './model/contas';
 import { environment as env } from '../../environments/environment.prod';
 import { Instituicao } from '../cliente/model/instituicao';
+import { Contasarquivos } from './model/contasarquivos';
 
 @Injectable({
   providedIn: 'root'
@@ -106,7 +107,7 @@ pesquisarDocumentoCP(documento: string):  Observable<any> {
 
 // Todas com dataVencimento
 pesquisarTodasVencimentoCP(dataInicial: string, dataFinal: string, nome: string):  Observable<any> {
-  return this.httpCliente.post<any>(env.baseApiUrl + 'cp/dvtodas/', dataInicial + '/' + dataFinal + '/' + nome );
+  return this.httpCliente.get<any>(env.baseApiUrl + 'cp/dvtodas/' + dataInicial + '/' + dataFinal + '/' + nome );
 }
 
 // Recebidas com dataVencimento dvrecebidas/{datainicial}/{datafinal}/{nome}
@@ -116,15 +117,27 @@ pesquisarRecebidasVencimentoCP(dataInicial: string, dataFinal: string, nome: str
 
 // Recebidas com dataVencimento dvrecebidas/{datainicial}/{datafinal}/{nome}
 pesquisarReceberVencimentoCP(dataInicial: string, dataFinal: string, nome: string):  Observable<any> {
-  return this.httpCliente.post<any>(env.baseApiUrl + 'cp/dvreceber/', dataInicial + '/' + dataFinal + '/' + nome );
+  return this.httpCliente.get<any>(env.baseApiUrl + 'cp/dvreceber/' + dataInicial + '/' + dataFinal + '/' + nome );
 }
 
-upload(file: File): Observable<any> {
+uploadPagar(file: File, fileName: string): Observable<any> {
   const uri = env.baseApiUrl + 'usuarios/picture';
   const formData = new FormData();
   formData.append('file', file, file.name);
   const request = new HttpRequest('POST', uri, formData);
   return this.httpCliente.request(request);
+}
+
+uploadReceber(file: File, fileName: string): Observable<any> {
+  const uri = env.baseApiUrl + 'usuarios/picture';
+  const formData = new FormData();
+  formData.append('file', file, file.name);
+  const request = new HttpRequest('POST', uri, formData);
+  return this.httpCliente.request(request);
+}
+
+salvarArquivo(contasArquivo: Contasarquivos): Observable<any> {
+  return this.httpCliente.post<any>(env.baseApiUrl + 'ca/salvar', contasArquivo);
 }
 
 
