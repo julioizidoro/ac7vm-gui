@@ -159,9 +159,9 @@
 <!-- Upload de Contas  -->
 
 <div mdbModal #contasarquivos="mdb-modal" class="modal fade" tabindex="-1" role="dialog"
-     aria-labelledby="myBasicModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+     aria-labelledby="myBasicModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content p-3">
             <div class="modal-header">
                 <p class="heading lead">Upload de Arquivo</p>
             </div>
@@ -189,11 +189,9 @@
                     <tbody>
                         <tr *ngFor="let arquivo of contaSelecinada.contasarquivosList"
                             class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-                            <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
-                                style="border: none;">
+                            <td class="col-lg-4 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">
                                 {{arquivo.nomeoriginal }}</td>
-                            <td class="col-lg-4 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
-                                style="border: none;text-align:right"><a href="arquivo.uri">
+                            <td class="col-lg-8 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm"><a href="arquivo.uri">
                                 {{arquivo.uri}}</a></td>
                         </tr>
                     </tbody>

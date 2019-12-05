@@ -377,9 +377,9 @@
 <!-- Upload de Contas  -->
 
 <div mdbModal #contasarquivos="mdb-modal" class="modal fade" tabindex="-1" role="dialog"
-     aria-labelledby="myBasicModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+     aria-labelledby="myBasicModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content p-3">
             <div class="modal-header">
                 <p class="heading lead">Upload de Arquivo</p>
             </div>
@@ -399,16 +399,15 @@
                     <thead>
                         <tr
                             class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
-                            <th class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">Arquivo
+                            <th class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">Arquivo
                             </th>
-                            <th class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                            <th class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                 Endereço</th>
                         </tr>
                     </thead>
                     <tbody>
-                            
                         <tr *ngFor="let arquivo of conta.contasarquivosList"
-                        class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
+                        class="pb-3 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
                             <td class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6"
                                 style="border: none;">
                                {{arquivo.noneoriginal}}</td>
