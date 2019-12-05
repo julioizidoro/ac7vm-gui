@@ -1,8 +1,10 @@
+import { AuthService } from './../usuario/login/auth.service';
 import { Fluxocaixa } from './../fluxocaixa/model/fluxocaixa';
 import { FluxocaixaService } from './../fluxocaixa/fluxocaixa.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as moment from 'moment';
 import { FluxocaixaModule } from '../fluxocaixa/fluxocaixa.module';
+import { Usuario } from '../usuario/model/usuario';
 
 
 @Component({
@@ -21,11 +23,14 @@ export class DashboardComponent implements OnInit {
     dataFinal: Date;
     view = false;
     ultimaData: Date;
+    usuario: Usuario;
 
     constructor(
         private fluxoCaixaService: FluxocaixaService,
+        private authService: AuthService,
     ) {
         this.clicked = this.clicked === undefined ? false : true;
+        this.usuario = authService.usuario;
     }
 
     async ngOnInit() {
@@ -49,7 +54,6 @@ export class DashboardComponent implements OnInit {
     }
 
     consultarFluxoCaixa(tipo: String) {
-        console.log(tipo);
         if (tipo === 'v') {
             this.ultimaData = this.lista[0].data;
             this.ultimaData.setDate(this.ultimaData.getDate() - 1);

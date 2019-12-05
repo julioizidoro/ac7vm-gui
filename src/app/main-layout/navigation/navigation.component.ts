@@ -100,33 +100,27 @@ export class NavigationComponent implements OnInit {
   }
 
   onChange(event) {
-    console.log(event);
     const selectedFiles = <FileList>event.srcElement.files;
     this.file = selectedFiles[0];
     document.getElementById('customFileLabel').innerHTML = selectedFiles[0].name;
  }
 
  onUpload() {
-<<<<<<< HEAD
-   console.log('parei');
-    this.usuarioService.upload(this.file, this.usuario).subscribe(
-=======
-   let fileName = this.file.name;
+   let filename = this.file.name;
    let nome = '';
-   for (let i = fileName.length - 1; i > 0; i--) {
-     if (fileName[i] !== '.' ) {
-        nome = fileName[i] + nome;
+   for (let i = filename.length - 1; i > 0; i--) {
+     if (filename[i] !== '.' ) {
+        nome = filename[i] + nome;
      } else {
        i = -100;
      }
    }
    const id = this.usuario.idusuario;
-   fileName = id.toString() + '.' + nome;
-    this.usuarioService.upload(this.file, fileName).subscribe(
->>>>>>> a10890b1f9b5af89e7cb061fe54c633140cb2906
+   filename = id.toString() + '.' + nome;
+    this.usuarioService.upload(this.file, filename).subscribe(
        resposta => {
          const uri = resposta as any;
-         this.usuario.urlfoto = 'https://pictureuser.s3.us-east-2.amazonaws.com/' + fileName;
+         this.usuario.urlfoto = 'https://pictureuser.s3.us-east-2.amazonaws.com/' + filename;
          this.usuarioService.update(this.usuario).subscribe(
           resposta1 => {
             this.usuario = resposta1 as any;

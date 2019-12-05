@@ -39,7 +39,7 @@ export class CadObrasComponent implements OnInit {
   ngOnInit() {
     this.setFormulario();
     this.obra = this.obrasService.getObra();
-    if (this.obra !=null) {
+    if (this.obra != null) {
       this.formulario = this.formBuilder.group({
         idobra: this.obra.idobra,
         cei: this.obra.cei,
@@ -109,7 +109,6 @@ salvar() {
     resposta => {
       this.obra = resposta as any;
       this.router.navigate(['consobras']);
-      console.log(this.obra);
     },
     err => {
       console.log(err.error.erros.join(' '));

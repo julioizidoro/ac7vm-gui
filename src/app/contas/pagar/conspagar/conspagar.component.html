@@ -9,7 +9,7 @@
   <form [formGroup]="formulario">
     <div class="container-fluid" style="width:100%;">
         <div class="w-100">
-            <button type="button" style="float:right;" class="btn btn-color font-weight-light" (click)="adicionar()">
+            <button type="button" style="float:right;" class="btn btn-color font-weight-light" (click)="adicionar()" [disabled]="!usuario.acesso.financeirocpincluir">
               <i class="fa fa-plus" aria-hidden="true"></i>
               <a class="ml-2">Adicionar</a>
             </button>
@@ -124,11 +124,11 @@
                         </button>
                         
                         <button type="button" style="float:right;" class="btn btn-light font-weight-light mr-1 p-1"
-                          (click)="editar(conta)" title="Editar">
+                          (click)="editar(conta)" title="Editar" *ngIf="usuario.acesso.financeirocpeditar">
                           <i class="fa fa-pencil-alt" aria-hidden="true"></i>
                       </button>
                       <button type="button" style="float:right;"
-                              class="btn btn-light font-weight-light mr-1 p-1" (click)="baixar(conta)"
+                              class="btn btn-light font-weight-light mr-1 p-1" (click)="baixar(conta)" *ngIf="usuario.acesso.financeirocppagar"
                               title="Pagar">
                               <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
                       </button>
@@ -166,8 +166,8 @@
                 <p class="heading lead">Upload de Arquivo</p>
             </div>
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile" (change)="onChange($event)" />
-                <label class="custom-file-label" for="customFile" id="customFileLabel">Selecionar arquivo</label>
+                <input type="file" class="custom-file-input" id="customFileCP" (change)="onChange($event)" />
+                <label class="custom-file-label" for="customFileCP" id="customFileLabelCP">Selecionar arquivo</label>
                 
             </div>
             <div style="margin-top: 10px;"> 
@@ -187,7 +187,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let arquivo of contaSelecinada.contasarquivos"
+                        <tr *ngFor="let arquivo of contaSelecinada.contasarquivosList"
                             class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
                             <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0"
                                 style="border: none;">

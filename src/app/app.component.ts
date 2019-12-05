@@ -34,7 +34,6 @@ export class AppComponent implements OnInit {
           );
           if (this.logado === true) {
             this.usuario = this.authService.usuario;
-            console.log(this.usuario.nome);
           }
     }
 

@@ -101,7 +101,6 @@ export class CadreceberComponent implements OnInit {
     this.formaPagamentoService.listar().subscribe(
       resposta => {
         this.listaFormaPagamento = resposta as any;
-        console.log('forma pagamento');
       }
     );
   }
@@ -144,7 +143,6 @@ export class CadreceberComponent implements OnInit {
     this.conta.desconto = 0;
     this.conta.juros = 0;
     this.conta.tipo = 'r';
-    console.log(this.conta);
     this.contasService.salvarCR(this.conta).subscribe(
       resposta => {
         this.conta = resposta as any;
@@ -209,7 +207,6 @@ export class CadreceberComponent implements OnInit {
   }
 
   verificarSaldoFluxoCaixa(liberarSaldo: boolean) {
-    console.log('salvar');
     if (liberarSaldo) {
       this.incluir();
     } else {

@@ -272,8 +272,6 @@ salvar() {
       console.log(err.error.erros.join(' '));
     }
   );
-
-  console.log(this.instituicao);
 }
 
 cancelar() {

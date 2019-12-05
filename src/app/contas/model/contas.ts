@@ -21,5 +21,5 @@ export class Contas {
     instituicao: Instituicao;
     formapagamento: Formapagamento;
     codigobarras: string;
-    contasarquivos: Contasarquivos[];
+    contasarquivosList: Contasarquivos[];
 }

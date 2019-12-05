@@ -46,7 +46,7 @@ export class CadFaseObraComponent implements OnInit {
       planoconta: [null]
     });
     this.obraFase = this.faseobraservice.getFaseObra();
-    if ( this.obraFase !=null ){
+    if ( this.obraFase != null ) {
       this.formulario = this.formBuilder.group({
         idobrafase: this.obraFase.idobrafase,
         descricao: this.obraFase.descricao,
@@ -78,7 +78,6 @@ listarPlanoConta() {
   this.planocontaservice.listar().subscribe(
     resposta => {
       this.listaPlanoConta = resposta as any;
-      console.log(this.listaPlanoConta);
     },
     err => {
       console.log(err.error.erros.join(' '));

@@ -1,3 +1,5 @@
+import { Usuario } from './../../usuario/model/usuario';
+import { AuthService } from './../../usuario/login/auth.service';
 import { Router } from '@angular/router';
 import {Component, Input} from '@angular/core';
 import * as moment from 'moment';
@@ -9,10 +11,13 @@ import * as moment from 'moment';
 })
 export class LinhaTempoComponent {
     data: any;
+    usuario: Usuario;
 
     constructor(
         private router: Router,
+        private authService: AuthService,
     ) {
+        this.usuario = authService.usuario;
         this.data = {
             labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
             datasets: [

@@ -74,6 +74,7 @@ export class CadpagarComponent implements OnInit {
         datapagamento: this.conta.datapagamento,
         valorpago : this.conta.valorpago,
         observacao: this.conta.observacao,
+        codigobarras: this.conta.codigobarras,
         instituicao: this.conta.instituicao,
         planocontas: this.conta.planoconta,
         formapagamento: this.conta.formapagamento
@@ -173,6 +174,7 @@ export class CadpagarComponent implements OnInit {
         datapagamento: [null],
         valorpago : 0,
         observacao: [null],
+        codigobarras: [null],
         instituicao: [null],
         planocontas: [null],
         formapagamento: [null],

@@ -249,8 +249,6 @@ export class CadFornecedoresComponent implements OnInit {
         console.log(err.error.erros.join(' '));
       }
     );
-
-    console.log(this.instituicao);
   }
 
   cancelar() {
