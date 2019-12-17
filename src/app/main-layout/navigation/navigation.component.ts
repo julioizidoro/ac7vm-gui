@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/usuario/login/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap';
-import { formatNumber } from '@angular/common';
+
 import { parse } from 'querystring';
 
 
