@@ -84,10 +84,10 @@
             <thead>
                 <tr
                     class="pb-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center row">
-                    <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm" style="text-align:right">No. Doc</th>
-                    <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Cliente</th>
-                    <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Vencimento</th>
-                    <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Valor</th>
+                    <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm" style="text-align:left">No. Doc</th>
+                    <th class="col-lg-3 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm" style="text-align:left">Cliente</th>
+                    <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm" style="text-align:center">Vencimento</th>
+                    <th class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm" style="text-align:center">Valor</th>
                     <th *ngIf="pagas" class="col-lg-2 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm">Data Pagamento</th>
                     <th *ngIf="pagas"class="col-lg-1 mb-1 text-muted text-small w-sm-100 hidden-xs hidden-sm"
                         style="text-align: center;">Ações</th>
@@ -98,12 +98,12 @@
             <tbody>
                 <tr *ngFor="let conta of contas"
                     class="pb-0 pt-0 card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
-                    <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
+                    <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none; text-align:left">
                         {{conta.documento}}</td>
                     <td class="col-lg-3 col-xs mb-1 mt-1 text-muted text-small w-sm-100 p-0" style="border: none;">
                         {{conta.instituicao.nome}}</td>
                     <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
-                        style="border: none;">{{conta.datavencimento | date: 'dd/MM/yyyy'}}</td>
+                        style="border: none; text-align: center;">{{conta.datavencimento | date: 'dd/MM/yyyy'}}</td>
                     <td class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
                         style="border: none;text-align:right">{{conta.valorparcela | currency: ' '}}</td>
                     <td *ngIf="pagas" class="col-lg-2 col-xs mb-1 mt-1 text-muted text-small w-sm-100 hidden-xs p-0"
