@@ -217,6 +217,7 @@ export class CadpagarComponent implements OnInit {
           if (fluxocaixa.saldoatual < this.conta.valorparcela) {
           // if (fluxocaixa.saldoatual < this.conta.valorparcela) {
             this.openModalFluxoCaixa();
+            this.incluir();
           } else {
             this.incluir();
           }
